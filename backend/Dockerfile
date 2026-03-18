@@ -2,14 +2,14 @@ FROM node:22-alpine AS base
 
 WORKDIR /app
 
-# Install dependencies
+# Install dependencies (cached layer)
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 
 # Copy source
 COPY . .
 
-# Build Medusa
+# Build Medusa (API + admin dashboard)
 RUN npm run build
 
 # Production — slim final image
