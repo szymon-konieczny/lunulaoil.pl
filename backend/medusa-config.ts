@@ -30,17 +30,25 @@ module.exports = defineConfig({
   },
   modules: [
     ...(process.env.R2_ACCESS_KEY_ID ? [{
-      resolve: "@medusajs/file-s3",
+      resolve: "@medusajs/medusa/file",
       options: {
-        file_url: process.env.R2_PUBLIC_URL,
-        access_key_id: process.env.R2_ACCESS_KEY_ID,
-        secret_access_key: process.env.R2_SECRET_ACCESS_KEY,
-        region: "auto",
-        bucket: process.env.R2_BUCKET_NAME || "lunula-assets",
-        endpoint: process.env.R2_ENDPOINT,
-        additional_config: {
-          forcePathStyle: true,
-        },
+        providers: [
+          {
+            resolve: "@medusajs/file-s3",
+            id: "s3",
+            options: {
+              file_url: process.env.R2_PUBLIC_URL,
+              access_key_id: process.env.R2_ACCESS_KEY_ID,
+              secret_access_key: process.env.R2_SECRET_ACCESS_KEY,
+              region: "auto",
+              bucket: process.env.R2_BUCKET_NAME || "lunula-assets",
+              endpoint: process.env.R2_ENDPOINT,
+              additional_config: {
+                forcePathStyle: true,
+              },
+            },
+          },
+        ],
       },
     }] : []),
   ],
