@@ -9,7 +9,9 @@ RUN npm ci --omit=dev
 # Copy source
 COPY . .
 
-# Build Medusa (API + admin dashboard)
+# Build Medusa API + admin dashboard
+# Limit Node memory to avoid OOM on Railway's build servers
+ENV NODE_OPTIONS="--max-old-space-size=1536"
 RUN npm run build
 
 # Production — slim final image
@@ -18,6 +20,8 @@ FROM node:22-alpine AS production
 WORKDIR /app
 
 COPY --from=base /app /app
+
+ENV NODE_OPTIONS="--max-old-space-size=512"
 
 EXPOSE 9000
 
