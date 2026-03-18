@@ -75,10 +75,13 @@ export async function POST(request: NextRequest) {
 
     const formattedAnswers = formatAnswers(answers)
     const productList = products
-      .map((p) => `- ${p.title}: ${p.description || "brak opisu"}`)
+      .map((p) => {
+        const tags = p.tags.length ? ` [${p.tags.join(", ")}]` : ""
+        return `- ${p.title}: ${p.description || "brak opisu"}${tags}`
+      })
       .join("\n")
 
-    const prompt = `Jesteś ekspertem od naturalnych kosmetyków w sklepie Lunula Oil & More, specjalizującym się w olejkach BIO z Maroka, Hiszpanii i Francji.
+    const prompt = `Jesteś ekspertem od naturalnych kosmetyków w sklepie Lunula Botanique (dawniej Lunula Oil & More), specjalizującym się w olejkach BIO z Maroka, Hiszpanii i Francji oraz kremach botanicznych z rytuałów pielęgnacyjnych (Moon Ritual, Solar Ritual, Alchemy Ritual, Pure Ritual).
 
 Klient wypełnił quiz doboru kosmetyków z następującymi odpowiedziami:
 

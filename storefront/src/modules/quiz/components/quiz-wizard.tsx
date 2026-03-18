@@ -184,17 +184,17 @@ function scoreProducts(
 ): HttpTypes.StoreProduct[] {
   const keywordMap: Record<string, Record<string, string[]>> = {
     skin_type: {
-      dry: ["sucha", "nawilż", "odżyw", "regenera", "masło", "olejek", "zmęczon"],
-      oily: ["tłusta", "matuj", "oczyszcz", "lekk", "serum", "sebum"],
-      combination: ["mieszana", "równoważ", "balansu", "sebum"],
-      normal: ["pielęgnac", "nawilż", "ochrona"],
-      sensitive: ["wrażliwa", "łagod", "kojąc", "delikat"],
+      dry: ["sucha", "nawilż", "odżyw", "regenera", "masło", "olejek", "zmęczon", "miękkość"],
+      oily: ["tłusta", "matuj", "oczyszcz", "lekk", "serum", "sebum", "regulacja sebum"],
+      combination: ["mieszana", "równoważ", "balansu", "sebum", "regulacja sebum"],
+      normal: ["pielęgnac", "nawilż", "ochrona", "równowag"],
+      sensitive: ["wrażliwa", "łagod", "kojąc", "delikat", "ukojeni", "równowag"],
     },
     concerns: {
-      aging: ["zmarszcz", "jędrn", "lifting", "kolagen", "retinol", "anti-age", "argano", "bakuchiol", "elastyczn", "dojrzał", "odnow"],
-      dryness: ["such", "nawilż", "odżyw", "masło", "regenera", "blask"],
-      glow: ["blask", "rozświetl", "promien", "witamin", "złot", "glow", "witaln"],
-      imperfections: ["niedoskonał", "trądzik", "pory", "oczyszcz", "zaskórn", "problematyczn", "zapalne"],
+      aging: ["zmarszcz", "jędrn", "lifting", "kolagen", "retinol", "anti-age", "argano", "bakuchiol", "elastyczn", "dojrzał", "odnow", "ujędrni", "wygładz"],
+      dryness: ["such", "nawilż", "odżyw", "masło", "regenera", "blask", "miękkość"],
+      glow: ["blask", "rozświetl", "promien", "witamin", "złot", "glow", "witaln", "odżywieni"],
+      imperfections: ["niedoskonał", "trądzik", "pory", "oczyszcz", "zaskórn", "problematyczn", "zapalne", "regulacja sebum"],
       scars: ["blizn", "rozstęp", "regenera", "nierówn"],
       hair: ["włos", "głow", "nabad", "odżyw"],
     },
