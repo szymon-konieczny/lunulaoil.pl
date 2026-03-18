@@ -8,6 +8,7 @@ import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import ProductPreview from "@modules/products/components/product-preview"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import AnimateIn from "@modules/common/components/animate-in"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
@@ -85,29 +86,35 @@ export default async function Home(props: {
       {products.length > 0 && (
         <div className="py-16 small:py-24 bg-brand-background">
           <div className="content-container">
-            <div className="mb-12 text-center">
+            <AnimateIn variant="fade-in" className="mb-12 text-center">
               <h2 className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium mb-4">
                 Nasze produkty
               </h2>
               <p className="text-white/60 text-base">
                 Odkryj pełną gamę kosmetyków Lunula Botanique
               </p>
-            </div>
+            </AnimateIn>
             <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
-              {products.map((product) => (
-                <li key={product.id}>
+              {products.map((product, i) => (
+                <AnimateIn
+                  key={product.id}
+                  as="li"
+                  variant="fade-up"
+                  delay={i * 80}
+                  duration={600}
+                >
                   <ProductPreview product={product} region={region} />
-                </li>
+                </AnimateIn>
               ))}
             </ul>
-            <div className="mt-12 text-center">
+            <AnimateIn variant="fade-up" delay={400} className="mt-12 text-center">
               <LocalizedClientLink
                 href="/store"
                 className="inline-block px-8 py-3 border border-brand-primary/30 text-brand-primary hover:bg-brand-primary hover:text-black rounded-full text-sm font-medium transition-all duration-300"
               >
                 Zobacz wszystkie produkty →
               </LocalizedClientLink>
-            </div>
+            </AnimateIn>
           </div>
         </div>
       )}

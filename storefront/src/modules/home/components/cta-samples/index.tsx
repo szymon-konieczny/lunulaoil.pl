@@ -1,11 +1,12 @@
 import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import AnimateIn from "@modules/common/components/animate-in"
 
 const CtaSamples = () => {
   return (
     <section className="py-16 small:py-24 bg-brand-surface">
       <div className="content-container flex flex-col small:flex-row items-center gap-12">
-        <div className="flex-1 flex flex-col gap-6">
+        <AnimateIn variant="fade-left" className="flex-1 flex flex-col gap-6">
           <h2 className="text-white text-3xl small:text-4xl font-heading font-bold leading-tight">
             Wypróbuj nasze olejki
           </h2>
@@ -28,9 +29,9 @@ const CtaSamples = () => {
               Więcej o marce
             </LocalizedClientLink>
           </div>
-        </div>
+        </AnimateIn>
 
-        <div className="flex-1 relative">
+        <AnimateIn variant="fade-right" delay={200} className="flex-1 relative">
           <Image
             src="/zestaw-probek.png"
             alt="Zestaw próbek Lunula Oil"
@@ -38,7 +39,7 @@ const CtaSamples = () => {
             height={598}
             className="w-full h-auto"
           />
-        </div>
+        </AnimateIn>
       </div>
     </section>
   )
