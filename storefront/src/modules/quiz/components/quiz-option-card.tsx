@@ -16,11 +16,11 @@ export default function QuizOptionCard({ option, selected, onClick }: Props) {
       onClick={onClick}
       className={clx(
         "w-full text-left p-5 rounded-large border transition-all duration-200",
-        "hover:border-primary/60 hover:bg-primary/5",
-        "focus:outline-none focus:ring-2 focus:ring-primary/40",
+        "hover:border-brand-primary/60 hover:bg-brand-primary/5",
+        "focus:outline-none focus:ring-2 focus:ring-brand-primary/40",
         selected
-          ? "border-primary bg-primary/10 shadow-md"
-          : "border-white/10 bg-surface"
+          ? "border-brand-primary bg-brand-primary/10 shadow-md"
+          : "border-white/10 bg-brand-surface"
       )}
     >
       <div className="flex items-start gap-4">
@@ -32,17 +32,17 @@ export default function QuizOptionCard({ option, selected, onClick }: Props) {
             <span
               className={clx(
                 "font-semibold text-base",
-                selected ? "text-primary-light" : "text-white"
+                selected ? "text-brand-primary-light" : "text-white"
               )}
             >
               {option.label}
             </span>
             {selected && (
-              <span className="text-primary text-sm">✓</span>
+              <span className="text-brand-primary text-sm">✓</span>
             )}
           </div>
           {option.description && (
-            <p className="text-sm text-text-muted mt-1 leading-relaxed">
+            <p className="text-sm text-brand-text-muted mt-1 leading-relaxed">
               {option.description}
             </p>
           )}

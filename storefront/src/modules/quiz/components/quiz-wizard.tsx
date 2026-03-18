@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useRef } from "react"
 import { HttpTypes } from "@medusajs/types"
 import { clx } from "@medusajs/ui"
 import { quizSteps, QuizAnswers } from "../data"
@@ -18,6 +18,7 @@ export default function QuizWizard({ allProducts }: Props) {
   const [showResults, setShowResults] = useState(false)
   const [aiRecommendation, setAiRecommendation] = useState<string | null>(null)
   const [aiLoading, setAiLoading] = useState(false)
+  const navRef = useRef<HTMLDivElement>(null)
 
   const step = quizSteps[currentStep]
   const isLastStep = currentStep === quizSteps.length - 1
@@ -121,48 +122,53 @@ export default function QuizWizard({ allProducts }: Props) {
           {step.question}
         </h2>
         {step.subtitle && (
-          <p className="text-text-muted text-base">{step.subtitle}</p>
+          <p className="text-brand-text-muted text-base">{step.subtitle}</p>
         )}
       </div>
 
       {/* Options */}
-      <div className="space-y-3 mb-10">
+      <div className="space-y-3 mb-8">
         {step.options.map((option) => (
           <QuizOptionCard
             key={option.value}
             option={option}
             selected={isSelected(option.value)}
-            onClick={() => handleSelect(option.value)}
+            onClick={() => {
+              handleSelect(option.value)
+              setTimeout(() => {
+                navRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+              }, 100)
+            }}
           />
         ))}
       </div>
 
       {/* Navigation */}
-      <div className="flex items-center justify-between">
-        <button
-          onClick={handleBack}
-          disabled={currentStep === 0}
-          className={clx(
-            "px-5 py-2.5 rounded-large text-sm font-medium transition-colors",
-            currentStep === 0
-              ? "text-white/20 cursor-not-allowed"
-              : "text-white border border-white/20 hover:border-primary/40"
-          )}
-        >
-          Wstecz
-        </button>
-        <button
-          onClick={handleNext}
-          disabled={!canProceed}
-          className={clx(
-            "px-8 py-2.5 rounded-large text-sm font-semibold transition-all duration-200",
-            canProceed
-              ? "bg-primary text-black hover:bg-primary-light shadow-lg"
-              : "bg-white/10 text-white/30 cursor-not-allowed"
-          )}
-        >
-          {isLastStep ? "Zobacz wyniki" : "Dalej"}
-        </button>
+      <div ref={navRef} className="flex items-center justify-between pb-8">
+          <button
+            onClick={handleBack}
+            disabled={currentStep === 0}
+            className={clx(
+              "px-5 py-2.5 rounded-large text-sm font-medium transition-colors",
+              currentStep === 0
+                ? "text-white/20 cursor-not-allowed"
+                : "text-white border border-white/20 hover:border-brand-primary/40"
+            )}
+          >
+            Wstecz
+          </button>
+          <button
+            onClick={handleNext}
+            disabled={!canProceed}
+            className={clx(
+              "px-8 py-2.5 rounded-large text-sm font-semibold transition-all duration-200",
+              canProceed
+                ? "bg-brand-primary text-black hover:bg-brand-primary-light shadow-lg"
+                : "bg-white/10 text-white/30 cursor-not-allowed"
+            )}
+          >
+            {isLastStep ? "Zobacz wyniki" : "Dalej"}
+          </button>
       </div>
     </div>
   )
@@ -233,6 +239,6 @@ function scoreProducts(
   return scored
     .filter((s) => s.score > 0)
     .sort((a, b) => b.score - a.score)
-    .slice(0, 6)
+    .slice(0, 3)
     .map((s) => s.product)
 }

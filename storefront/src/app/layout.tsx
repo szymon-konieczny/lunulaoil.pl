@@ -1,12 +1,19 @@
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
-import { Open_Sans } from "next/font/google"
+import { Open_Sans, Playfair_Display } from "next/font/google"
 import "styles/globals.css"
 
 const openSans = Open_Sans({
   subsets: ["latin", "latin-ext"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-open-sans",
+  display: "swap",
+})
+
+const playfair = Playfair_Display({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-playfair",
   display: "swap",
 })
 
@@ -30,7 +37,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
     <html
       lang="pl"
       data-mode="light"
-      className={openSans.variable}
+      className={`${openSans.variable} ${playfair.variable}`}
     >
       <body className="bg-brand-background text-brand-text font-sans antialiased">
         <main className="relative">{props.children}</main>

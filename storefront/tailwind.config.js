@@ -81,6 +81,12 @@ module.exports = {
           "system-ui",
           "sans-serif",
         ],
+        serif: [
+          "var(--font-playfair)",
+          "Playfair Display",
+          "Georgia",
+          "serif",
+        ],
       },
       keyframes: {
         ring: {

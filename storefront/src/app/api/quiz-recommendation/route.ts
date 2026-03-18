@@ -87,7 +87,7 @@ ${formattedAnswers}
 Dostępne produkty w sklepie:
 ${productList}
 
-Na podstawie odpowiedzi klienta, napisz krótką (3-5 zdań), ciepłą i profesjonalną rekomendację po polsku. Wyjaśnij dlaczego wybrane produkty pasują do potrzeb klienta. Jeśli to możliwe, zasugeruj rutynę pielęgnacyjną. Nie używaj nagłówków ani punktorów — pisz naturalnym, ciepłym tonem jak doradca w butikowym sklepie z kosmetykami.`
+Na podstawie odpowiedzi klienta, zaproponuj 1 (maksymalnie 2-3) najlepiej dopasowane produkty i napisz krótką (3-5 zdań), ciepłą i profesjonalną rekomendację po polsku. Wyjaśnij dlaczego ten konkretny produkt jest idealny dla klienta. Na koniec zawsze zaproponuj udział w warsztatach Slow Care, gdzie klient nauczy się tworzyć własną rutynę pielęgnacyjną z naturalnymi olejkami. Nie używaj nagłówków ani punktorów — pisz naturalnym, ciepłym tonem jak doradca w butikowym sklepie z kosmetykami.`
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",

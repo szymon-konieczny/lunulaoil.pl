@@ -31,13 +31,13 @@ export default async function QuizPage(props: Props) {
     <div className="content-container py-12 small:py-20 min-h-[80vh]">
       {/* Header — only on quiz steps, QuizWizard handles results header */}
       <div className="text-center mb-12">
-        <span className="text-primary text-sm font-medium uppercase tracking-wider">
+        <span className="text-brand-primary text-sm font-medium uppercase tracking-wider">
           Asystent doboru
         </span>
-        <h1 className="text-3xl small:text-4xl font-bold text-white mt-3 mb-4">
+        <h1 className="text-3xl small:text-5xl font-serif font-semibold text-white mt-3 mb-4">
           Znajdź swój idealny kosmetyk
         </h1>
-        <p className="text-text-muted max-w-xl mx-auto text-lg">
+        <p className="text-brand-text-muted max-w-xl mx-auto text-lg">
           Odpowiedz na kilka pytań, a dobierzemy produkty idealnie dopasowane
           do Twojej skóry i potrzeb.
         </p>
