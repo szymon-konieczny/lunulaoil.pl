@@ -14,12 +14,20 @@ const CtaSamples = () => {
             miniaturek naszych najpopularniejszych olejków, dzięki którym
             odkryjesz swój ulubiony zapach i formułę.
           </p>
-          <LocalizedClientLink
-            href="/store"
-            className="inline-flex items-center gap-2 px-8 py-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition-colors duration-300 text-sm font-medium tracking-wide w-fit"
-          >
-            Więcej o firmie
-          </LocalizedClientLink>
+          <div className="flex flex-wrap gap-4">
+            <LocalizedClientLink
+              href="/products/zestaw-probek"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-brand-accent text-black hover:bg-brand-accent/80 transition-colors duration-300 text-sm font-medium tracking-wide w-fit"
+            >
+              Zamów zestaw próbek
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              href="/about"
+              className="inline-flex items-center gap-2 px-8 py-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-black transition-colors duration-300 text-sm font-medium tracking-wide w-fit"
+            >
+              Więcej o marce
+            </LocalizedClientLink>
+          </div>
         </div>
 
         <div className="flex-1 relative">
