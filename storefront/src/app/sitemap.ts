@@ -4,6 +4,9 @@ import { listCategories } from "@lib/data/categories"
 import { listCollections } from "@lib/data/collections"
 import { listRegions } from "@lib/data/regions"
 
+// Force dynamic rendering — backend is not available at build time
+export const dynamic = "force-dynamic"
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
