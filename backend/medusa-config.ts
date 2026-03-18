@@ -2,15 +2,15 @@ import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
-// Railway Postgres uses internal networking — no SSL needed for private URLs
-// For public URLs, SSL is required
 const databaseUrl = process.env.DATABASE_URL
-const databaseExtra: Record<string, unknown> = {}
 
-// Only enable SSL for public Railway Postgres URLs (not internal .railway.internal)
-if (process.env.DATABASE_URL?.includes("railway") && !process.env.DATABASE_URL?.includes(".railway.internal")) {
-  databaseExtra.ssl = { rejectUnauthorized: false }
-}
+// Railway internal Postgres doesn't need SSL
+// Public Railway Postgres URLs do need SSL
+const needsSsl = databaseUrl?.includes("railway") && !databaseUrl?.includes(".railway.internal")
+
+const databaseDriverOptions = needsSsl
+  ? { connection: { ssl: { rejectUnauthorized: false } } }
+  : undefined
 
 module.exports = defineConfig({
   admin: {
@@ -18,7 +18,7 @@ module.exports = defineConfig({
   },
   projectConfig: {
     databaseUrl,
-    databaseExtra,
+    databaseDriverOptions,
     databaseLogging: false,
     http: {
       storeCors: process.env.STORE_CORS || "http://localhost:8000",
