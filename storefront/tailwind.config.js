@@ -72,14 +72,16 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          "var(--font-open-sans)",
           "Open Sans",
           "system-ui",
           "sans-serif",
         ],
         heading: [
-          "Open Sans",
-          "system-ui",
-          "sans-serif",
+          "var(--font-playfair)",
+          "Playfair Display",
+          "Georgia",
+          "serif",
         ],
         serif: [
           "var(--font-playfair)",

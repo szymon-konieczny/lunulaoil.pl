@@ -53,6 +53,9 @@ export const listProducts = async ({
     ...(await getCacheOptions("products")),
   }
 
+  // Bypass cache for search queries to get fresh results
+  const hasSearchQuery = !!(queryParams as any)?.q
+
   return sdk.client
     .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(
       `/store/products`,
@@ -67,8 +70,8 @@ export const listProducts = async ({
           ...queryParams,
         },
         headers,
-        next,
-        cache: "force-cache",
+        next: hasSearchQuery ? { revalidate: 0 } : next,
+        cache: hasSearchQuery ? "no-store" : "force-cache",
       }
     )
     .then(({ products, count }) => {
