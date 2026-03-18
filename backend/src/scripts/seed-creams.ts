@@ -77,216 +77,166 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
     logger.info(`Created Kremy category: ${catCreams}`);
   }
 
-  // Create tags first using product module service
-  logger.info("Creating product tags...");
+  logger.info("Seeding Lunula Botanique cream products...");
 
-  const tagValues = [
-    "krem",
-    "skóra wrażliwa",
-    "ukojenie",
-    "równowaga",
-    "wygładzenie",
-    "geranium",
-    "skwalan",
-    "twarz",
-    "skóra sucha",
-    "zmęczona",
-    "rozświetlenie",
-    "odżywienie",
-    "miękkość",
-    "blask",
-    "rokitnik",
-    "skóra dojrzała",
-    "przeciwzmarszczkowy",
-    "ujędrnienie",
-    "odnowa",
-    "bakuchiol",
-    "róża",
-    "koenzym Q10",
-    "skóra mieszana",
-    "trądzikowa",
-    "problematyczna",
-    "regulacja sebum",
-    "nawilżenie",
-    "olej konopny",
+  // Product definitions (without tags — added separately after creation)
+  const productDefs = [
+    {
+      title: "Geranium Glow — Moon Touch Cream 50ml",
+      subtitle: "Moon Ritual — Balance",
+      category_ids: [catCreams],
+      description:
+        "Krem przywracający równowagę, inspirowany cyklem księżyca. Formuła oparta na olejku geraniowym, oleju z pestek winogron i skwalanie roślinnym. Koi podrażnienia, wygładza skórę i przywraca jej naturalną harmonię. Idealny dla skóry wrażliwej, reaktywnej i potrzebującej ukojenia — równoważy, łagodzi i wygładza. Delikatna, lekka konsystencja otula skórę bez obciążania. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
+      handle: "geranium-glow-moon-touch-cream",
+      weight: 120,
+      status: ProductStatus.PUBLISHED,
+      shipping_profile_id: shippingProfile.id,
+      images: [] as { url: string }[],
+      options: [{ title: "Pojemność", values: ["50ml"] }],
+      variants: [
+        {
+          title: "50ml",
+          sku: "LUNULA-GERANIUMGLOW-50",
+          options: { Pojemność: "50ml" },
+          prices: [
+            { amount: 12900, currency_code: "pln" },
+            { amount: 3000, currency_code: "eur" },
+          ],
+        },
+      ],
+      sales_channels: [{ id: defaultSalesChannel[0].id }],
+      _tagValues: ["krem", "skóra wrażliwa", "ukojenie", "równowaga", "wygładzenie", "geranium", "skwalan", "twarz"],
+    },
+    {
+      title: "Golden Glow — Solar Touch Cream 50ml",
+      subtitle: "Solar Ritual — Radiance",
+      category_ids: [catCreams],
+      description:
+        "Krem o złocistej konsystencji inspirowany ciepłem słońca. Formuła oparta na skwalanie, oleju z pestek malin, oleju z rokitnika, fermentach botanicznych i ekstraktach owocowych. Rozświetla, regeneruje i odżywia zmęczoną, pozbawioną blasku skórę. Idealny dla skóry suchej i zmęczonej — przywraca naturalny blask i witalność. Lekka, jedwabista konsystencja szybko się wchłania, pozostawiając subtelny efekt glow. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
+      handle: "golden-glow-solar-touch-cream",
+      weight: 120,
+      status: ProductStatus.PUBLISHED,
+      shipping_profile_id: shippingProfile.id,
+      images: [] as { url: string }[],
+      options: [{ title: "Pojemność", values: ["50ml"] }],
+      variants: [
+        {
+          title: "50ml",
+          sku: "LUNULA-GOLDENGLOW-50",
+          options: { Pojemność: "50ml" },
+          prices: [
+            { amount: 13900, currency_code: "pln" },
+            { amount: 3200, currency_code: "eur" },
+          ],
+        },
+      ],
+      sales_channels: [{ id: defaultSalesChannel[0].id }],
+      _tagValues: ["krem", "skóra sucha", "zmęczona", "rozświetlenie", "odżywienie", "miękkość", "blask", "skwalan", "rokitnik", "twarz"],
+    },
+    {
+      title: "Rose Alchemy — Phyto Renew Cream 50ml",
+      subtitle: "Alchemy Ritual — Renewal",
+      category_ids: [catCreams],
+      description:
+        "Krem regenerujący inspirowany alchemią róży. Zawiera bakuchiol (naturalną alternatywę retinolu), koenzym Q10, olej z dzikiej róży oraz kompleks ekstraktów kwiatowych. Intensywnie regeneruje, wygładza drobne zmarszczki i poprawia elastyczność skóry. Stworzony z myślą o skórze dojrzałej i wymagającej odnowy — wspiera naturalny proces regeneracji komórkowej. Bogata, aksamitna formuła otula skórę, dostarczając głębokie odżywienie. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
+      handle: "rose-alchemy-phyto-renew-cream",
+      weight: 120,
+      status: ProductStatus.PUBLISHED,
+      shipping_profile_id: shippingProfile.id,
+      images: [] as { url: string }[],
+      options: [{ title: "Pojemność", values: ["50ml"] }],
+      variants: [
+        {
+          title: "50ml",
+          sku: "LUNULA-ROSEALCHEMY-50",
+          options: { Pojemność: "50ml" },
+          prices: [
+            { amount: 14900, currency_code: "pln" },
+            { amount: 3500, currency_code: "eur" },
+          ],
+        },
+      ],
+      sales_channels: [{ id: defaultSalesChannel[0].id }],
+      _tagValues: ["krem", "skóra dojrzała", "przeciwzmarszczkowy", "ujędrnienie", "wygładzenie", "odnowa", "bakuchiol", "róża", "koenzym Q10", "twarz"],
+    },
+    {
+      title: "Clear Ritual — Pure Touch Cream 50ml",
+      subtitle: "Pure Ritual — Purity",
+      category_ids: [catCreams],
+      description:
+        "Krem oczyszczająco-łagodzący oparty na ziołowym naparze z kory białej wierzby, przywrotnika i łopianu. Wzbogacony olejem konopnym, olejem z pestek winogron i alantoiną. Reguluje wydzielanie sebum, łagodzi stany zapalne i wspomaga naturalny proces oczyszczania skóry. Stworzony dla skóry mieszanej, problematycznej i trądzikowej — przywraca równowagę bez wysuszania. Lekka, matująca formuła nie zatyka porów i nie obciąża skóry. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
+      handle: "clear-ritual-pure-touch-cream",
+      weight: 120,
+      status: ProductStatus.PUBLISHED,
+      shipping_profile_id: shippingProfile.id,
+      images: [] as { url: string }[],
+      options: [{ title: "Pojemność", values: ["50ml"] }],
+      variants: [
+        {
+          title: "50ml",
+          sku: "LUNULA-CLEARRITUAL-50",
+          options: { Pojemność: "50ml" },
+          prices: [
+            { amount: 11900, currency_code: "pln" },
+            { amount: 2800, currency_code: "eur" },
+          ],
+        },
+      ],
+      sales_channels: [{ id: defaultSalesChannel[0].id }],
+      _tagValues: ["krem", "skóra mieszana", "trądzikowa", "problematyczna", "regulacja sebum", "ukojenie", "nawilżenie", "olej konopny", "twarz"],
+    },
   ];
 
-  const createdTags = await productModuleService.createProductTags(
-    tagValues.map((v) => ({ value: v }))
-  );
+  // Extract tag values and strip from product defs before passing to workflow
+  const tagMapping: { handle: string; tagValues: string[] }[] = [];
+  const products = productDefs.map(({ _tagValues, ...product }) => {
+    tagMapping.push({ handle: product.handle, tagValues: _tagValues });
+    return product;
+  });
 
-  // Build a map of tag value -> tag id
+  const { result: createdProducts } = await createProductsWorkflow(
+    container
+  ).run({
+    input: { products },
+  });
+
+  logger.info(`Created ${createdProducts.length} cream products.`);
+
+  // Now add tags to products using product module service
+  logger.info("Adding tags to products...");
+
+  // Collect all unique tag values
+  const allTagValues = [
+    ...new Set(tagMapping.flatMap((m) => m.tagValues)),
+  ];
+
+  // Create tags
+  const createdTags = await productModuleService.createProductTags(
+    allTagValues.map((v) => ({ value: v }))
+  );
   const tagMap = new Map<string, string>();
   for (const tag of createdTags) {
     tagMap.set(tag.value, tag.id);
   }
 
-  const getTagIds = (values: string[]) =>
-    values.map((v) => ({ id: tagMap.get(v)! })).filter((t) => t.id);
+  // Update each product with its tags
+  for (const mapping of tagMapping) {
+    const product = createdProducts.find(
+      (p: any) => p.handle === mapping.handle
+    );
+    if (product) {
+      const tagIds = mapping.tagValues
+        .map((v) => tagMap.get(v))
+        .filter(Boolean) as string[];
+      if (tagIds.length) {
+        await productModuleService.updateProducts(product.id, {
+          tags: tagIds.map((id) => ({ id })),
+        });
+      }
+    }
+  }
 
-  logger.info("Seeding Lunula Botanique cream products...");
-
-  await createProductsWorkflow(container).run({
-    input: {
-      products: [
-        // ── Moon Ritual — Balance ───────────────────────────────
-        // Geranium Glow — Moon Touch Cream — 129 zł
-        {
-          title: "Geranium Glow — Moon Touch Cream 50ml",
-          subtitle: "Moon Ritual — Balance",
-          category_ids: [catCreams],
-          description:
-            "Krem przywracający równowagę, inspirowany cyklem księżyca. Formuła oparta na olejku geraniowym, oleju z pestek winogron i skwalanie roślinnym. Koi podrażnienia, wygładza skórę i przywraca jej naturalną harmonię. Idealny dla skóry wrażliwej, reaktywnej i potrzebującej ukojenia — równoważy, łagodzi i wygładza. Delikatna, lekka konsystencja otula skórę bez obciążania. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
-          handle: "geranium-glow-moon-touch-cream",
-          weight: 120,
-          status: ProductStatus.PUBLISHED,
-          shipping_profile_id: shippingProfile.id,
-          images: [],
-          tags: getTagIds([
-            "krem",
-            "skóra wrażliwa",
-            "ukojenie",
-            "równowaga",
-            "wygładzenie",
-            "geranium",
-            "skwalan",
-            "twarz",
-          ]),
-          options: [{ title: "Pojemność", values: ["50ml"] }],
-          variants: [
-            {
-              title: "50ml",
-              sku: "LUNULA-GERANIUMGLOW-50",
-              options: { Pojemność: "50ml" },
-              prices: [
-                { amount: 12900, currency_code: "pln" },
-                { amount: 3000, currency_code: "eur" },
-              ],
-            },
-          ],
-          sales_channels: [{ id: defaultSalesChannel[0].id }],
-        },
-        // ── Solar Ritual — Radiance ─────────────────────────────
-        // Golden Glow — Solar Touch Cream — 139 zł
-        {
-          title: "Golden Glow — Solar Touch Cream 50ml",
-          subtitle: "Solar Ritual — Radiance",
-          category_ids: [catCreams],
-          description:
-            "Krem o złocistej konsystencji inspirowany ciepłem słońca. Formuła oparta na skwalanie, oleju z pestek malin, oleju z rokitnika, fermentach botanicznych i ekstraktach owocowych. Rozświetla, regeneruje i odżywia zmęczoną, pozbawioną blasku skórę. Idealny dla skóry suchej i zmęczonej — przywraca naturalny blask i witalność. Lekka, jedwabista konsystencja szybko się wchłania, pozostawiając subtelny efekt glow. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
-          handle: "golden-glow-solar-touch-cream",
-          weight: 120,
-          status: ProductStatus.PUBLISHED,
-          shipping_profile_id: shippingProfile.id,
-          images: [],
-          tags: getTagIds([
-            "krem",
-            "skóra sucha",
-            "zmęczona",
-            "rozświetlenie",
-            "odżywienie",
-            "miękkość",
-            "blask",
-            "skwalan",
-            "rokitnik",
-            "twarz",
-          ]),
-          options: [{ title: "Pojemność", values: ["50ml"] }],
-          variants: [
-            {
-              title: "50ml",
-              sku: "LUNULA-GOLDENGLOW-50",
-              options: { Pojemność: "50ml" },
-              prices: [
-                { amount: 13900, currency_code: "pln" },
-                { amount: 3200, currency_code: "eur" },
-              ],
-            },
-          ],
-          sales_channels: [{ id: defaultSalesChannel[0].id }],
-        },
-        // ── Alchemy Ritual — Renewal ────────────────────────────
-        // Rose Alchemy — Phyto Renew Cream — 149 zł
-        {
-          title: "Rose Alchemy — Phyto Renew Cream 50ml",
-          subtitle: "Alchemy Ritual — Renewal",
-          category_ids: [catCreams],
-          description:
-            "Krem regenerujący inspirowany alchemią róży. Zawiera bakuchiol (naturalną alternatywę retinolu), koenzym Q10, olej z dzikiej róży oraz kompleks ekstraktów kwiatowych. Intensywnie regeneruje, wygładza drobne zmarszczki i poprawia elastyczność skóry. Stworzony z myślą o skórze dojrzałej i wymagającej odnowy — wspiera naturalny proces regeneracji komórkowej. Bogata, aksamitna formuła otula skórę, dostarczając głębokie odżywienie. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
-          handle: "rose-alchemy-phyto-renew-cream",
-          weight: 120,
-          status: ProductStatus.PUBLISHED,
-          shipping_profile_id: shippingProfile.id,
-          images: [],
-          tags: getTagIds([
-            "krem",
-            "skóra dojrzała",
-            "przeciwzmarszczkowy",
-            "ujędrnienie",
-            "wygładzenie",
-            "odnowa",
-            "bakuchiol",
-            "róża",
-            "koenzym Q10",
-            "twarz",
-          ]),
-          options: [{ title: "Pojemność", values: ["50ml"] }],
-          variants: [
-            {
-              title: "50ml",
-              sku: "LUNULA-ROSEALCHEMY-50",
-              options: { Pojemność: "50ml" },
-              prices: [
-                { amount: 14900, currency_code: "pln" },
-                { amount: 3500, currency_code: "eur" },
-              ],
-            },
-          ],
-          sales_channels: [{ id: defaultSalesChannel[0].id }],
-        },
-        // ── Pure Ritual — Purity ────────────────────────────────
-        // Clear Ritual — Pure Touch Cream — 119 zł
-        {
-          title: "Clear Ritual — Pure Touch Cream 50ml",
-          subtitle: "Pure Ritual — Purity",
-          category_ids: [catCreams],
-          description:
-            "Krem oczyszczająco-łagodzący oparty na ziołowym naparze z kory białej wierzby, przywrotnika i łopianu. Wzbogacony olejem konopnym, olejem z pestek winogron i alantoiną. Reguluje wydzielanie sebum, łagodzi stany zapalne i wspomaga naturalny proces oczyszczania skóry. Stworzony dla skóry mieszanej, problematycznej i trądzikowej — przywraca równowagę bez wysuszania. Lekka, matująca formuła nie zatyka porów i nie obciąża skóry. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
-          handle: "clear-ritual-pure-touch-cream",
-          weight: 120,
-          status: ProductStatus.PUBLISHED,
-          shipping_profile_id: shippingProfile.id,
-          images: [],
-          tags: getTagIds([
-            "krem",
-            "skóra mieszana",
-            "trądzikowa",
-            "problematyczna",
-            "regulacja sebum",
-            "ukojenie",
-            "nawilżenie",
-            "olej konopny",
-            "twarz",
-          ]),
-          options: [{ title: "Pojemność", values: ["50ml"] }],
-          variants: [
-            {
-              title: "50ml",
-              sku: "LUNULA-CLEARRITUAL-50",
-              options: { Pojemność: "50ml" },
-              prices: [
-                { amount: 11900, currency_code: "pln" },
-                { amount: 2800, currency_code: "eur" },
-              ],
-            },
-          ],
-          sales_channels: [{ id: defaultSalesChannel[0].id }],
-        },
-      ],
-    },
-  });
-
-  logger.info("Finished seeding cream products.");
+  logger.info("Tags added successfully.");
 
   // Set inventory levels for new products
   logger.info("Setting inventory levels for creams...");
