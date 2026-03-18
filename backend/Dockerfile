@@ -7,20 +7,20 @@ RUN npm ci
 
 COPY . .
 
-ENV NODE_OPTIONS="--max-old-space-size=1536"
-# Provide dummy DATABASE_URL for medusa build (config loader requires it)
-# NODE_ENV must NOT be production during build or admin gets skipped
-ENV DATABASE_URL="postgres://dummy:dummy@localhost:5432/dummy"
-ENV NODE_ENV=development
-# cache-bust-v2
-RUN npm run build \
-    && ls -la .medusa/server/public/admin/index.html \
-    && echo "Admin build verified OK" \
-    || (echo "FATAL: Admin index.html not found! Build failed." && exit 1)
-ENV DATABASE_URL=""
+# Build Medusa backend + admin dashboard
+# NODE_ENV must be development during build so admin panel is included
+# DATABASE_URL dummy needed for config loader
+ARG CACHEBUST=1
+RUN NODE_ENV=development \
+    DATABASE_URL="postgres://dummy:dummy@localhost:5432/dummy" \
+    NODE_OPTIONS="--max-old-space-size=1536" \
+    npm run build \
+    && test -f .medusa/server/public/admin/index.html \
+    && echo "=== Admin build verified OK ===" \
+    || (echo "FATAL: Admin index.html not found!" && exit 1)
 
 EXPOSE 9000
 
 ENV NODE_ENV=production
 ENV NODE_OPTIONS="--max-old-space-size=1024"
-CMD ["sh", "-c", "echo 'Starting migrations...' && npx medusa db:migrate && echo 'Migrations done. Starting server...' && npx medusa start"]
+CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start"]
