@@ -52,19 +52,77 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
     return;
   }
 
-  logger.info("Creating Kremy category...");
+  const productModuleService = container.resolve(Modules.PRODUCT);
 
-  const { result: categoryResult } = await createProductCategoriesWorkflow(
-    container
-  ).run({
-    input: {
-      product_categories: [
-        { name: "Kremy", is_active: true },
-      ],
-    },
+  logger.info("Getting or creating Kremy category...");
+
+  // Check if category already exists
+  const existingCategories = await productModuleService.listProductCategories({
+    name: "Kremy",
   });
 
-  const catCreams = categoryResult[0].id;
+  let catCreams: string;
+  if (existingCategories.length) {
+    catCreams = existingCategories[0].id;
+    logger.info(`Using existing Kremy category: ${catCreams}`);
+  } else {
+    const { result: categoryResult } = await createProductCategoriesWorkflow(
+      container
+    ).run({
+      input: {
+        product_categories: [{ name: "Kremy", is_active: true }],
+      },
+    });
+    catCreams = categoryResult[0].id;
+    logger.info(`Created Kremy category: ${catCreams}`);
+  }
+
+  // Create tags first using product module service
+  logger.info("Creating product tags...");
+
+  const tagValues = [
+    "krem",
+    "skóra wrażliwa",
+    "ukojenie",
+    "równowaga",
+    "wygładzenie",
+    "geranium",
+    "skwalan",
+    "twarz",
+    "skóra sucha",
+    "zmęczona",
+    "rozświetlenie",
+    "odżywienie",
+    "miękkość",
+    "blask",
+    "rokitnik",
+    "skóra dojrzała",
+    "przeciwzmarszczkowy",
+    "ujędrnienie",
+    "odnowa",
+    "bakuchiol",
+    "róża",
+    "koenzym Q10",
+    "skóra mieszana",
+    "trądzikowa",
+    "problematyczna",
+    "regulacja sebum",
+    "nawilżenie",
+    "olej konopny",
+  ];
+
+  const createdTags = await productModuleService.createProductTags(
+    tagValues.map((v) => ({ value: v }))
+  );
+
+  // Build a map of tag value -> tag id
+  const tagMap = new Map<string, string>();
+  for (const tag of createdTags) {
+    tagMap.set(tag.value, tag.id);
+  }
+
+  const getTagIds = (values: string[]) =>
+    values.map((v) => ({ id: tagMap.get(v)! })).filter((t) => t.id);
 
   logger.info("Seeding Lunula Botanique cream products...");
 
@@ -84,16 +142,16 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [],
-          tags: [
-            { value: "krem" },
-            { value: "skóra wrażliwa" },
-            { value: "ukojenie" },
-            { value: "równowaga" },
-            { value: "wygładzenie" },
-            { value: "geranium" },
-            { value: "skwalan" },
-            { value: "twarz" },
-          ],
+          tags: getTagIds([
+            "krem",
+            "skóra wrażliwa",
+            "ukojenie",
+            "równowaga",
+            "wygładzenie",
+            "geranium",
+            "skwalan",
+            "twarz",
+          ]),
           options: [{ title: "Pojemność", values: ["50ml"] }],
           variants: [
             {
@@ -121,18 +179,18 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [],
-          tags: [
-            { value: "krem" },
-            { value: "skóra sucha" },
-            { value: "zmęczona" },
-            { value: "rozświetlenie" },
-            { value: "odżywienie" },
-            { value: "miękkość" },
-            { value: "blask" },
-            { value: "skwalan" },
-            { value: "rokitnik" },
-            { value: "twarz" },
-          ],
+          tags: getTagIds([
+            "krem",
+            "skóra sucha",
+            "zmęczona",
+            "rozświetlenie",
+            "odżywienie",
+            "miękkość",
+            "blask",
+            "skwalan",
+            "rokitnik",
+            "twarz",
+          ]),
           options: [{ title: "Pojemność", values: ["50ml"] }],
           variants: [
             {
@@ -160,18 +218,18 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [],
-          tags: [
-            { value: "krem" },
-            { value: "skóra dojrzała" },
-            { value: "przeciwzmarszczkowy" },
-            { value: "ujędrnienie" },
-            { value: "wygładzenie" },
-            { value: "odnowa" },
-            { value: "bakuchiol" },
-            { value: "róża" },
-            { value: "koenzym Q10" },
-            { value: "twarz" },
-          ],
+          tags: getTagIds([
+            "krem",
+            "skóra dojrzała",
+            "przeciwzmarszczkowy",
+            "ujędrnienie",
+            "wygładzenie",
+            "odnowa",
+            "bakuchiol",
+            "róża",
+            "koenzym Q10",
+            "twarz",
+          ]),
           options: [{ title: "Pojemność", values: ["50ml"] }],
           variants: [
             {
@@ -199,17 +257,17 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [],
-          tags: [
-            { value: "krem" },
-            { value: "skóra mieszana" },
-            { value: "trądzikowa" },
-            { value: "problematyczna" },
-            { value: "regulacja sebum" },
-            { value: "ukojenie" },
-            { value: "nawilżenie" },
-            { value: "olej konopny" },
-            { value: "twarz" },
-          ],
+          tags: getTagIds([
+            "krem",
+            "skóra mieszana",
+            "trądzikowa",
+            "problematyczna",
+            "regulacja sebum",
+            "ukojenie",
+            "nawilżenie",
+            "olej konopny",
+            "twarz",
+          ]),
           options: [{ title: "Pojemność", values: ["50ml"] }],
           variants: [
             {
@@ -262,5 +320,7 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
     });
   }
 
-  logger.info("Done! 4 cream products added: Geranium Glow (129 zł), Golden Glow (139 zł), Rose Alchemy (149 zł), Clear Ritual (119 zł).");
+  logger.info(
+    "Done! 4 cream products added: Geranium Glow (129 zł), Golden Glow (139 zł), Rose Alchemy (149 zł), Clear Ritual (119 zł)."
+  );
 }
