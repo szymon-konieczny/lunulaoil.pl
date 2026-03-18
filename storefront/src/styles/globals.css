@@ -3,6 +3,11 @@
 @import "tailwindcss/utilities";
 
 @layer base {
+  h1,
+  h2 {
+    font-family: var(--font-playfair), serif;
+  }
+
   :root {
     /* Lunula Oil — Dark luxury palette (matching lunulaoil.pl) */
     --color-primary: #CD9F7A;        /* Warm bronze/gold — brand accent */
