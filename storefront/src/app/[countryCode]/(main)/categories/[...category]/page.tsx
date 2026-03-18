@@ -33,7 +33,7 @@ export async function generateStaticParams() {
       (category: any) => category.handle
     )
 
-    const staticParams = countryCodes
+    return countryCodes
       ?.map((countryCode: string | undefined) =>
         categoryHandles.map((handle: any) => ({
           countryCode,
@@ -41,8 +41,6 @@ export async function generateStaticParams() {
         }))
       )
       .flat()
-
-    return staticParams
   } catch (error) {
     console.log("Failed to generate static paths for category pages:", error)
     return []
@@ -76,7 +74,7 @@ export default async function CategoryPage(props: Props) {
   const { sortBy, page } = searchParams
 
   const [productCategory, allCats] = await Promise.all([
-    getCategoryByHandle(params.category),
+    getCategoryByHandle(params.category).catch(() => null),
     listCategories().catch(() => []),
   ])
 

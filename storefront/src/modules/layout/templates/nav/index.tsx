@@ -43,13 +43,6 @@ export default async function Nav() {
               >
                 O marce
               </LocalizedClientLink>
-              <LocalizedClientLink
-                className="hover:text-brand-primary transition-colors"
-                href="/account"
-                data-testid="nav-account-link"
-              >
-                Konto
-              </LocalizedClientLink>
             </div>
           </div>
 
@@ -71,6 +64,13 @@ export default async function Nav() {
           </div>
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+            <LocalizedClientLink
+              className="hidden small:block hover:text-brand-primary transition-colors"
+              href="/account"
+              data-testid="nav-account-link"
+            >
+              Konto
+            </LocalizedClientLink>
             <Suspense
               fallback={
                 <LocalizedClientLink

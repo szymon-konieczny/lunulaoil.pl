@@ -3,7 +3,7 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Regulamin sklepu",
   description:
-    "Regulamin sklepu internetowego Lunula Oil & More. Warunki zakupow, dostawa, zwroty i reklamacje.",
+    "Regulamin sklepu internetowego Lunula Oil & More. Warunki zakupów, dostawa, zwroty i reklamacje.",
 }
 
 export default function TermsPage() {
@@ -16,26 +16,26 @@ export default function TermsPage() {
           </h1>
 
           <div className="prose-lunula space-y-10 text-white/80 text-sm leading-relaxed">
-            {/* I. Postanowienia ogolne */}
+            {/* I. Postanowienia ogólne */}
             <section>
               <h2 className="text-xl font-serif text-white mb-4">
-                I. Postanowienia ogolne
+                I. Postanowienia ogólne
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>
-                  Sklep internetowy dostepny pod adresem lunulaoil.pl prowadzony
+                  Sklep internetowy dostępny pod adresem lunulaoil.pl prowadzony
                   jest przez LUNULA SKIN CARE RYSZARD SZULAKOWSKI, ul. Ametystowa
-                  1a, 52-215 Wroclaw, NIP: 7521195027, REGON: 531232096
+                  1a, 52-215 Wrocław, NIP: 7521195027, REGON: 531232096
                   (dalej: &bdquo;Sprzedawca&rdquo;).
                 </li>
                 <li>
-                  Regulamin okresla zasady korzystania ze Sklepu, skladania
-                  zamowien, dostawy, platnosci, odstapienia od umowy oraz
-                  postepowania reklamacyjnego.
+                  Regulamin określa zasady korzystania ze Sklepu, składania
+                  zamówień, dostawy, płatności, odstąpienia od umowy oraz
+                  postępowania reklamacyjnego.
                 </li>
                 <li>
-                  Regulamin jest udostepniany nieodplatnie przed zawarciem umowy w
-                  sposob umozliwiajacy jego pobranie, utrwalenie i wydrukowanie.
+                  Regulamin jest udostępniany nieodpłatnie przed zawarciem umowy w
+                  sposób umożliwiający jego pobranie, utrwalenie i wydrukowanie.
                 </li>
               </ol>
             </section>
@@ -52,23 +52,23 @@ export default function TermsPage() {
                 </li>
                 <li>
                   <strong className="text-white">Klient</strong> &mdash; osoba
-                  fizyczna posiadajaca pelna zdolnosc do czynnosci prawnych, osoba
-                  prawna lub jednostka organizacyjna, ktora dokonuje zakupow w
+                  fizyczna posiadająca pełną zdolność do czynności prawnych, osoba
+                  prawna lub jednostka organizacyjna, która dokonuje zakupów w
                   Sklepie.
                 </li>
                 <li>
                   <strong className="text-white">Konsument</strong> &mdash; Klient
-                  bedacy osoba fizyczna dokonujaca zakupow niezwiazanych
-                  bezposrednio z jej dzialalnoscia gospodarcza lub zawodowa.
+                  będący osobą fizyczną dokonującą zakupów niezwiązanych
+                  bezpośrednio z jej działalnością gospodarczą lub zawodową.
                 </li>
                 <li>
                   <strong className="text-white">Produkt</strong> &mdash; towar
-                  prezentowany w Sklepie, przeznaczony do sprzedazy.
+                  prezentowany w Sklepie, przeznaczony do sprzedaży.
                 </li>
                 <li>
-                  <strong className="text-white">Zamowienie</strong> &mdash;
-                  oswiadczenie woli Klienta zmierzajace do zawarcia umowy
-                  sprzedazy Produktu ze Sprzedawca.
+                  <strong className="text-white">Zamówienie</strong> &mdash;
+                  oświadczenie woli Klienta zmierzające do zawarcia umowy
+                  sprzedaży Produktu ze Sprzedawcą.
                 </li>
               </ul>
             </section>
@@ -80,7 +80,7 @@ export default function TermsPage() {
               </h2>
               <ul className="list-none space-y-1">
                 <li>
-                  Adres: ul. Ametystowa 1a, 52-215 Wroclaw
+                  Adres: ul. Ametystowa 1a, 52-215 Wrocław
                 </li>
                 <li>
                   E-mail:{" "}
@@ -110,61 +110,62 @@ export default function TermsPage() {
                 IV. Wymagania techniczne
               </h2>
               <p>
-                Do korzystania ze Sklepu niezbedne jest urzadzenie z dostepem do
-                Internetu, przegladarka internetowa obslugujaca JavaScript i pliki
+                Do korzystania ze Sklepu niezbędne jest urządzenie z dostępem do
+                Internetu, przeglądarka internetowa obsługująca JavaScript i pliki
                 cookies oraz aktywne konto poczty elektronicznej.
               </p>
             </section>
 
-            {/* V. Ceny i platnosci */}
+            {/* V. Ceny i płatności */}
             <section>
               <h2 className="text-xl font-serif text-white mb-4">
-                V. Ceny i platnosci
+                V. Ceny i płatności
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>
-                  Wszystkie ceny podane w Sklepie sa cenami brutto (zawieraja
-                  podatek VAT) i wyrazone sa w zlotych polskich (PLN).
+                  Wszystkie ceny podane w Sklepie są cenami brutto (zawierają
+                  podatek VAT) i wyrażone są w złotych polskich (PLN).
                 </li>
                 <li>
-                  Cena podana przy Produkcie nie obejmuje kosztow dostawy, ktore
-                  sa podawane w trakcie skladania Zamowienia.
+                  Cena podana przy Produkcie nie obejmuje kosztów dostawy, które
+                  są podawane w trakcie składania Zamówienia.
                 </li>
                 <li>
-                  Dostepne metody platnosci: przelew bankowy, platnosc
-                  elektroniczna, platnosc za pobraniem.
+                  Dostępne metody płatności: przelew bankowy, płatność
+                  elektroniczna, płatność za pobraniem.
                 </li>
                 <li>
-                  W przypadku platnosci przelewem bankowym Klient zobowiazany jest
-                  do dokonania platnosci w terminie 3 dni roboczych od zlozenia
-                  Zamowienia.
+                  W przypadku płatności przelewem bankowym Klient zobowiązany jest
+                  do dokonania płatności w terminie 3 dni roboczych od złożenia
+                  Zamówienia.
                 </li>
               </ol>
             </section>
 
-            {/* VI. Skladanie zamowien */}
+            {/* VI. Składanie zamówień */}
             <section>
               <h2 className="text-xl font-serif text-white mb-4">
-                VI. Skladanie zamowien
+                VI. Składanie zamówień
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>
-                  Zamowienia mozna skladac 24 godziny na dobe, 7 dni w tygodniu
-                  przez strone internetowa Sklepu.
+                  Zamówienia można składać 24 godziny na dobę, 7 dni w tygodniu
+                  przez stronę internetową Sklepu.
                 </li>
                 <li>
-                  W celu zlozenia Zamowienia nalezy dodac wybrane Produkty do
-                  koszyka, podac dane do dostawy i platnosci, a nastepnie
-                  potwierdzic Zamowienie.
+                  W celu złożenia Zamówienia należy dodać wybrane Produkty do
+                  koszyka, podać dane do dostawy i płatności, a następnie
+                  potwierdzić Zamówienie.
                 </li>
                 <li>
-                  Zlozenie Zamowienia stanowi zlozenie oferty zawarcia umowy
-                  sprzedazy. Umowa zostaje zawarta z chwila potwierdzenia
-                  przyjecia Zamowienia do realizacji przez Sprzedawce drogaelektroniczna.
+                  Złożenie Zamówienia stanowi złożenie oferty zawarcia umowy
+                  sprzedaży. Umowa zostaje zawarta z chwilą potwierdzenia
+                  przyjęcia Zamówienia do realizacji przez Sprzedawcę drogą
+                  elektroniczną.
                 </li>
                 <li>
-                  Zakladanie konta w Sklepie jest bezplatne i dobrowolne. Klient
-                  moze w kazdej chwili usunac konto bez ponoszenia kosztow.
+                  Zakładanie konta w Sklepie jest bezpłatne i dobrowolne. Klient
+                  może w każdej chwili usunąć konto bez ponoszenia kosztów.
                 </li>
               </ol>
             </section>
@@ -176,55 +177,55 @@ export default function TermsPage() {
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>
-                  Sklep realizuje dostawy na terenie Polski oraz wybranych krajow
+                  Sklep realizuje dostawy na terenie Polski oraz wybranych krajów
                   Unii Europejskiej.
                 </li>
                 <li>
-                  Czas realizacji Zamowienia wynosi do 5 dni roboczych od
-                  momentu zaksiegowania platnosci (lub od momentu zlozenia
-                  Zamowienia w przypadku platnosci za pobraniem).
+                  Czas realizacji Zamówienia wynosi do 5 dni roboczych od
+                  momentu zaksięgowania płatności (lub od momentu złożenia
+                  Zamówienia w przypadku płatności za pobraniem).
                 </li>
                 <li>
-                  Koszty dostawy sa wskazywane podczas skladania Zamowienia i
-                  zaleza od wybranego sposobu dostawy.
+                  Koszty dostawy są wskazywane podczas składania Zamówienia i
+                  zależą od wybranego sposobu dostawy.
                 </li>
               </ol>
             </section>
 
-            {/* VIII. Prawo odstapienia od umowy */}
+            {/* VIII. Prawo odstąpienia od umowy */}
             <section>
               <h2 className="text-xl font-serif text-white mb-4">
-                VIII. Prawo odstapienia od umowy
+                VIII. Prawo odstąpienia od umowy
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>
-                  Konsument ma prawo odstapic od umowy w terminie 14 dni bez
-                  podania jakiejkolwiek przyczyny. Termin do odstapienia od umowy
-                  wygasa po uplywie 14 dni od dnia, w ktorym Konsument wszedl w
+                  Konsument ma prawo odstąpić od umowy w terminie 14 dni bez
+                  podania jakiejkolwiek przyczyny. Termin do odstąpienia od umowy
+                  wygasa po upływie 14 dni od dnia, w którym Konsument wszedł w
                   posiadanie towaru.
                 </li>
                 <li>
-                  Aby skorzystac z prawa odstapienia od umowy, Konsument musi
-                  poinformowac Sprzedawce o swojej decyzji w drodze
-                  jednoznacznego oswiadczenia (np. e-mail na adres
+                  Aby skorzystać z prawa odstąpienia od umowy, Konsument musi
+                  poinformować Sprzedawcę o swojej decyzji w drodze
+                  jednoznacznego oświadczenia (np. e-mail na adres
                   kontakt@lunulaoil.pl).
                 </li>
                 <li>
-                  Sprzedawca zwroci Konsumentowi wszystkie otrzymane platnosci,
-                  w tym koszty dostarczenia (z wyjatkiem dodatkowych kosztow
-                  wynikajacych z wybranego sposobu dostawy innego niz
-                  najtanszy), nie pozniej niz 14 dni od dnia otrzymania
-                  oswiadczenia o odstapienia od umowy.
+                  Sprzedawca zwróci Konsumentowi wszystkie otrzymane płatności,
+                  w tym koszty dostarczenia (z wyjątkiem dodatkowych kosztów
+                  wynikających z wybranego sposobu dostawy innego niż
+                  najtańszy), nie później niż 14 dni od dnia otrzymania
+                  oświadczenia o odstąpieniu od umowy.
                 </li>
                 <li>
-                  Konsument ponosi bezposrednie koszty zwrotu towaru.
+                  Konsument ponosi bezpośrednie koszty zwrotu towaru.
                 </li>
                 <li>
-                  Prawo odstapienia od umowy nie przysluguje w odniesieniu do
-                  umow, w ktorych przedmiotem swiadczenia jest rzecz
-                  dostarczana w zapieczetowanym opakowaniu, ktorej po otwarciu
-                  opakowania nie mozna zwrocic ze wzgledu na ochrone zdrowia lub
-                  ze wzgledow higienicznych, jezeli opakowanie zostalo otwarte po
+                  Prawo odstąpienia od umowy nie przysługuje w odniesieniu do
+                  umów, w których przedmiotem świadczenia jest rzecz
+                  dostarczana w zapieczętowanym opakowaniu, której po otwarciu
+                  opakowania nie można zwrócić ze względu na ochronę zdrowia lub
+                  ze względów higienicznych, jeżeli opakowanie zostało otwarte po
                   dostarczeniu.
                 </li>
               </ol>
@@ -237,39 +238,39 @@ export default function TermsPage() {
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>
-                  Sprzedawca jest zobowiazany dostarczyc Produkt wolny od wad.
+                  Sprzedawca jest zobowiązany dostarczyć Produkt wolny od wad.
                 </li>
                 <li>
-                  Reklamacje nalezy skladac droga elektroniczna na adres
+                  Reklamacje należy składać drogą elektroniczną na adres
                   kontakt@lunulaoil.pl lub pisemnie na adres siedziby Sprzedawcy.
                 </li>
                 <li>
-                  Reklamacja powinna zawierac opis wady, date jej stwierdzenia
-                  oraz zadanie Klienta (naprawa, wymiana, obnizenie ceny lub
-                  odstapienie od umowy).
+                  Reklamacja powinna zawierać opis wady, datę jej stwierdzenia
+                  oraz żądanie Klienta (naprawa, wymiana, obniżenie ceny lub
+                  odstąpienie od umowy).
                 </li>
                 <li>
-                  Sprzedawca rozpatrzy reklamacje w terminie 14 dni od dnia jej
+                  Sprzedawca rozpatrzy reklamację w terminie 14 dni od dnia jej
                   otrzymania.
                 </li>
               </ol>
             </section>
 
-            {/* X. Pozasadowe rozwiazywanie sporow */}
+            {/* X. Pozasądowe rozwiązywanie sporów */}
             <section>
               <h2 className="text-xl font-serif text-white mb-4">
-                X. Pozasadowe rozwiazywanie sporow
+                X. Pozasądowe rozwiązywanie sporów
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>
-                  Konsument ma mozliwosc skorzystania z pozasadowych sposobow
-                  rozpatrywania reklamacji i dochodzenia roszczen, w tym z
-                  mediacji lub arbitrazu.
+                  Konsument ma możliwość skorzystania z pozasądowych sposobów
+                  rozpatrywania reklamacji i dochodzenia roszczeń, w tym z
+                  mediacji lub arbitrażu.
                 </li>
                 <li>
-                  Szczegolowe informacje dotyczace mozliwosci skorzystania przez
-                  Konsumenta z pozasadowych sposobow rozpatrywania reklamacji
-                  dostepne sa na stronie{" "}
+                  Szczegółowe informacje dotyczące możliwości skorzystania przez
+                  Konsumenta z pozasądowych sposobów rozpatrywania reklamacji
+                  dostępne są na stronie{" "}
                   <a
                     href="https://ec.europa.eu/consumers/odr"
                     target="_blank"
@@ -283,23 +284,23 @@ export default function TermsPage() {
               </ol>
             </section>
 
-            {/* XI. Postanowienia koncowe */}
+            {/* XI. Postanowienia końcowe */}
             <section>
               <h2 className="text-xl font-serif text-white mb-4">
-                XI. Postanowienia koncowe
+                XI. Postanowienia końcowe
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>
                   Sprzedawca zastrzega sobie prawo do zmiany Regulaminu.
-                  O zmianach Klienci zostana poinformowani drogaelektroniczna.
+                  O zmianach Klienci zostaną poinformowani drogą elektroniczną.
                 </li>
                 <li>
                   W sprawach nieuregulowanych niniejszym Regulaminem zastosowanie
-                  maja przepisy prawa polskiego, w szczegolnosci Kodeksu cywilnego
+                  mają przepisy prawa polskiego, w szczególności Kodeksu cywilnego
                   oraz ustawy z dnia 30 maja 2014 r. o prawach konsumenta.
                 </li>
                 <li>
-                  Regulamin obowiazuje od dnia 18.03.2026 r.
+                  Regulamin obowiązuje od dnia 18.03.2026 r.
                 </li>
               </ol>
             </section>

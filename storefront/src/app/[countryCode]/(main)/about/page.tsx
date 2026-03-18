@@ -14,7 +14,15 @@ export default function AboutPage() {
     <div className="bg-brand-background">
       {/* Hero */}
       <section className="relative py-20 small:py-32">
-        <div className="content-container text-center">
+        <Image
+          src="/about-hero.png"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="content-container text-center relative z-10">
           <AnimateIn variant="fade-in">
             <span className="text-brand-primary text-sm font-medium uppercase tracking-wider">
               O marce

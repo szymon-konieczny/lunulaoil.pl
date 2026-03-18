@@ -9,8 +9,8 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 export default async function Footer() {
   const { collections } = await listCollections({
     fields: "*products",
-  })
-  const productCategories = await listCategories()
+  }).catch(() => ({ collections: [] }))
+  const productCategories = await listCategories().catch(() => [])
 
   return (
     <footer className="border-t border-brand-border w-full bg-brand-surface">
@@ -159,7 +159,7 @@ export default async function Footer() {
                     className="hover:text-brand-primary transition-colors"
                     href="/polityka-prywatnosci"
                   >
-                    Polityka prywatnosci
+                    Polityka prywatności
                   </LocalizedClientLink>
                 </li>
                 <li>
