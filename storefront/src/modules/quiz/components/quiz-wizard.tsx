@@ -158,7 +158,7 @@ export default function QuizWizard({ allProducts }: Props) {
 
       {/* Question */}
       <div className="mt-8 mb-8">
-        <h2 className="text-2xl small:text-3xl font-semibold text-white mb-2">
+        <h2 className="font-serif text-2xl small:text-3xl font-semibold text-white mb-2">
           {step.question}
         </h2>
         {step.subtitle && (
