@@ -184,29 +184,29 @@ function scoreProducts(
 ): HttpTypes.StoreProduct[] {
   const keywordMap: Record<string, Record<string, string[]>> = {
     skin_type: {
-      dry: ["sucha", "nawilż", "odżyw", "regenera", "masło", "olejek"],
-      oily: ["tłusta", "matuj", "oczyszcz", "lekk", "serum"],
-      combination: ["mieszana", "równoważ", "balansu"],
+      dry: ["sucha", "nawilż", "odżyw", "regenera", "masło", "olejek", "zmęczon"],
+      oily: ["tłusta", "matuj", "oczyszcz", "lekk", "serum", "sebum"],
+      combination: ["mieszana", "równoważ", "balansu", "sebum"],
       normal: ["pielęgnac", "nawilż", "ochrona"],
       sensitive: ["wrażliwa", "łagod", "kojąc", "delikat"],
     },
     concerns: {
-      aging: ["zmarszcz", "jędrn", "lifting", "kolagen", "retinol", "anti-age", "argano"],
-      dryness: ["such", "nawilż", "odżyw", "masło", "regenera"],
-      glow: ["blask", "rozświetl", "promien", "witamin", "złot"],
-      imperfections: ["niedoskonał", "trądzik", "pory", "oczyszcz", "zaskórn"],
+      aging: ["zmarszcz", "jędrn", "lifting", "kolagen", "retinol", "anti-age", "argano", "bakuchiol", "elastyczn", "dojrzał", "odnow"],
+      dryness: ["such", "nawilż", "odżyw", "masło", "regenera", "blask"],
+      glow: ["blask", "rozświetl", "promien", "witamin", "złot", "glow", "witaln"],
+      imperfections: ["niedoskonał", "trądzik", "pory", "oczyszcz", "zaskórn", "problematyczn", "zapalne"],
       scars: ["blizn", "rozstęp", "regenera", "nierówn"],
       hair: ["włos", "głow", "nabad", "odżyw"],
     },
     body_area: {
-      face: ["twarz", "twarzy", "okolice oczu", "szyj"],
-      body: ["ciał", "ciała", "dłoni", "dekolt"],
+      face: ["twarz", "twarzy", "okolice oczu", "szyj", "krem"],
+      body: ["ciał", "ciała", "dłoni", "dekolt", "masaż"],
       hair: ["włos", "głow"],
       all: ["uniwersaln", "wielofunkcyj", "ciał", "twarz"],
     },
     preference: {
-      light: ["lekk", "szybko się wchłan", "serum"],
-      rich: ["bogat", "intensywn", "masło", "odżyw"],
+      light: ["lekk", "szybko się wchłan", "serum", "matując"],
+      rich: ["bogat", "intensywn", "masło", "odżyw", "aksamit"],
       any: [],
     },
   }
