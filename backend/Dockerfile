@@ -12,6 +12,7 @@ ENV NODE_OPTIONS="--max-old-space-size=1536"
 # NODE_ENV must NOT be production during build or admin gets skipped
 ENV DATABASE_URL="postgres://dummy:dummy@localhost:5432/dummy"
 ENV NODE_ENV=development
+# cache-bust-v2
 RUN npm run build \
     && ls -la .medusa/server/public/admin/index.html \
     && echo "Admin build verified OK" \
