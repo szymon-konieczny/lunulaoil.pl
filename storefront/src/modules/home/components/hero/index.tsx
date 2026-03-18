@@ -3,49 +3,52 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 const Hero = () => {
   return (
     <div className="relative w-full h-[70vh] small:h-[85vh] overflow-hidden">
-      {/* Background video */}
+      {/* Background video with image fallback */}
       <video
         autoPlay
         muted
         loop
         playsInline
+        poster="/hero-bg.jpg"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
 
-      {/* Left-side gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Content — left-aligned */}
-      <div className="content-container relative z-10 flex flex-col items-start justify-center text-left h-full gap-5 pb-24 small:pb-32">
-        <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
-          Slow Care
+      <div className="content-container relative z-10 flex flex-col items-start justify-center text-left h-full gap-4 py-16">
+        <span className="text-white/80 text-lg small:text-xl tracking-wide font-light">
+          LUNULA OIL
         </span>
 
-        <h1 className="font-heading text-4xl small:text-6xl leading-tight text-white max-w-lg drop-shadow-lg">
-          Naturalna pielęgnacja tworzona z pasją
+        <h1 className="font-heading text-5xl small:text-7xl leading-none text-white font-bold">
+          BIO OLEJKI
+          <span className="block mt-3 h-[2px] w-32 bg-brand-accent" />
         </h1>
 
-        <p className="text-white/90 text-lg small:text-xl max-w-md leading-relaxed drop-shadow-md">
-          Odkryj olejki Lunula Oil — naturalne rytuały dla Twojej skóry,
-          inspirowane naturą.
+        <p className="text-white/90 text-base small:text-lg max-w-2xl leading-relaxed mt-4">
+          Linia luksusowych olejków do masażu i pielęgnacji twarzy, ciała
+          i włosów. Lunula Oil to seria olejków pielęgnujących Twoją skórę,
+          dostarczających Ci niepowtarzalnych doznań zapachowych oraz dawkę
+          witamin, nienasyconych kwasów tłuszczowych i antyoksydantów,
+          niezbędnych do zachowania pięknej i zdrowej skóry.
         </p>
 
-        <div className="flex flex-col small:flex-row gap-4 mt-4">
-          <LocalizedClientLink
-            href="/store"
-            className="px-8 py-3 bg-brand-primary text-white rounded-full hover:bg-brand-primary-dark transition-colors duration-300 text-sm font-medium tracking-wide"
-          >
-            Zobacz produkty
-          </LocalizedClientLink>
-          <LocalizedClientLink
-            href="/about"
-            className="px-8 py-3 border border-white/40 text-white rounded-full hover:border-white hover:bg-white/10 transition-colors duration-300 text-sm font-medium tracking-wide"
-          >
-            O marce
-          </LocalizedClientLink>
-        </div>
+        <p className="text-white/80 text-sm small:text-base max-w-2xl leading-relaxed">
+          Wszystkie produkty Lunula Oil spełniają surowe normy
+          mikrobiologiczne i dermatologiczne (baza CPNP). Zarejestrowane
+          są również w farmaceutycznej Bazie Leków i Środków Ochrony Zdrowia.
+        </p>
+
+        <LocalizedClientLink
+          href="/store"
+          className="mt-4 text-brand-accent hover:text-brand-accent/80 transition-colors duration-300 text-lg font-medium"
+        >
+          Dowiedz się więcej →
+        </LocalizedClientLink>
       </div>
 
       {/* Bottom gradient fade into background */}
