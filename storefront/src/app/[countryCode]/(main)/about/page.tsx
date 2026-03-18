@@ -60,11 +60,12 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="relative aspect-[4/5] rounded-large overflow-hidden">
+            <div className="relative aspect-[4/3] max-h-[480px] rounded-large overflow-hidden">
               <Image
                 src="/olejki-1.jpg"
                 alt="Olejki Lunula Oil"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -123,11 +124,12 @@ export default function AboutPage() {
       <section className="py-16 small:py-24">
         <div className="content-container">
           <div className="grid grid-cols-1 small:grid-cols-2 gap-12 small:gap-16 items-center">
-            <div className="order-2 small:order-1 relative aspect-[4/5] rounded-large overflow-hidden">
+            <div className="order-2 small:order-1 relative aspect-[4/3] max-h-[480px] rounded-large overflow-hidden">
               <Image
                 src="/olejki-3.jpg"
                 alt="Składniki z Maroka, Hiszpanii i Francji"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
