@@ -23,7 +23,7 @@ const CtaQuiz = () => {
         </AnimateIn>
         <AnimateIn variant="scale" delay={300}>
           <LocalizedClientLink
-            href="/quiz"
+            href="/quiz?reset=1"
             className="inline-flex items-center gap-2 px-8 py-3 bg-brand-accent text-black hover:bg-brand-accent-light transition-colors duration-300 text-sm font-semibold tracking-wide"
           >
             Rozpocznij quiz

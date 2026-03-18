@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useCallback, useRef, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
 import { clx } from "@medusajs/ui"
 import { quizSteps, QuizAnswers } from "../data"
@@ -28,7 +29,17 @@ function loadSavedState(): {
 }
 
 export default function QuizWizard({ allProducts }: Props) {
-  const saved = typeof window !== "undefined" ? loadSavedState() : null
+  const searchParams = useSearchParams()
+  const shouldReset = searchParams.get("reset") === "1"
+
+  // Clear saved state if ?reset=1
+  const saved = (() => {
+    if (shouldReset) {
+      try { sessionStorage.removeItem(STORAGE_KEY) } catch {}
+      return null
+    }
+    return typeof window !== "undefined" ? loadSavedState() : null
+  })()
 
   const [currentStep, setCurrentStep] = useState(saved?.currentStep ?? 0)
   const [answers, setAnswers] = useState<QuizAnswers>(saved?.answers ?? {})
