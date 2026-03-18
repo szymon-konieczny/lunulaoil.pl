@@ -7,6 +7,8 @@ import CtaSamples from "@modules/home/components/cta-samples"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
+
 export const metadata: Metadata = {
   title: "Lunula Oil & More — BIO olejki i naturalna pielęgnacja",
   description:
@@ -30,8 +32,44 @@ export default async function Home(props: {
     return null
   }
 
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Lunula Oil & More",
+    url: BASE_URL,
+    logo: `${BASE_URL}/logo.png`,
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+48-509-085-064",
+      email: "kontakt@lunulaoil.pl",
+      contactType: "customer service",
+      availableLanguage: "Polish",
+    },
+    sameAs: ["https://www.instagram.com/lunulaoil/"],
+  }
+
+  const webSiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Lunula Oil & More",
+    url: BASE_URL,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: `${BASE_URL}/${countryCode}/store?q={search_term_string}`,
+      "query-input": "required name=search_term_string",
+    },
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+      />
       <Hero />
       <WhyUs />
       <CtaSamples />

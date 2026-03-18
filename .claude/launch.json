@@ -3,9 +3,10 @@
   "configurations": [
     {
       "name": "storefront",
-      "runtimeExecutable": "bash",
-      "runtimeArgs": ["-c", "source ~/.nvm/nvm.sh && nvm use 22 && cd storefront && npm run dev"],
-      "port": 8000
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 8000,
+      "cwd": "storefront"
     }
   ]
 }

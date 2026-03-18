@@ -7,6 +7,8 @@ import { StoreCollection, StoreRegion } from "@medusajs/types"
 import CollectionTemplate from "@modules/collections/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl";
+
 type Props = {
   params: Promise<{ handle: string; countryCode: string }>
   searchParams: Promise<{
@@ -84,12 +86,26 @@ export default async function CollectionPage(props: Props) {
     notFound()
   }
 
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: collection.title,
+    description: `Kolekcja ${collection.title}`,
+    url: `${BASE_URL}/${params.countryCode}/collections/${params.handle}`,
+  }
+
   return (
-    <CollectionTemplate
-      collection={collection}
-      page={page}
-      sortBy={sortBy}
-      countryCode={params.countryCode}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <CollectionTemplate
+        collection={collection}
+        page={page}
+        sortBy={sortBy}
+        countryCode={params.countryCode}
+      />
+    </>
   )
 }

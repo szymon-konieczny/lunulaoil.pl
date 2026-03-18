@@ -3,6 +3,8 @@ import { Metadata } from "next"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import StoreTemplate from "@modules/store/templates"
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
+
 export const metadata: Metadata = {
   title: "Sklep",
   description: "Przeglądaj wszystkie nasze produkty.",
@@ -23,11 +25,25 @@ export default async function StorePage(props: Params) {
   const searchParams = await props.searchParams;
   const { sortBy, page } = searchParams
 
+  const storeJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Sklep — Lunula Oil & More",
+    description: "Przeglądaj wszystkie nasze produkty.",
+    url: `${BASE_URL}/${params.countryCode}/store`,
+  }
+
   return (
-    <StoreTemplate
-      sortBy={sortBy}
-      page={page}
-      countryCode={params.countryCode}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(storeJsonLd) }}
+      />
+      <StoreTemplate
+        sortBy={sortBy}
+        page={page}
+        countryCode={params.countryCode}
+      />
+    </>
   )
 }

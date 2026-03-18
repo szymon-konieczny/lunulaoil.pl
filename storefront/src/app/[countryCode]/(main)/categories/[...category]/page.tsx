@@ -7,6 +7,8 @@ import { StoreRegion } from "@medusajs/types"
 import CategoryTemplate from "@modules/categories/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
+
 type Props = {
   params: Promise<{ category: string[]; countryCode: string }>
   searchParams: Promise<{
@@ -79,12 +81,26 @@ export default async function CategoryPage(props: Props) {
     notFound()
   }
 
+  const categoryJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: productCategory.name,
+    description: productCategory.description || `Kategoria ${productCategory.name}`,
+    url: `${BASE_URL}/${params.countryCode}/categories/${params.category.join("/")}`,
+  }
+
   return (
-    <CategoryTemplate
-      category={productCategory}
-      sortBy={sortBy}
-      page={page}
-      countryCode={params.countryCode}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(categoryJsonLd) }}
+      />
+      <CategoryTemplate
+        category={productCategory}
+        sortBy={sortBy}
+        page={page}
+        countryCode={params.countryCode}
+      />
+    </>
   )
 }

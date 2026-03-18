@@ -2,8 +2,11 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { listProducts } from "@lib/data/products"
 import { getRegion, listRegions } from "@lib/data/regions"
+import { getProductPrice } from "@lib/util/get-product-price"
 import ProductTemplate from "@modules/products/templates"
 import { HttpTypes } from "@medusajs/types"
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
 type Props = {
   params: Promise<{ countryCode: string; handle: string }>
@@ -120,12 +123,44 @@ export default async function ProductPage(props: Props) {
     notFound()
   }
 
+  const { cheapestPrice } = getProductPrice({ product: pricedProduct })
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: pricedProduct.title,
+    description: pricedProduct.description,
+    image: pricedProduct.thumbnail
+      ? [pricedProduct.thumbnail]
+      : pricedProduct.images?.map((i) => i.url) || [],
+    url: `${BASE_URL}/${params.countryCode}/products/${params.handle}`,
+    brand: {
+      "@type": "Brand",
+      name: "Lunula Oil & More",
+    },
+    ...(cheapestPrice && {
+      offers: {
+        "@type": "Offer",
+        url: `${BASE_URL}/${params.countryCode}/products/${params.handle}`,
+        priceCurrency: cheapestPrice.currency_code?.toUpperCase(),
+        price: (cheapestPrice.calculated_price_number / 100).toFixed(2),
+        availability: "https://schema.org/InStock",
+      },
+    }),
+  }
+
   return (
-    <ProductTemplate
-      product={pricedProduct}
-      region={region}
-      countryCode={params.countryCode}
-      images={images}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <ProductTemplate
+        product={pricedProduct}
+        region={region}
+        countryCode={params.countryCode}
+        images={images}
+      />
+    </>
   )
 }

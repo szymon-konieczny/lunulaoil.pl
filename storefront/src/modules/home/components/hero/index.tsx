@@ -12,6 +12,7 @@ const Hero = () => {
         poster="/hero-bg.jpg"
         className="absolute inset-0 w-full h-full object-cover"
       >
+        <source src="https://pub-52b434aaf6f64430938d4f3287fbd44e.r2.dev/hero-video.mp4" type="video/mp4" />
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
 
