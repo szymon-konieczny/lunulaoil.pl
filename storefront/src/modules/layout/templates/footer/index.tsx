@@ -147,6 +147,22 @@ export default async function Footer() {
                   </LocalizedClientLink>
                 </li>
                 <li>
+                  <LocalizedClientLink
+                    className="hover:text-brand-primary transition-colors"
+                    href="/regulamin"
+                  >
+                    Regulamin
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink
+                    className="hover:text-brand-primary transition-colors"
+                    href="/polityka-prywatnosci"
+                  >
+                    Polityka prywatnosci
+                  </LocalizedClientLink>
+                </li>
+                <li>
                   <a
                     href="mailto:kontakt@lunulaoil.pl"
                     className="hover:text-brand-primary transition-colors"
