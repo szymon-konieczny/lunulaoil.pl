@@ -2,7 +2,7 @@ import { loadEnv, defineConfig } from '@medusajs/framework/utils'
 
 loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 
-const databaseUrl = process.env.DATABASE_URL
+const databaseUrl = process.env.DATABASE_URL || "postgres://localhost:5432/medusa"
 
 // Railway internal Postgres doesn't need SSL
 // Public Railway Postgres URLs do need SSL
