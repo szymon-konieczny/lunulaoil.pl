@@ -17,7 +17,8 @@ RUN NODE_ENV=development \
     npm run build \
     && test -f .medusa/server/public/admin/index.html \
     && echo "=== Admin build verified OK ===" \
-    || (echo "FATAL: Admin index.html not found!" && exit 1)
+    || (echo "FATAL: Admin index.html not found!" && exit 1) \
+    && cp -r .medusa/server/public ./public
 
 EXPOSE 9000
 
