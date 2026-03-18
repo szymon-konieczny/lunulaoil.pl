@@ -1,32 +1,31 @@
-FROM node:22-alpine AS base
+FROM node:22-alpine AS deps
 
 WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
 
-# Install ALL dependencies (including devDeps needed for build)
+FROM node:22-alpine AS build
+
+WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
-
-# Copy source
 COPY . .
-
-# Build Medusa API + admin dashboard
-# Limit Node memory to avoid OOM on Railway's build servers
 ENV NODE_OPTIONS="--max-old-space-size=1536"
 RUN npm run build
 
-# Prune devDependencies after build
-RUN npm prune --omit=dev
-
-# Production — slim final image
+# Production — only prod deps + built output
 FROM node:22-alpine AS production
 
 WORKDIR /app
 
-COPY --from=base /app /app
+# Prod-only node_modules from deps stage
+COPY --from=deps /app/node_modules ./node_modules
+# Built source + config from build stage
+COPY --from=build /app/.medusa ./.medusa
+COPY --from=build /app/src ./src
+COPY --from=build /app/package.json /app/medusa-config.ts /app/tsconfig.json ./
 
 ENV NODE_OPTIONS="--max-old-space-size=1024"
-
 EXPOSE 9000
 
-# Run migrations then start server
 CMD ["sh", "-c", "npx medusa db:migrate 2>&1 && npx medusa start"]
