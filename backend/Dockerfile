@@ -21,4 +21,5 @@ COPY --from=base /app /app
 
 EXPOSE 9000
 
-CMD ["npm", "run", "start"]
+# Run migrations then start the server
+CMD ["sh", "-c", "npx medusa db:migrate && npm run start"]
