@@ -97,7 +97,7 @@ Na podstawie odpowiedzi klienta, napisz krótką (3-5 zdań), ciepłą i profesj
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-haiku-4-20250414",
+        model: "claude-3-haiku-20240307",
         max_tokens: 400,
         messages: [
           {

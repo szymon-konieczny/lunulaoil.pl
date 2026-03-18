@@ -33,6 +33,12 @@ export default async function Nav() {
               </LocalizedClientLink>
               <LocalizedClientLink
                 className="hover:text-brand-primary transition-colors"
+                href="/quiz"
+              >
+                Dobierz kosmetyk
+              </LocalizedClientLink>
+              <LocalizedClientLink
+                className="hover:text-brand-primary transition-colors"
                 href="/account"
                 data-testid="nav-account-link"
               >
