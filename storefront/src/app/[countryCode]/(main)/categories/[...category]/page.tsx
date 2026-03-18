@@ -52,19 +52,28 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   try {
     const productCategory = await getCategoryByHandle(params.category)
 
+    if (!productCategory) {
+      return {
+        title: "Kategoria | Lunula Botanique",
+      }
+    }
+
     const title = productCategory.name + " | Lunula Botanique"
 
     const description = productCategory.description ?? `Kategoria ${title}`
 
     return {
-      title: `${title} | Lunula Botanique`,
+      title,
       description,
       alternates: {
         canonical: `${params.category.join("/")}`,
       },
     }
   } catch (error) {
-    notFound()
+    console.error("Failed to generate category metadata:", error)
+    return {
+      title: "Kategoria | Lunula Botanique",
+    }
   }
 }
 
