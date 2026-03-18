@@ -182,6 +182,103 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Philosophy — Lunula symbol */}
+      <section className="py-16 small:py-24 bg-brand-surface">
+        <div className="content-container">
+          <div className="grid grid-cols-1 small:grid-cols-2 gap-12 small:gap-16 items-center">
+            <AnimateIn variant="fade-left">
+              <div>
+                <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
+                  Filozofia
+                </span>
+                <h2 className="text-2xl small:text-3xl font-serif text-white mt-3 mb-6">
+                  Symbol Lunuli
+                </h2>
+                <div className="space-y-4 text-white/80 text-base leading-relaxed">
+                  <p>
+                    Lunula to symbol energii, jaką niesie ze sobą Księżyc — jego
+                    majestat, słowiańskie korzenie i pełnia kobiecości. To właśnie
+                    ta idea przyświeca każdemu naszemu produktowi.
+                  </p>
+                  <p>
+                    Oferujemy najwyższej jakości naturalne olejki i starannie
+                    wyselekcjonowane surowce kosmetyczne z Maroka, Hiszpanii i
+                    Francji. Unikalne aromaty, konsystencje i działanie składników
+                    aktywnych towarzyszą codziennej pielęgnacji.
+                  </p>
+                </div>
+              </div>
+            </AnimateIn>
+            <AnimateIn variant="fade-right" delay={200}>
+              <div className="relative aspect-[4/3] max-h-[480px] rounded-large overflow-hidden">
+                <Image
+                  src="/olejki-2.jpg"
+                  alt="Filozofia Lunula Oil"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            </AnimateIn>
+          </div>
+        </div>
+      </section>
+
+      {/* Product formats */}
+      <section className="py-16 small:py-24">
+        <div className="content-container">
+          <AnimateIn variant="fade-in" className="text-center mb-12">
+            <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
+              Nasze produkty
+            </span>
+            <h2 className="text-2xl small:text-3xl font-serif text-white mt-3">
+              Dwa formaty, jeden standard
+            </h2>
+          </AnimateIn>
+
+          <div className="grid grid-cols-1 small:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <AnimateIn variant="fade-up" delay={0} duration={800}>
+              <div className="p-8 rounded-large border border-white/5 text-center">
+                <span className="text-4xl block mb-4">250 ml</span>
+                <h3 className="text-white text-lg font-semibold mb-3">
+                  Pielęgnacja ciała
+                </h3>
+                <p className="text-white/70 text-sm leading-relaxed">
+                  Format idealny do masażu, pielęgnacji ciała i włosów.
+                  Doskonałe właściwości poślizgowe, lekka konsystencja i
+                  piękny zapach towarzyszący codziennym rytuałom.
+                </p>
+              </div>
+            </AnimateIn>
+            <AnimateIn variant="fade-up" delay={150} duration={800}>
+              <div className="p-8 rounded-large border border-white/5 text-center">
+                <span className="text-4xl block mb-4">30 ml</span>
+                <h3 className="text-white text-lg font-semibold mb-3">
+                  Luksusowa pielęgnacja twarzy
+                </h3>
+                <p className="text-white/70 text-sm leading-relaxed">
+                  Wyższa zawartość polifenoli zapewnia silne działanie
+                  antyoksydacyjne i anti-aging. Skoncentrowana formuła
+                  stworzona specjalnie do pielęgnacji skóry twarzy.
+                </p>
+              </div>
+            </AnimateIn>
+          </div>
+
+          <AnimateIn variant="fade-up" delay={300} className="mt-12">
+            <div className="flex flex-wrap items-center justify-center gap-8 text-white/50 text-xs tracking-wider uppercase">
+              <span>GMO Free</span>
+              <span className="w-px h-4 bg-white/20" />
+              <span>Organic Certified</span>
+              <span className="w-px h-4 bg-white/20" />
+              <span>Not Tested On Animals</span>
+              <span className="w-px h-4 bg-white/20" />
+              <span>Vegan</span>
+            </div>
+          </AnimateIn>
+        </div>
+      </section>
+
       {/* Workshops CTA */}
       <section className="py-16 small:py-24 bg-brand-surface">
         <div className="content-container text-center">
