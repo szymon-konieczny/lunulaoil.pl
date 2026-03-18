@@ -24,4 +24,4 @@ EXPOSE 9000
 
 ENV NODE_ENV=production
 ENV NODE_OPTIONS="--max-old-space-size=1024"
-CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start"]
+CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start --port ${PORT:-9000}"]
