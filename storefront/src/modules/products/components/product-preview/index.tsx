@@ -24,9 +24,12 @@ export default async function ProductPreview({
   //   return null
   // }
 
-  const { cheapestPrice } = getProductPrice({
-    product,
-  })
+  let cheapestPrice = null
+  try {
+    cheapestPrice = getProductPrice({ product }).cheapestPrice
+  } catch {
+    // Price calculation failed — render without price
+  }
 
   return (
     <LocalizedClientLink href={`/products/${product.handle}`} className="group">

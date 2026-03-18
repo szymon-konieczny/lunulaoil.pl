@@ -15,6 +15,7 @@ type Params = {
   searchParams: Promise<{
     sortBy?: SortOptions
     page?: string
+    q?: string
   }>
   params: Promise<{
     countryCode: string
@@ -24,7 +25,7 @@ type Params = {
 export default async function StorePage(props: Params) {
   const params = await props.params;
   const searchParams = await props.searchParams;
-  const { sortBy, page } = searchParams
+  const { sortBy, page, q } = searchParams
 
   // Fetch categories for filter chips
   let categories: { id: string; name: string; handle: string }[] = []
@@ -56,6 +57,7 @@ export default async function StorePage(props: Params) {
         page={page}
         countryCode={params.countryCode}
         categories={categories}
+        q={q}
       />
     </>
   )

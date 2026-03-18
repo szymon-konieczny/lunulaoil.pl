@@ -77,49 +77,68 @@ function getImagesForVariant(
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params
-  const { handle } = params
-  const region = await getRegion(params.countryCode)
+  try {
+    const params = await props.params
+    const { handle } = params
+    const region = await getRegion(params.countryCode)
 
-  if (!region) {
-    notFound()
-  }
+    if (!region) {
+      notFound()
+    }
 
-  const product = await listProducts({
-    countryCode: params.countryCode,
-    queryParams: { handle },
-  }).then(({ response }) => response.products[0])
+    const product = await listProducts({
+      countryCode: params.countryCode,
+      queryParams: { handle },
+    }).then(({ response }) => response.products[0])
 
-  if (!product) {
-    notFound()
-  }
+    if (!product) {
+      notFound()
+    }
 
-  return {
-    title: `${product.title} | Lunula Botanique`,
-    description: `${product.title}`,
-    openGraph: {
+    return {
       title: `${product.title} | Lunula Botanique`,
       description: `${product.title}`,
-      images: product.thumbnail ? [product.thumbnail] : [],
-    },
+      openGraph: {
+        title: `${product.title} | Lunula Botanique`,
+        description: `${product.title}`,
+        images: product.thumbnail ? [product.thumbnail] : [],
+      },
+    }
+  } catch (error) {
+    console.error("Failed to generate product metadata:", error)
+    return {
+      title: "Produkt | Lunula Botanique",
+    }
   }
 }
 
 export default async function ProductPage(props: Props) {
   const params = await props.params
-  const region = await getRegion(params.countryCode)
   const searchParams = await props.searchParams
 
   const selectedVariantId = searchParams.v_id
+
+  let region: Awaited<ReturnType<typeof getRegion>> = null
+  try {
+    region = await getRegion(params.countryCode)
+  } catch (error) {
+    console.error("Failed to get region:", error)
+  }
 
   if (!region) {
     notFound()
   }
 
-  const pricedProduct = await listProducts({
-    countryCode: params.countryCode,
-    queryParams: { handle: params.handle },
-  }).then(({ response }) => response.products[0])
+  let pricedProduct: HttpTypes.StoreProduct | undefined
+  try {
+    const result = await listProducts({
+      countryCode: params.countryCode,
+      queryParams: { handle: params.handle },
+    })
+    pricedProduct = result.response.products[0]
+  } catch (error) {
+    console.error("Failed to fetch product:", error)
+  }
 
   if (!pricedProduct) {
     notFound()

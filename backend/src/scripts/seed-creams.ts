@@ -230,7 +230,7 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
         .filter(Boolean) as string[];
       if (tagIds.length) {
         await productModuleService.updateProducts(product.id, {
-          tags: tagIds.map((id) => ({ id })),
+          tag_ids: tagIds,
         });
       }
     }

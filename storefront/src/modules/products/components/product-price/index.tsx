@@ -10,10 +10,18 @@ export default function ProductPrice({
   product: HttpTypes.StoreProduct
   variant?: HttpTypes.StoreProductVariant
 }) {
-  const { cheapestPrice, variantPrice } = getProductPrice({
-    product,
-    variantId: variant?.id,
-  })
+  let cheapestPrice = null
+  let variantPrice = null
+  try {
+    const prices = getProductPrice({
+      product,
+      variantId: variant?.id,
+    })
+    cheapestPrice = prices.cheapestPrice
+    variantPrice = prices.variantPrice
+  } catch {
+    // Price calculation failed — show placeholder
+  }
 
   const selectedPrice = variant ? variantPrice : cheapestPrice
 
