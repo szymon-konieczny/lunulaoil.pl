@@ -1,0 +1,172 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    /* Lunula Oil — Dark luxury palette (matching lunulaoil.pl) */
+    --color-primary: #CD9F7A;        /* Warm bronze/gold — brand accent */
+    --color-primary-light: #E2C9AD;  /* Light bronze */
+    --color-primary-dark: #A37B56;   /* Deep bronze */
+    --color-accent: #CD9F7A;         /* Warm gold — premium, luxury */
+    --color-accent-light: #E2C9AD;   /* Soft gold */
+    --color-background: #000000;     /* Black — dark luxury */
+    --color-surface: #111111;        /* Near-black surface */
+    --color-text: #FFFFFF;           /* White text on dark */
+    --color-text-muted: #C1C1C1;    /* Light grey */
+    --color-border: #2A2A2A;        /* Subtle dark border */
+
+    /* Medusa UI overrides for dark theme */
+    --fg-base: #FFFFFF;
+    --fg-subtle: #C1C1C1;
+    --fg-muted: #888888;
+    --fg-disabled: #555555;
+    --fg-on-color: #FFFFFF;
+    --fg-on-inverted: #000000;
+    --contrast-fg-primary: #000000;
+    --contrast-fg-secondary: #FFFFFF;
+    --fg-interactive: #CD9F7A;
+    --fg-interactive-hover: #E2C9AD;
+    --fg-error: #E5484D;
+    --bg-base: #000000;
+    --bg-base-hover: #111111;
+    --bg-base-pressed: #1A1A1A;
+    --bg-subtle: #111111;
+    --bg-subtle-hover: #1A1A1A;
+    --bg-subtle-pressed: #222222;
+    --bg-field: #1A1A1A;
+    --bg-field-hover: #222222;
+    --bg-component: #1A1A1A;
+    --bg-switch-off: #333333;
+    --bg-interactive: #CD9F7A;
+    --bg-overlay: rgba(0, 0, 0, 0.7);
+    --bg-highlight: rgba(205, 159, 122, 0.15);
+    --border-base: #2A2A2A;
+    --border-strong: #444444;
+    --border-loud: #CD9F7A;
+    --border-interactive: #CD9F7A;
+    --border-error: #E5484D;
+    --border-transparent: transparent;
+    --button-inverted: #FFFFFF;
+    --button-inverted-hover: #E2C9AD;
+    --button-inverted-pressed: #C1C1C1;
+    --button-neutral: #1A1A1A;
+    --button-neutral-hover: #222222;
+    --button-neutral-pressed: #2A2A2A;
+    --button-danger: #E5484D;
+    --tag-neutral-bg: #1A1A1A;
+    --tag-neutral-bg-hover: #222222;
+    --tag-neutral-text: #C1C1C1;
+    --tag-neutral-icon: #888888;
+    --tag-neutral-border: #2A2A2A;
+  }
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  input:focus ~ label,
+  input:not(:placeholder-shown) ~ label {
+    @apply -translate-y-2 text-xsmall-regular;
+  }
+
+  input:focus ~ label {
+    @apply left-0;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 1px solid #CD9F7A;
+    -webkit-text-fill-color: #FFFFFF;
+    -webkit-box-shadow: 0 0 0px 1000px #111111 inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  input[type="search"]::-webkit-search-decoration,
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-results-button,
+  input[type="search"]::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+  }
+}
+
+@layer components {
+  .content-container {
+    @apply max-w-[1440px] w-full mx-auto px-6;
+  }
+
+  .contrast-btn {
+    @apply px-4 py-2 border border-brand-border rounded-full hover:bg-brand-primary hover:text-white transition-colors duration-200 ease-in;
+  }
+
+  .text-xsmall-regular {
+    @apply text-[10px] leading-4 font-normal;
+  }
+
+  .text-small-regular {
+    @apply text-xs leading-5 font-normal;
+  }
+
+  .text-small-semi {
+    @apply text-xs leading-5 font-semibold;
+  }
+
+  .text-base-regular {
+    @apply text-sm leading-6 font-normal;
+  }
+
+  .text-base-semi {
+    @apply text-sm leading-6 font-semibold;
+  }
+
+  .text-large-regular {
+    @apply text-base leading-6 font-normal;
+  }
+
+  .text-large-semi {
+    @apply text-base leading-6 font-semibold;
+  }
+
+  .text-xl-regular {
+    @apply text-2xl leading-[36px] font-normal;
+  }
+
+  .text-xl-semi {
+    @apply text-2xl leading-[36px] font-semibold;
+  }
+
+  .text-2xl-regular {
+    @apply text-[30px] leading-[48px] font-normal;
+  }
+
+  .text-2xl-semi {
+    @apply text-[30px] leading-[48px] font-semibold;
+  }
+
+  .text-3xl-regular {
+    @apply text-[32px] leading-[44px] font-normal;
+  }
+
+  .text-3xl-semi {
+    @apply text-[32px] leading-[44px] font-semibold;
+  }
+}
