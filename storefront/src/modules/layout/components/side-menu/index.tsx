@@ -15,6 +15,7 @@ const SideMenuItems = {
   "Strona główna": "/",
   Sklep: "/store",
   "Dobierz kosmetyk": "/quiz",
+  "O marce": "/about",
   Konto: "/account",
   Koszyk: "/cart",
 }

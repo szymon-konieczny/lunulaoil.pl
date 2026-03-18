@@ -5,6 +5,7 @@ import InteractiveLink from "@modules/common/components/interactive-link"
 import SkeletonProductGrid from "@modules/skeletons/templates/skeleton-product-grid"
 import RefinementList from "@modules/store/components/refinement-list"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
+import { CategoryItem } from "@modules/store/components/refinement-list"
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
@@ -14,11 +15,13 @@ export default function CategoryTemplate({
   sortBy,
   page,
   countryCode,
+  allCategories,
 }: {
   category: HttpTypes.StoreProductCategory
   sortBy?: SortOptions
   page?: string
   countryCode: string
+  allCategories?: CategoryItem[]
 }) {
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
@@ -37,35 +40,37 @@ export default function CategoryTemplate({
   getParents(category)
 
   return (
-    <div
-      className="flex flex-col small:flex-row small:items-start py-6 content-container"
-      data-testid="category-container"
-    >
-      <RefinementList sortBy={sort} data-testid="sort-by-container" />
-      <div className="w-full">
-        <div className="flex flex-row mb-8 text-2xl-semi gap-4">
-          {parents &&
-            parents.map((parent) => (
-              <span key={parent.id} className="text-ui-fg-subtle">
-                <LocalizedClientLink
-                  className="mr-4 hover:text-brand-primary"
-                  href={`/categories/${parent.handle}`}
-                  data-testid="sort-by-link"
-                >
-                  {parent.name}
-                </LocalizedClientLink>
-                /
-              </span>
-            ))}
-          <h1 data-testid="category-page-title">{category.name}</h1>
+    <div className="py-6 content-container" data-testid="category-container">
+      <div className="flex flex-row mb-6 text-2xl-semi gap-4">
+        {parents &&
+          parents.map((parent) => (
+            <span key={parent.id} className="text-ui-fg-subtle">
+              <LocalizedClientLink
+                className="mr-4 hover:text-brand-primary"
+                href={`/categories/${parent.handle}`}
+                data-testid="sort-by-link"
+              >
+                {parent.name}
+              </LocalizedClientLink>
+              /
+            </span>
+          ))}
+        <h1 data-testid="category-page-title">{category.name}</h1>
+      </div>
+      {category.description && (
+        <div className="mb-6 text-base-regular">
+          <p>{category.description}</p>
         </div>
-        {category.description && (
-          <div className="mb-8 text-base-regular">
-            <p>{category.description}</p>
-          </div>
-        )}
-        {category.category_children && (
-          <div className="mb-8 text-base-large">
+      )}
+      <RefinementList
+        sortBy={sort}
+        categories={allCategories}
+        activeCategory={category.handle}
+        data-testid="sort-by-container"
+      />
+      {category.category_children &&
+        category.category_children.length > 0 && (
+          <div className="mb-6 text-base-large">
             <ul className="grid grid-cols-1 gap-2">
               {category.category_children?.map((c) => (
                 <li key={c.id}>
@@ -77,21 +82,20 @@ export default function CategoryTemplate({
             </ul>
           </div>
         )}
-        <Suspense
-          fallback={
-            <SkeletonProductGrid
-              numberOfProducts={category.products?.length ?? 8}
-            />
-          }
-        >
-          <PaginatedProducts
-            sortBy={sort}
-            page={pageNumber}
-            categoryId={category.id}
-            countryCode={countryCode}
+      <Suspense
+        fallback={
+          <SkeletonProductGrid
+            numberOfProducts={category.products?.length ?? 8}
           />
-        </Suspense>
-      </div>
+        }
+      >
+        <PaginatedProducts
+          sortBy={sort}
+          page={pageNumber}
+          categoryId={category.id}
+          countryCode={countryCode}
+        />
+      </Suspense>
     </div>
   )
 }

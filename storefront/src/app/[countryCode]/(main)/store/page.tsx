@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 
+import { listCategories } from "@lib/data/categories"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import StoreTemplate from "@modules/store/templates"
 
@@ -25,6 +26,17 @@ export default async function StorePage(props: Params) {
   const searchParams = await props.searchParams;
   const { sortBy, page } = searchParams
 
+  // Fetch categories for filter chips
+  let categories: { id: string; name: string; handle: string }[] = []
+  try {
+    const cats = await listCategories()
+    categories = (cats || []).map((c) => ({
+      id: c.id,
+      name: c.name,
+      handle: c.handle,
+    }))
+  } catch {}
+
   const storeJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -43,6 +55,7 @@ export default async function StorePage(props: Params) {
         sortBy={sortBy}
         page={page}
         countryCode={params.countryCode}
+        categories={categories}
       />
     </>
   )

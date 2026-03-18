@@ -1,8 +1,8 @@
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
+"use client"
 
 const Hero = () => {
   return (
-    <div className="relative w-full h-[70vh] small:h-[85vh] overflow-hidden">
+    <div className="relative w-full h-[70vh] small:h-[85vh] overflow-hidden" id="hero">
       {/* Background video with image fallback */}
       <video
         autoPlay
@@ -44,12 +44,18 @@ const Hero = () => {
           są również w farmaceutycznej Bazie Leków i Środków Ochrony Zdrowia.
         </p>
 
-        <LocalizedClientLink
-          href="/store"
-          className="mt-4 text-brand-accent hover:text-brand-accent/80 transition-colors duration-300 text-lg font-medium"
+        <button
+          onClick={() => {
+            const hero = document.getElementById("hero")
+            if (hero) {
+              const nextSection = hero.nextElementSibling
+              nextSection?.scrollIntoView({ behavior: "smooth" })
+            }
+          }}
+          className="mt-4 text-brand-accent hover:text-brand-accent/80 transition-colors duration-300 text-lg font-medium cursor-pointer"
         >
           Dowiedz się więcej →
-        </LocalizedClientLink>
+        </button>
       </div>
 
       {/* Bottom gradient fade into background */}

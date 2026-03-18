@@ -75,11 +75,20 @@ export default async function CategoryPage(props: Props) {
   const params = await props.params
   const { sortBy, page } = searchParams
 
-  const productCategory = await getCategoryByHandle(params.category)
+  const [productCategory, allCats] = await Promise.all([
+    getCategoryByHandle(params.category),
+    listCategories().catch(() => []),
+  ])
 
   if (!productCategory) {
     notFound()
   }
+
+  const allCategories = (allCats || []).map((c: any) => ({
+    id: c.id,
+    name: c.name,
+    handle: c.handle,
+  }))
 
   const categoryJsonLd = {
     "@context": "https://schema.org",
@@ -100,6 +109,7 @@ export default async function CategoryPage(props: Props) {
         sortBy={sortBy}
         page={page}
         countryCode={params.countryCode}
+        allCategories={allCategories}
       />
     </>
   )
