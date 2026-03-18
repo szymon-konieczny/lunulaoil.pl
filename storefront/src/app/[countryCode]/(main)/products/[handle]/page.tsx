@@ -58,18 +58,22 @@ export async function generateStaticParams() {
 function getImagesForVariant(
   product: HttpTypes.StoreProduct,
   selectedVariantId?: string
-) {
+) : HttpTypes.StoreProductImage[] {
+  const productImages = product.images ?? []
+
   if (!selectedVariantId || !product.variants) {
-    return product.images
+    return productImages
   }
 
   const variant = product.variants!.find((v) => v.id === selectedVariantId)
-  if (!variant || !variant.images.length) {
-    return product.images
+  const variantImages = variant?.images ?? []
+
+  if (!variant || !variantImages.length) {
+    return productImages
   }
 
-  const imageIdsMap = new Map(variant.images.map((i) => [i.id, true]))
-  return product.images!.filter((i) => imageIdsMap.has(i.id))
+  const imageIdsMap = new Map(variantImages.map((i) => [i.id, true]))
+  return productImages.filter((i) => imageIdsMap.has(i.id))
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -117,13 +121,16 @@ export default async function ProductPage(props: Props) {
     queryParams: { handle: params.handle },
   }).then(({ response }) => response.products[0])
 
-  const images = getImagesForVariant(pricedProduct, selectedVariantId)
-
   if (!pricedProduct) {
     notFound()
   }
 
-  const { cheapestPrice } = getProductPrice({ product: pricedProduct })
+  const images = getImagesForVariant(pricedProduct, selectedVariantId)
+
+  let cheapestPrice: ReturnType<typeof getProductPrice>["cheapestPrice"] = null
+  try {
+    cheapestPrice = getProductPrice({ product: pricedProduct }).cheapestPrice
+  } catch {}
 
   const productJsonLd = {
     "@context": "https://schema.org",
@@ -138,12 +145,12 @@ export default async function ProductPage(props: Props) {
       "@type": "Brand",
       name: "Lunula Oil & More",
     },
-    ...(cheapestPrice && {
+    ...(cheapestPrice?.calculated_price_number && {
       offers: {
         "@type": "Offer",
         url: `${BASE_URL}/${params.countryCode}/products/${params.handle}`,
-        priceCurrency: cheapestPrice.currency_code?.toUpperCase(),
-        price: (cheapestPrice.calculated_price_number / 100).toFixed(2),
+        priceCurrency: cheapestPrice?.currency_code?.toUpperCase(),
+        price: ((cheapestPrice?.calculated_price_number ?? 0) / 100).toFixed(2),
         availability: "https://schema.org/InStock",
       },
     }),
