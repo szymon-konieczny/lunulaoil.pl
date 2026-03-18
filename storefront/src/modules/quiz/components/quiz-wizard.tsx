@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback, useRef } from "react"
+import { useState, useCallback, useRef, useEffect } from "react"
 import { HttpTypes } from "@medusajs/types"
 import { clx } from "@medusajs/ui"
 import { quizSteps, QuizAnswers } from "../data"
@@ -12,13 +12,50 @@ type Props = {
   allProducts: HttpTypes.StoreProduct[]
 }
 
+const STORAGE_KEY = "lunula-quiz-state"
+
+function loadSavedState(): {
+  answers: QuizAnswers
+  showResults: boolean
+  aiRecommendation: string | null
+  currentStep: number
+} | null {
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY)
+    if (raw) return JSON.parse(raw)
+  } catch {}
+  return null
+}
+
 export default function QuizWizard({ allProducts }: Props) {
-  const [currentStep, setCurrentStep] = useState(0)
-  const [answers, setAnswers] = useState<QuizAnswers>({})
-  const [showResults, setShowResults] = useState(false)
-  const [aiRecommendation, setAiRecommendation] = useState<string | null>(null)
+  const saved = typeof window !== "undefined" ? loadSavedState() : null
+
+  const [currentStep, setCurrentStep] = useState(saved?.currentStep ?? 0)
+  const [answers, setAnswers] = useState<QuizAnswers>(saved?.answers ?? {})
+  const [showResults, setShowResults] = useState(saved?.showResults ?? false)
+  const [aiRecommendation, setAiRecommendation] = useState<string | null>(
+    saved?.aiRecommendation ?? null
+  )
   const [aiLoading, setAiLoading] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
+
+  // Persist state to sessionStorage
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ answers, showResults, aiRecommendation, currentStep })
+      )
+    } catch {}
+  }, [answers, showResults, aiRecommendation, currentStep])
+
+  // Re-fetch AI recommendation on restore if results shown but no recommendation
+  useEffect(() => {
+    if (showResults && !aiRecommendation && !aiLoading && Object.keys(answers).length > 0) {
+      fetchAiRecommendation(answers)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const step = quizSteps[currentStep]
   const isLastStep = currentStep === quizSteps.length - 1
@@ -66,6 +103,9 @@ export default function QuizWizard({ allProducts }: Props) {
     setAnswers({})
     setShowResults(false)
     setAiRecommendation(null)
+    try {
+      sessionStorage.removeItem(STORAGE_KEY)
+    } catch {}
   }
 
   const fetchAiRecommendation = async (quizAnswers: QuizAnswers) => {

@@ -1,12 +1,13 @@
 import { Metadata } from "next"
 
-import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import WhyUs from "@modules/home/components/why-us"
 import CtaSamples from "@modules/home/components/cta-samples"
 import CtaQuiz from "@modules/home/components/cta-quiz"
-import { listCollections } from "@lib/data/collections"
+import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
+import ProductPreview from "@modules/products/components/product-preview"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
@@ -25,13 +26,19 @@ export default async function Home(props: {
 
   const region = await getRegion(countryCode)
 
-  const { collections } = await listCollections({
-    fields: "id, handle, title",
-  })
-
-  if (!collections || !region) {
+  if (!region) {
     return null
   }
+
+  // Fetch latest products directly (no dependency on collections)
+  let products: any[] = []
+  try {
+    const result = await listProducts({
+      countryCode,
+      queryParams: { limit: 8, order: "-created_at" },
+    })
+    products = result.response.products
+  } catch {}
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
@@ -75,19 +82,35 @@ export default async function Home(props: {
       <WhyUs />
       <CtaQuiz />
       <CtaSamples />
-      <div className="py-16 small:py-24 bg-brand-background">
-        <div className="content-container mb-12">
-          <h2 className="text-center text-brand-accent text-sm tracking-[0.3em] uppercase font-medium mb-4">
-            Nasze produkty
-          </h2>
-          <p className="text-center text-white/60 text-base">
-            Odkryj pełną gamę olejków Lunula Oil
-          </p>
+      {products.length > 0 && (
+        <div className="py-16 small:py-24 bg-brand-background">
+          <div className="content-container">
+            <div className="mb-12 text-center">
+              <h2 className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium mb-4">
+                Nasze produkty
+              </h2>
+              <p className="text-white/60 text-base">
+                Odkryj pełną gamę kosmetyków Lunula Botanique
+              </p>
+            </div>
+            <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
+              {products.map((product) => (
+                <li key={product.id}>
+                  <ProductPreview product={product} region={region} />
+                </li>
+              ))}
+            </ul>
+            <div className="mt-12 text-center">
+              <LocalizedClientLink
+                href="/store"
+                className="inline-block px-8 py-3 border border-brand-primary/30 text-brand-primary hover:bg-brand-primary hover:text-black rounded-full text-sm font-medium transition-all duration-300"
+              >
+                Zobacz wszystkie produkty →
+              </LocalizedClientLink>
+            </div>
+          </div>
         </div>
-        <ul className="flex flex-col gap-x-6">
-          <FeaturedProducts collections={collections} region={region} />
-        </ul>
-      </div>
+      )}
     </>
   )
 }

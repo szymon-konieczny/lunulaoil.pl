@@ -12,14 +12,19 @@ export default async function ProductActionsWrapper({
   id: string
   region: HttpTypes.StoreRegion
 }) {
-  const product = await listProducts({
-    queryParams: { id: [id] },
-    regionId: region.id,
-  }).then(({ response }) => response.products[0])
+  try {
+    const product = await listProducts({
+      queryParams: { id: [id] },
+      regionId: region.id,
+    }).then(({ response }) => response.products[0])
 
-  if (!product) {
+    if (!product) {
+      return null
+    }
+
+    return <ProductActions product={product} region={region} />
+  } catch (error) {
+    console.error("Failed to fetch product actions:", error)
     return null
   }
-
-  return <ProductActions product={product} region={region} />
 }
