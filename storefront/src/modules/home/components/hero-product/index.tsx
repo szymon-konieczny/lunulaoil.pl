@@ -10,7 +10,7 @@ const HeroProduct = () => {
             <div className="relative aspect-square bg-brand-surface rounded-sm flex items-center justify-center border border-brand-border">
               <div className="text-center">
                 <span className="text-5xl block mb-4">🌿</span>
-                <p className="text-white/40 text-sm tracking-wider uppercase">
+                <p className="text-brand-text-muted/60 text-sm tracking-wider uppercase">
                   Zdjęcie wkrótce
                 </p>
               </div>
@@ -22,10 +22,10 @@ const HeroProduct = () => {
               <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
                 Lunula Botanique
               </span>
-              <h2 className="text-white text-3xl small:text-4xl font-heading font-bold mt-3 mb-6">
+              <h2 className="text-brand-text text-3xl small:text-4xl font-heading font-bold mt-3 mb-6">
                 Kremy Rytualne
               </h2>
-              <p className="text-white/80 text-base leading-relaxed mb-6">
+              <p className="text-brand-text-muted text-base leading-relaxed mb-6">
                 Rytualna pielęgnacja w zgodzie z naturą skóry. Biozgodna
                 formuła, która karmi skórę tym, co już zna — przywracając
                 jej blask, zdrowie i harmonię.

@@ -16,7 +16,7 @@ export default function HialCodePage() {
             <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
               Biozgodna Pielęgnacja
             </span>
-            <h1 className="text-3xl small:text-5xl font-heading font-bold text-white mt-4 mb-2">
+            <h1 className="text-3xl small:text-5xl font-heading font-bold text-brand-text mt-4 mb-2">
               HialCode
             </h1>
             <p className="text-brand-accent text-lg">Kwas hialuronowy</p>
@@ -30,7 +30,7 @@ export default function HialCodePage() {
             <div className="relative aspect-[4/3] bg-brand-surface rounded-sm flex items-center justify-center mb-12 border border-brand-border">
               <div className="text-center">
                 <span className="text-5xl block mb-2">💧</span>
-                <p className="text-white/30 text-xs tracking-wider uppercase">
+                <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
                   Zdjęcie wkrótce
                 </p>
               </div>
@@ -44,7 +44,7 @@ export default function HialCodePage() {
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
                   Kwas hialuronowy — klucz do nawilżenia
                 </h2>
-                <p className="text-white/80 text-base leading-relaxed">
+                <p className="text-brand-text-muted text-base leading-relaxed">
                   Kwas hialuronowy to naturalny składnik skóry, który odpowiada
                   za jej nawilżenie i elastyczność. Jedna cząsteczka kwasu
                   hialuronowego jest w stanie przyciągnąć i zatrzymać ilość wody
@@ -56,7 +56,7 @@ export default function HialCodePage() {
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
                   Jak działa na skórę?
                 </h2>
-                <ul className="space-y-2 text-white/80 text-base leading-relaxed">
+                <ul className="space-y-2 text-brand-text-muted text-base leading-relaxed">
                   <li>— intensywnie nawilża w głębi skóry</li>
                   <li>— wypełnia drobne zmarszczki od wewnątrz</li>
                   <li>— przywraca elastyczność i jędrność</li>
@@ -66,7 +66,7 @@ export default function HialCodePage() {
               </div>
 
               <div className="p-6 border border-brand-accent/20 rounded-sm bg-brand-surface">
-                <p className="text-white/80 text-base leading-relaxed">
+                <p className="text-brand-text-muted text-base leading-relaxed">
                   HialCode idealnie sprawdza się w połączeniu z SqualaneCode lub
                   JojobaCode. Kwas hialuronowy intensywnie nawilża, a skwalan lub
                   jojoba pomagają zamknąć wilgoć w skórze, tworząc ochronną
@@ -75,7 +75,7 @@ export default function HialCodePage() {
               </div>
 
               <div className="text-center mt-8">
-                <p className="text-white font-semibold text-lg">
+                <p className="text-brand-text font-semibold text-lg">
                   Nawilżenie, które skóra rozumie.
                 </p>
                 <p className="text-brand-accent text-base mt-2">

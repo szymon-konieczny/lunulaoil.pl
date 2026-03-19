@@ -3,7 +3,7 @@ import AnimateIn from "@modules/common/components/animate-in"
 
 const Manifest = () => {
   return (
-    <section className="py-20 small:py-32 bg-brand-surface">
+    <section className="py-20 small:py-32 bg-[#0A0A0A]">
       <div className="content-container max-w-3xl mx-auto text-center">
         <AnimateIn variant="fade-in">
           <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
@@ -46,7 +46,7 @@ const Manifest = () => {
         <AnimateIn variant="scale" delay={500}>
           <LocalizedClientLink
             href="/manifest"
-            className="inline-flex items-center gap-2 px-8 py-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-black transition-colors duration-300 text-sm font-medium tracking-wide"
+            className="inline-flex items-center gap-2 px-8 py-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition-colors duration-300 text-sm font-medium tracking-wide"
           >
             Czytaj cały manifest →
           </LocalizedClientLink>

@@ -34,7 +34,7 @@ export default async function QuizPage(props: Props) {
         <span className="text-brand-primary text-sm font-medium uppercase tracking-wider">
           Asystent doboru
         </span>
-        <h1 className="text-3xl small:text-5xl font-serif font-semibold text-white mt-3 mb-4">
+        <h1 className="text-3xl small:text-5xl font-serif font-semibold text-brand-text mt-3 mb-4">
           Znajdź swój idealny kosmetyk
         </h1>
         <p className="text-brand-text-muted max-w-xl mx-auto text-lg">

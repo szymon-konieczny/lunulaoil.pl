@@ -49,24 +49,24 @@ export default function SlavicSoapPage() {
             </span>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={100}>
-            <h1 className="text-3xl small:text-5xl font-heading font-bold text-white mt-4 mb-6">
+            <h1 className="text-3xl small:text-5xl font-heading font-bold text-brand-text mt-4 mb-6">
               Powrót do korzeni
             </h1>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={200}>
-            <p className="text-white/80 text-lg leading-relaxed mb-4">
+            <p className="text-brand-text-muted text-lg leading-relaxed mb-4">
               Pielęgnacja w rytmie natury. Mydła Lunula powstają z roślinnych
               olejów, maseł i ziół, w prostych, autentycznych recepturach
               inspirowanych tradycją.
             </p>
-            <p className="text-white/60 text-base leading-relaxed">
+            <p className="text-brand-text-muted text-base leading-relaxed">
               Bazą są starannie dobrane oleje roślinne — bez pośpiechu,
               z szacunkiem do surowca i skóry. To pielęgnacja, która nie
               konkuruje z naturą — tylko z nią współpracuje.
             </p>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={300}>
-            <p className="text-white/50 text-base italic mt-6">
+            <p className="text-brand-text-muted/70 text-base italic mt-6">
               Dotyk faktury, zapach ziół i chwila zatrzymania.
               <br />
               Naturalna pielęgnacja to powrót do korzeni.
@@ -91,7 +91,7 @@ export default function SlavicSoapPage() {
                   <div className="relative aspect-square bg-brand-background rounded-sm flex items-center justify-center border border-brand-border">
                     <div className="text-center">
                       <span className="text-6xl block mb-2">{soap.icon}</span>
-                      <p className="text-white/30 text-xs tracking-wider uppercase">
+                      <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
                         Zdjęcie wkrótce
                       </p>
                     </div>
@@ -99,20 +99,20 @@ export default function SlavicSoapPage() {
 
                   {/* Info */}
                   <div>
-                    <h2 className="text-white text-2xl small:text-3xl font-heading font-bold mb-2">
+                    <h2 className="text-brand-text text-2xl small:text-3xl font-heading font-bold mb-2">
                       {soap.name}
                     </h2>
                     <p className="text-brand-accent text-sm tracking-wider mb-4">
                       {soap.ingredients}
                     </p>
-                    <p className="text-white/80 text-base leading-relaxed mb-4">
+                    <p className="text-brand-text-muted text-base leading-relaxed mb-4">
                       {soap.description}
                     </p>
                     <div className="p-4 border border-brand-border rounded-sm mb-4">
-                      <p className="text-white/40 text-xs uppercase tracking-wider mb-1">
+                      <p className="text-brand-text-muted/60 text-xs uppercase tracking-wider mb-1">
                         INCI
                       </p>
-                      <p className="text-white/60 text-sm leading-relaxed">
+                      <p className="text-brand-text-muted text-sm leading-relaxed">
                         {soap.inci}
                       </p>
                     </div>

@@ -3,7 +3,7 @@ import AnimateIn from "@modules/common/components/animate-in"
 
 const CtaQuiz = () => {
   return (
-    <section className="py-16 small:py-24 bg-brand-background">
+    <section className="py-16 small:py-24 bg-[#0A0A0A]">
       <div className="content-container text-center">
         <AnimateIn variant="fade-in">
           <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
@@ -24,7 +24,7 @@ const CtaQuiz = () => {
         <AnimateIn variant="scale" delay={300}>
           <LocalizedClientLink
             href="/quiz?reset=1"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-brand-accent text-black hover:bg-brand-accent-light transition-colors duration-300 text-sm font-semibold tracking-wide"
+            className="inline-flex items-center gap-2 px-8 py-3 bg-brand-accent text-white hover:bg-brand-accent-light transition-colors duration-300 text-sm font-semibold tracking-wide"
           >
             Rozpocznij quiz
           </LocalizedClientLink>

@@ -30,7 +30,7 @@ const soaps = [
 
 const SlavicSoap = () => {
   return (
-    <section className="py-16 small:py-24 bg-brand-background">
+    <section className="py-16 small:py-24 bg-[#0A0A0A]">
       <div className="content-container">
         <AnimateIn variant="fade-in" className="text-center mb-4">
           <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
@@ -58,7 +58,7 @@ const SlavicSoap = () => {
               delay={i * 150}
               duration={800}
             >
-              <div className="p-8 rounded-sm border border-brand-border text-center">
+              <div className="p-8 rounded-sm border border-white/10 text-center">
                 <span className="text-4xl block mb-4">{soap.icon}</span>
                 <h3 className="text-white text-xl font-heading font-semibold mb-2">
                   {soap.name}
@@ -80,7 +80,7 @@ const SlavicSoap = () => {
         <AnimateIn variant="fade-up" delay={500} className="mt-10 text-center">
           <LocalizedClientLink
             href="/mydla-rytualne"
-            className="inline-flex items-center gap-2 px-8 py-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-black transition-colors duration-300 text-sm font-medium tracking-wide"
+            className="inline-flex items-center gap-2 px-8 py-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition-colors duration-300 text-sm font-medium tracking-wide"
           >
             Poznaj mydła rytualne →
           </LocalizedClientLink>

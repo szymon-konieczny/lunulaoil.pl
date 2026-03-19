@@ -41,7 +41,7 @@ const BiocareSection = () => {
           </span>
         </AnimateIn>
         <AnimateIn variant="fade-up" delay={100} className="text-center mb-12">
-          <p className="text-white/60 text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-brand-text-muted text-base max-w-2xl mx-auto leading-relaxed">
             Składniki rozpoznawalne przez skórę, które wspierają jej naturalne
             procesy zamiast je zaburzać. Karmienie skóry tym, co ona już zna.
           </p>
@@ -61,26 +61,26 @@ const BiocareSection = () => {
                   <div className="relative aspect-square bg-brand-background rounded-sm flex items-center justify-center mb-6">
                     <div className="text-center">
                       <span className="text-4xl block mb-2">{product.icon}</span>
-                      <p className="text-white/30 text-xs tracking-wider uppercase">
+                      <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
                         Zdjęcie wkrótce
                       </p>
                     </div>
                   </div>
 
-                  <h3 className="text-white text-xl font-heading font-semibold mb-1 group-hover:text-brand-accent transition-colors">
+                  <h3 className="text-brand-text text-xl font-heading font-semibold mb-1 group-hover:text-brand-accent transition-colors">
                     {product.name}
                   </h3>
                   <p className="text-brand-accent text-sm mb-3">
                     {product.subtitle}
                   </p>
-                  <p className="text-white/70 text-sm leading-relaxed mb-4">
+                  <p className="text-brand-text-muted text-sm leading-relaxed mb-4">
                     {product.description}
                   </p>
                   <div className="flex items-center justify-between">
                     <span className="text-brand-primary text-lg font-semibold">
                       {product.price}
                     </span>
-                    <span className="text-white/40 text-sm group-hover:text-brand-accent transition-colors">
+                    <span className="text-brand-text-muted/60 text-sm group-hover:text-brand-accent transition-colors">
                       Dowiedz się więcej →
                     </span>
                   </div>

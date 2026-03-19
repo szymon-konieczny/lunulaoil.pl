@@ -16,7 +16,7 @@ export default function SqualaneCodePage() {
             <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
               Biozgodna Pielęgnacja
             </span>
-            <h1 className="text-3xl small:text-5xl font-heading font-bold text-white mt-4 mb-2">
+            <h1 className="text-3xl small:text-5xl font-heading font-bold text-brand-text mt-4 mb-2">
               SqualaneCode
             </h1>
             <p className="text-brand-accent text-lg">
@@ -32,7 +32,7 @@ export default function SqualaneCodePage() {
             <div className="relative aspect-[4/3] bg-brand-surface rounded-sm flex items-center justify-center mb-12 border border-brand-border">
               <div className="text-center">
                 <span className="text-5xl block mb-2">🫧</span>
-                <p className="text-white/30 text-xs tracking-wider uppercase">
+                <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
                   Zdjęcie wkrótce
                 </p>
               </div>
@@ -46,7 +46,7 @@ export default function SqualaneCodePage() {
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
                   Skwalan — co to właściwie jest?
                 </h2>
-                <p className="text-white/80 text-base leading-relaxed">
+                <p className="text-brand-text-muted text-base leading-relaxed">
                   Skwalan to stabilna, uwodorniona forma skwalenu — lipidu, który
                   naturalnie występuje w ludzkim sebum. Dzięki temu jest
                   biokompatybilny ze skórą: dobrze tolerowany, lekki i niekomedogenny.
@@ -57,7 +57,7 @@ export default function SqualaneCodePage() {
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
                   Jak działa na skórę twarzy?
                 </h2>
-                <ul className="space-y-2 text-white/80 text-base leading-relaxed">
+                <ul className="space-y-2 text-brand-text-muted text-base leading-relaxed">
                   <li>— wzmacnia barierę hydrolipidową</li>
                   <li>— ogranicza transepidermalną utratę wody (TEWL)</li>
                   <li>— zmiękcza i wygładza skórę</li>
@@ -67,10 +67,10 @@ export default function SqualaneCodePage() {
               </div>
 
               <div className="p-6 border border-brand-border rounded-sm">
-                <h3 className="text-white text-base font-semibold mb-2">
+                <h3 className="text-brand-text text-base font-semibold mb-2">
                   Ciekawostka
                 </h3>
-                <p className="text-white/70 text-sm leading-relaxed">
+                <p className="text-brand-text-muted text-sm leading-relaxed">
                   Z wiekiem ilość skwalenu w skórze spada, co sprzyja przesuszeniu
                   i nadreaktywności. Skwalan uzupełnia ten niedobór, nie zaburzając
                   naturalnych procesów skóry.
@@ -81,7 +81,7 @@ export default function SqualaneCodePage() {
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
                   A włosy?
                 </h2>
-                <ul className="space-y-2 text-white/80 text-base leading-relaxed">
+                <ul className="space-y-2 text-brand-text-muted text-base leading-relaxed">
                   <li>— wygładza łuskę włosa</li>
                   <li>— nadaje połysk</li>
                   <li>— chroni końcówki przed łamaniem</li>
@@ -93,19 +93,19 @@ export default function SqualaneCodePage() {
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
                   Dlaczego skwalan, a nie skwalen?
                 </h2>
-                <p className="text-white/80 text-base leading-relaxed mb-4">
+                <p className="text-brand-text-muted text-base leading-relaxed mb-4">
                   Skwalen łatwo się utlenia. Skwalan jest chemicznie stabilny,
                   odporny na światło i tlen, dlatego znacznie lepiej sprawdza się
                   w kosmetykach.
                 </p>
-                <p className="text-white/60 text-base leading-relaxed">
+                <p className="text-brand-text-muted text-base leading-relaxed">
                   Minimalistyczny skład. Wysoka tolerancja. Funkcja, którą skóra
                   rozumie.
                 </p>
               </div>
 
               <div className="p-6 border border-brand-accent/20 rounded-sm bg-brand-surface">
-                <p className="text-white/80 text-base leading-relaxed mb-2">
+                <p className="text-brand-text-muted text-base leading-relaxed mb-2">
                   Idealnie sprawdza się w połączeniu z HialCode — serum
                   hialuronowym. Kwas hialuronowy intensywnie nawilża, a skwalan
                   pomaga utrzymać wilgoć w skórze.
@@ -113,13 +113,13 @@ export default function SqualaneCodePage() {
               </div>
 
               <div className="text-center mt-8 space-y-2">
-                <p className="text-white/50 text-base italic">
+                <p className="text-brand-text-muted/70 text-base italic">
                   Skwalan to olej ciszy. Nie pachnie. Nie dominuje.
                 </p>
-                <p className="text-white/50 text-base italic">
+                <p className="text-brand-text-muted/70 text-base italic">
                   Dostosowuje się do rytmu skóry i włosów, zamiast go narzucać.
                 </p>
-                <p className="text-white font-semibold text-lg mt-4">
+                <p className="text-brand-text font-semibold text-lg mt-4">
                   Minimalizm, który działa. To jest właśnie Code.
                 </p>
                 <p className="text-brand-accent text-base mt-2">

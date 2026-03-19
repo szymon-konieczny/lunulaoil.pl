@@ -11,14 +11,14 @@ export default function PrivacyPolicyPage() {
     <div className="bg-brand-background">
       <section className="py-16 small:py-24">
         <div className="content-container max-w-3xl mx-auto">
-          <h1 className="text-3xl small:text-4xl font-serif font-semibold text-white mb-12 text-center">
+          <h1 className="text-3xl small:text-4xl font-serif font-semibold text-brand-text mb-12 text-center">
             Polityka prywatności
           </h1>
 
-          <div className="space-y-10 text-white/80 text-sm leading-relaxed">
+          <div className="space-y-10 text-brand-text-muted text-sm leading-relaxed">
             {/* I. Administrator danych */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 I. Administrator danych osobowych
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
 
             {/* II. Podstawy prawne przetwarzania */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 II. Podstawy prawne przetwarzania danych
               </h2>
               <p className="mb-3">
@@ -69,22 +69,22 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
-                  <strong className="text-white">Art. 6 ust. 1 lit. b RODO</strong>{" "}
+                  <strong className="text-brand-text">Art. 6 ust. 1 lit. b RODO</strong>{" "}
                   &mdash; przetwarzanie jest niezbędne do wykonania umowy (realizacja
                   zamówień, obsługa konta klienta).
                 </li>
                 <li>
-                  <strong className="text-white">Art. 6 ust. 1 lit. c RODO</strong>{" "}
+                  <strong className="text-brand-text">Art. 6 ust. 1 lit. c RODO</strong>{" "}
                   &mdash; przetwarzanie jest niezbędne do wypełnienia obowiązku
                   prawnego (księgowość, faktury, przepisy podatkowe).
                 </li>
                 <li>
-                  <strong className="text-white">Art. 6 ust. 1 lit. a RODO</strong>{" "}
+                  <strong className="text-brand-text">Art. 6 ust. 1 lit. a RODO</strong>{" "}
                   &mdash; osoba, której dane dotyczą, wyraziła zgodę na przetwarzanie
                   (newsletter, marketing).
                 </li>
                 <li>
-                  <strong className="text-white">Art. 6 ust. 1 lit. f RODO</strong>{" "}
+                  <strong className="text-brand-text">Art. 6 ust. 1 lit. f RODO</strong>{" "}
                   &mdash; przetwarzanie jest niezbędne do celów wynikających z prawnie
                   uzasadnionych interesów Administratora (obsługa zapytań, analityka,
                   dochodzenie roszczeń).
@@ -94,7 +94,7 @@ export default function PrivacyPolicyPage() {
 
             {/* III. Cele i zakres przetwarzania */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 III. Cele i zakres przetwarzania danych
               </h2>
               <p className="mb-3">
@@ -130,7 +130,7 @@ export default function PrivacyPolicyPage() {
 
             {/* IV. Okres przechowywania */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 IV. Okres przechowywania danych
               </h2>
               <ul className="list-disc pl-5 space-y-2">
@@ -161,7 +161,7 @@ export default function PrivacyPolicyPage() {
 
             {/* V. Prawa osób */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 V. Prawa osób, których dane dotyczą
               </h2>
               <p className="mb-3">
@@ -170,31 +170,31 @@ export default function PrivacyPolicyPage() {
               </p>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
-                  <strong className="text-white">Prawo dostępu</strong> (art. 15
+                  <strong className="text-brand-text">Prawo dostępu</strong> (art. 15
                   RODO) &mdash; prawo do uzyskania informacji o przetwarzanych danych
                   oraz kopii danych.
                 </li>
                 <li>
-                  <strong className="text-white">Prawo do sprostowania</strong>{" "}
+                  <strong className="text-brand-text">Prawo do sprostowania</strong>{" "}
                   (art. 16 RODO) &mdash; prawo do żądania poprawienia nieprawidłowych
                   lub uzupełnienia niekompletnych danych.
                 </li>
                 <li>
-                  <strong className="text-white">
+                  <strong className="text-brand-text">
                     Prawo do usunięcia danych (&bdquo;prawo do bycia zapomnianym&rdquo;)
                   </strong>{" "}
                   (art. 17 RODO) &mdash; prawo do żądania usunięcia danych, gdy nie są
                   już niezbędne do celów przetwarzania.
                 </li>
                 <li>
-                  <strong className="text-white">
+                  <strong className="text-brand-text">
                     Prawo do ograniczenia przetwarzania
                   </strong>{" "}
                   (art. 18 RODO) &mdash; prawo do żądania ograniczenia przetwarzania
                   danych w określonych przypadkach.
                 </li>
                 <li>
-                  <strong className="text-white">
+                  <strong className="text-brand-text">
                     Prawo do przenoszenia danych
                   </strong>{" "}
                   (art. 20 RODO) &mdash; prawo do otrzymania danych w
@@ -202,17 +202,17 @@ export default function PrivacyPolicyPage() {
                   administratorowi.
                 </li>
                 <li>
-                  <strong className="text-white">Prawo do sprzeciwu</strong>{" "}
+                  <strong className="text-brand-text">Prawo do sprzeciwu</strong>{" "}
                   (art. 21 RODO) &mdash; prawo do wniesienia sprzeciwu wobec
                   przetwarzania opartego na prawnie uzasadnionym interesie.
                 </li>
                 <li>
-                  <strong className="text-white">Prawo do cofnięcia zgody</strong>{" "}
+                  <strong className="text-brand-text">Prawo do cofnięcia zgody</strong>{" "}
                   &mdash; w dowolnym momencie, bez wpływu na zgodność z prawem
                   przetwarzania dokonanego przed cofnięciem zgody.
                 </li>
                 <li>
-                  <strong className="text-white">
+                  <strong className="text-brand-text">
                     Prawo do wniesienia skargi do organu nadzorczego
                   </strong>{" "}
                   (art. 77 RODO) &mdash; prawo do złożenia skargi do Prezesa Urzędu
@@ -243,7 +243,7 @@ export default function PrivacyPolicyPage() {
 
             {/* VI. Odbiorcy danych */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 VI. Odbiorcy danych
               </h2>
               <p className="mb-3">
@@ -274,7 +274,7 @@ export default function PrivacyPolicyPage() {
 
             {/* VII. Przekazywanie danych poza EOG */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 VII. Przekazywanie danych poza Europejski Obszar Gospodarczy
               </h2>
               <p>
@@ -298,7 +298,7 @@ export default function PrivacyPolicyPage() {
 
             {/* VIII. Pliki cookies */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 VIII. Pliki cookies
               </h2>
               <ol className="list-decimal pl-5 space-y-3">
@@ -307,23 +307,23 @@ export default function PrivacyPolicyPage() {
                   tekstowych zapisywanych na urządzeniu Użytkownika.
                 </li>
                 <li>
-                  <strong className="text-white">
+                  <strong className="text-brand-text">
                     Kategorie plików cookies:
                   </strong>
                   <ul className="list-disc pl-5 mt-2 space-y-2">
                     <li>
-                      <strong className="text-white">Niezbędne</strong> &mdash;
+                      <strong className="text-brand-text">Niezbędne</strong> &mdash;
                       wymagane do prawidłowego funkcjonowania Sklepu (sesja
                       użytkownika, koszyk, bezpieczeństwo). Podstawa prawna: art. 6
                       ust. 1 lit. f RODO.
                     </li>
                     <li>
-                      <strong className="text-white">Analityczne</strong> &mdash;
+                      <strong className="text-brand-text">Analityczne</strong> &mdash;
                       umożliwiają zbieranie statystyk dotyczących korzystania ze
                       Sklepu (np. Google Analytics). Wymagają zgody użytkownika.
                     </li>
                     <li>
-                      <strong className="text-white">Marketingowe</strong> &mdash;
+                      <strong className="text-brand-text">Marketingowe</strong> &mdash;
                       umożliwiają wyświetlanie spersonalizowanych reklam. Wymagają
                       zgody użytkownika.
                     </li>
@@ -342,7 +342,7 @@ export default function PrivacyPolicyPage() {
 
             {/* IX. Bezpieczeństwo */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 IX. Bezpieczeństwo danych
               </h2>
               <p>
@@ -355,7 +355,7 @@ export default function PrivacyPolicyPage() {
 
             {/* X. Postanowienia końcowe */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 X. Postanowienia końcowe
               </h2>
               <ol className="list-decimal pl-5 space-y-2">

@@ -20,7 +20,7 @@ const OilsSection = ({ products, region }: OilsSectionProps) => {
           </span>
         </AnimateIn>
         <AnimateIn variant="fade-up" delay={100} className="text-center mb-12">
-          <p className="text-white/60 text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-brand-text-muted text-base max-w-2xl mx-auto leading-relaxed">
             Linia olejków do pielęgnacji twarzy, ciała i włosów. Naturalne
             składniki aktywne wspierają regenerację i przywracają zdrowy blask.
           </p>
@@ -43,7 +43,7 @@ const OilsSection = ({ products, region }: OilsSectionProps) => {
         <AnimateIn variant="fade-up" delay={400} className="mt-10 text-center">
           <LocalizedClientLink
             href="/store"
-            className="inline-flex items-center gap-2 px-8 py-3 border border-brand-primary/30 text-brand-primary hover:bg-brand-primary hover:text-black rounded-full text-sm font-medium transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-3 border border-brand-primary/30 text-brand-primary hover:bg-brand-primary hover:text-white rounded-full text-sm font-medium transition-all duration-300"
           >
             Zobacz wszystkie produkty →
           </LocalizedClientLink>

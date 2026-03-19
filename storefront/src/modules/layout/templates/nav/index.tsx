@@ -59,7 +59,7 @@ export default async function Nav() {
               data-testid="nav-store-link"
             >
               <Image
-                src="/logo-botanique.jpeg"
+                src="/logo-botanique.png"
                 alt="Lunula Botanique"
                 width={165}
                 height={138}

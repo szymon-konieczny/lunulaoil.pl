@@ -46,7 +46,7 @@ export default async function Home(props: {
     "@type": "Organization",
     name: "Lunula Botanique",
     url: BASE_URL,
-    logo: `${BASE_URL}/logo-botanique.jpeg`,
+    logo: `${BASE_URL}/logo-botanique.png`,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+48-509-085-064",

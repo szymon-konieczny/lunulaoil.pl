@@ -18,7 +18,7 @@ export default function QuizProgress({ currentStep, totalSteps }: Props) {
           {Math.round(progress)}%
         </span>
       </div>
-      <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+      <div className="w-full h-1.5 bg-brand-border/50 rounded-full overflow-hidden">
         <div
           className="h-full bg-gradient-to-r from-brand-accent to-brand-accent-light rounded-full transition-all duration-500 ease-out"
           style={{ width: `${progress}%` }}

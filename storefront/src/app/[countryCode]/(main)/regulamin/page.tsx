@@ -11,14 +11,14 @@ export default function TermsPage() {
     <div className="bg-brand-background">
       <section className="py-16 small:py-24">
         <div className="content-container max-w-3xl mx-auto">
-          <h1 className="text-3xl small:text-4xl font-serif font-semibold text-white mb-12 text-center">
+          <h1 className="text-3xl small:text-4xl font-serif font-semibold text-brand-text mb-12 text-center">
             Regulamin sklepu internetowego
           </h1>
 
-          <div className="prose-lunula space-y-10 text-white/80 text-sm leading-relaxed">
+          <div className="prose-lunula space-y-10 text-brand-text-muted text-sm leading-relaxed">
             {/* I. Postanowienia ogólne */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 I. Postanowienia ogólne
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
@@ -42,31 +42,31 @@ export default function TermsPage() {
 
             {/* II. Definicje */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 II. Definicje
               </h2>
               <ul className="list-disc pl-5 space-y-2">
                 <li>
-                  <strong className="text-white">Sklep</strong> &mdash; sklep
+                  <strong className="text-brand-text">Sklep</strong> &mdash; sklep
                   internetowy prowadzony pod adresem lunulaoil.pl.
                 </li>
                 <li>
-                  <strong className="text-white">Klient</strong> &mdash; osoba
+                  <strong className="text-brand-text">Klient</strong> &mdash; osoba
                   fizyczna posiadająca pełną zdolność do czynności prawnych, osoba
                   prawna lub jednostka organizacyjna, która dokonuje zakupów w
                   Sklepie.
                 </li>
                 <li>
-                  <strong className="text-white">Konsument</strong> &mdash; Klient
+                  <strong className="text-brand-text">Konsument</strong> &mdash; Klient
                   będący osobą fizyczną dokonującą zakupów niezwiązanych
                   bezpośrednio z jej działalnością gospodarczą lub zawodową.
                 </li>
                 <li>
-                  <strong className="text-white">Produkt</strong> &mdash; towar
+                  <strong className="text-brand-text">Produkt</strong> &mdash; towar
                   prezentowany w Sklepie, przeznaczony do sprzedaży.
                 </li>
                 <li>
-                  <strong className="text-white">Zamówienie</strong> &mdash;
+                  <strong className="text-brand-text">Zamówienie</strong> &mdash;
                   oświadczenie woli Klienta zmierzające do zawarcia umowy
                   sprzedaży Produktu ze Sprzedawcą.
                 </li>
@@ -75,7 +75,7 @@ export default function TermsPage() {
 
             {/* III. Dane kontaktowe */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 III. Dane kontaktowe
               </h2>
               <ul className="list-none space-y-1">
@@ -106,7 +106,7 @@ export default function TermsPage() {
 
             {/* IV. Wymagania techniczne */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 IV. Wymagania techniczne
               </h2>
               <p>
@@ -118,7 +118,7 @@ export default function TermsPage() {
 
             {/* V. Ceny i płatności */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 V. Ceny i płatności
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
@@ -144,7 +144,7 @@ export default function TermsPage() {
 
             {/* VI. Składanie zamówień */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 VI. Składanie zamówień
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
@@ -172,7 +172,7 @@ export default function TermsPage() {
 
             {/* VII. Dostawa */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 VII. Dostawa
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
@@ -194,7 +194,7 @@ export default function TermsPage() {
 
             {/* VIII. Prawo odstąpienia od umowy */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 VIII. Prawo odstąpienia od umowy
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
@@ -233,7 +233,7 @@ export default function TermsPage() {
 
             {/* IX. Reklamacje i gwarancja */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 IX. Reklamacje i gwarancja
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
@@ -258,7 +258,7 @@ export default function TermsPage() {
 
             {/* X. Pozasądowe rozwiązywanie sporów */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 X. Pozasądowe rozwiązywanie sporów
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
@@ -286,7 +286,7 @@ export default function TermsPage() {
 
             {/* XI. Postanowienia końcowe */}
             <section>
-              <h2 className="text-xl font-serif text-white mb-4">
+              <h2 className="text-xl font-serif text-brand-text mb-4">
                 XI. Postanowienia końcowe
               </h2>
               <ol className="list-decimal pl-5 space-y-2">

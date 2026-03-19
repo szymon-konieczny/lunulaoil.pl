@@ -26,7 +26,7 @@ const Hero = () => {
       <div className="content-container relative z-10 flex flex-col items-center justify-center text-center h-full gap-6 py-16">
         <AnimateIn variant="fade-in" duration={1000}>
           <Image
-            src="/logo-botanique.jpeg"
+            src="/logo-botanique.png"
             alt="Lunula Botanique"
             width={200}
             height={200}

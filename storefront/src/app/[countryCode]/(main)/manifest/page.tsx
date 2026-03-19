@@ -24,17 +24,17 @@ export default function ManifestPage() {
               <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
                 Moja misja
               </h2>
-              <div className="space-y-4 text-white/80 text-lg leading-relaxed text-center">
+              <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
                 <p>
                   Nie tworzę kolejnej marki, której produkty różnią się od siebie
                   jedynie opakowaniem, nazwą i marketingiem — a składy pozostają
                   oparte na tych samych syntetycznych komponentach.
                 </p>
-                <p className="text-white font-semibold">
+                <p className="text-brand-text font-semibold">
                   Buduję koncepcję — coś, co ma sens.
                 </p>
                 <p>Coś, co zmienia sposób myślenia o pielęgnacji.</p>
-                <p className="text-white/50 italic">
+                <p className="text-brand-text-muted/70 italic">
                   Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
                   <br />
                   Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
@@ -52,8 +52,8 @@ export default function ManifestPage() {
               <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
                 Moja filozofia
               </h2>
-              <div className="space-y-4 text-white/80 text-lg leading-relaxed text-center">
-                <p className="text-white font-semibold">
+              <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
+                <p className="text-brand-text font-semibold">
                   Wierzę, że skórę należy karmić, a nie zatruwać.
                 </p>
                 <p>Czy wiesz czym żywi się Twój mikrobiom?</p>
@@ -85,18 +85,18 @@ export default function ManifestPage() {
           {/* Closing */}
           <AnimateIn variant="fade-up" delay={300}>
             <div className="text-center space-y-4">
-              <p className="text-white text-xl font-heading font-semibold">
+              <p className="text-brand-text text-xl font-heading font-semibold">
                 Czystość to luksus. Prostota to siła.
               </p>
               <p className="text-brand-accent text-lg italic font-heading">
                 „Minimalizm to nie brak — to wybór tego, co najważniejsze."
               </p>
-              <div className="space-y-2 text-white/60 text-base mt-8">
+              <div className="space-y-2 text-brand-text-muted text-base mt-8">
                 <p>To powrót do źródła</p>
                 <p>To zaufanie do natury</p>
                 <p>To manifest</p>
               </div>
-              <p className="text-white/40 text-sm tracking-wider uppercase mt-8">
+              <p className="text-brand-text-muted/60 text-sm tracking-wider uppercase mt-8">
                 By Lunula
               </p>
             </div>

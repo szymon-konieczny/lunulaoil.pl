@@ -23,7 +23,7 @@ export default function QuizOptionCard({ option, selected, onClick }: Props) {
         "focus:outline-none focus:ring-2 focus:ring-brand-accent/40",
         selected
           ? "border-brand-accent bg-brand-accent/10 shadow-md"
-          : "border-white/10 bg-brand-surface"
+          : "border-brand-border bg-brand-surface"
       )}
     >
       <div className="flex items-start gap-4">
@@ -42,7 +42,7 @@ export default function QuizOptionCard({ option, selected, onClick }: Props) {
             <span
               className={clx(
                 "font-semibold text-base",
-                selected ? "text-brand-accent-light" : "text-white"
+                selected ? "text-brand-accent-light" : "text-brand-text"
               )}
             >
               {option.label}

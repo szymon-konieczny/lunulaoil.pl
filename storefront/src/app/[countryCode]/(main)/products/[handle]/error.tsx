@@ -13,10 +13,10 @@ export default function ProductError({
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[400px] py-16 content-container text-center">
-      <h1 className="text-2xl font-serif text-white mb-4">
+      <h1 className="text-2xl font-serif text-brand-text mb-4">
         Ups, coś poszło nie tak
       </h1>
-      <p className="text-white/60 mb-8 max-w-md">
+      <p className="text-brand-text-muted mb-8 max-w-md">
         Nie udało się załadować strony produktu. Spróbuj ponownie lub wróć do
         sklepu.
       </p>
@@ -29,7 +29,7 @@ export default function ProductError({
         </button>
         <LocalizedClientLink
           href="/store"
-          className="px-6 py-2 bg-brand-accent text-black hover:bg-brand-accent/80 transition-colors text-sm font-medium"
+          className="px-6 py-2 bg-brand-accent text-white hover:bg-brand-accent/80 transition-colors text-sm font-medium"
         >
           Wróć do sklepu
         </LocalizedClientLink>

@@ -47,10 +47,10 @@ const WhyUs = () => {
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="text-white text-xl font-heading font-semibold">
+                <h3 className="text-brand-text text-xl font-heading font-semibold">
                   {section.title}
                 </h3>
-                <p className="text-white/70 text-sm leading-relaxed max-w-sm">
+                <p className="text-brand-text-muted text-sm leading-relaxed max-w-sm">
                   {section.text}
                 </p>
               </div>

@@ -169,7 +169,7 @@ export default function QuizWizard({ allProducts }: Props) {
 
       {/* Question */}
       <div className="mt-8 mb-8">
-        <h2 className="font-serif text-2xl small:text-3xl font-semibold text-white mb-2">
+        <h2 className="font-serif text-2xl small:text-3xl font-semibold text-brand-text mb-2">
           {step.question}
         </h2>
         {step.subtitle && (
@@ -202,8 +202,8 @@ export default function QuizWizard({ allProducts }: Props) {
             className={clx(
               "px-5 py-2.5 rounded-large text-sm font-medium transition-colors",
               currentStep === 0
-                ? "text-white/20 cursor-not-allowed"
-                : "text-white border border-white/20 hover:border-brand-accent/40"
+                ? "text-brand-text-muted/40 cursor-not-allowed"
+                : "text-brand-text border border-brand-border hover:border-brand-accent/40"
             )}
           >
             Wstecz
@@ -214,8 +214,8 @@ export default function QuizWizard({ allProducts }: Props) {
             className={clx(
               "px-8 py-2.5 rounded-large text-sm font-semibold transition-all duration-200",
               canProceed
-                ? "bg-brand-accent text-black hover:bg-brand-accent-light shadow-lg"
-                : "bg-white/10 text-white/30 cursor-not-allowed"
+                ? "bg-brand-accent text-white hover:bg-brand-accent-light shadow-lg"
+                : "bg-brand-border/50 text-brand-text-muted/50 cursor-not-allowed"
             )}
           >
             {isLastStep ? "Zobacz wyniki" : "Dalej"}

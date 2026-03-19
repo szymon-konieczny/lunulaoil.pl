@@ -9,7 +9,7 @@ export const themeConfig = {
 
   // Logo
   logo: {
-    src: "/logo-botanique.jpeg",
+    src: "/logo-botanique.png",
     alt: "Lunula Botanique",
     width: 100,
     height: 100,

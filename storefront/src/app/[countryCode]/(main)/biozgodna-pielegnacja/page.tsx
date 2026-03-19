@@ -44,24 +44,24 @@ export default function BiocarePage() {
             </span>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={100}>
-            <h1 className="text-3xl small:text-5xl font-heading font-bold text-white mt-4 mb-6">
+            <h1 className="text-3xl small:text-5xl font-heading font-bold text-brand-text mt-4 mb-6">
               Pielęgnacja Twarzy
             </h1>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={200}>
-            <p className="text-white/80 text-lg leading-relaxed mb-4">
+            <p className="text-brand-text-muted text-lg leading-relaxed mb-4">
               Biozgodna pielęgnacja twarzy to taka, która jest zgodna z
               fizjologią skóry — czyli wspiera jej naturalne procesy, zamiast je
               zaburzać.
             </p>
-            <p className="text-white/60 text-base leading-relaxed">
+            <p className="text-brand-text-muted text-base leading-relaxed">
               Chodzi o to, żeby składniki były rozpoznawalne przez skórę, nie
               naruszały bariery hydrolipidowej, współpracowały z jej naturalnym
               pH, mikrobiomem i lipidami.
             </p>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={300}>
-            <p className="text-white/50 text-base italic mt-6">
+            <p className="text-brand-text-muted/70 text-base italic mt-6">
               Karmienie skóry tym, co ona już zna.
             </p>
           </AnimateIn>
@@ -89,12 +89,12 @@ export default function BiocarePage() {
                         <span className="text-5xl block mb-2">
                           {product.icon}
                         </span>
-                        <p className="text-white/30 text-xs tracking-wider uppercase">
+                        <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
                           Zdjęcie wkrótce
                         </p>
                       </div>
                     </div>
-                    <h3 className="text-white text-xl font-heading font-semibold mb-1 group-hover:text-brand-accent transition-colors">
+                    <h3 className="text-brand-text text-xl font-heading font-semibold mb-1 group-hover:text-brand-accent transition-colors">
                       {product.name}
                     </h3>
                     <p className="text-brand-accent text-sm mb-3">
@@ -103,7 +103,7 @@ export default function BiocarePage() {
                     <span className="text-brand-primary text-lg font-semibold">
                       {product.price}
                     </span>
-                    <p className="text-white/40 text-sm mt-3 group-hover:text-brand-accent transition-colors">
+                    <p className="text-brand-text-muted/60 text-sm mt-3 group-hover:text-brand-accent transition-colors">
                       Dowiedz się więcej →
                     </p>
                   </div>

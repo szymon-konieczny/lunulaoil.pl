@@ -79,8 +79,8 @@ const RefinementList = ({
               className={clx(
                 "px-3 py-1.5 rounded-full text-xs font-medium transition-all border cursor-pointer",
                 !activeCategory
-                  ? "bg-brand-accent text-black border-brand-accent"
-                  : "border-white/20 text-white/70 hover:border-brand-accent/50 hover:text-white"
+                  ? "bg-brand-accent text-white border-brand-accent"
+                  : "border-brand-border text-brand-text-muted hover:border-brand-accent/50 hover:text-brand-text"
               )}
             >
               Wszystkie
@@ -94,15 +94,15 @@ const RefinementList = ({
                 className={clx(
                   "px-3 py-1.5 rounded-full text-xs font-medium transition-all border cursor-pointer",
                   activeCategory === cat.handle
-                    ? "bg-brand-accent text-black border-brand-accent"
-                    : "border-white/20 text-white/70 hover:border-brand-accent/50 hover:text-white"
+                    ? "bg-brand-accent text-white border-brand-accent"
+                    : "border-brand-border text-brand-text-muted hover:border-brand-accent/50 hover:text-brand-text"
                 )}
               >
                 {cat.name}
               </button>
             ))}
 
-            <div className="w-px h-5 bg-white/10 mx-0.5 hidden small:block" />
+            <div className="w-px h-5 bg-brand-border/50 mx-0.5 hidden small:block" />
           </>
         )}
 
@@ -114,8 +114,8 @@ const RefinementList = ({
             className={clx(
               "px-3 py-1.5 rounded-full text-xs font-medium transition-all border cursor-pointer",
               sortBy === opt.value
-                ? "bg-white/10 text-white border-white/30"
-                : "border-white/10 text-white/50 hover:border-white/20 hover:text-white/70"
+                ? "bg-brand-border/50 text-brand-text border-brand-border"
+                : "border-brand-border text-brand-text-muted/70 hover:border-brand-border hover:text-brand-text-muted"
             )}
           >
             {opt.label}
@@ -132,7 +132,7 @@ const RefinementList = ({
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Szukaj..."
                 autoFocus
-                className="bg-white/5 border border-white/20 rounded-full px-3 py-1.5 text-xs text-white placeholder-white/40 focus:outline-none focus:border-brand-accent/50 w-36 small:w-48"
+                className="bg-brand-surface border border-brand-border rounded-full px-3 py-1.5 text-xs text-brand-text placeholder-brand-text-muted/60 focus:outline-none focus:border-brand-accent/50 w-36 small:w-48"
                 onBlur={() => {
                   if (!searchValue) setSearchOpen(false)
                 }}
@@ -144,7 +144,7 @@ const RefinementList = ({
                   setSearchOpen(false)
                   setQueryParams("q", "")
                 }}
-                className="text-white/40 hover:text-white text-xs"
+                className="text-brand-text-muted/60 hover:text-brand-text text-xs"
               >
                 ✕
               </button>
@@ -152,7 +152,7 @@ const RefinementList = ({
           ) : (
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-1.5 rounded-full border border-white/10 text-white/50 hover:border-white/20 hover:text-white/70 transition-all"
+              className="p-1.5 rounded-full border border-brand-border text-brand-text-muted/70 hover:border-brand-border hover:text-brand-text-muted transition-all"
               aria-label="Szukaj"
             >
               <svg
