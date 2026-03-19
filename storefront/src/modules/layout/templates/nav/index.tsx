@@ -34,7 +34,7 @@ export default async function Nav() {
         <div className="small:hidden flex items-center">
           <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
         </div>
-        <div className="hidden small:flex items-center gap-x-6">
+        <div className="hidden small:flex items-center gap-x-8 text-sm">
           <ShopDropdown categories={navCategories} />
           <LocalizedClientLink
             className="hover:text-brand-accent transition-colors"
@@ -58,19 +58,19 @@ export default async function Nav() {
           data-testid="nav-store-link"
         >
           {/* Translucent circle behind logo — visible only on hero (not scrolled) */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 small:w-44 small:h-44 rounded-full bg-white/30 backdrop-blur-sm transition-all duration-300 [[data-scrolled='true']_&]:opacity-0 pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 small:w-44 small:h-44 rounded-full bg-white/90 backdrop-blur-sm transition-all duration-300 [[data-scrolled='true']_&]:opacity-0 pointer-events-none" />
           <Image
             src="/logo-botanique.png"
             alt="Lunula Botanique"
             width={250}
             height={210}
-            className="relative w-auto transition-all duration-300 h-24 [[data-scrolled='true']_&]:h-16"
+            className="relative w-auto transition-all duration-300 h-16 small:h-24 [[data-scrolled='true']_&]:h-9 small:[[data-scrolled='true']_&]:h-12"
             priority
           />
         </LocalizedClientLink>
       </div>
 
-      <div className="flex items-center gap-x-6 flex-1 basis-0 justify-end">
+      <div className="flex items-center gap-x-8 flex-1 basis-0 justify-end text-sm">
         <LocalizedClientLink
           className="hidden small:block hover:text-brand-accent transition-colors"
           href="/account"

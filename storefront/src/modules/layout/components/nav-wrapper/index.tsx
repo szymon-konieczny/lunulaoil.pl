@@ -36,20 +36,20 @@ export default function NavWrapper({
       data-scrolled={scrolled}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm"
+          ? "bg-white backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
       <header
         className={`relative mx-auto transition-all duration-300 ${
-          scrolled ? "h-20" : "h-44"
+          scrolled ? "h-16 small:h-20" : "h-40 small:h-52"
         }`}
       >
         <nav
           className={`content-container txt-xsmall-plus flex justify-between w-full text-small-regular transition-colors duration-300 ${
             scrolled
-              ? "text-brand-text-muted items-center"
-              : "text-white/80 items-start pt-5"
+              ? "text-brand-text-muted items-center h-full"
+              : "text-white/80 items-start pt-10 small:pt-14"
           }`}
         >
           {children}

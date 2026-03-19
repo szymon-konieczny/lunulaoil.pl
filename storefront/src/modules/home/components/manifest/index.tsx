@@ -27,20 +27,20 @@ const Manifest = () => {
               Coś, co zmienia sposób myślenia o pielęgnacji.
             </p>
           </div>
-          <p className="text-white/40 text-base italic leading-relaxed mb-12">
+          <p className="text-white/60 text-base italic leading-relaxed mb-12">
             Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
             Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
           </p>
         </AnimateIn>
 
         <AnimateIn variant="fade-up" delay={300}>
-          <blockquote className="text-brand-accent/80 text-lg small:text-xl font-heading italic mb-10 px-4">
+          <blockquote className="text-brand-accent text-lg small:text-xl font-heading italic mb-10 px-4">
             „Minimalizm to nie brak — to wybór tego, co najważniejsze."
           </blockquote>
         </AnimateIn>
 
         <AnimateIn variant="fade-in" delay={400}>
-          <p className="text-white/30 text-xs tracking-[0.3em] uppercase mb-10">
+          <p className="text-white/60 text-xs tracking-[0.3em] uppercase mb-10">
             By Lunula
           </p>
         </AnimateIn>
@@ -48,7 +48,7 @@ const Manifest = () => {
         <AnimateIn variant="scale" delay={500}>
           <LocalizedClientLink
             href="/manifest"
-            className="inline-flex items-center gap-2 px-10 py-3.5 border border-white/20 text-white/70 hover:border-brand-accent hover:text-brand-accent transition-all duration-300 text-xs tracking-[0.15em] uppercase"
+            className="inline-flex items-center gap-2 px-10 py-3.5 border border-white/30 text-white/80 hover:bg-brand-accent hover:border-brand-accent hover:text-white transition-all duration-300 text-xs tracking-[0.15em] uppercase"
           >
             Czytaj cały manifest
           </LocalizedClientLink>

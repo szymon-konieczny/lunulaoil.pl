@@ -44,7 +44,7 @@ const SlavicSoap = () => {
           </h2>
         </AnimateIn>
         <AnimateIn variant="fade-up" delay={150} className="text-center mb-16">
-          <p className="text-white/50 text-base max-w-xl mx-auto leading-[1.8] mt-4">
+          <p className="text-white/60 text-base max-w-xl mx-auto leading-[1.8] mt-4">
             Mydła Lunula powstają z roślinnych olejów, maseł i ziół, w prostych
             recepturach inspirowanych tradycją. Pielęgnacja, która nie konkuruje
             z naturą — tylko z nią współpracuje.
@@ -71,10 +71,10 @@ const SlavicSoap = () => {
                 <h3 className="text-white text-xl font-heading font-normal mb-2">
                   {soap.name}
                 </h3>
-                <p className="text-brand-accent/70 text-xs tracking-wider mb-4">
+                <p className="text-brand-accent text-xs tracking-wider mb-4">
                   {soap.ingredients}
                 </p>
-                <p className="text-white/50 text-sm leading-[1.7] mb-6 max-w-xs mx-auto">
+                <p className="text-white/60 text-sm leading-[1.7] mb-6 max-w-xs mx-auto">
                   {soap.description}
                 </p>
                 <span className="text-white/80 text-base font-semibold">
@@ -88,7 +88,7 @@ const SlavicSoap = () => {
         <AnimateIn variant="fade-up" delay={500} className="mt-14 text-center">
           <LocalizedClientLink
             href="/mydla-rytualne"
-            className="inline-flex items-center gap-2 px-10 py-3.5 border border-white/20 text-white/70 hover:border-brand-accent hover:text-brand-accent transition-all duration-300 text-xs tracking-[0.15em] uppercase"
+            className="inline-flex items-center gap-2 px-10 py-3.5 border border-white/30 text-white/80 hover:bg-brand-accent hover:border-brand-accent hover:text-white transition-all duration-300 text-xs tracking-[0.15em] uppercase"
           >
             Poznaj mydła rytualne
           </LocalizedClientLink>
