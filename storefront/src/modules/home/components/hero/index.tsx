@@ -54,7 +54,8 @@ const Hero = () => {
             }}
             className="mt-2 text-brand-accent hover:text-brand-accent-light transition-colors duration-300 text-lg font-medium cursor-pointer"
           >
-            Odkryj więcej →
+            Odkryj więcej
+            <svg className="w-5 h-5 ml-1 inline-block animate-bounce" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
           </button>
         </AnimateIn>
       </div>
