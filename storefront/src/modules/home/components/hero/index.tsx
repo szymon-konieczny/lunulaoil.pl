@@ -1,10 +1,11 @@
 "use client"
 
 import AnimateIn from "@modules/common/components/animate-in"
+import ScrollDownButton from "@modules/common/components/scroll-down-button"
 
 const Hero = () => {
   return (
-    <div className="relative w-full h-[100dvh] -mt-40 small:-mt-52 overflow-hidden" id="hero">
+    <div className="relative w-full h-[100dvh] -mt-20 overflow-hidden" id="hero">
       {/* Background video with image fallback */}
       <video
         autoPlay
@@ -44,21 +45,7 @@ const Hero = () => {
         </AnimateIn>
 
         <AnimateIn variant="fade-up" delay={900} duration={1000}>
-          <button
-            onClick={() => {
-              const hero = document.getElementById("hero")
-              if (hero) {
-                const nextSection = hero.nextElementSibling
-                nextSection?.scrollIntoView({ behavior: "smooth" })
-              }
-            }}
-            className="mt-4 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer flex flex-col items-center gap-2"
-          >
-            <span className="text-xs tracking-[0.2em] uppercase">Odkryj więcej</span>
-            <svg className="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
+          <ScrollDownButton />
         </AnimateIn>
       </div>
 

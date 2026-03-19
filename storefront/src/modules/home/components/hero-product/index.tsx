@@ -7,10 +7,10 @@ const HeroProduct = () => {
       <div className="content-container">
         <div className="grid grid-cols-1 small:grid-cols-2 gap-12 small:gap-20 items-center max-w-5xl mx-auto">
           <AnimateIn variant="fade-left">
-            <div className="relative aspect-square overflow-hidden">
+            <div className="relative aspect-[4/3] rounded-large overflow-hidden">
               <Image
-                src="/products/krem-rytualne-placeholder.svg"
-                alt="Kremy Rytualne"
+                src="/products/geranium-glow.jpeg"
+                alt="Kremy Rytualne — Geranium Glow"
                 fill
                 className="object-cover"
               />

@@ -31,8 +31,19 @@ const soaps = [
 
 const SlavicSoap = () => {
   return (
-    <section className="py-24 small:py-36 bg-[#0A0A0A]">
-      <div className="content-container">
+    <section className="relative py-24 small:py-36 overflow-hidden">
+      {/* Background image */}
+      <Image
+        src="/products/slavic-soap.jpeg"
+        alt=""
+        fill
+        className="object-cover"
+        aria-hidden="true"
+      />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/70" />
+
+      <div className="content-container relative z-10">
         <AnimateIn variant="fade-in" className="text-center mb-4">
           <span className="text-brand-accent text-xs tracking-[0.35em] uppercase font-medium">
             Lunula Slavic Soap
@@ -44,7 +55,7 @@ const SlavicSoap = () => {
           </h2>
         </AnimateIn>
         <AnimateIn variant="fade-up" delay={150} className="text-center mb-16">
-          <p className="text-white/60 text-base max-w-xl mx-auto leading-[1.8] mt-4">
+          <p className="text-white/70 text-base max-w-xl mx-auto leading-[1.8] mt-4">
             Mydła Lunula powstają z roślinnych olejów, maseł i ziół, w prostych
             recepturach inspirowanych tradycją. Pielęgnacja, która nie konkuruje
             z naturą — tylko z nią współpracuje.
@@ -59,15 +70,7 @@ const SlavicSoap = () => {
               delay={i * 150}
               duration={800}
             >
-              <div className="text-center">
-                <div className="relative aspect-square overflow-hidden mb-8 bg-white/[0.03] rounded-sm">
-                  <Image
-                    src={soap.image}
-                    alt={soap.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
+              <div className="text-center bg-white/5 backdrop-blur-sm rounded-sm p-8">
                 <h3 className="text-white text-xl font-heading font-normal mb-2">
                   {soap.name}
                 </h3>
@@ -95,6 +98,7 @@ const SlavicSoap = () => {
         </AnimateIn>
       </div>
     </section>
+
   )
 }
 

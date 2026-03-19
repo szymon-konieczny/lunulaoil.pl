@@ -3,6 +3,7 @@ import Image from "next/image"
 import { getTranslations } from "next-intl/server"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import AnimateIn from "@modules/common/components/animate-in"
+import ScrollDownButton from "@modules/common/components/scroll-down-button"
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("pages.about")
@@ -57,7 +58,7 @@ export default async function AboutPage() {
   return (
     <div className="bg-brand-background">
       {/* Hero */}
-      <section className="relative py-20 small:py-32">
+      <section className="relative h-[calc(100dvh-4rem)] small:h-[calc(100dvh-5rem)] flex items-center overflow-hidden">
         <Image
           src="/about-hero.png"
           alt=""
@@ -83,6 +84,9 @@ export default async function AboutPage() {
               <br />
               {t("hero.descriptionLine2")}
             </p>
+          </AnimateIn>
+          <AnimateIn variant="fade-up" delay={300}>
+            <ScrollDownButton />
           </AnimateIn>
         </div>
       </section>

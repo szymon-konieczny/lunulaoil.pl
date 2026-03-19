@@ -3,7 +3,7 @@ import AnimateIn from "@modules/common/components/animate-in"
 
 const Manifest = () => {
   return (
-    <section className="py-24 small:py-40 bg-[#0A0A0A] scroll-mt-24">
+    <section className="py-16 small:py-24 bg-[#0A0A0A] scroll-mt-24">
       <div className="content-container max-w-2xl mx-auto text-center">
         <AnimateIn variant="fade-in">
           <span className="text-brand-accent text-xs tracking-[0.35em] uppercase font-medium">

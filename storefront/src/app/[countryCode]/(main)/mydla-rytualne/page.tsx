@@ -1,5 +1,7 @@
 import { Metadata } from "next"
+import Image from "next/image"
 import AnimateIn from "@modules/common/components/animate-in"
+import ScrollDownButton from "@modules/common/components/scroll-down-button"
 
 export const metadata: Metadata = {
   title: "Mydła Rytualne — Lunula Slavic Soap",
@@ -40,37 +42,50 @@ const soaps = [
 export default function SlavicSoapPage() {
   return (
     <div className="bg-brand-background">
-      {/* Hero */}
-      <section className="py-20 small:py-32">
-        <div className="content-container text-center max-w-3xl mx-auto">
+      {/* Hero with background image */}
+      <section className="relative h-[calc(100dvh-4rem)] small:h-[calc(100dvh-5rem)] flex items-center overflow-hidden">
+        <Image
+          src="/products/slavic-soap.jpeg"
+          alt=""
+          fill
+          className="object-cover"
+          aria-hidden="true"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/65" />
+
+        <div className="content-container relative z-10 text-center max-w-3xl mx-auto">
           <AnimateIn variant="fade-in">
             <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
               Lunula Slavic Soap
             </span>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={100}>
-            <h1 className="text-3xl small:text-5xl font-heading font-bold text-brand-text mt-4 mb-6">
+            <h1 className="text-3xl small:text-5xl font-heading font-bold text-white mt-4 mb-6">
               Powrót do korzeni
             </h1>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={200}>
-            <p className="text-brand-text-muted text-lg leading-relaxed mb-4">
+            <p className="text-white/80 text-lg leading-relaxed mb-4">
               Pielęgnacja w rytmie natury. Mydła Lunula powstają z roślinnych
               olejów, maseł i ziół, w prostych, autentycznych recepturach
               inspirowanych tradycją.
             </p>
-            <p className="text-brand-text-muted text-base leading-relaxed">
+            <p className="text-white/70 text-base leading-relaxed">
               Bazą są starannie dobrane oleje roślinne — bez pośpiechu,
               z szacunkiem do surowca i skóry. To pielęgnacja, która nie
               konkuruje z naturą — tylko z nią współpracuje.
             </p>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={300}>
-            <p className="text-brand-text-muted/70 text-base italic mt-6">
+            <p className="text-white/60 text-base italic mt-6">
               Dotyk faktury, zapach ziół i chwila zatrzymania.
               <br />
               Naturalna pielęgnacja to powrót do korzeni.
             </p>
+          </AnimateIn>
+          <AnimateIn variant="fade-up" delay={400}>
+            <ScrollDownButton />
           </AnimateIn>
         </div>
       </section>
