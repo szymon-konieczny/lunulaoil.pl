@@ -1,0 +1,38 @@
+{
+  "buttons": {
+    "back": "Wstecz",
+    "next": "Dalej",
+    "save": "Zapisz",
+    "cancel": "Anuluj",
+    "edit": "Edytuj",
+    "delete": "Usuń",
+    "remove": "Usuń",
+    "close": "Zamknij",
+    "submit": "Wyślij",
+    "browseProducts": "Przeglądaj produkty",
+    "learnMore": "Dowiedz się więcej →",
+    "seeAll": "Zobacz wszystkie produkty →",
+    "viewCart": "Zobacz koszyk",
+    "viewProducts": "Zobacz produkty"
+  },
+  "labels": {
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "email": "E-mail",
+    "phone": "Telefon",
+    "password": "Hasło",
+    "quantity": "Ilość: {quantity}",
+    "price": "{price} zł",
+    "photoComingSoon": "Zdjęcie wkrótce",
+    "comingSoon": "Wkrótce w ofercie"
+  },
+  "validation": {
+    "invalidEmail": "Wprowadź prawidłowy adres e-mail."
+  },
+  "shipping": {
+    "freeShippingUnlocked": "Darmowa wysyłka odblokowana!",
+    "unlockFreeShipping": "Odblokuj darmową wysyłkę",
+    "remaining": "Jeszcze tylko {amount}"
+  },
+  "copyright": "© {year} Lunula Botanique. Wszelkie prawa zastrzeżone."
+}

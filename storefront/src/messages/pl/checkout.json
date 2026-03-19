@@ -1,0 +1,32 @@
+{
+  "addresses": {
+    "shippingAddress": "Adres dostawy",
+    "billingAddress": "Adres rozliczeniowy",
+    "sameAsShipping": "Adres rozliczeniowy jest taki sam jak adres dostawy.",
+    "contact": "Kontakt",
+    "goToShipping": "Przejdź do dostawy"
+  },
+  "shipping": {
+    "title": "Dostawa",
+    "shippingMethod": "Metoda wysyłki",
+    "howToReceive": "Jak chcesz otrzymać zamówienie",
+    "personalPickup": "Odbiór osobisty",
+    "pickupPoint": "Punkt odbioru",
+    "selectPickupPoint": "Wybierz punkt odbioru w pobliżu",
+    "method": "Metoda",
+    "goToPayment": "Przejdź do płatności"
+  },
+  "payment": {
+    "title": "Płatność",
+    "paymentMethod": "Metoda płatności",
+    "giftCard": "Karta podarunkowa",
+    "paymentDetails": "Szczegóły płatności",
+    "nextStep": "Pojawi się kolejny krok",
+    "enterCardDetails": "Wprowadź dane karty",
+    "goToReview": "Przejdź do podsumowania"
+  },
+  "review": {
+    "title": "Podsumowanie",
+    "legalNotice": "Klikając przycisk Złóż zamówienie, potwierdzasz, że zapoznałeś/aś się z naszym Regulaminem, Warunkami sprzedaży i Polityką zwrotów oraz że zapoznałeś/aś się z Polityką prywatności Lunula Botanique."
+  }
+}

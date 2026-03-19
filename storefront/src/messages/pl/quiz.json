@@ -1,0 +1,128 @@
+{
+  "page": {
+    "metaTitle": "Dobierz kosmetyki — Quiz pielęgnacyjny",
+    "metaDescription": "Odpowiedz na kilka pytań, a pomożemy Ci dobrać idealne naturalne kosmetyki do Twoich potrzeb.",
+    "subtitle": "Asystent doboru",
+    "title": "Znajdź swój idealny kosmetyk",
+    "description": "Odpowiedz na kilka pytań, a dobierzemy produkty idealnie dopasowane do Twojej skóry i potrzeb."
+  },
+  "progress": {
+    "step": "Krok {current} z {total}"
+  },
+  "wizard": {
+    "back": "Wstecz",
+    "next": "Dalej",
+    "seeResults": "Zobacz wyniki"
+  },
+  "results": {
+    "title": "Twoje rekomendacje",
+    "description": "Na podstawie Twoich odpowiedzi wybraliśmy produkty idealne dla Ciebie.",
+    "expertTip": "Porada eksperta",
+    "noMatch": "Nie znaleźliśmy idealnego dopasowania.",
+    "checkOur": "Sprawdź nasz",
+    "fullAssortment": "pełen asortyment",
+    "workshopsTitle": "Poznaj rytuały pielęgnacji na żywo",
+    "workshopsDescription": "Weź udział w naszych warsztatach Slow Care — nauczysz się jak najlepiej wykorzystać naturalne olejki i stworzyć własną rutynę pielęgnacyjną dopasowaną do Twojej skóry.",
+    "checkWorkshops": "Sprawdź warsztaty",
+    "retakeQuiz": "Wypełnij quiz ponownie",
+    "viewShop": "Zobacz cały sklep"
+  },
+  "steps": {
+    "skinType": {
+      "question": "Jaki jest Twój typ skóry?",
+      "subtitle": "Wybierz opcję, która najlepiej opisuje Twoją skórę na co dzień.",
+      "options": {
+        "dry": {
+          "label": "Sucha",
+          "description": "Skóra bywa ściągnięta, łuszczy się, brakuje jej nawilżenia"
+        },
+        "oily": {
+          "label": "Tłusta",
+          "description": "Skóra się świeci, pojawiają się zaskórniki i rozszerzone pory"
+        },
+        "combination": {
+          "label": "Mieszana",
+          "description": "Strefa T tłusta, policzki suche lub normalne"
+        },
+        "normal": {
+          "label": "Normalna",
+          "description": "Skóra jest gładka, bez wyraźnych problemów"
+        },
+        "sensitive": {
+          "label": "Wrażliwa",
+          "description": "Skóra łatwo się podrażnia, czerwieni, reaguje na kosmetyki"
+        }
+      }
+    },
+    "concerns": {
+      "question": "Co chcesz poprawić?",
+      "subtitle": "Możesz wybrać kilka opcji.",
+      "options": {
+        "wrinkles": {
+          "label": "Zmarszczki i utrata jędrności",
+          "description": "Skóra traci elastyczność, pojawiają się linie mimiczne"
+        },
+        "dryness": {
+          "label": "Suchość i łuszczenie",
+          "description": "Skóra potrzebuje głębokiego odżywienia"
+        },
+        "dullness": {
+          "label": "Brak blasku",
+          "description": "Skóra wygląda na zmęczoną i matową"
+        },
+        "imperfections": {
+          "label": "Niedoskonałości",
+          "description": "Zaskórniki, podrażnienia, nierówny koloryt"
+        },
+        "scars": {
+          "label": "Blizny i rozstępy",
+          "description": "Ślady po trądziku, rozstępy, nierówności"
+        },
+        "hairCare": {
+          "label": "Pielęgnacja włosów",
+          "description": "Suche, łamiące się lub zniszczone włosy"
+        }
+      }
+    },
+    "area": {
+      "question": "Jaki obszar chcesz pielęgnować?",
+      "subtitle": "Wybierz główny obszar zastosowania.",
+      "options": {
+        "face": {
+          "label": "Twarz",
+          "description": "Skóra twarzy, okolice oczu, szyja"
+        },
+        "body": {
+          "label": "Ciało",
+          "description": "Skóra ciała, dekolt, dłonie"
+        },
+        "hair": {
+          "label": "Włosy i skóra głowy",
+          "description": "Pielęgnacja włosów od nasady po końce"
+        },
+        "everywhere": {
+          "label": "Wszędzie!",
+          "description": "Szukam uniwersalnego produktu"
+        }
+      }
+    },
+    "texture": {
+      "question": "Jaka konsystencja Ci odpowiada?",
+      "subtitle": "To pomoże dobrać idealną formę produktu.",
+      "options": {
+        "light": {
+          "label": "Lekka i szybko się wchłania",
+          "description": "Preferuję lekkie olejki i serum"
+        },
+        "rich": {
+          "label": "Bogata i odżywcza",
+          "description": "Lubię intensywne odżywienie i ochronę"
+        },
+        "noPreference": {
+          "label": "Nie mam preferencji",
+          "description": "Zaufam rekomendacji"
+        }
+      }
+    }
+  }
+}

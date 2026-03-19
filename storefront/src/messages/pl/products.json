@@ -1,0 +1,21 @@
+{
+  "store": {
+    "title": "Sklep",
+    "allProducts": "Wszystkie produkty"
+  },
+  "refinement": {
+    "sortBy": "Sortuj",
+    "categories": "Kategorie",
+    "collections": "Kolekcje",
+    "search": "Szukaj produktów...",
+    "noResults": "Nie znaleziono produktów",
+    "clearFilters": "Wyczyść filtry"
+  },
+  "product": {
+    "addToCart": "Dodaj do koszyka",
+    "outOfStock": "Wyprzedane",
+    "description": "Opis",
+    "ingredients": "Składniki",
+    "usage": "Sposób użycia"
+  }
+}

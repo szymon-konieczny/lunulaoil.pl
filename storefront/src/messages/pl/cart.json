@@ -1,0 +1,8 @@
+{
+  "title": "Koszyk",
+  "empty": {
+    "title": "Koszyk",
+    "message": "Twój koszyk jest pusty. Skorzystaj z poniższego linku, aby zacząć przeglądać nasze produkty.",
+    "browseProducts": "Przeglądaj produkty"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "about": {
+    "metaTitle": "O marce"
+  },
+  "manifest": {
+    "metaTitle": "Manifest"
+  },
+  "privacy": {
+    "metaTitle": "Polityka prywatności"
+  },
+  "terms": {
+    "metaTitle": "Regulamin"
+  }
+}

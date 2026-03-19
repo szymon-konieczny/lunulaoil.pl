@@ -1,0 +1,42 @@
+{
+  "register": {
+    "title": "Załóż konto",
+    "description": "Utwórz swój profil w Lunula Botanique i korzystaj z lepszych możliwości zakupowych.",
+    "submit": "Zarejestruj się",
+    "hasAccount": "Masz już konto?",
+    "signIn": "Zaloguj się",
+    "termsPrefix": "Tworząc konto, akceptujesz",
+    "privacyPolicy": "Politykę prywatności",
+    "and": "oraz",
+    "terms": "Regulamin"
+  },
+  "login": {
+    "title": "Witaj ponownie",
+    "description": "Zaloguj się, aby korzystać z lepszych możliwości zakupowych.",
+    "submit": "Zaloguj się",
+    "noAccount": "Nie masz konta?",
+    "register": "Zarejestruj się"
+  },
+  "overview": {
+    "greeting": "Cześć {name}",
+    "loggedInAs": "Zalogowany/a jako:",
+    "profile": "Profil",
+    "completed": "Uzupełniony",
+    "addresses": "Adresy",
+    "saved": "Zapisanych",
+    "recentOrders": "Ostatnie zamówienia",
+    "orderDate": "Data zamówienia",
+    "orderNumber": "Numer zamówienia",
+    "amount": "Kwota",
+    "goToOrder": "Przejdź do zamówienia #{id}",
+    "noOrders": "Brak ostatnich zamówień"
+  },
+  "nav": {
+    "account": "Konto",
+    "profile": "Profil",
+    "addresses": "Adresy",
+    "orders": "Zamówienia",
+    "overview": "Przegląd",
+    "logout": "Wyloguj się"
+  }
+}

@@ -2,6 +2,8 @@ import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
 import Script from "next/script"
 import { Open_Sans, Playfair_Display } from "next/font/google"
+import { NextIntlClientProvider } from "next-intl"
+import { getLocale, getMessages } from "next-intl/server"
 import "styles/globals.css"
 
 const openSans = Open_Sans({
@@ -36,10 +38,13 @@ export const metadata: Metadata = {
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
 const COOKIEBOT_ID = process.env.NEXT_PUBLIC_COOKIEBOT_ID
 
-export default function RootLayout(props: { children: React.ReactNode }) {
+export default async function RootLayout(props: { children: React.ReactNode }) {
+  const locale = await getLocale()
+  const messages = await getMessages()
+
   return (
     <html
-      lang="pl"
+      lang={locale}
       data-mode="light"
       className={`${openSans.variable} ${playfair.variable}`}
     >
@@ -93,7 +98,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             />
           </noscript>
         )}
-        <main className="relative">{props.children}</main>
+        <NextIntlClientProvider messages={messages}>
+          <main className="relative">{props.children}</main>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "findCosmetic": "Dobierz kosmetyk",
+    "about": "O marce",
+    "account": "Konto",
+    "cart": "Koszyk",
+    "cartWithCount": "Koszyk ({count})",
+    "menu": "Menu",
+    "shop": "Sklep",
+    "allProducts": "Wszystkie produkty",
+    "home": "Strona główna",
+    "shippingTo": "Wysyłka do:"
+  },
+  "footer": {
+    "description": "Biozgodna pielęgnacja — powrót do natury. By Lunula.",
+    "categories": "Kategorie",
+    "collections": "Kolekcje",
+    "information": "Informacje",
+    "about": "O marce",
+    "terms": "Regulamin",
+    "privacy": "Polityka prywatności",
+    "contact": "Kontakt"
+  },
+  "cartDropdown": {
+    "title": "Koszyk",
+    "subtotal": "Suma częściowa (bez podatków)",
+    "goToCart": "Przejdź do koszyka",
+    "emptyCart": "Twój koszyk jest pusty.",
+    "browseProducts": "Przeglądaj produkty"
+  }
+}
