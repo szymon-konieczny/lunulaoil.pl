@@ -1,21 +1,21 @@
 import { Metadata } from "next"
 
 import Hero from "@modules/home/components/hero"
-import WhyUs from "@modules/home/components/why-us"
-import CtaSamples from "@modules/home/components/cta-samples"
+import Manifest from "@modules/home/components/manifest"
+import HeroProduct from "@modules/home/components/hero-product"
+import BiocareSection from "@modules/home/components/biocare-section"
+import SlavicSoap from "@modules/home/components/slavic-soap"
+import OilsSection from "@modules/home/components/oils-section"
 import CtaQuiz from "@modules/home/components/cta-quiz"
 import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
-import ProductPreview from "@modules/products/components/product-preview"
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import AnimateIn from "@modules/common/components/animate-in"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
 export const metadata: Metadata = {
-  title: "Lunula Oil & More — BIO olejki i naturalna pielęgnacja",
+  title: "Lunula Botanique — biozgodna pielęgnacja",
   description:
-    "Linia luksusowych olejków do masażu i pielęgnacji twarzy, ciała i włosów. Naturalne rytuały dla Twojej skóry.",
+    "Biozgodna pielęgnacja twarzy i ciała. Składniki rozpoznawalne przez skórę, w harmonii z jej naturalnymi procesami.",
 }
 
 export default async function Home(props: {
@@ -44,9 +44,9 @@ export default async function Home(props: {
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Lunula Oil & More",
+    name: "Lunula Botanique",
     url: BASE_URL,
-    logo: `${BASE_URL}/logo.png`,
+    logo: `${BASE_URL}/logo-botanique.jpeg`,
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+48-509-085-064",
@@ -60,7 +60,7 @@ export default async function Home(props: {
   const webSiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Lunula Oil & More",
+    name: "Lunula Botanique",
     url: BASE_URL,
     potentialAction: {
       "@type": "SearchAction",
@@ -80,44 +80,12 @@ export default async function Home(props: {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
       />
       <Hero />
-      <WhyUs />
+      <Manifest />
+      <HeroProduct />
+      <BiocareSection />
+      <SlavicSoap />
+      <OilsSection products={products} region={region} />
       <CtaQuiz />
-      <CtaSamples />
-      {products.length > 0 && (
-        <div className="py-16 small:py-24 bg-brand-background">
-          <div className="content-container">
-            <AnimateIn variant="fade-in" className="mb-12 text-center">
-              <h2 className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium mb-4">
-                Nasze produkty
-              </h2>
-              <p className="text-white/60 text-base">
-                Odkryj pełną gamę kosmetyków Lunula Botanique
-              </p>
-            </AnimateIn>
-            <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
-              {products.map((product, i) => (
-                <AnimateIn
-                  key={product.id}
-                  as="li"
-                  variant="fade-up"
-                  delay={i * 80}
-                  duration={600}
-                >
-                  <ProductPreview product={product} region={region} />
-                </AnimateIn>
-              ))}
-            </ul>
-            <AnimateIn variant="fade-up" delay={400} className="mt-12 text-center">
-              <LocalizedClientLink
-                href="/store"
-                className="inline-block px-8 py-3 border border-brand-primary/30 text-brand-primary hover:bg-brand-primary hover:text-black rounded-full text-sm font-medium transition-all duration-300"
-              >
-                Zobacz wszystkie produkty →
-              </LocalizedClientLink>
-            </AnimateIn>
-          </div>
-        </div>
-      )}
     </>
   )
 }

@@ -9,12 +9,12 @@
   }
 
   :root {
-    /* Lunula Oil — Dark luxury palette (matching lunulaoil.pl) */
-    --color-primary: #CD9F7A;        /* Warm bronze/gold — brand accent */
+    /* Lunula Botanique — Dark botanical palette */
+    --color-primary: #CD9F7A;        /* Warm bronze/gold — CTA, prices */
     --color-primary-light: #E2C9AD;  /* Light bronze */
     --color-primary-dark: #A37B56;   /* Deep bronze */
-    --color-accent: #CD9F7A;         /* Warm gold — premium, luxury */
-    --color-accent-light: #E2C9AD;   /* Soft gold */
+    --color-accent: #3A8C3F;         /* Botanical green — main accent */
+    --color-accent-light: #5AAD5E;   /* Light green */
     --color-background: #000000;     /* Black — dark luxury */
     --color-surface: #111111;        /* Near-black surface */
     --color-text: #FFFFFF;           /* White text on dark */
@@ -30,8 +30,8 @@
     --fg-on-inverted: #000000;
     --contrast-fg-primary: #000000;
     --contrast-fg-secondary: #FFFFFF;
-    --fg-interactive: #CD9F7A;
-    --fg-interactive-hover: #E2C9AD;
+    --fg-interactive: #3A8C3F;
+    --fg-interactive-hover: #5AAD5E;
     --fg-error: #E5484D;
     --bg-base: #000000;
     --bg-base-hover: #111111;
@@ -43,17 +43,17 @@
     --bg-field-hover: #222222;
     --bg-component: #1A1A1A;
     --bg-switch-off: #333333;
-    --bg-interactive: #CD9F7A;
+    --bg-interactive: #3A8C3F;
     --bg-overlay: rgba(0, 0, 0, 0.7);
-    --bg-highlight: rgba(205, 159, 122, 0.15);
+    --bg-highlight: rgba(58, 140, 63, 0.15);
     --border-base: #2A2A2A;
     --border-strong: #444444;
-    --border-loud: #CD9F7A;
-    --border-interactive: #CD9F7A;
+    --border-loud: #3A8C3F;
+    --border-interactive: #3A8C3F;
     --border-error: #E5484D;
     --border-transparent: transparent;
     --button-inverted: #FFFFFF;
-    --button-inverted-hover: #E2C9AD;
+    --button-inverted-hover: #5AAD5E;
     --button-inverted-pressed: #C1C1C1;
     --button-neutral: #1A1A1A;
     --button-neutral-hover: #222222;
@@ -100,7 +100,7 @@
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    border: 1px solid #CD9F7A;
+    border: 1px solid var(--color-accent);
     -webkit-text-fill-color: #FFFFFF;
     -webkit-box-shadow: 0 0 0px 1000px #111111 inset;
     transition: background-color 5000s ease-in-out 0s;

@@ -41,7 +41,7 @@ export default async function StorePage(props: Params) {
   const storeJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Sklep — Lunula Oil & More",
+    name: "Sklep — Lunula Botanique",
     description: "Przeglądaj wszystkie nasze produkty.",
     url: `${BASE_URL}/${params.countryCode}/store`,
   }

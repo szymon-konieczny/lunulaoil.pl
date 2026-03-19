@@ -47,7 +47,7 @@ export default function ShopDropdown({ categories }: ShopDropdownProps) {
     >
       <LocalizedClientLink
         href="/store"
-        className="hover:text-brand-primary transition-colors flex items-center gap-1"
+        className="hover:text-brand-accent transition-colors flex items-center gap-1"
       >
         Sklep
         <svg
@@ -68,7 +68,7 @@ export default function ShopDropdown({ categories }: ShopDropdownProps) {
               <LocalizedClientLink
                 key={category.id}
                 href={`/categories/${category.handle}`}
-                className="block px-4 py-2 text-sm text-brand-text-muted hover:text-brand-primary hover:bg-brand-surface-hover transition-colors"
+                className="block px-4 py-2 text-sm text-brand-text-muted hover:text-brand-accent hover:bg-brand-surface-hover transition-colors"
                 onClick={() => setOpen(false)}
               >
                 {category.name}
@@ -77,7 +77,7 @@ export default function ShopDropdown({ categories }: ShopDropdownProps) {
             <div className="border-t border-brand-border mt-1 pt-1">
               <LocalizedClientLink
                 href="/store"
-                className="block px-4 py-2 text-sm text-brand-text-muted hover:text-brand-primary hover:bg-brand-surface-hover transition-colors"
+                className="block px-4 py-2 text-sm text-brand-text-muted hover:text-brand-accent hover:bg-brand-surface-hover transition-colors"
                 onClick={() => setOpen(false)}
               >
                 Wszystkie produkty

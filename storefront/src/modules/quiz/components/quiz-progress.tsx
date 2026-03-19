@@ -1,7 +1,5 @@
 "use client"
 
-import { clx } from "@medusajs/ui"
-
 type Props = {
   currentStep: number
   totalSteps: number
@@ -16,13 +14,13 @@ export default function QuizProgress({ currentStep, totalSteps }: Props) {
         <span className="text-sm text-brand-text-muted">
           Krok {currentStep + 1} z {totalSteps}
         </span>
-        <span className="text-sm text-brand-primary">
+        <span className="text-sm text-brand-accent">
           {Math.round(progress)}%
         </span>
       </div>
       <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-brand-primary-dark to-brand-primary rounded-full transition-all duration-500 ease-out"
+          className="h-full bg-gradient-to-r from-brand-accent to-brand-accent-light rounded-full transition-all duration-500 ease-out"
           style={{ width: `${progress}%` }}
         />
       </div>

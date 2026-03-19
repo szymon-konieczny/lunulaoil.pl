@@ -3,7 +3,7 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Regulamin sklepu",
   description:
-    "Regulamin sklepu internetowego Lunula Oil & More. Warunki zakupów, dostawa, zwroty i reklamacje.",
+    "Regulamin sklepu internetowego Lunula Botanique. Warunki zakupów, dostawa, zwroty i reklamacje.",
 }
 
 export default function TermsPage() {

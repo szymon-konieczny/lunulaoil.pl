@@ -269,7 +269,7 @@ function FreeShippingPopup({
           </LocalizedClientLink>
 
           <LocalizedClientLink
-            className="flex-grow rounded-2xl bg-brand-primary text-brand-background shadow-none outline-none border-[1px] border-brand-primary text-[15px] py-2.5 px-4 text-center"
+            className="flex-grow rounded-2xl bg-brand-accent text-brand-background shadow-none outline-none border-[1px] border-brand-accent text-[15px] py-2.5 px-4 text-center"
             href="/store"
           >
             Zobacz produkty

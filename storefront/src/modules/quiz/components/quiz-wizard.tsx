@@ -203,7 +203,7 @@ export default function QuizWizard({ allProducts }: Props) {
               "px-5 py-2.5 rounded-large text-sm font-medium transition-colors",
               currentStep === 0
                 ? "text-white/20 cursor-not-allowed"
-                : "text-white border border-white/20 hover:border-brand-primary/40"
+                : "text-white border border-white/20 hover:border-brand-accent/40"
             )}
           >
             Wstecz
@@ -214,7 +214,7 @@ export default function QuizWizard({ allProducts }: Props) {
             className={clx(
               "px-8 py-2.5 rounded-large text-sm font-semibold transition-all duration-200",
               canProceed
-                ? "bg-brand-primary text-black hover:bg-brand-primary-light shadow-lg"
+                ? "bg-brand-accent text-black hover:bg-brand-accent-light shadow-lg"
                 : "bg-white/10 text-white/30 cursor-not-allowed"
             )}
           >
@@ -235,28 +235,28 @@ function scoreProducts(
 ): HttpTypes.StoreProduct[] {
   const keywordMap: Record<string, Record<string, string[]>> = {
     skin_type: {
-      dry: ["sucha", "nawilż", "odżyw", "regenera", "masło", "olejek", "zmęczon", "miękkość"],
-      oily: ["tłusta", "matuj", "oczyszcz", "lekk", "serum", "sebum", "regulacja sebum"],
-      combination: ["mieszana", "równoważ", "balansu", "sebum", "regulacja sebum"],
-      normal: ["pielęgnac", "nawilż", "ochrona", "równowag"],
-      sensitive: ["wrażliwa", "łagod", "kojąc", "delikat", "ukojeni", "równowag"],
+      dry: ["sucha", "nawilż", "odżyw", "regenera", "masło", "olejek", "zmęczon", "miękkość", "hialcode", "skwalan", "bariera hydrolipidow"],
+      oily: ["tłusta", "matuj", "oczyszcz", "lekk", "serum", "sebum", "regulacja sebum", "jojoba", "squalanecode", "niekomedogenn"],
+      combination: ["mieszana", "równoważ", "balansu", "sebum", "regulacja sebum", "jojoba", "samoreguluj"],
+      normal: ["pielęgnac", "nawilż", "ochrona", "równowag", "biozgodn"],
+      sensitive: ["wrażliwa", "łagod", "kojąc", "delikat", "ukojeni", "równowag", "rusałka", "rumianek", "lawend"],
     },
     concerns: {
-      aging: ["zmarszcz", "jędrn", "lifting", "kolagen", "retinol", "anti-age", "argano", "bakuchiol", "elastyczn", "dojrzał", "odnow", "ujędrni", "wygładz"],
-      dryness: ["such", "nawilż", "odżyw", "masło", "regenera", "blask", "miękkość"],
-      glow: ["blask", "rozświetl", "promien", "witamin", "złot", "glow", "witaln", "odżywieni"],
-      imperfections: ["niedoskonał", "trądzik", "pory", "oczyszcz", "zaskórn", "problematyczn", "zapalne", "regulacja sebum"],
+      aging: ["zmarszcz", "jędrn", "lifting", "kolagen", "retinol", "anti-age", "argano", "bakuchiol", "elastyczn", "dojrzał", "odnow", "ujędrni", "wygładz", "hialcode", "kwas hialuronow"],
+      dryness: ["such", "nawilż", "odżyw", "masło", "regenera", "blask", "miękkość", "hialcode", "skwalan", "bariera", "wilgoć"],
+      glow: ["blask", "rozświetl", "promien", "witamin", "złot", "glow", "witaln", "odżywieni", "różyczka", "glinka"],
+      imperfections: ["niedoskonał", "trądzik", "pory", "oczyszcz", "zaskórn", "problematyczn", "zapalne", "regulacja sebum", "jojoba", "niekomedogenn"],
       scars: ["blizn", "rozstęp", "regenera", "nierówn"],
-      hair: ["włos", "głow", "nabad", "odżyw"],
+      hair: ["włos", "głow", "nabad", "odżyw", "jojoba", "skwalan", "końcówk"],
     },
     body_area: {
-      face: ["twarz", "twarzy", "okolice oczu", "szyj", "krem"],
-      body: ["ciał", "ciała", "dłoni", "dekolt", "masaż"],
-      hair: ["włos", "głow"],
-      all: ["uniwersaln", "wielofunkcyj", "ciał", "twarz"],
+      face: ["twarz", "twarzy", "okolice oczu", "szyj", "krem", "hialcode", "squalanecode", "jojobacode", "biozgodn"],
+      body: ["ciał", "ciała", "dłoni", "dekolt", "masaż", "mydło", "mydlo"],
+      hair: ["włos", "głow", "jojoba", "skwalan"],
+      all: ["uniwersaln", "wielofunkcyj", "ciał", "twarz", "jojoba"],
     },
     preference: {
-      light: ["lekk", "szybko się wchłan", "serum", "matując"],
+      light: ["lekk", "szybko się wchłan", "serum", "matując", "skwalan", "squalanecode", "ultra lekk"],
       rich: ["bogat", "intensywn", "masło", "odżyw", "aksamit"],
       any: [],
     },

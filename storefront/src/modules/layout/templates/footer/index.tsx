@@ -27,15 +27,14 @@ export default async function Footer() {
               />
             </LocalizedClientLink>
             <Text className="txt-compact-small text-brand-text-muted max-w-xs">
-              Naturalna pielęgnacja tworzona z pasją. Slow care dla Twojej
-              skóry.
+              Biozgodna pielęgnacja — powrót do natury. By Lunula.
             </Text>
             <div className="flex gap-x-4 mt-2">
               <a
                 href="https://www.instagram.com/lunulaoil/"
                 target="_blank"
                 rel="noreferrer"
-                className="text-brand-text-muted hover:text-brand-primary transition-colors"
+                className="text-brand-text-muted hover:text-brand-accent transition-colors"
                 aria-label="Instagram"
               >
                 <svg
@@ -77,7 +76,7 @@ export default async function Footer() {
                       >
                         <LocalizedClientLink
                           className={clx(
-                            "hover:text-brand-primary transition-colors",
+                            "hover:text-brand-accent transition-colors",
                             children && "txt-small-plus"
                           )}
                           href={`/categories/${normalizeHandle(c.handle)}`}
@@ -91,7 +90,7 @@ export default async function Footer() {
                               children.map((child) => (
                                 <li key={child.id}>
                                   <LocalizedClientLink
-                                    className="hover:text-brand-primary transition-colors"
+                                    className="hover:text-brand-accent transition-colors"
                                     href={`/categories/${normalizeHandle(child.handle)}`}
                                     data-testid="category-link"
                                   >
@@ -123,7 +122,7 @@ export default async function Footer() {
                   {collections?.slice(0, 6).map((c) => (
                     <li key={c.id}>
                       <LocalizedClientLink
-                        className="hover:text-brand-primary transition-colors"
+                        className="hover:text-brand-accent transition-colors"
                         href={`/collections/${c.handle}`}
                       >
                         {c.title}
@@ -140,7 +139,7 @@ export default async function Footer() {
               <ul className="grid grid-cols-1 gap-y-2 text-brand-text-muted txt-small">
                 <li>
                   <LocalizedClientLink
-                    className="hover:text-brand-primary transition-colors"
+                    className="hover:text-brand-accent transition-colors"
                     href="/about"
                   >
                     O marce
@@ -148,7 +147,7 @@ export default async function Footer() {
                 </li>
                 <li>
                   <LocalizedClientLink
-                    className="hover:text-brand-primary transition-colors"
+                    className="hover:text-brand-accent transition-colors"
                     href="/regulamin"
                   >
                     Regulamin
@@ -156,7 +155,7 @@ export default async function Footer() {
                 </li>
                 <li>
                   <LocalizedClientLink
-                    className="hover:text-brand-primary transition-colors"
+                    className="hover:text-brand-accent transition-colors"
                     href="/polityka-prywatnosci"
                   >
                     Polityka prywatności
@@ -165,7 +164,7 @@ export default async function Footer() {
                 <li>
                   <a
                     href="mailto:kontakt@lunulaoil.pl"
-                    className="hover:text-brand-primary transition-colors"
+                    className="hover:text-brand-accent transition-colors"
                   >
                     Kontakt
                   </a>

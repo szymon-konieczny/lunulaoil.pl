@@ -38,13 +38,13 @@ export default async function Nav() {
             <div className="hidden small:flex items-center gap-x-6 h-full">
               <ShopDropdown categories={navCategories} />
               <LocalizedClientLink
-                className="hover:text-brand-primary transition-colors"
+                className="hover:text-brand-accent transition-colors"
                 href="/quiz"
               >
                 Dobierz kosmetyk
               </LocalizedClientLink>
               <LocalizedClientLink
-                className="hover:text-brand-primary transition-colors"
+                className="hover:text-brand-accent transition-colors"
                 href="/about"
               >
                 O marce
@@ -59,8 +59,8 @@ export default async function Nav() {
               data-testid="nav-store-link"
             >
               <Image
-                src="/logo.png"
-                alt="Lunula Oil"
+                src="/logo-botanique.jpeg"
+                alt="Lunula Botanique"
                 width={165}
                 height={138}
                 className="h-16 w-auto"
@@ -71,7 +71,7 @@ export default async function Nav() {
 
           <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
             <LocalizedClientLink
-              className="hidden small:block hover:text-brand-primary transition-colors"
+              className="hidden small:block hover:text-brand-accent transition-colors"
               href="/account"
               data-testid="nav-account-link"
             >
@@ -80,7 +80,7 @@ export default async function Nav() {
             <Suspense
               fallback={
                 <LocalizedClientLink
-                  className="hover:text-brand-primary flex gap-2 transition-colors"
+                  className="hover:text-brand-accent flex gap-2 transition-colors"
                   href="/cart"
                   data-testid="nav-cart-link"
                 >

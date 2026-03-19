@@ -1,7 +1,7 @@
 "use client"
 
 import { HttpTypes } from "@medusajs/types"
-import { Text, clx } from "@medusajs/ui"
+import { Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "@modules/products/components/thumbnail"
 import { getProductPrice } from "@lib/util/get-product-price"
@@ -35,10 +35,10 @@ export default function QuizResults({
 
       {/* AI recommendation */}
       {(loading || aiRecommendation) && (
-        <div className="mb-10 p-6 rounded-large border border-brand-primary/20 bg-brand-primary/5">
+        <div className="mb-10 p-6 rounded-large border border-brand-accent/20 bg-brand-accent/5">
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-brand-primary text-lg">✨</span>
-            <h3 className="text-lg font-semibold text-brand-primary-light">
+            <span className="text-brand-accent text-lg">✨</span>
+            <h3 className="text-lg font-semibold text-brand-accent-light">
               Porada eksperta
             </h3>
           </div>
@@ -72,7 +72,7 @@ export default function QuizResults({
             Sprawdź nasz{" "}
             <LocalizedClientLink
               href="/store"
-              className="text-brand-primary underline"
+              className="text-brand-accent underline"
             >
               pełen asortyment
             </LocalizedClientLink>
@@ -104,13 +104,13 @@ export default function QuizResults({
       <div className="flex flex-col small:flex-row items-center justify-center gap-4">
         <button
           onClick={onReset}
-          className="px-6 py-3 rounded-large border border-white/20 text-white hover:border-brand-primary/40 transition-colors"
+          className="px-6 py-3 rounded-large border border-white/20 text-white hover:border-brand-accent/40 transition-colors"
         >
           Wypełnij quiz ponownie
         </button>
         <LocalizedClientLink
           href="/store"
-          className="px-6 py-3 rounded-large bg-brand-primary text-black font-semibold hover:bg-brand-primary-light transition-colors"
+          className="px-6 py-3 rounded-large bg-brand-accent text-black font-semibold hover:bg-brand-accent-light transition-colors"
         >
           Zobacz cały sklep
         </LocalizedClientLink>
@@ -130,7 +130,7 @@ function ProductCard({ product }: { product: HttpTypes.StoreProduct }) {
       href={`/products/${product.handle}`}
       className="group"
     >
-      <div className="rounded-large overflow-hidden border border-white/5 bg-brand-surface hover:border-brand-primary/20 transition-all duration-200">
+      <div className="rounded-large overflow-hidden border border-white/5 bg-brand-surface hover:border-brand-accent/20 transition-all duration-200">
         <Thumbnail
           thumbnail={product.thumbnail}
           images={product.images}
@@ -142,7 +142,7 @@ function ProductCard({ product }: { product: HttpTypes.StoreProduct }) {
             {product.title}
           </Text>
           {cheapestPrice && (
-            <Text className="text-brand-primary mt-1 text-sm">
+            <Text className="text-brand-accent mt-1 text-sm">
               {cheapestPrice.calculated_price}
             </Text>
           )}

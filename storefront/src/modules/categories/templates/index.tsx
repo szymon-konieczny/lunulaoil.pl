@@ -46,7 +46,7 @@ export default function CategoryTemplate({
           parents.map((parent) => (
             <span key={parent.id} className="text-ui-fg-subtle">
               <LocalizedClientLink
-                className="mr-4 hover:text-brand-primary"
+                className="mr-4 hover:text-brand-accent"
                 href={`/categories/${parent.handle}`}
                 data-testid="sort-by-link"
               >

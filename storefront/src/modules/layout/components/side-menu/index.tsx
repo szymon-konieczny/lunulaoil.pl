@@ -11,14 +11,14 @@ import LanguageSelect from "../language-select"
 import { HttpTypes } from "@medusajs/types"
 import { Locale } from "@lib/data/locales"
 
-const SideMenuItems = {
-  "Strona główna": "/",
-  Sklep: "/store",
-  "Dobierz kosmetyk": "/quiz",
-  "O marce": "/about",
-  Konto: "/account",
-  Koszyk: "/cart",
-}
+const SIDE_MENU_ITEMS = [
+  { label: "Strona g\u0142\u00f3wna", href: "/" },
+  { label: "Sklep", href: "/store" },
+  { label: "Dobierz kosmetyk", href: "/quiz" },
+  { label: "O marce", href: "/about" },
+  { label: "Konto", href: "/account" },
+  { label: "Koszyk", href: "/cart" },
+] as const
 
 type SideMenuProps = {
   regions: HttpTypes.StoreRegion[] | null
@@ -74,20 +74,18 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                       </button>
                     </div>
                     <ul className="flex flex-col gap-6 items-start justify-start">
-                      {Object.entries(SideMenuItems).map(([name, href]) => {
-                        return (
-                          <li key={name}>
-                            <LocalizedClientLink
-                              href={href}
-                              className="text-xl leading-8 hover:text-brand-primary"
-                              onClick={close}
-                              data-testid={`${name.toLowerCase()}-link`}
-                            >
-                              {name}
-                            </LocalizedClientLink>
-                          </li>
-                        )
-                      })}
+                      {SIDE_MENU_ITEMS.map((item) => (
+                        <li key={item.href}>
+                          <LocalizedClientLink
+                            href={item.href}
+                            className="text-xl leading-8 hover:text-brand-accent"
+                            onClick={close}
+                            data-testid={`${item.href.replace("/", "") || "home"}-link`}
+                          >
+                            {item.label}
+                          </LocalizedClientLink>
+                        </li>
+                      ))}
                     </ul>
                     <div className="flex flex-col gap-y-6">
                       {!!locales?.length && (

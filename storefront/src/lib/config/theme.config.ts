@@ -1,16 +1,16 @@
 export const themeConfig = {
   // Brand
-  name: "Lunula Oil & More",
-  tagline: "BIO olejki — naturalna pielęgnacja",
+  name: "Lunula Botanique",
+  tagline: "Biozgodna pielęgnacja — powrót do natury",
   description:
-    "Najwyższej jakości naturalne olejki i starannie dobrane surowce kosmetyczne z Maroka, Hiszpanii i Francji. Unikalne aromaty, konsystencje i działanie.",
+    "Biozgodna pielęgnacja twarzy i ciała. Składniki rozpoznawalne przez skórę, w harmonii z jej naturalnymi procesami.",
   url: "https://lunulaoil.pl",
   locale: "pl",
 
   // Logo
   logo: {
-    src: "/logo.png",
-    alt: "Lunula Oil",
+    src: "/logo-botanique.jpeg",
+    alt: "Lunula Botanique",
     width: 100,
     height: 100,
   },
@@ -57,12 +57,12 @@ export const themeConfig = {
 
   // SEO
   seo: {
-    titleTemplate: "%s | Lunula Oil & More",
-    defaultTitle: "Lunula Oil — BIO olejki i naturalna pielęgnacja",
+    titleTemplate: "%s | Lunula Botanique",
+    defaultTitle: "Lunula Botanique — biozgodna pielęgnacja",
     openGraph: {
       type: "website",
       locale: "pl_PL",
-      siteName: "Lunula Oil & More",
+      siteName: "Lunula Botanique",
     },
   },
 } as const

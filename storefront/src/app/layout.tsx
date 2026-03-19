@@ -21,15 +21,15 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
   title: {
-    default: "Lunula Oil — BIO olejki i naturalna pielęgnacja",
-    template: "%s | Lunula Oil & More",
+    default: "Lunula Botanique — biozgodna pielęgnacja",
+    template: "%s | Lunula Botanique",
   },
   description:
-    "Najwyższej jakości naturalne olejki i starannie dobrane surowce kosmetyczne z Maroka, Hiszpanii i Francji. Unikalne aromaty, konsystencje i działanie.",
+    "Biozgodna pielęgnacja twarzy i ciała. Składniki rozpoznawalne przez skórę, w harmonii z jej naturalnymi procesami.",
   openGraph: {
     type: "website",
     locale: "pl_PL",
-    siteName: "Lunula Oil & More",
+    siteName: "Lunula Botanique",
   },
 }
 

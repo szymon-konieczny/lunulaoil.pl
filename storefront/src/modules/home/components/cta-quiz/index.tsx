@@ -12,13 +12,13 @@ const CtaQuiz = () => {
         </AnimateIn>
         <AnimateIn variant="fade-up" delay={100}>
           <h2 className="text-white text-3xl small:text-4xl font-heading font-bold leading-tight mt-4 mb-4">
-            Nie wiesz, który olejek wybrać?
+            Nie wiesz, który produkt wybrać?
           </h2>
         </AnimateIn>
         <AnimateIn variant="fade-up" delay={200}>
           <p className="text-white/70 text-base leading-relaxed max-w-xl mx-auto mb-8">
             Odpowiedz na kilka pytań o swoją skórę i potrzeby, a nasz asystent
-            dobierze idealne produkty specjalnie dla Ciebie.
+            dobierze idealne produkty Lunula Botanique specjalnie dla Ciebie.
           </p>
         </AnimateIn>
         <AnimateIn variant="scale" delay={300}>

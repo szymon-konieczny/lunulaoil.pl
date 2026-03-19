@@ -19,10 +19,10 @@ export default function QuizOptionCard({ option, selected, onClick }: Props) {
       onClick={onClick}
       className={clx(
         "w-full text-left p-5 rounded-large border transition-all duration-200",
-        "hover:border-brand-primary/60 hover:bg-brand-primary/5",
-        "focus:outline-none focus:ring-2 focus:ring-brand-primary/40",
+        "hover:border-brand-accent/60 hover:bg-brand-accent/5",
+        "focus:outline-none focus:ring-2 focus:ring-brand-accent/40",
         selected
-          ? "border-brand-primary bg-brand-primary/10 shadow-md"
+          ? "border-brand-accent bg-brand-accent/10 shadow-md"
           : "border-white/10 bg-brand-surface"
       )}
     >
@@ -31,7 +31,7 @@ export default function QuizOptionCard({ option, selected, onClick }: Props) {
           <span
             className={clx(
               "flex-shrink-0 mt-0.5 transition-colors duration-200",
-              selected ? "text-brand-primary" : "text-brand-text-muted"
+              selected ? "text-brand-accent" : "text-brand-text-muted"
             )}
           >
             <IconComponent className="w-6 h-6" />
@@ -42,14 +42,14 @@ export default function QuizOptionCard({ option, selected, onClick }: Props) {
             <span
               className={clx(
                 "font-semibold text-base",
-                selected ? "text-brand-primary-light" : "text-white"
+                selected ? "text-brand-accent-light" : "text-white"
               )}
             >
               {option.label}
             </span>
             {selected && (
               <svg
-                className="w-4 h-4 text-brand-primary"
+                className="w-4 h-4 text-brand-accent"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"

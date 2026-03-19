@@ -162,7 +162,7 @@ export default async function ProductPage(props: Props) {
     url: `${BASE_URL}/${params.countryCode}/products/${params.handle}`,
     brand: {
       "@type": "Brand",
-      name: "Lunula Oil & More",
+      name: "Lunula Botanique",
     },
     ...(cheapestPrice?.calculated_price_number && {
       offers: {

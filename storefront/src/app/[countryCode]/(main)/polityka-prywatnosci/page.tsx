@@ -3,7 +3,7 @@ import { Metadata } from "next"
 export const metadata: Metadata = {
   title: "Polityka prywatności",
   description:
-    "Polityka prywatności sklepu Lunula Oil & More. Informacje o przetwarzaniu danych osobowych zgodnie z RODO.",
+    "Polityka prywatności sklepu Lunula Botanique. Informacje o przetwarzaniu danych osobowych zgodnie z RODO.",
 }
 
 export default function PrivacyPolicyPage() {

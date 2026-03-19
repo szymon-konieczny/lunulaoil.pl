@@ -79,8 +79,8 @@ const RefinementList = ({
               className={clx(
                 "px-3 py-1.5 rounded-full text-xs font-medium transition-all border cursor-pointer",
                 !activeCategory
-                  ? "bg-brand-primary text-black border-brand-primary"
-                  : "border-white/20 text-white/70 hover:border-brand-primary/50 hover:text-white"
+                  ? "bg-brand-accent text-black border-brand-accent"
+                  : "border-white/20 text-white/70 hover:border-brand-accent/50 hover:text-white"
               )}
             >
               Wszystkie
@@ -94,8 +94,8 @@ const RefinementList = ({
                 className={clx(
                   "px-3 py-1.5 rounded-full text-xs font-medium transition-all border cursor-pointer",
                   activeCategory === cat.handle
-                    ? "bg-brand-primary text-black border-brand-primary"
-                    : "border-white/20 text-white/70 hover:border-brand-primary/50 hover:text-white"
+                    ? "bg-brand-accent text-black border-brand-accent"
+                    : "border-white/20 text-white/70 hover:border-brand-accent/50 hover:text-white"
                 )}
               >
                 {cat.name}
@@ -132,7 +132,7 @@ const RefinementList = ({
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Szukaj..."
                 autoFocus
-                className="bg-white/5 border border-white/20 rounded-full px-3 py-1.5 text-xs text-white placeholder-white/40 focus:outline-none focus:border-brand-primary/50 w-36 small:w-48"
+                className="bg-white/5 border border-white/20 rounded-full px-3 py-1.5 text-xs text-white placeholder-white/40 focus:outline-none focus:border-brand-accent/50 w-36 small:w-48"
                 onBlur={() => {
                   if (!searchValue) setSearchOpen(false)
                 }}
