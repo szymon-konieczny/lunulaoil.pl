@@ -1,6 +1,6 @@
 import { Metadata } from "next"
 
-import { listCategories } from "@lib/data/categories"
+import { listCategories, normalizeHandle } from "@lib/data/categories"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import StoreTemplate from "@modules/store/templates"
 
@@ -34,7 +34,7 @@ export default async function StorePage(props: Params) {
     categories = (cats || []).map((c) => ({
       id: c.id,
       name: c.name,
-      handle: c.handle,
+      handle: normalizeHandle(c.handle),
     }))
   } catch {}
 

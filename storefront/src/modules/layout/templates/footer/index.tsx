@@ -1,4 +1,4 @@
-import { listCategories } from "@lib/data/categories"
+import { listCategories, normalizeHandle } from "@lib/data/categories"
 import { listCollections } from "@lib/data/collections"
 import { themeConfig } from "@lib/config/theme.config"
 import { Text, clx } from "@medusajs/ui"
@@ -80,7 +80,7 @@ export default async function Footer() {
                             "hover:text-brand-primary transition-colors",
                             children && "txt-small-plus"
                           )}
-                          href={`/categories/${c.handle}`}
+                          href={`/categories/${normalizeHandle(c.handle)}`}
                           data-testid="category-link"
                         >
                           {c.name}
@@ -92,7 +92,7 @@ export default async function Footer() {
                                 <li key={child.id}>
                                   <LocalizedClientLink
                                     className="hover:text-brand-primary transition-colors"
-                                    href={`/categories/${child.handle}`}
+                                    href={`/categories/${normalizeHandle(child.handle)}`}
                                     data-testid="category-link"
                                   >
                                     {child.name}

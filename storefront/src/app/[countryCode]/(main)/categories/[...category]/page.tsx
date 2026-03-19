@@ -1,7 +1,11 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
-import { getCategoryByHandle, listCategories } from "@lib/data/categories"
+import {
+  getCategoryByHandle,
+  listCategories,
+  normalizeHandle,
+} from "@lib/data/categories"
 import { listRegions } from "@lib/data/regions"
 import { StoreRegion } from "@medusajs/types"
 import CategoryTemplate from "@modules/categories/templates"
@@ -29,8 +33,8 @@ export async function generateStaticParams() {
       regions?.map((r) => r.countries?.map((c) => c.iso_2)).flat()
     )
 
-    const categoryHandles = product_categories.map(
-      (category: any) => category.handle
+    const categoryHandles = product_categories.map((category: any) =>
+      normalizeHandle(category.handle)
     )
 
     return countryCodes

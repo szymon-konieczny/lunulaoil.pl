@@ -3,18 +3,29 @@ import Image from "next/image"
 
 import { listRegions } from "@lib/data/regions"
 import { listLocales } from "@lib/data/locales"
+import { listCategories, normalizeHandle } from "@lib/data/categories"
 import { getLocale } from "@lib/data/locale-actions"
 import { StoreRegion } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
+import ShopDropdown from "@modules/layout/components/shop-dropdown"
 
 export default async function Nav() {
-  const [regions, locales, currentLocale] = await Promise.all([
+  const [regions, locales, currentLocale, categories] = await Promise.all([
     listRegions().then((regions: StoreRegion[]) => regions),
     listLocales(),
     getLocale(),
+    listCategories().catch(() => []),
   ])
+
+  // Normalize handles for URL-safe links
+  const navCategories = (categories || []).map((c) => ({
+    id: c.id,
+    name: c.name,
+    handle: normalizeHandle(c.handle),
+    parent_category_id: c.parent_category?.id || null,
+  }))
 
   return (
     <div className="sticky top-0 inset-x-0 z-50 group">
@@ -25,12 +36,7 @@ export default async function Nav() {
               <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
             </div>
             <div className="hidden small:flex items-center gap-x-6 h-full">
-              <LocalizedClientLink
-                className="hover:text-brand-primary transition-colors"
-                href="/store"
-              >
-                Sklep
-              </LocalizedClientLink>
+              <ShopDropdown categories={navCategories} />
               <LocalizedClientLink
                 className="hover:text-brand-primary transition-colors"
                 href="/quiz"
