@@ -4,7 +4,7 @@ import AnimateIn from "@modules/common/components/animate-in"
 
 const Hero = () => {
   return (
-    <div className="relative w-full h-[100dvh] -mt-28 overflow-hidden" id="hero">
+    <div className="relative w-full h-[100dvh] -mt-20 overflow-hidden" id="hero">
       {/* Background video with image fallback */}
       <video
         autoPlay
@@ -21,29 +21,29 @@ const Hero = () => {
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/50" />
 
-      {/* Content — centered with logo */}
-      <div className="content-container relative z-10 flex flex-col items-center justify-center text-center h-full gap-6 py-16">
-        <AnimateIn variant="fade-up" delay={200} duration={900}>
-          <h1 className="font-heading text-4xl small:text-6xl leading-none text-white font-bold">
+      {/* Content — centered */}
+      <div className="content-container relative z-10 flex flex-col items-center justify-center text-center h-full gap-8 py-16">
+        <AnimateIn variant="fade-up" delay={200} duration={1000}>
+          <h1 className="font-heading text-4xl small:text-6xl medium:text-7xl leading-none text-white font-bold tracking-tight">
             Biozgodna Pielęgnacja
-            <span className="block mt-3 h-[2px] w-32 bg-brand-accent mx-auto" />
+            <span className="block mt-4 h-[1px] w-24 bg-brand-accent mx-auto opacity-80" />
           </h1>
         </AnimateIn>
 
-        <AnimateIn variant="fade-up" delay={400} duration={900}>
-          <p className="text-white/90 text-base small:text-lg max-w-2xl leading-relaxed mt-2">
+        <AnimateIn variant="fade-up" delay={500} duration={1000}>
+          <p className="text-white/80 text-base small:text-lg max-w-xl leading-relaxed">
             Składniki rozpoznawalne przez skórę, w harmonii z jej naturalnymi
             procesami. Pielęgnacja tak czysta, że mogłabyś ją zjeść.
           </p>
         </AnimateIn>
 
-        <AnimateIn variant="fade-up" delay={600} duration={900}>
-          <p className="text-white/60 text-sm small:text-base italic">
+        <AnimateIn variant="fade-up" delay={700} duration={1000}>
+          <p className="text-white/50 text-sm small:text-base italic font-light">
             Czystość to luksus. Prostota to siła.
           </p>
         </AnimateIn>
 
-        <AnimateIn variant="fade-up" delay={800} duration={900}>
+        <AnimateIn variant="fade-up" delay={900} duration={1000}>
           <button
             onClick={() => {
               const hero = document.getElementById("hero")
@@ -52,16 +52,18 @@ const Hero = () => {
                 nextSection?.scrollIntoView({ behavior: "smooth" })
               }
             }}
-            className="mt-2 text-brand-accent hover:text-brand-accent-light transition-colors duration-300 text-lg font-medium cursor-pointer"
+            className="mt-4 text-white/70 hover:text-white transition-colors duration-300 cursor-pointer flex flex-col items-center gap-2"
           >
-            Odkryj więcej
-            <svg className="w-5 h-5 ml-1 inline-block animate-bounce" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            <span className="text-xs tracking-[0.2em] uppercase">Odkryj więcej</span>
+            <svg className="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
           </button>
         </AnimateIn>
       </div>
 
       {/* Bottom gradient fade into next section (dark manifest) */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
     </div>
   )
 }

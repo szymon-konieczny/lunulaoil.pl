@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#F3F1ED"/>
+  <!-- Subtle circular frame -->
+  <circle cx="200" cy="185" r="130" fill="none" stroke="#E0DDD8" stroke-width="1"/>
+  <!-- Rose - concentric spiral petals -->
+  <!-- Outer petals -->
+  <path d="M200 140 C220 140 240 160 235 180 C230 195 215 195 210 185" fill="none" stroke="#D4A0A0" stroke-width="1.3" opacity="0.7"/>
+  <path d="M200 140 C180 140 160 160 165 180 C170 195 185 195 190 185" fill="none" stroke="#D4A0A0" stroke-width="1.3" opacity="0.7"/>
+  <path d="M165 180 C160 200 170 220 190 220 C200 220 205 215 205 210" fill="none" stroke="#D4A0A0" stroke-width="1.3" opacity="0.7"/>
+  <path d="M235 180 C240 200 230 220 210 220 C200 220 195 215 195 210" fill="none" stroke="#D4A0A0" stroke-width="1.3" opacity="0.7"/>
+  <!-- Middle petals -->
+  <path d="M195 152 C210 150 225 162 222 178 C220 188 210 190 205 182" fill="none" stroke="#D4A0A0" stroke-width="1.2" opacity="0.8"/>
+  <path d="M205 152 C190 150 175 162 178 178 C180 188 190 190 195 182" fill="none" stroke="#D4A0A0" stroke-width="1.2" opacity="0.8"/>
+  <!-- Inner petals -->
+  <path d="M195 162 C205 158 215 168 212 178 C210 185 204 186 202 180" fill="none" stroke="#D4A0A0" stroke-width="1.1" opacity="0.9"/>
+  <path d="M205 162 C195 158 185 168 188 178 C190 185 196 186 198 180" fill="none" stroke="#D4A0A0" stroke-width="1.1" opacity="0.9"/>
+  <!-- Center spiral -->
+  <path d="M197 172 C200 168 206 170 205 175 C204 179 198 179 198 175" fill="none" stroke="#D4A0A0" stroke-width="1" opacity="1"/>
+  <!-- Stem -->
+  <path d="M200 222 C200 235 198 250 200 265" fill="none" stroke="#5A7A52" stroke-width="1" opacity="0.6"/>
+  <!-- Rose leaves -->
+  <path d="M200 240 C188 232 172 235 168 245 C172 240 185 238 200 240Z" fill="none" stroke="#5A7A52" stroke-width="0.8" opacity="0.5"/>
+  <path d="M200 255 C212 247 228 250 232 260 C228 255 215 253 200 255Z" fill="none" stroke="#5A7A52" stroke-width="0.8" opacity="0.5"/>
+  <!-- Scattered small petals -->
+  <path d="M148 155 C150 148 158 148 158 155" fill="none" stroke="#D4A0A0" stroke-width="0.6" opacity="0.3"/>
+  <path d="M245 200 C247 193 255 193 255 200" fill="none" stroke="#D4A0A0" stroke-width="0.6" opacity="0.3"/>
+  <!-- Product name -->
+  <text x="200" y="350" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#1A1A1A" letter-spacing="3">R&#xF3;&#x17C;yczka</text>
+  <line x1="155" y1="362" x2="245" y2="362" stroke="#D4A0A0" stroke-width="0.5" opacity="0.5"/>
+</svg>

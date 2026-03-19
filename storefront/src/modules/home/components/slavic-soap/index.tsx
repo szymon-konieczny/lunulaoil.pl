@@ -1,10 +1,11 @@
+import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import AnimateIn from "@modules/common/components/animate-in"
 
 const soaps = [
   {
     name: "Rusałka",
-    icon: "🌿",
+    image: "/products/rusalka-placeholder.svg",
     ingredients: "Rumianek \u2022 Lawenda \u2022 Płatki owsiane",
     description:
       "Lekkość i ukojenie. Delikatnie ziołowa z naturalną fakturą płatków owsianych. Dla skóry wrażliwej i suchej — kiedy potrzeba ciszy i oddechu.",
@@ -12,7 +13,7 @@ const soaps = [
   },
   {
     name: "Różyczka",
-    icon: "🌸",
+    image: "/products/rozyczka-placeholder.svg",
     ingredients: "Glinka różowa \u2022 May Chang \u2022 Róża damasceńska",
     description:
       "Mineralny blask. Łączy moc glinki z energią cytrusów i róży. Mydło czasu rozkwitu — dla kobiet, które chcą czuć się świeżo i promiennie.",
@@ -20,7 +21,7 @@ const soaps = [
   },
   {
     name: "Mokosza",
-    icon: "☕",
+    image: "/products/mokosza-placeholder.svg",
     ingredients: "Kawa \u2022 Oleje roślinne \u2022 Hibiskus",
     description:
       "Ziemista i wyrazista. Naturalny kolor kawy, delikatnie peelingująca struktura i otulający zapach. Daje poczucie mocy, zakorzenienia i energii.",
@@ -30,27 +31,27 @@ const soaps = [
 
 const SlavicSoap = () => {
   return (
-    <section className="py-16 small:py-24 bg-[#0A0A0A]">
+    <section className="py-24 small:py-36 bg-[#0A0A0A]">
       <div className="content-container">
         <AnimateIn variant="fade-in" className="text-center mb-4">
-          <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
+          <span className="text-brand-accent text-xs tracking-[0.35em] uppercase font-medium">
             Lunula Slavic Soap
           </span>
         </AnimateIn>
         <AnimateIn variant="fade-up" delay={100} className="text-center mb-4">
-          <h2 className="text-white text-2xl small:text-3xl font-heading font-bold">
+          <h2 className="text-white text-2xl small:text-3xl font-heading font-normal mt-2">
             Powrót do korzeni
           </h2>
         </AnimateIn>
-        <AnimateIn variant="fade-up" delay={150} className="text-center mb-12">
-          <p className="text-white/60 text-base max-w-2xl mx-auto leading-relaxed">
+        <AnimateIn variant="fade-up" delay={150} className="text-center mb-16">
+          <p className="text-white/50 text-base max-w-xl mx-auto leading-[1.8] mt-4">
             Mydła Lunula powstają z roślinnych olejów, maseł i ziół, w prostych
             recepturach inspirowanych tradycją. Pielęgnacja, która nie konkuruje
             z naturą — tylko z nią współpracuje.
           </p>
         </AnimateIn>
 
-        <div className="grid grid-cols-1 small:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 small:grid-cols-3 gap-10 max-w-5xl mx-auto">
           {soaps.map((soap, i) => (
             <AnimateIn
               key={soap.name}
@@ -58,18 +59,25 @@ const SlavicSoap = () => {
               delay={i * 150}
               duration={800}
             >
-              <div className="p-8 rounded-sm border border-white/10 text-center">
-                <span className="text-4xl block mb-4">{soap.icon}</span>
-                <h3 className="text-white text-xl font-heading font-semibold mb-2">
+              <div className="text-center">
+                <div className="relative aspect-square overflow-hidden mb-8 bg-white/[0.03] rounded-sm">
+                  <Image
+                    src={soap.image}
+                    alt={soap.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h3 className="text-white text-xl font-heading font-normal mb-2">
                   {soap.name}
                 </h3>
-                <p className="text-brand-accent text-xs tracking-wider mb-4">
+                <p className="text-brand-accent/70 text-xs tracking-wider mb-4">
                   {soap.ingredients}
                 </p>
-                <p className="text-white/70 text-sm leading-relaxed mb-6">
+                <p className="text-white/50 text-sm leading-[1.7] mb-6 max-w-xs mx-auto">
                   {soap.description}
                 </p>
-                <span className="text-brand-primary text-lg font-semibold">
+                <span className="text-white/80 text-base font-semibold">
                   {soap.price}
                 </span>
               </div>
@@ -77,12 +85,12 @@ const SlavicSoap = () => {
           ))}
         </div>
 
-        <AnimateIn variant="fade-up" delay={500} className="mt-10 text-center">
+        <AnimateIn variant="fade-up" delay={500} className="mt-14 text-center">
           <LocalizedClientLink
             href="/mydla-rytualne"
-            className="inline-flex items-center gap-2 px-8 py-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition-colors duration-300 text-sm font-medium tracking-wide"
+            className="inline-flex items-center gap-2 px-10 py-3.5 border border-white/20 text-white/70 hover:border-brand-accent hover:text-brand-accent transition-all duration-300 text-xs tracking-[0.15em] uppercase"
           >
-            Poznaj mydła rytualne →
+            Poznaj mydła rytualne
           </LocalizedClientLink>
         </AnimateIn>
       </div>

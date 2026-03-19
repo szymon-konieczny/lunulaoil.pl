@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#F3F1ED"/>
+  <!-- Subtle circular frame -->
+  <circle cx="200" cy="185" r="130" fill="none" stroke="#E0DDD8" stroke-width="1"/>
+  <!-- Coffee bean shape - large -->
+  <path d="M200 120 C230 120 255 150 255 185 C255 220 230 250 200 250 C170 250 145 220 145 185 C145 150 170 120 200 120Z" fill="none" stroke="#7B5B3A" stroke-width="1.5"/>
+  <!-- Bean center line -->
+  <path d="M200 130 C195 155 205 170 195 185 C185 200 210 215 200 245" fill="none" stroke="#7B5B3A" stroke-width="1.2" opacity="0.6"/>
+  <!-- Subtle texture lines -->
+  <path d="M170 150 C180 155 185 165 180 175" fill="none" stroke="#7B5B3A" stroke-width="0.6" opacity="0.3"/>
+  <path d="M230 150 C220 155 215 165 220 175" fill="none" stroke="#7B5B3A" stroke-width="0.6" opacity="0.3"/>
+  <path d="M165 190 C175 195 178 205 172 215" fill="none" stroke="#7B5B3A" stroke-width="0.6" opacity="0.3"/>
+  <path d="M235 190 C225 195 222 205 228 215" fill="none" stroke="#7B5B3A" stroke-width="0.6" opacity="0.3"/>
+  <!-- Steam wisps above -->
+  <path d="M185 105 C183 95 188 85 185 75" fill="none" stroke="#7B5B3A" stroke-width="0.7" opacity="0.25" stroke-linecap="round"/>
+  <path d="M200 100 C198 90 203 80 200 70" fill="none" stroke="#7B5B3A" stroke-width="0.7" opacity="0.25" stroke-linecap="round"/>
+  <path d="M215 105 C213 95 218 85 215 75" fill="none" stroke="#7B5B3A" stroke-width="0.7" opacity="0.25" stroke-linecap="round"/>
+  <!-- Small decorative dots - earth particles -->
+  <circle cx="155" cy="270" r="2" fill="none" stroke="#7B5B3A" stroke-width="0.6" opacity="0.25"/>
+  <circle cx="245" cy="270" r="2" fill="none" stroke="#7B5B3A" stroke-width="0.6" opacity="0.25"/>
+  <circle cx="170" cy="280" r="1.5" fill="none" stroke="#7B5B3A" stroke-width="0.5" opacity="0.2"/>
+  <circle cx="230" cy="280" r="1.5" fill="none" stroke="#7B5B3A" stroke-width="0.5" opacity="0.2"/>
+  <!-- Product name -->
+  <text x="200" y="350" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#1A1A1A" letter-spacing="3">Mokosza</text>
+  <line x1="155" y1="362" x2="245" y2="362" stroke="#7B5B3A" stroke-width="0.5" opacity="0.5"/>
+</svg>

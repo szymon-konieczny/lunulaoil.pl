@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#F3F1ED"/>
+  <!-- Subtle circular frame -->
+  <circle cx="200" cy="185" r="130" fill="none" stroke="#E0DDD8" stroke-width="1"/>
+  <!-- Chamomile/lavender flower - center -->
+  <circle cx="200" cy="175" r="12" fill="none" stroke="#9B8BB4" stroke-width="1.2"/>
+  <circle cx="200" cy="175" r="5" fill="none" stroke="#9B8BB4" stroke-width="0.8" opacity="0.5"/>
+  <!-- Petals - delicate elongated ovals -->
+  <ellipse cx="200" cy="148" rx="5" ry="16" fill="none" stroke="#9B8BB4" stroke-width="1.2" opacity="0.8"/>
+  <ellipse cx="200" cy="202" rx="5" ry="16" fill="none" stroke="#9B8BB4" stroke-width="1.2" opacity="0.8"/>
+  <ellipse cx="173" cy="175" rx="16" ry="5" fill="none" stroke="#9B8BB4" stroke-width="1.2" opacity="0.8"/>
+  <ellipse cx="227" cy="175" rx="16" ry="5" fill="none" stroke="#9B8BB4" stroke-width="1.2" opacity="0.8"/>
+  <!-- Diagonal petals -->
+  <ellipse cx="181" cy="156" rx="5" ry="16" fill="none" stroke="#9B8BB4" stroke-width="1.1" opacity="0.7" transform="rotate(-45 181 156)"/>
+  <ellipse cx="219" cy="156" rx="5" ry="16" fill="none" stroke="#9B8BB4" stroke-width="1.1" opacity="0.7" transform="rotate(45 219 156)"/>
+  <ellipse cx="181" cy="194" rx="5" ry="16" fill="none" stroke="#9B8BB4" stroke-width="1.1" opacity="0.7" transform="rotate(45 181 194)"/>
+  <ellipse cx="219" cy="194" rx="5" ry="16" fill="none" stroke="#9B8BB4" stroke-width="1.1" opacity="0.7" transform="rotate(-45 219 194)"/>
+  <!-- Stem -->
+  <path d="M200 220 C200 240 198 255 200 270" fill="none" stroke="#5A7A52" stroke-width="1" opacity="0.6"/>
+  <!-- Small leaves on stem -->
+  <path d="M200 238 C190 230 178 232 175 238" fill="none" stroke="#5A7A52" stroke-width="0.8" opacity="0.5"/>
+  <path d="M200 252 C210 244 222 246 225 252" fill="none" stroke="#5A7A52" stroke-width="0.8" opacity="0.5"/>
+  <!-- Small accent buds -->
+  <circle cx="155" cy="140" r="4" fill="none" stroke="#9B8BB4" stroke-width="0.7" opacity="0.3"/>
+  <circle cx="245" cy="140" r="4" fill="none" stroke="#9B8BB4" stroke-width="0.7" opacity="0.3"/>
+  <line x1="155" y1="144" x2="155" y2="155" stroke="#5A7A52" stroke-width="0.5" opacity="0.3"/>
+  <line x1="245" y1="144" x2="245" y2="155" stroke="#5A7A52" stroke-width="0.5" opacity="0.3"/>
+  <!-- Product name -->
+  <text x="200" y="350" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#1A1A1A" letter-spacing="3">Rusa&#x142;ka</text>
+  <line x1="160" y1="362" x2="240" y2="362" stroke="#9B8BB4" stroke-width="0.5" opacity="0.5"/>
+</svg>

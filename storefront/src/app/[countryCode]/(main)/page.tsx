@@ -54,7 +54,7 @@ export default async function Home(props: {
       contactType: "customer service",
       availableLanguage: "Polish",
     },
-    sameAs: ["https://www.instagram.com/lunulaoil/"],
+    sameAs: ["https://www.instagram.com/lunula_slow_care"],
   }
 
   const webSiteJsonLd = {

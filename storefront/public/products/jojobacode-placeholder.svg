@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#F3F1ED"/>
+  <!-- Subtle circular frame -->
+  <circle cx="200" cy="185" r="130" fill="none" stroke="#E0DDD8" stroke-width="1"/>
+  <!-- Central leaf -->
+  <path d="M200 110 C220 140 235 170 220 210 C210 235 200 240 200 240 C200 240 190 235 180 210 C165 170 180 140 200 110Z" fill="none" stroke="#3A8C3F" stroke-width="1.5"/>
+  <!-- Leaf center vein -->
+  <line x1="200" y1="120" x2="200" y2="238" stroke="#3A8C3F" stroke-width="0.8" opacity="0.6"/>
+  <!-- Leaf side veins -->
+  <path d="M200 145 L215 155" fill="none" stroke="#3A8C3F" stroke-width="0.6" opacity="0.4"/>
+  <path d="M200 145 L185 155" fill="none" stroke="#3A8C3F" stroke-width="0.6" opacity="0.4"/>
+  <path d="M200 165 L220 178" fill="none" stroke="#3A8C3F" stroke-width="0.6" opacity="0.4"/>
+  <path d="M200 165 L180 178" fill="none" stroke="#3A8C3F" stroke-width="0.6" opacity="0.4"/>
+  <path d="M200 185 L218 200" fill="none" stroke="#3A8C3F" stroke-width="0.6" opacity="0.4"/>
+  <path d="M200 185 L182 200" fill="none" stroke="#3A8C3F" stroke-width="0.6" opacity="0.4"/>
+  <path d="M200 205 L212 218" fill="none" stroke="#3A8C3F" stroke-width="0.6" opacity="0.4"/>
+  <path d="M200 205 L188 218" fill="none" stroke="#3A8C3F" stroke-width="0.6" opacity="0.4"/>
+  <!-- Small jojoba seeds -->
+  <ellipse cx="155" cy="160" rx="8" ry="12" fill="none" stroke="#3A8C3F" stroke-width="1" opacity="0.5" transform="rotate(-15 155 160)"/>
+  <ellipse cx="245" cy="160" rx="8" ry="12" fill="none" stroke="#3A8C3F" stroke-width="1" opacity="0.5" transform="rotate(15 245 160)"/>
+  <ellipse cx="152" cy="200" rx="6" ry="9" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.35" transform="rotate(-10 152 200)"/>
+  <ellipse cx="248" cy="200" rx="6" ry="9" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.35" transform="rotate(10 248 200)"/>
+  <!-- Stem -->
+  <line x1="200" y1="240" x2="200" y2="260" stroke="#3A8C3F" stroke-width="1" opacity="0.5"/>
+  <!-- Product name -->
+  <text x="200" y="350" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#1A1A1A" letter-spacing="3">JojobaCode</text>
+  <line x1="152" y1="362" x2="248" y2="362" stroke="#3A8C3F" stroke-width="0.5" opacity="0.5"/>
+</svg>

@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#F3F1ED"/>
+  <!-- Subtle circular frame -->
+  <circle cx="200" cy="185" r="130" fill="none" stroke="#E0DDD8" stroke-width="1"/>
+  <!-- Leaf wreath - left side -->
+  <path d="M140 185 C145 165 155 150 170 140" fill="none" stroke="#3A8C3F" stroke-width="1.2" opacity="0.7"/>
+  <path d="M145 170 C138 165 132 170 136 178" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <path d="M150 155 C143 150 137 155 141 163" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <path d="M158 143 C151 138 145 143 149 151" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <!-- Leaf wreath - top left -->
+  <path d="M170 140 C185 130 195 125 200 123" fill="none" stroke="#3A8C3F" stroke-width="1.2" opacity="0.7"/>
+  <path d="M175 135 C172 127 176 122 182 128" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <path d="M190 128 C188 120 192 115 197 122" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <!-- Leaf wreath - top right -->
+  <path d="M200 123 C205 125 215 130 230 140" fill="none" stroke="#3A8C3F" stroke-width="1.2" opacity="0.7"/>
+  <path d="M210 128 C212 120 208 115 203 122" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <path d="M225 135 C228 127 224 122 218 128" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <!-- Leaf wreath - right side -->
+  <path d="M230 140 C245 150 255 165 260 185" fill="none" stroke="#3A8C3F" stroke-width="1.2" opacity="0.7"/>
+  <path d="M242 143 C249 138 255 143 251 151" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <path d="M250 155 C257 150 263 155 259 163" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <path d="M255 170 C262 165 268 170 264 178" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <!-- Leaf wreath - bottom right -->
+  <path d="M260 185 C258 205 248 220 235 230" fill="none" stroke="#3A8C3F" stroke-width="1.2" opacity="0.7"/>
+  <path d="M258 200 C265 202 268 197 262 192" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <path d="M252 215 C259 217 262 212 256 207" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <!-- Leaf wreath - bottom -->
+  <path d="M235 230 C220 240 210 243 200 245" fill="none" stroke="#3A8C3F" stroke-width="1.2" opacity="0.7"/>
+  <path d="M200 245 C190 243 180 240 165 230" fill="none" stroke="#3A8C3F" stroke-width="1.2" opacity="0.7"/>
+  <path d="M225 238 C225 246 220 248 215 243" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <path d="M175 238 C175 246 180 248 185 243" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <!-- Leaf wreath - bottom left -->
+  <path d="M165 230 C152 220 142 205 140 185" fill="none" stroke="#3A8C3F" stroke-width="1.2" opacity="0.7"/>
+  <path d="M148 215 C141 217 138 212 144 207" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <path d="M142 200 C135 202 132 197 138 192" fill="none" stroke="#3A8C3F" stroke-width="0.8" opacity="0.5"/>
+  <!-- Minimalist cream jar -->
+  <!-- Jar lid -->
+  <rect x="178" y="162" width="44" height="10" rx="2" fill="none" stroke="#1A1A1A" stroke-width="1.2" opacity="0.6"/>
+  <!-- Jar body -->
+  <path d="M175 172 L175 205 Q175 212 182 212 L218 212 Q225 212 225 205 L225 172Z" fill="none" stroke="#1A1A1A" stroke-width="1.2" opacity="0.6"/>
+  <!-- Jar label line -->
+  <line x1="185" y1="188" x2="215" y2="188" stroke="#1A1A1A" stroke-width="0.6" opacity="0.3"/>
+  <line x1="190" y1="195" x2="210" y2="195" stroke="#1A1A1A" stroke-width="0.5" opacity="0.2"/>
+  <!-- Product name -->
+  <text x="200" y="345" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="16" fill="#1A1A1A" letter-spacing="2.5">Kremy Rytualne</text>
+  <line x1="140" y1="357" x2="260" y2="357" stroke="#3A8C3F" stroke-width="0.5" opacity="0.5"/>
+</svg>

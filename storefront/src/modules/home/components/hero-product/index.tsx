@@ -1,38 +1,38 @@
+import Image from "next/image"
 import AnimateIn from "@modules/common/components/animate-in"
 
 const HeroProduct = () => {
   return (
-    <section className="py-16 small:py-24 bg-brand-background">
+    <section className="py-20 small:py-32 bg-brand-background">
       <div className="content-container">
-        <div className="grid grid-cols-1 small:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 small:grid-cols-2 gap-12 small:gap-20 items-center max-w-5xl mx-auto">
           <AnimateIn variant="fade-left">
-            {/* Placeholder for product image */}
-            <div className="relative aspect-square bg-brand-surface rounded-sm flex items-center justify-center border border-brand-border">
-              <div className="text-center">
-                <span className="text-5xl block mb-4">🌿</span>
-                <p className="text-brand-text-muted/60 text-sm tracking-wider uppercase">
-                  Zdjęcie wkrótce
-                </p>
-              </div>
+            <div className="relative aspect-square overflow-hidden">
+              <Image
+                src="/products/krem-rytualne-placeholder.svg"
+                alt="Kremy Rytualne"
+                fill
+                className="object-cover"
+              />
             </div>
           </AnimateIn>
 
           <AnimateIn variant="fade-right" delay={200}>
             <div>
-              <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
+              <span className="text-brand-accent text-xs tracking-[0.35em] uppercase font-medium">
                 Lunula Botanique
               </span>
-              <h2 className="text-brand-text text-3xl small:text-4xl font-heading font-bold mt-3 mb-6">
+              <h2 className="text-brand-text text-3xl small:text-4xl font-heading font-normal mt-4 mb-8 leading-snug">
                 Kremy Rytualne
               </h2>
-              <p className="text-brand-text-muted text-base leading-relaxed mb-6">
+              <p className="text-brand-text-muted text-base leading-[1.8] mb-8">
                 Rytualna pielęgnacja w zgodzie z naturą skóry. Biozgodna
                 formuła, która karmi skórę tym, co już zna — przywracając
                 jej blask, zdrowie i harmonię.
               </p>
-              <p className="text-brand-primary text-sm font-medium tracking-wider uppercase">
+              <span className="text-brand-accent text-xs tracking-[0.2em] uppercase font-medium">
                 Wkrótce w ofercie
-              </p>
+              </span>
             </div>
           </AnimateIn>
         </div>

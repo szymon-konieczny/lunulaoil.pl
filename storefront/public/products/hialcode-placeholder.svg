@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#F3F1ED"/>
+  <!-- Subtle circular frame -->
+  <circle cx="200" cy="185" r="130" fill="none" stroke="#E0DDD8" stroke-width="1"/>
+  <!-- Water drops cluster -->
+  <!-- Central large drop -->
+  <path d="M200 120 Q200 108 210 130 Q220 155 200 170 Q180 155 190 130 Q200 108 200 120Z" fill="none" stroke="#6BA3BE" stroke-width="1.5" opacity="0.9"/>
+  <!-- Left drop -->
+  <path d="M165 150 Q165 142 172 157 Q179 172 165 180 Q151 172 158 157 Q165 142 165 150Z" fill="none" stroke="#6BA3BE" stroke-width="1.2" opacity="0.7"/>
+  <!-- Right drop -->
+  <path d="M235 150 Q235 142 242 157 Q249 172 235 180 Q221 172 228 157 Q235 142 235 150Z" fill="none" stroke="#6BA3BE" stroke-width="1.2" opacity="0.7"/>
+  <!-- Small accent drops -->
+  <path d="M200 185 Q200 180 204 188 Q208 196 200 200 Q192 196 196 188 Q200 180 200 185Z" fill="none" stroke="#6BA3BE" stroke-width="1" opacity="0.5"/>
+  <path d="M148 175 Q148 171 151 178 Q154 184 148 187 Q142 184 145 178 Q148 171 148 175Z" fill="none" stroke="#6BA3BE" stroke-width="1" opacity="0.4"/>
+  <path d="M252 175 Q252 171 255 178 Q258 184 252 187 Q246 184 249 178 Q252 171 252 175Z" fill="none" stroke="#6BA3BE" stroke-width="1" opacity="0.4"/>
+  <!-- Ripple circles at bottom -->
+  <ellipse cx="200" cy="230" rx="35" ry="8" fill="none" stroke="#6BA3BE" stroke-width="0.8" opacity="0.3"/>
+  <ellipse cx="200" cy="230" rx="50" ry="12" fill="none" stroke="#6BA3BE" stroke-width="0.6" opacity="0.2"/>
+  <ellipse cx="200" cy="230" rx="65" ry="16" fill="none" stroke="#6BA3BE" stroke-width="0.4" opacity="0.15"/>
+  <!-- Product name -->
+  <text x="200" y="350" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#1A1A1A" letter-spacing="3">HialCode</text>
+  <line x1="160" y1="362" x2="240" y2="362" stroke="#6BA3BE" stroke-width="0.5" opacity="0.5"/>
+</svg>

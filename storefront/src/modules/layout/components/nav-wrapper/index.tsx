@@ -42,12 +42,14 @@ export default function NavWrapper({
     >
       <header
         className={`relative mx-auto transition-all duration-300 ${
-          scrolled ? "h-20" : "h-28"
+          scrolled ? "h-20" : "h-44"
         }`}
       >
         <nav
-          className={`content-container txt-xsmall-plus flex items-center justify-between w-full h-full text-small-regular transition-colors duration-300 ${
-            scrolled ? "text-brand-text-muted" : "text-white/80"
+          className={`content-container txt-xsmall-plus flex justify-between w-full text-small-regular transition-colors duration-300 ${
+            scrolled
+              ? "text-brand-text-muted items-center"
+              : "text-white/80 items-start pt-5"
           }`}
         >
           {children}

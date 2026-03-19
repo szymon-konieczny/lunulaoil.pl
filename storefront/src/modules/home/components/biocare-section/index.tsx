@@ -1,3 +1,4 @@
+import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import AnimateIn from "@modules/common/components/animate-in"
 
@@ -9,7 +10,7 @@ const products = [
       "Intensywne nawilżenie w głębi skóry. Kwas hialuronowy o wielocząsteczkowej formule, który przywraca elastyczność i blask.",
     price: "79 zł",
     href: "/biozgodna-pielegnacja/hialcode",
-    icon: "💧",
+    image: "/products/hialcode-placeholder.svg",
   },
   {
     name: "SqualaneCode",
@@ -18,7 +19,7 @@ const products = [
       "Ultra lekki, suchy, niekomedogenny lipid. Stabilna forma skwalenu, naturalnie występującego w ludzkim sebum.",
     price: "59 zł",
     href: "/biozgodna-pielegnacja/squalanecode",
-    icon: "🫧",
+    image: "/products/squalanecode-placeholder.svg",
   },
   {
     name: "JojobaCode",
@@ -27,27 +28,27 @@ const products = [
       "Inteligentny, wielozadaniowy, samoregulujący. Płynny wosk o budowie zbliżonej do ludzkiego sebum.",
     price: "69 zł",
     href: "/biozgodna-pielegnacja/jojobacode",
-    icon: "🌱",
+    image: "/products/jojobacode-placeholder.svg",
   },
 ]
 
 const BiocareSection = () => {
   return (
-    <section className="py-16 small:py-24 bg-brand-surface">
+    <section className="py-20 small:py-32 bg-brand-surface">
       <div className="content-container">
         <AnimateIn variant="fade-in" className="text-center mb-4">
-          <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
+          <span className="text-brand-accent text-xs tracking-[0.35em] uppercase font-medium">
             Biozgodna Pielęgnacja Twarzy
           </span>
         </AnimateIn>
-        <AnimateIn variant="fade-up" delay={100} className="text-center mb-12">
-          <p className="text-brand-text-muted text-base max-w-2xl mx-auto leading-relaxed">
+        <AnimateIn variant="fade-up" delay={100} className="text-center mb-16">
+          <p className="text-brand-text-muted text-base max-w-xl mx-auto leading-[1.8]">
             Składniki rozpoznawalne przez skórę, które wspierają jej naturalne
             procesy zamiast je zaburzać. Karmienie skóry tym, co ona już zna.
           </p>
         </AnimateIn>
 
-        <div className="grid grid-cols-1 small:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 small:grid-cols-3 gap-10 max-w-5xl mx-auto">
           {products.map((product, i) => (
             <AnimateIn
               key={product.name}
@@ -56,32 +57,31 @@ const BiocareSection = () => {
               duration={800}
             >
               <LocalizedClientLink href={product.href} className="block group">
-                <div className="p-8 rounded-sm border border-brand-border hover:border-brand-accent/30 transition-colors duration-300">
-                  {/* Placeholder for product image */}
-                  <div className="relative aspect-square bg-brand-background rounded-sm flex items-center justify-center mb-6">
-                    <div className="text-center">
-                      <span className="text-4xl block mb-2">{product.icon}</span>
-                      <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
-                        Zdjęcie wkrótce
-                      </p>
-                    </div>
+                <div className="bg-brand-background p-6 hover:shadow-sm transition-all duration-500">
+                  <div className="relative aspect-square overflow-hidden mb-8">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
                   </div>
 
-                  <h3 className="text-brand-text text-xl font-heading font-semibold mb-1 group-hover:text-brand-accent transition-colors">
+                  <h3 className="text-brand-text text-lg font-heading font-semibold mb-1 group-hover:text-brand-accent transition-colors duration-300">
                     {product.name}
                   </h3>
-                  <p className="text-brand-accent text-sm mb-3">
+                  <p className="text-brand-accent text-xs tracking-wider mb-3">
                     {product.subtitle}
                   </p>
-                  <p className="text-brand-text-muted text-sm leading-relaxed mb-4">
+                  <p className="text-brand-text-muted text-sm leading-[1.7] mb-5">
                     {product.description}
                   </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-brand-primary text-lg font-semibold">
+                  <div className="flex items-center justify-between pt-4 border-t border-brand-border">
+                    <span className="text-brand-text text-base font-semibold">
                       {product.price}
                     </span>
-                    <span className="text-brand-text-muted/60 text-sm group-hover:text-brand-accent transition-colors">
-                      Dowiedz się więcej →
+                    <span className="text-brand-text-muted/50 text-xs tracking-wider uppercase group-hover:text-brand-accent transition-colors duration-300">
+                      Więcej →
                     </span>
                   </div>
                 </div>

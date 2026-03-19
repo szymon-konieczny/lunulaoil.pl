@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <rect width="400" height="400" fill="#F3F1ED"/>
+  <!-- Subtle circular frame -->
+  <circle cx="200" cy="185" r="130" fill="none" stroke="#E0DDD8" stroke-width="1"/>
+  <!-- Elegant oil droplet -->
+  <path d="M200 100 C200 100 230 155 230 185 C230 202 216.6 215 200 215 C183.4 215 170 202 170 185 C170 155 200 100 200 100Z" fill="none" stroke="#C9A96E" stroke-width="1.5"/>
+  <!-- Inner shine/reflection -->
+  <path d="M192 145 C192 145 182 172 182 185 C182 192 189 198 196 198" fill="none" stroke="#C9A96E" stroke-width="0.8" opacity="0.4"/>
+  <!-- Small highlight -->
+  <circle cx="190" cy="170" r="3" fill="none" stroke="#C9A96E" stroke-width="0.8" opacity="0.5"/>
+  <!-- Drip at bottom -->
+  <path d="M200 215 L200 235" stroke="#C9A96E" stroke-width="1" opacity="0.4"/>
+  <circle cx="200" cy="240" r="4" fill="none" stroke="#C9A96E" stroke-width="0.8" opacity="0.3"/>
+  <!-- Subtle concentric arcs above drop -->
+  <path d="M175 95 Q200 82 225 95" fill="none" stroke="#C9A96E" stroke-width="0.6" opacity="0.3"/>
+  <path d="M182 88 Q200 78 218 88" fill="none" stroke="#C9A96E" stroke-width="0.5" opacity="0.2"/>
+  <!-- Product name -->
+  <text x="200" y="350" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="18" fill="#1A1A1A" letter-spacing="3">SqualaneCode</text>
+  <line x1="148" y1="362" x2="252" y2="362" stroke="#C9A96E" stroke-width="0.5" opacity="0.5"/>
+</svg>

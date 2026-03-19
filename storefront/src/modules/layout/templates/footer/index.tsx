@@ -31,7 +31,7 @@ export default async function Footer() {
             </Text>
             <div className="flex gap-x-4 mt-2">
               <a
-                href="https://www.instagram.com/lunulaoil/"
+                href="https://www.instagram.com/lunula_slow_care"
                 target="_blank"
                 rel="noreferrer"
                 className="text-brand-text-muted hover:text-brand-accent transition-colors"

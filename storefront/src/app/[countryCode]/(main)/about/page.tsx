@@ -78,7 +78,7 @@ export default async function AboutPage() {
             </h1>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={200}>
-            <p className="text-brand-text-muted text-lg small:text-xl max-w-2xl mx-auto leading-relaxed">
+            <p className="text-white/80 text-lg small:text-xl max-w-2xl mx-auto leading-relaxed">
               {t("hero.description")}
               <br />
               {t("hero.descriptionLine2")}
@@ -334,7 +334,7 @@ export default async function AboutPage() {
                 +48 509 085 064
               </a>
               <a
-                href="https://www.instagram.com/lunulaoil/"
+                href="https://www.instagram.com/lunula_slow_care"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 text-brand-text-muted hover:text-brand-accent transition-colors"

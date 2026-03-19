@@ -31,10 +31,10 @@ export default async function Nav() {
   return (
     <NavWrapper>
       <div className="flex-1 basis-0 h-full flex items-center">
-        <div className="h-full small:hidden">
+        <div className="small:hidden flex items-center">
           <SideMenu regions={regions} locales={locales} currentLocale={currentLocale} />
         </div>
-        <div className="hidden small:flex items-center gap-x-6 h-full">
+        <div className="hidden small:flex items-center gap-x-6">
           <ShopDropdown categories={navCategories} />
           <LocalizedClientLink
             className="hover:text-brand-accent transition-colors"
@@ -54,21 +54,23 @@ export default async function Nav() {
       <div className="flex items-center h-full">
         <LocalizedClientLink
           href="/"
-          className="hover:opacity-80 transition-opacity"
+          className="relative flex items-center justify-center hover:opacity-90 transition-opacity"
           data-testid="nav-store-link"
         >
+          {/* Translucent circle behind logo — visible only on hero (not scrolled) */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 small:w-44 small:h-44 rounded-full bg-white/30 backdrop-blur-sm transition-all duration-300 [[data-scrolled='true']_&]:opacity-0 pointer-events-none" />
           <Image
             src="/logo-botanique.png"
             alt="Lunula Botanique"
             width={250}
             height={210}
-            className="w-auto transition-all duration-300 h-24 [[data-scrolled='true']_&]:h-16"
+            className="relative w-auto transition-all duration-300 h-24 [[data-scrolled='true']_&]:h-16"
             priority
           />
         </LocalizedClientLink>
       </div>
 
-      <div className="flex items-center gap-x-6 h-full flex-1 basis-0 justify-end">
+      <div className="flex items-center gap-x-6 flex-1 basis-0 justify-end">
         <LocalizedClientLink
           className="hidden small:block hover:text-brand-accent transition-colors"
           href="/account"
@@ -78,13 +80,26 @@ export default async function Nav() {
         </LocalizedClientLink>
         <Suspense
           fallback={
-            <LocalizedClientLink
-              className="hover:text-brand-accent flex gap-2 transition-colors"
-              href="/cart"
-              data-testid="nav-cart-link"
-            >
-              Koszyk (0)
-            </LocalizedClientLink>
+            <>
+              {/* Mobile fallback: cart icon */}
+              <LocalizedClientLink
+                className="small:hidden hover:text-brand-accent transition-colors"
+                href="/cart"
+                data-testid="nav-cart-link-mobile"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                </svg>
+              </LocalizedClientLink>
+              {/* Desktop fallback: text */}
+              <LocalizedClientLink
+                className="hidden small:block hover:text-brand-accent transition-colors"
+                href="/cart"
+                data-testid="nav-cart-link"
+              >
+                Koszyk (0)
+              </LocalizedClientLink>
+            </>
           }
         >
           <CartButton />
