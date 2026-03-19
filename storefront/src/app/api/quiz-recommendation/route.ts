@@ -96,7 +96,7 @@ ${formattedAnswers}
 Dostępne produkty w sklepie:
 ${productList}
 
-Na podstawie odpowiedzi klienta, zaproponuj 1 (maksymalnie 2-3) najlepiej dopasowane produkty i napisz krótką (3-5 zdań), ciepłą i profesjonalną rekomendację po polsku. Wyjaśnij dlaczego ten konkretny produkt jest idealny dla klienta — odwołuj się do filozofii biozgodności. Sugeruj łączenie produktów (np. HialCode + SqualaneCode). Na koniec zaproponuj udział w warsztatach Slow Care. Nie używaj nagłówków ani punktorów — pisz naturalnym, ciepłym tonem jak doradca w butikowym sklepie z kosmetykami.`
+Na podstawie odpowiedzi klienta, zaproponuj 1 (maksymalnie 2-3) najlepiej dopasowane produkty i napisz krótką (3-5 zdań), ciepłą i profesjonalną rekomendację po polsku. Wyjaśnij dlaczego ten konkretny produkt jest idealny dla klienta — odwołuj się do filozofii biozgodności. Sugeruj łączenie produktów (np. HialCode + SqualaneCode). Na koniec zaproponuj udział w warsztatach Slow Care. Nie używaj nagłówków ani punktorów — pisz naturalnym, ciepłym tonem jak doradca w butikowym sklepie z kosmetykami. WAŻNE: Nie wymyślaj imienia klienta — nie znasz go. Zwracaj się bezosobowo lub w drugiej osobie (np. "Twoja skóra", "dla Ciebie").`
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",

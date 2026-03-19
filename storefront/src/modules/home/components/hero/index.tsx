@@ -1,11 +1,10 @@
 "use client"
 
-import Image from "next/image"
 import AnimateIn from "@modules/common/components/animate-in"
 
 const Hero = () => {
   return (
-    <div className="relative w-full h-[70vh] small:h-[85vh] overflow-hidden" id="hero">
+    <div className="relative w-full h-[100dvh] -mt-28 overflow-hidden" id="hero">
       {/* Background video with image fallback */}
       <video
         autoPlay
@@ -24,17 +23,6 @@ const Hero = () => {
 
       {/* Content — centered with logo */}
       <div className="content-container relative z-10 flex flex-col items-center justify-center text-center h-full gap-6 py-16">
-        <AnimateIn variant="fade-in" duration={1000}>
-          <Image
-            src="/logo-botanique.png"
-            alt="Lunula Botanique"
-            width={200}
-            height={200}
-            className="h-32 small:h-44 w-auto"
-            priority
-          />
-        </AnimateIn>
-
         <AnimateIn variant="fade-up" delay={200} duration={900}>
           <h1 className="font-heading text-4xl small:text-6xl leading-none text-white font-bold">
             Biozgodna Pielęgnacja
@@ -71,8 +59,8 @@ const Hero = () => {
         </AnimateIn>
       </div>
 
-      {/* Bottom gradient fade into background */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-brand-background to-transparent" />
+      {/* Bottom gradient fade into next section (dark manifest) */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent" />
     </div>
   )
 }
