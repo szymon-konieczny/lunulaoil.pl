@@ -2,6 +2,7 @@
 
 import { clx } from "@medusajs/ui"
 import { QuizOption } from "../data"
+import { quizIcons } from "./quiz-icons"
 
 type Props = {
   option: QuizOption
@@ -10,6 +11,8 @@ type Props = {
 }
 
 export default function QuizOptionCard({ option, selected, onClick }: Props) {
+  const IconComponent = option.icon ? quizIcons[option.icon] : null
+
   return (
     <button
       type="button"
@@ -24,8 +27,15 @@ export default function QuizOptionCard({ option, selected, onClick }: Props) {
       )}
     >
       <div className="flex items-start gap-4">
-        {option.icon && (
-          <span className="text-2xl flex-shrink-0 mt-0.5">{option.icon}</span>
+        {IconComponent && (
+          <span
+            className={clx(
+              "flex-shrink-0 mt-0.5 transition-colors duration-200",
+              selected ? "text-brand-primary" : "text-brand-text-muted"
+            )}
+          >
+            <IconComponent className="w-6 h-6" />
+          </span>
         )}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-3">
@@ -38,7 +48,15 @@ export default function QuizOptionCard({ option, selected, onClick }: Props) {
               {option.label}
             </span>
             {selected && (
-              <span className="text-brand-primary text-sm">✓</span>
+              <svg
+                className="w-4 h-4 text-brand-primary"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
             )}
           </div>
           {option.description && (
