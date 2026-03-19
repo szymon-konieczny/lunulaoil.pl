@@ -1,15 +1,59 @@
 import { Metadata } from "next"
 import Image from "next/image"
+import { getTranslations } from "next-intl/server"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import AnimateIn from "@modules/common/components/animate-in"
 
-export const metadata: Metadata = {
-  title: "O marce",
-  description:
-    "Lunula Botanique — biozgodna pielęgnacja twarzy i ciała. Poznaj naszą historię, filozofię i wartości.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("pages.about")
+  return {
+    title: t("metaTitle"),
+    description: t("metaDescription"),
+  }
 }
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const t = await getTranslations("pages.about")
+
+  const values = [
+    {
+      icon: "🌿",
+      title: t("values.biocompatibility.title"),
+      text: t("values.biocompatibility.text"),
+    },
+    {
+      icon: "✨",
+      title: t("values.purity.title"),
+      text: t("values.purity.text"),
+    },
+    {
+      icon: "🌸",
+      title: t("values.ritual.title"),
+      text: t("values.ritual.text"),
+    },
+  ]
+
+  const productLines = [
+    {
+      icon: "🧴",
+      href: "/biozgodna-pielegnacja",
+      title: t("productLines.biocare.title"),
+      text: t("productLines.biocare.text"),
+    },
+    {
+      icon: "🌿",
+      href: "/mydla-rytualne",
+      title: t("productLines.soaps.title"),
+      text: t("productLines.soaps.text"),
+    },
+    {
+      icon: "✨",
+      href: "/store",
+      title: t("productLines.oils.title"),
+      text: t("productLines.oils.text"),
+    },
+  ]
+
   return (
     <div className="bg-brand-background">
       {/* Hero */}
@@ -25,7 +69,7 @@ export default function AboutPage() {
         <div className="content-container text-center relative z-10">
           <AnimateIn variant="fade-in">
             <span className="text-brand-accent text-sm font-medium uppercase tracking-wider">
-              O marce
+              {t("hero.subtitle")}
             </span>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={100}>
@@ -35,9 +79,9 @@ export default function AboutPage() {
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={200}>
             <p className="text-brand-text-muted text-lg small:text-xl max-w-2xl mx-auto leading-relaxed">
-              Biozgodna pielęgnacja — powrót do natury.
+              {t("hero.description")}
               <br />
-              By Lunula.
+              {t("hero.descriptionLine2")}
             </p>
           </AnimateIn>
         </div>
@@ -50,29 +94,15 @@ export default function AboutPage() {
             <AnimateIn variant="fade-left">
               <div>
                 <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
-                  Nasza historia
+                  {t("story.subtitle")}
                 </span>
                 <h2 className="text-2xl small:text-3xl font-serif text-brand-text mt-3 mb-6">
-                  Z miłości do natury
+                  {t("story.title")}
                 </h2>
                 <div className="space-y-4 text-brand-text-muted text-base leading-relaxed">
-                  <p>
-                    Lunula Botanique powstała z przekonania, że najlepsza
-                    pielęgnacja jest zgodna z fizjologią skóry. Nie tworzę
-                    kolejnej marki opartej na syntetycznych komponentach — buduję
-                    koncepcję, która ma sens.
-                  </p>
-                  <p>
-                    Starannie dobieram surowce kosmetyczne — naturalne oleje,
-                    masła i zioła z najlepszych źródeł. Każdy produkt to efekt
-                    długich poszukiwań idealnych składników i perfekcyjnych
-                    proporcji.
-                  </p>
-                  <p>
-                    Wszystkie produkty spełniają surowe normy mikrobiologiczne i
-                    dermatologiczne. Są zarejestrowane w bazie CPNP oraz w
-                    farmaceutycznej Bazie Leków i Środków Ochrony Zdrowia.
-                  </p>
+                  <p>{t("story.p1")}</p>
+                  <p>{t("story.p2")}</p>
+                  <p>{t("story.p3")}</p>
                 </div>
               </div>
             </AnimateIn>
@@ -80,7 +110,7 @@ export default function AboutPage() {
               <div className="relative aspect-[4/3] max-h-[480px] rounded-large overflow-hidden">
                 <Image
                   src="/olejki-1.jpg"
-                  alt="Produkty Lunula Botanique"
+                  alt={t("story.imageAlt")}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
@@ -96,31 +126,15 @@ export default function AboutPage() {
         <div className="content-container">
           <AnimateIn variant="fade-in" className="text-center mb-16">
             <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
-              Nasze wartości
+              {t("values.subtitle")}
             </span>
             <h2 className="text-2xl small:text-3xl font-serif text-brand-text mt-3">
-              Filozofia biozgodności
+              {t("values.title")}
             </h2>
           </AnimateIn>
 
           <div className="grid grid-cols-1 small:grid-cols-3 gap-10">
-            {[
-              {
-                icon: "🌿",
-                title: "Biozgodność",
-                text: "Składniki rozpoznawalne przez skórę, które nie naruszają bariery hydrolipidowej i współpracują z naturalnym pH, mikrobiomem i lipidami.",
-              },
-              {
-                icon: "✨",
-                title: "Czystość",
-                text: "Pielęgnacja powinna być tak czysta i bezpieczna, żeby można było ją zjeść. Bo wszystko, co nakładamy na skórę, przenika głębiej niż myślimy.",
-              },
-              {
-                icon: "🌸",
-                title: "Rytuał",
-                text: "Pielęgnacja to nie obowiązek — to chwila dla siebie. Dotyk faktury, zapach ziół i chwila zatrzymania. Naturalna pielęgnacja to powrót do korzeni.",
-              },
-            ].map((item, i) => (
+            {values.map((item, i) => (
               <AnimateIn
                 key={item.title}
                 variant="fade-up"
@@ -154,7 +168,7 @@ export default function AboutPage() {
               <div className="relative aspect-[4/3] max-h-[480px] rounded-large overflow-hidden">
                 <Image
                   src="/olejki-3.jpg"
-                  alt="Składniki biozgodne"
+                  alt={t("biocare.imageAlt")}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
@@ -164,26 +178,15 @@ export default function AboutPage() {
             <AnimateIn variant="fade-right" className="order-1 small:order-2">
               <div>
                 <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
-                  Biozgodna Pielęgnacja
+                  {t("biocare.subtitle")}
                 </span>
                 <h2 className="text-2xl small:text-3xl font-serif text-brand-text mt-3 mb-6">
-                  Karmienie skóry tym, co ona już zna
+                  {t("biocare.title")}
                 </h2>
                 <div className="space-y-4 text-brand-text-muted text-base leading-relaxed">
-                  <p>
-                    Biozgodna pielęgnacja twarzy to taka, która jest zgodna z
-                    fizjologią skóry — wspiera jej naturalne procesy, zamiast je
-                    zaburzać.
-                  </p>
-                  <p>
-                    Składniki dobierane są celowo — tak, by wspierać, odżywiać
-                    i przywracać równowagę. Efektem takiej pielęgnacji jest
-                    cera, która odzyskuje blask, zdrowie, harmonię.
-                  </p>
-                  <p>
-                    Inteligencja natury działa w harmonii z organizmem. Zero
-                    przypadków. Pełna zgodność.
-                  </p>
+                  <p>{t("biocare.p1")}</p>
+                  <p>{t("biocare.p2")}</p>
+                  <p>{t("biocare.p3")}</p>
                 </div>
               </div>
             </AnimateIn>
@@ -198,23 +201,14 @@ export default function AboutPage() {
             <AnimateIn variant="fade-left">
               <div>
                 <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
-                  Filozofia
+                  {t("philosophy.subtitle")}
                 </span>
                 <h2 className="text-2xl small:text-3xl font-serif text-brand-text mt-3 mb-6">
-                  Symbol Lunuli
+                  {t("philosophy.title")}
                 </h2>
                 <div className="space-y-4 text-brand-text-muted text-base leading-relaxed">
-                  <p>
-                    Lunula to symbol energii, jaką niesie ze sobą Księżyc — jego
-                    majestat, słowiańskie korzenie i pełnia kobiecości. To właśnie
-                    ta idea przyświeca każdemu naszemu produktowi.
-                  </p>
-                  <p>
-                    Oferujemy najwyższej jakości naturalne składniki i starannie
-                    wyselekcjonowane surowce kosmetyczne. Unikalne formuły,
-                    konsystencje i działanie składników aktywnych towarzyszą
-                    codziennej pielęgnacji.
-                  </p>
+                  <p>{t("philosophy.p1")}</p>
+                  <p>{t("philosophy.p2")}</p>
                 </div>
               </div>
             </AnimateIn>
@@ -222,7 +216,7 @@ export default function AboutPage() {
               <div className="relative aspect-[4/3] max-h-[480px] rounded-large overflow-hidden">
                 <Image
                   src="/olejki-2.jpg"
-                  alt="Filozofia Lunula Botanique"
+                  alt={t("philosophy.imageAlt")}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
                   className="object-cover"
@@ -238,58 +232,35 @@ export default function AboutPage() {
         <div className="content-container">
           <AnimateIn variant="fade-in" className="text-center mb-12">
             <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
-              Nasze linie
+              {t("productLines.subtitle")}
             </span>
             <h2 className="text-2xl small:text-3xl font-serif text-brand-text mt-3">
-              Trzy filary pielęgnacji
+              {t("productLines.title")}
             </h2>
           </AnimateIn>
 
           <div className="grid grid-cols-1 small:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <AnimateIn variant="fade-up" delay={0} duration={800}>
-              <LocalizedClientLink
-                href="/biozgodna-pielegnacja"
-                className="block p-8 rounded-large border border-brand-border text-center hover:border-brand-accent/20 transition-colors"
+            {productLines.map((item, i) => (
+              <AnimateIn
+                key={item.href}
+                variant="fade-up"
+                delay={i * 150}
+                duration={800}
               >
-                <span className="text-3xl block mb-4">🧴</span>
-                <h3 className="text-brand-text text-lg font-semibold mb-3">
-                  Biozgodna Pielęgnacja
-                </h3>
-                <p className="text-brand-text-muted text-sm leading-relaxed">
-                  HialCode, SqualaneCode, JojobaCode — składniki, które skóra
-                  rozumie.
-                </p>
-              </LocalizedClientLink>
-            </AnimateIn>
-            <AnimateIn variant="fade-up" delay={150} duration={800}>
-              <LocalizedClientLink
-                href="/mydla-rytualne"
-                className="block p-8 rounded-large border border-brand-border text-center hover:border-brand-accent/20 transition-colors"
-              >
-                <span className="text-3xl block mb-4">🌿</span>
-                <h3 className="text-brand-text text-lg font-semibold mb-3">
-                  Mydła Rytualne
-                </h3>
-                <p className="text-brand-text-muted text-sm leading-relaxed">
-                  Lunula Slavic Soap — roślinne oleje, masła i zioła w duchu
-                  tradycji.
-                </p>
-              </LocalizedClientLink>
-            </AnimateIn>
-            <AnimateIn variant="fade-up" delay={300} duration={800}>
-              <LocalizedClientLink
-                href="/store"
-                className="block p-8 rounded-large border border-brand-border text-center hover:border-brand-accent/20 transition-colors"
-              >
-                <span className="text-3xl block mb-4">✨</span>
-                <h3 className="text-brand-text text-lg font-semibold mb-3">
-                  Oleje Lunula Oil
-                </h3>
-                <p className="text-brand-text-muted text-sm leading-relaxed">
-                  Naturalne olejki do pielęgnacji twarzy, ciała i włosów.
-                </p>
-              </LocalizedClientLink>
-            </AnimateIn>
+                <LocalizedClientLink
+                  href={item.href}
+                  className="block p-8 rounded-large border border-brand-border text-center hover:border-brand-accent/20 transition-colors"
+                >
+                  <span className="text-3xl block mb-4">{item.icon}</span>
+                  <h3 className="text-brand-text text-lg font-semibold mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-brand-text-muted text-sm leading-relaxed">
+                    {item.text}
+                  </p>
+                </LocalizedClientLink>
+              </AnimateIn>
+            ))}
           </div>
 
           <AnimateIn variant="fade-up" delay={300} className="mt-12">
@@ -309,19 +280,17 @@ export default function AboutPage() {
         <div className="content-container text-center">
           <AnimateIn variant="fade-in">
             <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
-              Warsztaty
+              {t("workshops.subtitle")}
             </span>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={100}>
             <h2 className="text-2xl small:text-3xl font-serif text-brand-text mt-3 mb-4">
-              Slow Care na żywo
+              {t("workshops.title")}
             </h2>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={200}>
             <p className="text-brand-text-muted text-base leading-relaxed max-w-xl mx-auto mb-8">
-              Dołącz do naszych warsztatów i poznaj tajniki biozgodnej
-              pielęgnacji. Nauczysz się tworzyć własne rytuały dopasowane do
-              potrzeb Twojej skóry.
+              {t("workshops.description")}
             </p>
           </AnimateIn>
           <AnimateIn variant="scale" delay={300}>
@@ -329,7 +298,7 @@ export default function AboutPage() {
               href="/categories/warsztaty"
               className="inline-flex items-center gap-2 px-8 py-3 border border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transition-colors duration-300 text-sm font-medium tracking-wide"
             >
-              Sprawdź warsztaty
+              {t("workshops.cta")}
             </LocalizedClientLink>
           </AnimateIn>
         </div>
@@ -340,12 +309,12 @@ export default function AboutPage() {
         <div className="content-container text-center">
           <AnimateIn variant="fade-in">
             <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
-              Kontakt
+              {t("contact.subtitle")}
             </span>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={100}>
             <h2 className="text-2xl small:text-3xl font-serif text-brand-text mt-3 mb-8">
-              Porozmawiajmy
+              {t("contact.title")}
             </h2>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={200}>
