@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import AnimateIn from "@modules/common/components/animate-in"
+import Icon from "@modules/common/components/icon"
 
 export const metadata: Metadata = {
   title: "Biozgodna Pielęgnacja Twarzy",
@@ -14,21 +15,21 @@ const products = [
     subtitle: "Kwas hialuronowy",
     price: "79 zł",
     href: "/biozgodna-pielegnacja/hialcode",
-    icon: "💧",
+    icon: "water-drop",
   },
   {
     name: "SqualaneCode",
     subtitle: "Skwalan",
     price: "59 zł",
     href: "/biozgodna-pielegnacja/squalanecode",
-    icon: "🫧",
+    icon: "bubbles",
   },
   {
     name: "JojobaCode",
     subtitle: "Olej jojoba",
     price: "69 zł",
     href: "/biozgodna-pielegnacja/jojobacode",
-    icon: "🌱",
+    icon: "seedling",
   },
 ]
 
@@ -86,9 +87,7 @@ export default function BiocarePage() {
                   <div className="p-8 rounded-sm border border-brand-border hover:border-brand-accent/30 transition-colors duration-300 text-center">
                     <div className="relative aspect-square bg-brand-background rounded-sm flex items-center justify-center mb-6">
                       <div className="text-center">
-                        <span className="text-5xl block mb-2">
-                          {product.icon}
-                        </span>
+                        <Icon name={product.icon} size={48} className="mx-auto mb-2" />
                         <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
                           Zdjęcie wkrótce
                         </p>

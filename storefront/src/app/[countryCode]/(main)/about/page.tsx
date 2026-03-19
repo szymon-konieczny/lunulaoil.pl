@@ -3,6 +3,7 @@ import Image from "next/image"
 import { getTranslations } from "next-intl/server"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import AnimateIn from "@modules/common/components/animate-in"
+import Icon from "@modules/common/components/icon"
 import ScrollDownButton from "@modules/common/components/scroll-down-button"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -18,17 +19,17 @@ export default async function AboutPage() {
 
   const values = [
     {
-      icon: "🌿",
+      icon: "herb",
       title: t("values.biocompatibility.title"),
       text: t("values.biocompatibility.text"),
     },
     {
-      icon: "✨",
+      icon: "sparkle",
       title: t("values.purity.title"),
       text: t("values.purity.text"),
     },
     {
-      icon: "🌸",
+      icon: "flower",
       title: t("values.ritual.title"),
       text: t("values.ritual.text"),
     },
@@ -36,19 +37,19 @@ export default async function AboutPage() {
 
   const productLines = [
     {
-      icon: "🧴",
+      icon: "lotion",
       href: "/biozgodna-pielegnacja",
       title: t("productLines.biocare.title"),
       text: t("productLines.biocare.text"),
     },
     {
-      icon: "🌿",
+      icon: "herb",
       href: "/mydla-rytualne",
       title: t("productLines.soaps.title"),
       text: t("productLines.soaps.text"),
     },
     {
-      icon: "✨",
+      icon: "sparkle",
       href: "/store",
       title: t("productLines.oils.title"),
       text: t("productLines.oils.text"),
@@ -146,7 +147,7 @@ export default async function AboutPage() {
                 duration={800}
               >
                 <div className="text-center p-6 rounded-large border border-brand-border">
-                  <span className="text-3xl block mb-4">{item.icon}</span>
+                  <Icon name={item.icon} size={36} className="mx-auto mb-4" />
                   <h3 className="text-brand-text text-lg font-semibold mb-3">
                     {item.title}
                   </h3>
@@ -255,7 +256,7 @@ export default async function AboutPage() {
                   href={item.href}
                   className="block p-8 rounded-large border border-brand-border text-center hover:border-brand-accent/20 transition-colors"
                 >
-                  <span className="text-3xl block mb-4">{item.icon}</span>
+                  <Icon name={item.icon} size={36} className="mx-auto mb-4" />
                   <h3 className="text-brand-text text-lg font-semibold mb-3">
                     {item.title}
                   </h3>

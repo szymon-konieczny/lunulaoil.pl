@@ -3,6 +3,7 @@
 import { HttpTypes } from "@medusajs/types"
 import { Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import Icon from "@modules/common/components/icon"
 import Thumbnail from "@modules/products/components/thumbnail"
 import { getProductPrice } from "@lib/util/get-product-price"
 import { QuizAnswers } from "../data"
@@ -37,7 +38,7 @@ export default function QuizResults({
       {(loading || aiRecommendation) && (
         <div className="mb-10 p-6 rounded-large border border-brand-accent/20 bg-brand-accent/5">
           <div className="flex items-center gap-2 mb-3">
-            <span className="text-brand-accent text-lg">✨</span>
+            <Icon name="sparkle" size={20} />
             <h3 className="text-lg font-semibold text-brand-accent-light">
               Porada eksperta
             </h3>
@@ -83,7 +84,7 @@ export default function QuizResults({
 
       {/* Workshop CTA */}
       <div className="mb-10 p-6 rounded-large border border-brand-accent/20 bg-brand-surface text-center">
-        <span className="text-2xl mb-3 block">🧖‍♀️</span>
+        <Icon name="spa" size={32} className="mx-auto mb-3" />
         <h3 className="text-lg font-semibold text-brand-text mb-2">
           Poznaj rytuały pielęgnacji na żywo
         </h3>

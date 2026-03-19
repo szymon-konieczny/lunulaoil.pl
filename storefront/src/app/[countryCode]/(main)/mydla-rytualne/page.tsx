@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import Image from "next/image"
 import AnimateIn from "@modules/common/components/animate-in"
 import ScrollDownButton from "@modules/common/components/scroll-down-button"
+import Icon from "@modules/common/components/icon"
 
 export const metadata: Metadata = {
   title: "Mydła Rytualne — Lunula Slavic Soap",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 const soaps = [
   {
     name: "Rusałka",
-    icon: "🌿",
+    icon: "herb",
     ingredients: "Rumianek \u2022 Lawenda \u2022 Płatki owsiane",
     inci: "Olea Europaea Fruit Oil, Cocos Nucifera Oil, Butyrospermum Parkii Butter, Chamomilla Recutita, Lavandula Angustifolia Oil, Avena Sativa",
     description:
@@ -21,7 +22,7 @@ const soaps = [
   },
   {
     name: "Różyczka",
-    icon: "🌸",
+    icon: "flower",
     ingredients: "Glinka różowa i czerwona \u2022 May Chang \u2022 Słodka pomarańcza \u2022 Róża damasceńska",
     inci: "Illite, Kaolin, Cymbopogon Martini / Litsea Cubeba Oil (May Chang), Citrus Aurantium Dulcis Peel Oil, Rosa Damascena Flower Oil",
     description:
@@ -30,7 +31,7 @@ const soaps = [
   },
   {
     name: "Mokosza",
-    icon: "☕",
+    icon: "coffee",
     ingredients: "Kawa \u2022 Oleje roślinne \u2022 Hibiskus",
     inci: "Coffea Arabica Seed Powder, Hibiscus Sabdariffa Flower Extract, masło shea",
     description:
@@ -105,7 +106,7 @@ export default function SlavicSoapPage() {
                   {/* Placeholder image */}
                   <div className="relative aspect-square bg-brand-background rounded-sm flex items-center justify-center border border-brand-border">
                     <div className="text-center">
-                      <span className="text-6xl block mb-2">{soap.icon}</span>
+                      <Icon name={soap.icon} size={64} className="mx-auto mb-2" />
                       <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
                         Zdjęcie wkrótce
                       </p>
