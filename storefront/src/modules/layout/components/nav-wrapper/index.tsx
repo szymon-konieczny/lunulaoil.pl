@@ -36,7 +36,7 @@ export default function NavWrapper({
       data-scrolled={scrolled}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-brand-surface/95 backdrop-blur-md shadow-sm"
+          ? "bg-white/90 backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
