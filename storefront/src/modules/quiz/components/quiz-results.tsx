@@ -119,7 +119,7 @@ export default function QuizResults({
           <div className="flex items-center gap-2 mb-3">
             <Icon name="sparkle" size={20} />
             <h3 className="text-lg font-semibold text-brand-accent-light">
-              Porada eksperta
+              Nasza propozycja dla Ciebie
             </h3>
           </div>
           {loading ? (

@@ -6,6 +6,8 @@ import { getProductPrice } from "@lib/util/get-product-price"
 import ProductTemplate from "@modules/products/templates"
 import { HttpTypes } from "@medusajs/types"
 
+export const dynamic = "force-dynamic"
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
 type Props = {
