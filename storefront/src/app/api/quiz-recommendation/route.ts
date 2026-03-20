@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
     const productList = products
       .map((p) => {
         const tags = p.tags.length ? ` [${p.tags.join(", ")}]` : ""
-        return `- ${p.title}: ${p.description || "brak opisu"}${tags}`
+        return `- handle: "${p.handle}" | ${p.title}: ${p.description || "brak opisu"}${tags}`
       })
       .join("\n")
 
@@ -109,7 +109,8 @@ ZASADY:
   1. Główny produkt — najlepiej dopasowany do potrzeb klienta (primary match)
   2. Uzupełniający produkt — komplementarny dodatek wzmacniający rytuał
   3. Warsztaty — najbardziej pasujące warsztaty (Slow Care/Slow Coffee Cream/Slow MakeUp)
-- STRUKTURA REKOMENDACJI: Wybierz 2 najlepsze produkty pielęgnacyjne dla klienta + 1 najbardziej pasujące warsztaty. Zawsze 3 pozycje.
+- RÓŻNORODNOŚĆ KATEGORII: Produkt 1 i 2 MUSZĄ być z RÓŻNYCH kategorii produktowych. Przykłady dobrych par: krem + olej, krem + serum, olej + mydło, serum + olej. NIGDY nie rekomenduj dwóch produktów z tej samej kategorii (np. krem + krem, olej + olej).
+- STRUKTURA REKOMENDACJI: Wybierz 2 najlepsze produkty pielęgnacyjne z RÓŻNYCH kategorii + 1 najbardziej pasujące warsztaty. Zawsze 3 pozycje.
 - text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Opisz WSZYSTKIE 3 polecane pozycje (2 produkty + warsztaty) W TEJ SAMEJ KOLEJNOŚCI co handles — najpierw główny produkt, potem uzupełniający, na końcu warsztaty. Odwołaj się do filozofii biozgodności. Pisz naturalnym, POPRAWNYM polskim — jak native speaker. Ton: ciepły doradca w butikowym sklepie.
 - BEZWZGLĘDNA SPÓJNOŚĆ handles↔tekst: handles i tekst muszą opisywać IDENTYCZNY zestaw W IDENTYCZNEJ KOLEJNOŚCI. Każdy handle musi być wspomniany w tekście. Przed odpowiedzią ZWERYFIKUJ.
 - BEZWZGLĘDNY ZAKAZ: NIE WOLNO wspominać produktów spoza powyższej listy. Złamanie = błąd krytyczny.
@@ -165,25 +166,32 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
         p.title.toLowerCase().includes("slow") ||
         p.title.toLowerCase().includes("warsztaty")
 
-      // Extract distinctive keywords from product title for text matching
-      const titleKeywords = (title: string): string[] => {
-        const words = title.split(/\s+/)
-        const skip = new Set(["olej", "olejek", "krem", "mydło", "z", "do", "i", "w", "–", "—", "250ml", "50ml", "30ml"])
-        return words
-          .filter((w) => w.length > 2 && !skip.has(w.toLowerCase()))
-          .map((w) => w.toLowerCase())
+      // Extract distinctive name fragments from product title for text matching
+      // Returns multi-word phrases and unique brand names, NOT generic words
+      const titleSignatures = (title: string): string[] => {
+        const sigs: string[] = []
+        // Brand/product line names (CamelCase, *Code, ALL CAPS multi-word)
+        const brandWords = title.match(/[A-Z][a-z]+[A-Z]\w+|\w+Code|[A-ZĄĆĘŁŃÓŚŹŻ]{2,}(?:\s+[A-ZĄĆĘŁŃÓŚŹŻ]{2,})+/g)
+        if (brandWords) sigs.push(...brandWords)
+        // Named product lines: "Geranium Glow", "Clear Ritual", "Rose Alchemy", etc.
+        const namedLine = title.match(/^(.+?)(?:\s*[—–]\s*|$)/)?.[1]
+        if (namedLine && namedLine.length > 3) sigs.push(namedLine.trim())
+        // Subtitle after dash: "Moon Touch Cream", "Pure Touch Cream"
+        const subtitle = title.match(/[—–]\s*(.+?)(?:\s+\d+ml)?$/)?.[1]
+        if (subtitle && subtitle.length > 3) sigs.push(subtitle.trim())
+        return sigs.map((s) => s.toLowerCase())
       }
 
       // Find earliest position of product mention in recommendation text
       const firstMentionIndex = (product: QuizProduct): number => {
         const lower = text.toLowerCase()
-        const keywords = titleKeywords(product.title)
-        const positions = keywords
-          .map((kw) => lower.indexOf(kw))
+        const sigs = titleSignatures(product.title)
+        if (sigs.length === 0) return -1
+        const positions = sigs
+          .map((sig) => lower.indexOf(sig))
           .filter((pos) => pos >= 0)
-        // Require at least 2 keyword matches (or 1 for short titles)
-        const threshold = keywords.length <= 2 ? 1 : 2
-        if (positions.length < threshold) return -1
+        // Must match at least one distinctive signature
+        if (positions.length === 0) return -1
         return Math.min(...positions)
       }
 

@@ -116,12 +116,6 @@ export default function QuizResults({
       {/* AI recommendation */}
       {(loading || aiRecommendation) && (
         <div className="mb-10 p-6 rounded-large border border-brand-accent/20 bg-brand-accent/5">
-          <div className="flex items-center gap-2 mb-3">
-            <Icon name="sparkle" size={20} />
-            <h3 className="text-lg font-semibold text-brand-accent-light">
-              Nasza propozycja dla Ciebie
-            </h3>
-          </div>
           {loading ? (
             <div className="py-4">
               <div className="flex items-center gap-3 mb-4">

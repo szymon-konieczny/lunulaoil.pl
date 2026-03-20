@@ -42,37 +42,39 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 }
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
+  const fields: { label: string; value: string | null | undefined }[] = [
+    { label: "Materiał", value: product.material },
+    { label: "Kraj pochodzenia", value: product.origin_country },
+    { label: "Typ", value: product.type?.value },
+    { label: "Waga", value: product.weight ? `${product.weight} g` : null },
+    {
+      label: "Wymiary",
+      value:
+        product.length && product.width && product.height
+          ? `${product.length}L x ${product.width}W x ${product.height}H`
+          : null,
+    },
+  ]
+
+  const visibleFields = fields.filter((f) => f.value)
+
+  if (visibleFields.length === 0) {
+    return (
+      <div className="text-small-regular py-8 text-ui-fg-subtle">
+        Brak dodatkowych informacji.
+      </div>
+    )
+  }
+
   return (
     <div className="text-small-regular py-8">
-      <div className="grid grid-cols-2 gap-x-8">
-        <div className="flex flex-col gap-y-4">
-          <div>
-            <span className="font-semibold">Materiał</span>
-            <p>{product.material ? product.material : "-"}</p>
+      <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+        {visibleFields.map((field) => (
+          <div key={field.label}>
+            <span className="font-semibold">{field.label}</span>
+            <p>{field.value}</p>
           </div>
-          <div>
-            <span className="font-semibold">Kraj pochodzenia</span>
-            <p>{product.origin_country ? product.origin_country : "-"}</p>
-          </div>
-          <div>
-            <span className="font-semibold">Typ</span>
-            <p>{product.type ? product.type.value : "-"}</p>
-          </div>
-        </div>
-        <div className="flex flex-col gap-y-4">
-          <div>
-            <span className="font-semibold">Waga</span>
-            <p>{product.weight ? `${product.weight} g` : "-"}</p>
-          </div>
-          <div>
-            <span className="font-semibold">Wymiary</span>
-            <p>
-              {product.length && product.width && product.height
-                ? `${product.length}L x ${product.width}W x ${product.height}H`
-                : "-"}
-            </p>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   )

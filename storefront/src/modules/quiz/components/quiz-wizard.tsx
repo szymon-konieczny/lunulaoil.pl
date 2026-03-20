@@ -127,15 +127,9 @@ export default function QuizWizard({ allProducts }: Props) {
   const fetchAiRecommendation = async (quizAnswers: QuizAnswers) => {
     setAiLoading(true)
     try {
-      // Send scored products + all workshop products so AI can always recommend workshops
-      const matched = scoreProducts(allProducts, quizAnswers)
-      const isWorkshop = (p: HttpTypes.StoreProduct) =>
-        (p.title || "").toLowerCase().includes("slow") ||
-        (p.title || "").toLowerCase().includes("warsztaty")
-      const workshops = allProducts.filter(
-        (p) => isWorkshop(p) && !matched.some((m) => m.id === p.id)
-      )
-      const productsForAi = [...matched, ...workshops]
+      // Send ALL products to the AI so it can pick from the full catalog
+      // Score is used only for display fallback, not for AI filtering
+      const productsForAi = allProducts
       const res = await fetch("/api/quiz-recommendation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
