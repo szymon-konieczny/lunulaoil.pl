@@ -38,6 +38,7 @@ export default function ProductActions({
 
   const [options, setOptions] = useState<Record<string, string | undefined>>({})
   const [isAdding, setIsAdding] = useState(false)
+  const [quantity, setQuantity] = useState(1)
   const countryCode = useParams().countryCode as string
 
   // If there is only 1 variant, preselect the options
@@ -128,7 +129,7 @@ export default function ProductActions({
 
     await addToCart({
       variantId: selectedVariant.id,
-      quantity: 1,
+      quantity,
       countryCode,
     })
 
@@ -161,6 +162,31 @@ export default function ProductActions({
         </div>
 
         <ProductPrice product={product} variant={selectedVariant} />
+
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-ui-fg-subtle">Ilość:</span>
+          <div className="flex items-center border border-ui-border-base rounded-md">
+            <button
+              onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+              disabled={quantity <= 1 || isAdding}
+              className="w-9 h-9 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              aria-label="Zmniejsz ilość"
+            >
+              −
+            </button>
+            <span className="w-10 text-center text-sm font-medium tabular-nums">
+              {quantity}
+            </span>
+            <button
+              onClick={() => setQuantity((q) => q + 1)}
+              disabled={isAdding}
+              className="w-9 h-9 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              aria-label="Zwiększ ilość"
+            >
+              +
+            </button>
+          </div>
+        </div>
 
         <Button
           onClick={handleAddToCart}
