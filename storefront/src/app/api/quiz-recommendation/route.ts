@@ -157,16 +157,10 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
       const text = parsed.text || rawText
       const handles: string[] = parsed.handles || []
 
-      // Server-side validation: only keep handles for products mentioned in text
-      const validHandles = handles.filter((handle: string) => {
-        const product = products.find((p) => p.handle === handle)
-        if (!product) return false
-        // Check if the product title (or a significant part) appears in the text
-        const titleWords = product.title.split(/\s+/).filter((w) => w.length > 3)
-        return titleWords.some((word) =>
-          text.toLowerCase().includes(word.toLowerCase())
-        )
-      })
+      // Only keep handles that exist in the product catalog
+      const validHandles = handles.filter((handle: string) =>
+        products.some((p) => p.handle === handle)
+      )
 
       return NextResponse.json({
         recommendation: text,
