@@ -188,7 +188,7 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
 
       return NextResponse.json({
         recommendation: text,
-        handles: validHandles,
+        handles: finalHandles,
       })
     } catch {
       // Fallback: AI returned plain text instead of JSON
