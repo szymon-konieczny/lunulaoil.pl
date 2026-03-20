@@ -105,10 +105,10 @@ ODPOWIEDZ W FORMACIE JSON:
 }
 
 ZASADY:
-- handles: tablica handle'ów 1-3 polecanych produktów z powyższej listy (TYLKO z listy!)
-- text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Wyjaśnij krótko dlaczego produkty są idealne — odwołaj się do filozofii biozgodności. Możesz zasugerować łączenie produktów. Na koniec jednym zdaniem zaproponuj warsztaty Slow Care. Pisz naturalnym, POPRAWNYM polskim — bez kośławych konstrukcji, jak native speaker. Ton: ciepły doradca w butikowym sklepie.
-- KLUCZOWE: Każdy produkt w tablicy handles MUSI być wspomniany w tekście (choćby krótko). Tekst i handles muszą być w 100% spójne — żaden produkt nie może być na liście bez wzmianki w tekście.
-- NIGDY nie wymieniaj produktów spoza listy
+- handles: tablica handle'ów 1-3 polecanych produktów — WYŁĄCZNIE z powyższej listy "Dostępne produkty w sklepie"
+- text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Wyjaśnij krótko dlaczego produkty są idealne — odwołaj się do filozofii biozgodności. Możesz zasugerować łączenie polecanych produktów. Na koniec jednym zdaniem zaproponuj warsztaty Slow Care. Pisz naturalnym, POPRAWNYM polskim — bez kośławych konstrukcji, jak native speaker. Ton: ciepły doradca w butikowym sklepie.
+- KLUCZOWE SPÓJNOŚĆ: Każdy produkt w tablicy handles MUSI być wspomniany w tekście. Każdy produkt wspomniany w tekście MUSI być w tablicy handles. Tekst i handles muszą być w 100% spójne.
+- BEZWZGLĘDNY ZAKAZ: NIE WOLNO wspominać w tekście ŻADNYCH produktów, których nie ma na powyższej liście "Dostępne produkty w sklepie". Jeśli chcesz zasugerować łączenie — łącz TYLKO produkty z listy. Złamanie tej zasady to błąd krytyczny.
 
 BEZWZGLĘDNE ZASADY FORMY TEKSTU:
 - Zwracaj się WYŁĄCZNIE na "Ty" (np. "Twoja skóra", "dla Ciebie", "polecam Ci")
@@ -127,7 +127,7 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-3-haiku-20240307",
+        model: "claude-haiku-4-5-20251001",
         max_tokens: 800,
         messages: [
           {

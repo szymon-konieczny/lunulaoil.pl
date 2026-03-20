@@ -31,7 +31,7 @@ export default function JojobaCodePage() {
           <AnimateIn variant="fade-up" delay={100}>
             <div className="relative aspect-[4/3] bg-brand-surface rounded-sm flex items-center justify-center mb-12 border border-brand-border">
               <div className="text-center">
-                <span className="text-5xl block mb-2">🌱</span>
+                <img src="/icons/seedling.svg" alt="" className="w-12 h-12 mx-auto mb-2" />
                 <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
                   Zdjęcie wkrótce
                 </p>
