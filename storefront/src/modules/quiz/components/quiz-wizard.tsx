@@ -170,17 +170,44 @@ export default function QuizWizard({ allProducts }: Props) {
 
   if (showResults) {
     return (
-      <QuizResults
-        products={displayProducts.length > 0 ? displayProducts : scoredProducts}
-        answers={answers}
-        aiRecommendation={aiRecommendation}
-        loading={aiLoading}
-        onReset={handleReset}
-      />
+      <>
+        <div className="text-center mb-12">
+          <span className="text-brand-primary text-sm font-medium uppercase tracking-wider">
+            Asystent doboru
+          </span>
+          <h1 className="text-3xl small:text-5xl font-serif font-semibold text-brand-text mt-3 mb-4">
+            Dobrane dla Ciebie
+          </h1>
+          <p className="text-brand-text-muted max-w-xl mx-auto text-lg">
+            Na podstawie Twoich odpowiedzi wybraliśmy produkty idealnie
+            dopasowane do Twoich potrzeb.
+          </p>
+        </div>
+        <QuizResults
+          products={displayProducts.length > 0 ? displayProducts : scoredProducts}
+          answers={answers}
+          aiRecommendation={aiRecommendation}
+          loading={aiLoading}
+          onReset={handleReset}
+        />
+      </>
     )
   }
 
   return (
+    <>
+      <div className="text-center mb-12">
+        <span className="text-brand-primary text-sm font-medium uppercase tracking-wider">
+          Asystent doboru
+        </span>
+        <h1 className="text-3xl small:text-5xl font-serif font-semibold text-brand-text mt-3 mb-4">
+          Znajdź swój idealny kosmetyk
+        </h1>
+        <p className="text-brand-text-muted max-w-xl mx-auto text-lg">
+          Odpowiedz na kilka pytań, a dobierzemy produkty idealnie dopasowane
+          do Twojej skóry i potrzeb.
+        </p>
+      </div>
     <div className="w-full max-w-2xl mx-auto">
       <QuizProgress
         currentStep={currentStep}
@@ -242,6 +269,7 @@ export default function QuizWizard({ allProducts }: Props) {
           </button>
       </div>
     </div>
+    </>
   )
 }
 

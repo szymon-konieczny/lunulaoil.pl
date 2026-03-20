@@ -104,15 +104,6 @@ export default function QuizResults({
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-semibold text-brand-text mb-3">
-          Twoje rekomendacje
-        </h2>
-        <p className="text-brand-text-muted text-lg">
-          Na podstawie Twoich odpowiedzi wybraliśmy produkty idealne dla Ciebie.
-        </p>
-      </div>
-
       {/* AI recommendation */}
       {(loading || aiRecommendation) && (
         <div className="mb-10 p-6 rounded-large border border-brand-accent/20 bg-brand-accent/5">
