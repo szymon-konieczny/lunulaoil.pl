@@ -44,10 +44,18 @@ export default function QuizResults({
             </h3>
           </div>
           {loading ? (
-            <div className="space-y-2">
-              <div className="h-4 bg-brand-surface rounded animate-pulse w-full" />
-              <div className="h-4 bg-brand-surface rounded animate-pulse w-3/4" />
-              <div className="h-4 bg-brand-surface rounded animate-pulse w-5/6" />
+            <div className="py-4">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-5 h-5 border-2 border-brand-accent/30 border-t-brand-accent rounded-full animate-spin" />
+                <p className="text-brand-text-muted text-sm">
+                  Analizuję Twoje odpowiedzi i dobieram najlepsze produkty...
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="h-3 bg-brand-surface rounded animate-pulse w-full" />
+                <div className="h-3 bg-brand-surface rounded animate-pulse w-3/4" />
+                <div className="h-3 bg-brand-surface rounded animate-pulse w-5/6" />
+              </div>
             </div>
           ) : (
             <p className="text-brand-text-muted leading-relaxed whitespace-pre-line">

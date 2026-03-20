@@ -48,6 +48,9 @@ export default function QuizWizard({ allProducts }: Props) {
     saved?.aiRecommendation ?? null
   )
   const [aiLoading, setAiLoading] = useState(false)
+  const [aiHandles, setAiHandles] = useState<string[]>(
+    saved?.aiHandles ?? []
+  )
   const navRef = useRef<HTMLDivElement>(null)
 
   // Persist state to sessionStorage
@@ -55,10 +58,10 @@ export default function QuizWizard({ allProducts }: Props) {
     try {
       sessionStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify({ answers, showResults, aiRecommendation, currentStep })
+        JSON.stringify({ answers, showResults, aiRecommendation, aiHandles, currentStep })
       )
     } catch {}
-  }, [answers, showResults, aiRecommendation, currentStep])
+  }, [answers, showResults, aiRecommendation, aiHandles, currentStep])
 
   // Re-fetch AI recommendation on restore if results shown but no recommendation
   useEffect(() => {
@@ -114,6 +117,7 @@ export default function QuizWizard({ allProducts }: Props) {
     setAnswers({})
     setShowResults(false)
     setAiRecommendation(null)
+    setAiHandles([])
     try {
       sessionStorage.removeItem(STORAGE_KEY)
     } catch {}
@@ -122,12 +126,14 @@ export default function QuizWizard({ allProducts }: Props) {
   const fetchAiRecommendation = async (quizAnswers: QuizAnswers) => {
     setAiLoading(true)
     try {
+      // Send only scored/matched products so AI recommends from the displayed list
+      const matched = scoreProducts(allProducts, quizAnswers)
       const res = await fetch("/api/quiz-recommendation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           answers: quizAnswers,
-          products: allProducts.map((p) => ({
+          products: matched.map((p) => ({
             title: p.title,
             handle: p.handle,
             description: p.description,
@@ -138,6 +144,9 @@ export default function QuizWizard({ allProducts }: Props) {
       if (res.ok) {
         const data = await res.json()
         setAiRecommendation(data.recommendation)
+        if (data.handles?.length) {
+          setAiHandles(data.handles)
+        }
       }
     } catch {
       // Silently fail — products are still shown
@@ -147,11 +156,17 @@ export default function QuizWizard({ allProducts }: Props) {
   }
 
   const scoredProducts = scoreProducts(allProducts, answers)
+  // If AI returned specific handles, filter and reorder products to match
+  const displayProducts = aiHandles.length > 0
+    ? aiHandles
+        .map((h) => scoredProducts.find((p) => p.handle === h))
+        .filter(Boolean) as typeof scoredProducts
+    : scoredProducts
 
   if (showResults) {
     return (
       <QuizResults
-        products={scoredProducts}
+        products={displayProducts.length > 0 ? displayProducts : scoredProducts}
         answers={answers}
         aiRecommendation={aiRecommendation}
         loading={aiLoading}

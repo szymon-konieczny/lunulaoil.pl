@@ -96,7 +96,28 @@ ${formattedAnswers}
 Dostępne produkty w sklepie:
 ${productList}
 
-Na podstawie odpowiedzi klienta, zaproponuj 1 (maksymalnie 2-3) najlepiej dopasowane produkty i napisz krótką (3-5 zdań), ciepłą i profesjonalną rekomendację po polsku. Wyjaśnij dlaczego ten konkretny produkt jest idealny dla klienta — odwołuj się do filozofii biozgodności. Sugeruj łączenie produktów (np. HialCode + SqualaneCode). Na koniec zaproponuj udział w warsztatach Slow Care. Nie używaj nagłówków ani punktorów — pisz naturalnym, ciepłym tonem jak doradca w butikowym sklepie z kosmetykami. WAŻNE: Nie wymyślaj imienia klienta — nie znasz go. Zwracaj się bezosobowo lub w drugiej osobie (np. "Twoja skóra", "dla Ciebie").`
+Na podstawie odpowiedzi, wybierz produkty i napisz rekomendację.
+
+ODPOWIEDZ W FORMACIE JSON:
+{
+  "handles": ["handle-produktu-1", "handle-produktu-2"],
+  "text": "Treść rekomendacji..."
+}
+
+ZASADY:
+- handles: tablica handle'ów 1-3 polecanych produktów z powyższej listy (TYLKO z listy!)
+- text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Wyjaśnij krótko dlaczego produkty są idealne — odwołaj się do filozofii biozgodności. Możesz zasugerować łączenie produktów. Na koniec jednym zdaniem zaproponuj warsztaty Slow Care. Pisz naturalnym, POPRAWNYM polskim — bez kośławych konstrukcji, jak native speaker. Ton: ciepły doradca w butikowym sklepie.
+- KLUCZOWE: Każdy produkt w tablicy handles MUSI być wspomniany w tekście (choćby krótko). Tekst i handles muszą być w 100% spójne — żaden produkt nie może być na liście bez wzmianki w tekście.
+- NIGDY nie wymieniaj produktów spoza listy
+
+BEZWZGLĘDNE ZASADY FORMY TEKSTU:
+- Zwracaj się WYŁĄCZNIE na "Ty" (np. "Twoja skóra", "dla Ciebie", "polecam Ci")
+- NIGDY nie używaj formy "Pani/Pan"
+- NIGDY nie wymyślaj imienia
+- NIE zaczynaj od zwrotu grzecznościowego
+- Pisz z szacunkiem, ale bezpośrednio i po przyjacielsku
+
+Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
 
     const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
@@ -107,7 +128,7 @@ Na podstawie odpowiedzi klienta, zaproponuj 1 (maksymalnie 2-3) najlepiej dopaso
       },
       body: JSON.stringify({
         model: "claude-3-haiku-20240307",
-        max_tokens: 400,
+        max_tokens: 800,
         messages: [
           {
             role: "user",
@@ -127,10 +148,22 @@ Na podstawie odpowiedzi klienta, zaproponuj 1 (maksymalnie 2-3) najlepiej dopaso
     }
 
     const data = await response.json()
-    const recommendation =
-      data.content?.[0]?.text || "Nie udało się wygenerować rekomendacji."
+    const rawText = data.content?.[0]?.text || ""
 
-    return NextResponse.json({ recommendation })
+    try {
+      // Parse structured JSON response from AI
+      const parsed = JSON.parse(rawText)
+      return NextResponse.json({
+        recommendation: parsed.text || rawText,
+        handles: parsed.handles || [],
+      })
+    } catch {
+      // Fallback: AI returned plain text instead of JSON
+      return NextResponse.json({
+        recommendation: rawText || "Nie udało się wygenerować rekomendacji.",
+        handles: [],
+      })
+    }
   } catch (error) {
     console.error("Quiz recommendation error:", error)
     return NextResponse.json(
