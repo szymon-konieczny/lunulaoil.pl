@@ -1,11 +1,14 @@
 "use client"
 
+import { useState } from "react"
+import { useParams } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
 import { Text } from "@medusajs/ui"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Icon from "@modules/common/components/icon"
 import Thumbnail from "@modules/products/components/thumbnail"
 import { getProductPrice } from "@lib/util/get-product-price"
+import { addToCart } from "@lib/data/cart"
 import { QuizAnswers } from "../data"
 
 function highlightProductNames(
@@ -23,7 +26,7 @@ function highlightProductNames(
     // Extract distinctive subphrases (e.g. "Green Witch Divine", "PEŁNIA KSIĘŻYCA", "LipidCode")
     const words = p.title.split(/\s+/)
     // Multi-word uppercase sequences (e.g. "PEŁNIA KSIĘŻYCA", "KSIĘŻYC W NOWIU")
-    const upperMatch = p.title.match(/(?:[A-ZĄĆĘŁŃÓŚŹŻ]{2,}\s*){2,}/g)
+    const upperMatch = p.title.match(/[A-ZĄĆĘŁŃÓŚŹŻ]{2,}(?:\s+[A-ZĄĆĘŁŃÓŚŹŻ]+)*\s+[A-ZĄĆĘŁŃÓŚŹŻ]{2,}/g)
     if (upperMatch) phrases.push(...upperMatch.map((m) => m.trim()))
     // CamelCase/brand words (e.g. "LipidCode", "HialCode", "SqualaneCode", "JojobaCode")
     for (const w of words) {
@@ -65,6 +68,40 @@ export default function QuizResults({
   loading,
   onReset,
 }: Props) {
+  const countryCode = useParams().countryCode as string
+  const [addingId, setAddingId] = useState<string | null>(null)
+  const [addingAll, setAddingAll] = useState(false)
+  const [addedIds, setAddedIds] = useState<Set<string>>(new Set())
+  const [addedAll, setAddedAll] = useState(false)
+
+  const getVariantId = (product: HttpTypes.StoreProduct): string | null =>
+    product.variants?.[0]?.id || null
+
+  const handleAddToCart = async (product: HttpTypes.StoreProduct) => {
+    const variantId = getVariantId(product)
+    if (!variantId) return
+    setAddingId(product.id!)
+    try {
+      await addToCart({ variantId, quantity: 1, countryCode })
+      setAddedIds((prev) => new Set(prev).add(product.id!))
+    } catch {}
+    setAddingId(null)
+  }
+
+  const handleAddAll = async () => {
+    setAddingAll(true)
+    for (const product of products) {
+      const variantId = getVariantId(product)
+      if (!variantId) continue
+      try {
+        await addToCart({ variantId, quantity: 1, countryCode })
+        setAddedIds((prev) => new Set(prev).add(product.id!))
+      } catch {}
+    }
+    setAddedAll(true)
+    setAddingAll(false)
+  }
+
   return (
     <div className="w-full max-w-4xl mx-auto">
       <div className="text-center mb-10">
@@ -113,13 +150,54 @@ export default function QuizResults({
         </div>
       )}
 
-      {/* Product grid */}
-      {products.length > 0 ? (
+      {/* Product grid — hidden while AI is loading to avoid order switch */}
+      {loading ? (
         <div className="grid grid-cols-1 small:grid-cols-2 medium:grid-cols-3 gap-6 mb-10">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="rounded-large overflow-hidden border border-brand-border bg-brand-surface">
+              <div className="aspect-square bg-brand-surface animate-pulse" />
+              <div className="p-4 space-y-2">
+                <div className="h-4 bg-brand-surface rounded animate-pulse w-3/4" />
+                <div className="h-3 bg-brand-surface rounded animate-pulse w-1/3" />
+              </div>
+            </div>
           ))}
         </div>
+      ) : products.length > 0 ? (
+        <>
+          <div className="grid grid-cols-1 small:grid-cols-2 medium:grid-cols-3 gap-6 mb-6">
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={() => handleAddToCart(product)}
+                isAdding={addingId === product.id || addingAll}
+                isAdded={addedIds.has(product.id!)}
+              />
+            ))}
+          </div>
+          <div className="text-center mb-10">
+            <button
+              onClick={handleAddAll}
+              disabled={addingAll || addedAll}
+              className="px-8 py-3 rounded-large bg-brand-accent text-white font-semibold hover:bg-brand-accent-light transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed inline-flex items-center gap-2"
+            >
+              {addingAll ? (
+                <>
+                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  Dodaję...
+                </>
+              ) : addedAll ? (
+                <>
+                  &#10003;
+                  Dodano wszystkie
+                </>
+              ) : (
+                "Dodaj wszystkie do koszyka"
+              )}
+            </button>
+          </div>
+        </>
       ) : (
         <div className="text-center py-12 mb-10">
           <p className="text-brand-text-muted text-lg mb-2">
@@ -176,25 +254,34 @@ export default function QuizResults({
   )
 }
 
-function ProductCard({ product }: { product: HttpTypes.StoreProduct }) {
+function ProductCard({
+  product,
+  onAddToCart,
+  isAdding,
+  isAdded,
+}: {
+  product: HttpTypes.StoreProduct
+  onAddToCart: () => void
+  isAdding: boolean
+  isAdded: boolean
+}) {
   let cheapestPrice: ReturnType<typeof getProductPrice>["cheapestPrice"] = null
   try {
     cheapestPrice = getProductPrice({ product }).cheapestPrice
   } catch {}
 
   return (
-    <LocalizedClientLink
-      href={`/products/${product.handle}`}
-      className="group"
-    >
-      <div className="rounded-large overflow-hidden border border-brand-border bg-brand-surface hover:border-brand-accent/20 transition-all duration-200">
+    <div className="group rounded-large overflow-hidden border border-brand-border bg-brand-surface hover:border-brand-accent/20 transition-all duration-200 flex flex-col">
+      <LocalizedClientLink href={`/products/${product.handle}`}>
         <Thumbnail
           thumbnail={product.thumbnail}
           images={product.images}
           size="full"
           className="!rounded-none !shadow-none"
         />
-        <div className="p-4">
+      </LocalizedClientLink>
+      <div className="p-4 flex flex-col flex-1">
+        <LocalizedClientLink href={`/products/${product.handle}`}>
           <Text className="text-brand-text font-medium text-sm line-clamp-2">
             {product.title}
           </Text>
@@ -203,8 +290,27 @@ function ProductCard({ product }: { product: HttpTypes.StoreProduct }) {
               {cheapestPrice.calculated_price}
             </Text>
           )}
-        </div>
+        </LocalizedClientLink>
+        <button
+          onClick={onAddToCart}
+          disabled={isAdding || isAdded}
+          className="mt-3 w-full py-2 rounded-large text-xs font-medium transition-all duration-200 border disabled:cursor-not-allowed inline-flex items-center justify-center gap-1.5 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white disabled:opacity-60"
+        >
+          {isAdding ? (
+            <>
+              <span className="w-3 h-3 border-2 border-current/30 border-t-current rounded-full animate-spin" />
+              Dodaję...
+            </>
+          ) : isAdded ? (
+            <>
+              &#10003;
+              Dodano
+            </>
+          ) : (
+            "Dodaj do koszyka"
+          )}
+        </button>
       </div>
-    </LocalizedClientLink>
+    </div>
   )
 }

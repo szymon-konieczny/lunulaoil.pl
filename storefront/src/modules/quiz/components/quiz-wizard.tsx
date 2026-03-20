@@ -19,6 +19,7 @@ function loadSavedState(): {
   answers: QuizAnswers
   showResults: boolean
   aiRecommendation: string | null
+  aiHandles: string[]
   currentStep: number
 } | null {
   try {
@@ -126,14 +127,21 @@ export default function QuizWizard({ allProducts }: Props) {
   const fetchAiRecommendation = async (quizAnswers: QuizAnswers) => {
     setAiLoading(true)
     try {
-      // Send only scored/matched products so AI recommends from the displayed list
+      // Send scored products + all workshop products so AI can always recommend workshops
       const matched = scoreProducts(allProducts, quizAnswers)
+      const isWorkshop = (p: HttpTypes.StoreProduct) =>
+        (p.title || "").toLowerCase().includes("slow") ||
+        (p.title || "").toLowerCase().includes("warsztaty")
+      const workshops = allProducts.filter(
+        (p) => isWorkshop(p) && !matched.some((m) => m.id === p.id)
+      )
+      const productsForAi = [...matched, ...workshops]
       const res = await fetch("/api/quiz-recommendation", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           answers: quizAnswers,
-          products: matched.map((p) => ({
+          products: productsForAi.map((p) => ({
             title: p.title,
             handle: p.handle,
             description: p.description,

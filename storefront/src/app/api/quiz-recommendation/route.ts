@@ -161,33 +161,72 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
       const text = parsed.text || rawText
       const handles: string[] = parsed.handles || []
 
-      // Trust AI handles but ensure they exist in catalog
-      const validHandles = handles.filter((handle: string) =>
-        products.some((p) => p.handle === handle)
-      )
-
-      // Ensure workshops are included as 3rd recommendation
       const isWorkshop = (p: QuizProduct) =>
         p.title.toLowerCase().includes("slow") ||
         p.title.toLowerCase().includes("warsztaty")
-      const hasWorkshop = validHandles.some((h) => {
-        const p = products.find((pr) => pr.handle === h)
-        return p && isWorkshop(p)
-      })
 
-      let finalHandles = validHandles
-      if (!hasWorkshop) {
-        // Remove any 3rd non-workshop product, add best matching workshop
-        const workshop = products.find((p) => isWorkshop(p))
-        if (workshop) {
-          // Keep only first 2 non-workshop handles, then add workshop
-          const nonWorkshop = finalHandles.filter((h) => {
-            const p = products.find((pr) => pr.handle === h)
-            return p && !isWorkshop(p)
-          }).slice(0, 2)
-          finalHandles = [...nonWorkshop, workshop.handle]
-        }
+      // Extract distinctive keywords from product title for text matching
+      const titleKeywords = (title: string): string[] => {
+        const words = title.split(/\s+/)
+        const skip = new Set(["olej", "olejek", "krem", "mydło", "z", "do", "i", "w", "–", "—", "250ml", "50ml", "30ml"])
+        return words
+          .filter((w) => w.length > 2 && !skip.has(w.toLowerCase()))
+          .map((w) => w.toLowerCase())
       }
+
+      // Find earliest position of product mention in recommendation text
+      const firstMentionIndex = (product: QuizProduct): number => {
+        const lower = text.toLowerCase()
+        const keywords = titleKeywords(product.title)
+        const positions = keywords
+          .map((kw) => lower.indexOf(kw))
+          .filter((pos) => pos >= 0)
+        // Require at least 2 keyword matches (or 1 for short titles)
+        const threshold = keywords.length <= 2 ? 1 : 2
+        if (positions.length < threshold) return -1
+        return Math.min(...positions)
+      }
+
+      // Find products mentioned in text, sorted by order of appearance
+      const mentionedProducts = products
+        .map((p) => ({ product: p, position: firstMentionIndex(p) }))
+        .filter((m) => m.position >= 0)
+        .sort((a, b) => a.position - b.position)
+
+      const mentionedSkincare = mentionedProducts
+        .filter((m) => !isWorkshop(m.product))
+        .map((m) => m.product.handle)
+      const mentionedWorkshop = mentionedProducts
+        .find((m) => isWorkshop(m.product))
+        ?.product.handle
+
+      // Fallbacks from AI handles or product list for unfilled slots
+      const validAiHandles = handles.filter((h) =>
+        products.some((p) => p.handle === h)
+      )
+      const fallbackSkincare = [
+        ...validAiHandles.filter((h) => {
+          const p = products.find((pr) => pr.handle === h)
+          return p && !isWorkshop(p)
+        }),
+        ...products.filter((p) => !isWorkshop(p)).map((p) => p.handle),
+      ]
+      const fallbackWorkshop =
+        validAiHandles.find((h) => {
+          const p = products.find((pr) => pr.handle === h)
+          return p && isWorkshop(p)
+        }) || products.find((p) => isWorkshop(p))?.handle
+
+      // Assemble: text-mentioned first, then fallbacks — deduplicated
+      const allSkincare = [...mentionedSkincare, ...fallbackSkincare]
+      const seen = new Set<string>()
+      const skincare = allSkincare.filter((h) => {
+        if (seen.has(h)) return false
+        seen.add(h)
+        return true
+      }).slice(0, 2)
+      const workshop = mentionedWorkshop || fallbackWorkshop
+      const finalHandles = [...skincare, ...(workshop ? [workshop] : [])]
 
       return NextResponse.json({
         recommendation: text,
