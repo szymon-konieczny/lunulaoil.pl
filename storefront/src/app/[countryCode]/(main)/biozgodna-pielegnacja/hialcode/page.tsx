@@ -59,14 +59,12 @@ export default async function HialCodePage(props: Props) {
                 <AddToCartButton variantId={variantId} />
               </div>
             )}
-            {product && (
-              <LocalizedClientLink
-                href="/products/hialcode"
-                className="inline-flex items-center gap-1 text-brand-accent text-sm mt-3 hover:underline"
-              >
-                Zobacz w sklepie &rarr;
-              </LocalizedClientLink>
-            )}
+            <LocalizedClientLink
+              href="/products/hialcode"
+              className="inline-flex items-center gap-1 text-brand-accent text-sm mt-3 hover:underline"
+            >
+              Zobacz w sklepie &rarr;
+            </LocalizedClientLink>
           </AnimateIn>
 
           {/* Product image or placeholder */}

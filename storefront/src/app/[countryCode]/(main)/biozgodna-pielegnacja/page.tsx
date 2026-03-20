@@ -176,14 +176,12 @@ export default async function BiocarePage(props: Props) {
                         variantId={variantId || ""}
                         disabled={!variantId}
                       />
-                      {medusaProduct?.handle && (
-                        <LocalizedClientLink
-                          href={`/products/${medusaProduct.handle}`}
+                      <LocalizedClientLink
+                          href={`/products/${config.handle}`}
                           className="block text-brand-text-muted/60 text-xs hover:text-brand-accent transition-colors"
                         >
                           Zobacz w sklepie →
                         </LocalizedClientLink>
-                      )}
                     </div>
                   </div>
                 </AnimateIn>

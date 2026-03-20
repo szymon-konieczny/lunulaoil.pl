@@ -41,7 +41,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         </div>
 
         {/* Right column — product info, price, CTA, tabs */}
-        <div className="flex flex-col medium:sticky medium:top-48 medium:flex-1 w-full py-8 medium:py-0 gap-y-6">
+        <div className="flex flex-col medium:sticky medium:top-48 medium:flex-1 w-full py-8 medium:py-0 gap-y-4">
           <ProductInfo product={product} />
           <ProductOnboardingCta />
           <Suspense
