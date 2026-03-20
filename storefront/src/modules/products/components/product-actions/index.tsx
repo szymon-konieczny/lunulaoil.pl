@@ -164,50 +164,48 @@ export default function ProductActions({
         <ProductPrice product={product} variant={selectedVariant} />
 
         <div className="flex items-center gap-3">
-          <span className="text-sm text-ui-fg-subtle">Ilość:</span>
           <div className="flex items-center border border-ui-border-base rounded-md">
             <button
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
               disabled={quantity <= 1 || isAdding}
-              className="w-9 h-9 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="w-9 h-10 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Zmniejsz ilość"
             >
               −
             </button>
-            <span className="w-10 text-center text-sm font-medium tabular-nums">
+            <span className="w-8 text-center text-sm font-medium tabular-nums">
               {quantity}
             </span>
             <button
               onClick={() => setQuantity((q) => q + 1)}
               disabled={isAdding}
-              className="w-9 h-9 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              className="w-9 h-10 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Zwiększ ilość"
             >
               +
             </button>
           </div>
+          <Button
+            onClick={handleAddToCart}
+            disabled={
+              !inStock ||
+              !selectedVariant ||
+              !!disabled ||
+              isAdding ||
+              !isValidVariant
+            }
+            variant="primary"
+            className="flex-1 h-10"
+            isLoading={isAdding}
+            data-testid="add-product-button"
+          >
+            {!selectedVariant && !options
+              ? "Wybierz wariant"
+              : !inStock || !isValidVariant
+              ? "Brak w magazynie"
+              : "Dodaj do koszyka"}
+          </Button>
         </div>
-
-        <Button
-          onClick={handleAddToCart}
-          disabled={
-            !inStock ||
-            !selectedVariant ||
-            !!disabled ||
-            isAdding ||
-            !isValidVariant
-          }
-          variant="primary"
-          className="w-full h-10"
-          isLoading={isAdding}
-          data-testid="add-product-button"
-        >
-          {!selectedVariant && !options
-            ? "Wybierz wariant"
-            : !inStock || !isValidVariant
-            ? "Brak w magazynie"
-            : "Dodaj do koszyka"}
-        </Button>
         <MobileActions
           product={product}
           variant={selectedVariant}

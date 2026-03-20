@@ -1,5 +1,10 @@
 import { Metadata } from "next"
 import AnimateIn from "@modules/common/components/animate-in"
+import { listProducts } from "@lib/data/products"
+import { getRegion } from "@lib/data/regions"
+import { getProductPrice } from "@lib/util/get-product-price"
+import AddToCartButton from "@modules/products/components/add-to-cart-button"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export const metadata: Metadata = {
   title: "JojobaCode — Olej jojoba",
@@ -7,7 +12,34 @@ export const metadata: Metadata = {
     "Inteligentny, wielozadaniowy, samoregulujący olej jojoba. Płynny wosk o budowie zbliżonej do ludzkiego sebum.",
 }
 
-export default function JojobaCodePage() {
+type Props = {
+  params: Promise<{ countryCode: string }>
+}
+
+export default async function JojobaCodePage(props: Props) {
+  const { countryCode } = await props.params
+  const region = await getRegion(countryCode)
+
+  let product: any = null
+  if (region) {
+    try {
+      const { response } = await listProducts({
+        countryCode,
+        queryParams: { handle: "jojobacode", limit: 1 },
+      })
+      product = response.products[0] || null
+    } catch {}
+  }
+
+  const variantId = product?.variants?.[0]?.id
+  let price: string | null = null
+  try {
+    if (product) {
+      price =
+        getProductPrice({ product }).cheapestPrice?.calculated_price ?? null
+    }
+  } catch {}
+
   return (
     <div className="bg-brand-background">
       <section className="py-20 small:py-32">
@@ -23,19 +55,44 @@ export default function JojobaCodePage() {
               Inteligentny, wielozadaniowy, samoregulujący
             </p>
             <p className="text-brand-primary text-2xl font-semibold mt-4">
-              69 zł
+              {price || "69 zł"}
             </p>
+            {variantId && (
+              <div className="mt-4">
+                <AddToCartButton variantId={variantId} />
+              </div>
+            )}
+            {product && (
+              <LocalizedClientLink
+                href="/products/jojobacode"
+                className="inline-flex items-center gap-1 text-brand-accent text-sm mt-3 hover:underline"
+              >
+                Zobacz w sklepie &rarr;
+              </LocalizedClientLink>
+            )}
           </AnimateIn>
 
-          {/* Placeholder image */}
+          {/* Product image or placeholder */}
           <AnimateIn variant="fade-up" delay={100}>
             <div className="relative aspect-[4/3] bg-brand-surface rounded-sm flex items-center justify-center mb-12 border border-brand-border">
-              <div className="text-center">
-                <img src="/icons/seedling.svg" alt="" className="w-12 h-12 mx-auto mb-2" />
-                <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
-                  Zdjęcie wkrótce
-                </p>
-              </div>
+              {product?.thumbnail ? (
+                <img
+                  src={product.thumbnail}
+                  alt={product.title || "JojobaCode"}
+                  className="w-full h-full object-cover rounded-sm"
+                />
+              ) : (
+                <div className="text-center">
+                  <img
+                    src="/icons/seedling.svg"
+                    alt=""
+                    className="w-12 h-12 mx-auto mb-2"
+                  />
+                  <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
+                    Zdjęcie wkrótce
+                  </p>
+                </div>
+              )}
             </div>
           </AnimateIn>
 

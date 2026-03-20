@@ -3,6 +3,11 @@ import Image from "next/image"
 import AnimateIn from "@modules/common/components/animate-in"
 import ScrollDownButton from "@modules/common/components/scroll-down-button"
 import Icon from "@modules/common/components/icon"
+import { listProducts } from "@lib/data/products"
+import { getRegion } from "@lib/data/regions"
+import { getProductPrice } from "@lib/util/get-product-price"
+import AddToCartButton from "@modules/products/components/add-to-cart-button"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export const metadata: Metadata = {
   title: "Mydła Rytualne — Lunula Slavic Soap",
@@ -13,34 +18,57 @@ export const metadata: Metadata = {
 const soaps = [
   {
     name: "Rusałka",
+    handle: "rusalka-mydlo-rytualne",
     icon: "herb",
     ingredients: "Rumianek \u2022 Lawenda \u2022 Płatki owsiane",
     inci: "Olea Europaea Fruit Oil, Cocos Nucifera Oil, Butyrospermum Parkii Butter, Chamomilla Recutita, Lavandula Angustifolia Oil, Avena Sativa",
     description:
       "Rusałka to lekkość i ukojenie. Delikatnie ziołowa z dodatkiem płatków owsianych, które nadają jej miękkiej, naturalnej faktury. Sprawdza się przy skórze wrażliwej i suchej — kiedy potrzeba ciszy, prostoty i oddechu.",
-    price: "33 zł",
   },
   {
     name: "Różyczka",
+    handle: "rozyczka-mydlo-rytualne",
     icon: "flower",
     ingredients: "Glinka różowa i czerwona \u2022 May Chang \u2022 Słodka pomarańcza \u2022 Róża damasceńska",
     inci: "Illite, Kaolin, Cymbopogon Martini / Litsea Cubeba Oil (May Chang), Citrus Aurantium Dulcis Peel Oil, Rosa Damascena Flower Oil",
     description:
       "Różyczka łączy mineralną moc glinki z promienną energią cytrusów i róży. Kwiatowo-owocowa, świeża, z subtelną nutą kobiecego ciepła. Wspiera równowagę skóry i nadaje jej zdrowy, naturalny blask. To mydło czasu rozkwitu — dla kobiet, które chcą czuć się świeżo, lekko i promiennie.",
-    price: "33 zł",
   },
   {
     name: "Mokosza",
+    handle: "mokosza-mydlo-rytualne",
     icon: "coffee",
     ingredients: "Kawa \u2022 Oleje roślinne \u2022 Hibiskus",
     inci: "Coffea Arabica Seed Powder, Hibiscus Sabdariffa Flower Extract, masło shea",
     description:
       "Mokosza jest ziemista i wyrazista. Naturalny kolor kawy, delikatnie peelingująca struktura i ciepły, otulający zapach sprawiają, że to mydło ma korzenny, stabilny charakter. Choć inspirowana archetypem Matki Ziemi, Mokosza jest chętnie wybierana również przez mężczyzn — właśnie ze względu na jej naturalny, kawowy aromat. Daje poczucie mocy, zakorzenienia i energii.",
-    price: "33 zł",
   },
 ]
 
-export default function SlavicSoapPage() {
+type Props = {
+  params: Promise<{ countryCode: string }>
+}
+
+export default async function SlavicSoapPage(props: Props) {
+  const { countryCode } = await props.params
+  const region = await getRegion(countryCode)
+
+  // Fetch all soap products from Medusa
+  const handles = soaps.map((s) => s.handle)
+  let productMap = new Map<string, any>()
+
+  if (region) {
+    try {
+      const { response } = await listProducts({
+        countryCode,
+        queryParams: { handle: handles, limit: 10 },
+      })
+      for (const p of response.products) {
+        if (p.handle) productMap.set(p.handle, p)
+      }
+    } catch {}
+  }
+
   return (
     <div className="bg-brand-background">
       {/* Hero with background image */}
@@ -95,50 +123,85 @@ export default function SlavicSoapPage() {
       <section className="py-16 small:py-24 bg-brand-surface">
         <div className="content-container">
           <div className="space-y-16">
-            {soaps.map((soap, i) => (
-              <AnimateIn
-                key={soap.name}
-                variant="fade-up"
-                delay={i * 100}
-                duration={800}
-              >
-                <div className="grid grid-cols-1 small:grid-cols-2 gap-8 items-center">
-                  {/* Placeholder image */}
-                  <div className="relative aspect-square bg-brand-background rounded-sm flex items-center justify-center border border-brand-border">
-                    <div className="text-center">
-                      <Icon name={soap.icon} size={64} className="mx-auto mb-2" />
-                      <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
-                        Zdjęcie wkrótce
-                      </p>
-                    </div>
-                  </div>
+            {soaps.map((soap, i) => {
+              const product = productMap.get(soap.handle)
+              const variantId = product?.variants?.[0]?.id
+              let price: string | null = null
+              try {
+                if (product) {
+                  price = getProductPrice({ product }).cheapestPrice?.calculated_price ?? null
+                }
+              } catch {}
 
-                  {/* Info */}
-                  <div>
-                    <h2 className="text-brand-text text-2xl small:text-3xl font-heading font-bold mb-2">
-                      {soap.name}
-                    </h2>
-                    <p className="text-brand-accent text-sm tracking-wider mb-4">
-                      {soap.ingredients}
-                    </p>
-                    <p className="text-brand-text-muted text-base leading-relaxed mb-4">
-                      {soap.description}
-                    </p>
-                    <div className="p-4 border border-brand-border rounded-sm mb-4">
-                      <p className="text-brand-text-muted/60 text-xs uppercase tracking-wider mb-1">
-                        INCI
+              return (
+                <AnimateIn
+                  key={soap.name}
+                  variant="fade-up"
+                  delay={i * 100}
+                  duration={800}
+                >
+                  <div className="grid grid-cols-1 small:grid-cols-[minmax(0,360px)_1fr] gap-8 items-center">
+                    {/* Image or placeholder */}
+                    {product?.thumbnail ? (
+                      <LocalizedClientLink href={`/products/${soap.handle}`}>
+                        <div className="relative aspect-[4/5] bg-brand-background rounded-sm overflow-hidden border border-brand-border">
+                          <Image
+                            src={product.thumbnail}
+                            alt={soap.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      </LocalizedClientLink>
+                    ) : (
+                      <div className="relative aspect-[4/5] bg-brand-background rounded-sm flex items-center justify-center border border-brand-border">
+                        <div className="text-center">
+                          <Icon name={soap.icon} size={64} className="mx-auto mb-2" />
+                          <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
+                            Zdjęcie wkrótce
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Info */}
+                    <div>
+                      <h2 className="text-brand-text text-2xl small:text-3xl font-heading font-bold mb-2">
+                        {soap.name}
+                      </h2>
+                      <p className="text-brand-accent text-sm tracking-wider mb-4">
+                        {soap.ingredients}
                       </p>
-                      <p className="text-brand-text-muted text-sm leading-relaxed">
-                        {soap.inci}
+                      <p className="text-brand-text-muted text-base leading-relaxed mb-4">
+                        {soap.description}
                       </p>
+                      <div className="p-4 border border-brand-border rounded-sm mb-4">
+                        <p className="text-brand-text-muted/60 text-xs uppercase tracking-wider mb-1">
+                          INCI
+                        </p>
+                        <p className="text-brand-text-muted text-sm leading-relaxed">
+                          {soap.inci}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <p className="text-brand-primary text-xl font-semibold">
+                          {price || "33 zł"}
+                        </p>
+                        {variantId && <AddToCartButton variantId={variantId} />}
+                      </div>
+                      {product && (
+                        <LocalizedClientLink
+                          href={`/products/${soap.handle}`}
+                          className="inline-flex items-center gap-1 text-brand-accent text-sm mt-3 hover:underline"
+                        >
+                          Zobacz w sklepie &rarr;
+                        </LocalizedClientLink>
+                      )}
                     </div>
-                    <p className="text-brand-primary text-xl font-semibold">
-                      {soap.price}
-                    </p>
                   </div>
-                </div>
-              </AnimateIn>
-            ))}
+                </AnimateIn>
+              )
+            })}
           </div>
         </div>
       </section>

@@ -42,11 +42,21 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 }
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
+  // Extract INCI from description (pattern: "INCI: ...")
+  const description = product.description || ""
+  const inciMatch = description.match(/INCI:\s*(.+?)(?:\.|Pojemność|$)/i)
+  const inci = inciMatch?.[1]?.trim() || (product.metadata?.inci as string) || null
+
+  // Extract volume/capacity from description
+  const volumeMatch = description.match(/Pojemność:\s*(.+?)\.?$/i)
+  const volume = volumeMatch?.[1]?.trim() || null
+
   const fields: { label: string; value: string | null | undefined }[] = [
+    { label: "Pojemność", value: volume },
+    { label: "Waga", value: product.weight ? `${product.weight} g` : null },
+    { label: "Typ", value: product.type?.value },
     { label: "Materiał", value: product.material },
     { label: "Kraj pochodzenia", value: product.origin_country },
-    { label: "Typ", value: product.type?.value },
-    { label: "Waga", value: product.weight ? `${product.weight} g` : null },
     {
       label: "Wymiary",
       value:
@@ -58,7 +68,9 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 
   const visibleFields = fields.filter((f) => f.value)
 
-  if (visibleFields.length === 0) {
+  const hasContent = visibleFields.length > 0 || inci
+
+  if (!hasContent) {
     return (
       <div className="text-small-regular py-8 text-ui-fg-subtle">
         Brak dodatkowych informacji.
@@ -68,14 +80,22 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 
   return (
     <div className="text-small-regular py-8">
-      <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-        {visibleFields.map((field) => (
-          <div key={field.label}>
-            <span className="font-semibold">{field.label}</span>
-            <p>{field.value}</p>
-          </div>
-        ))}
-      </div>
+      {visibleFields.length > 0 && (
+        <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+          {visibleFields.map((field) => (
+            <div key={field.label}>
+              <span className="font-semibold">{field.label}</span>
+              <p>{field.value}</p>
+            </div>
+          ))}
+        </div>
+      )}
+      {inci && (
+        <div className={visibleFields.length > 0 ? "mt-6 pt-6 border-t border-ui-border-base" : ""}>
+          <span className="font-semibold">Skład (INCI)</span>
+          <p className="mt-1 text-ui-fg-subtle">{inci}</p>
+        </div>
+      )}
     </div>
   )
 }

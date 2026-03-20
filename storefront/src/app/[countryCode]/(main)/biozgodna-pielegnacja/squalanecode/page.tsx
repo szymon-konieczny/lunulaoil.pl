@@ -1,5 +1,10 @@
 import { Metadata } from "next"
 import AnimateIn from "@modules/common/components/animate-in"
+import { listProducts } from "@lib/data/products"
+import { getRegion } from "@lib/data/regions"
+import { getProductPrice } from "@lib/util/get-product-price"
+import AddToCartButton from "@modules/products/components/add-to-cart-button"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export const metadata: Metadata = {
   title: "SqualaneCode — Skwalan",
@@ -7,7 +12,34 @@ export const metadata: Metadata = {
     "Ultra lekki, suchy, niekomedogenny lipid. Stabilna forma skwalenu naturalnie występującego w ludzkim sebum.",
 }
 
-export default function SqualaneCodePage() {
+type Props = {
+  params: Promise<{ countryCode: string }>
+}
+
+export default async function SqualaneCodePage(props: Props) {
+  const { countryCode } = await props.params
+  const region = await getRegion(countryCode)
+
+  let product: any = null
+  if (region) {
+    try {
+      const { response } = await listProducts({
+        countryCode,
+        queryParams: { handle: "squalanecode", limit: 1 },
+      })
+      product = response.products[0] || null
+    } catch {}
+  }
+
+  const variantId = product?.variants?.[0]?.id
+  let price: string | null = null
+  try {
+    if (product) {
+      price =
+        getProductPrice({ product }).cheapestPrice?.calculated_price ?? null
+    }
+  } catch {}
+
   return (
     <div className="bg-brand-background">
       <section className="py-20 small:py-32">
@@ -23,19 +55,40 @@ export default function SqualaneCodePage() {
               Ultra lekki, suchy, niekomedogenny lipid
             </p>
             <p className="text-brand-primary text-2xl font-semibold mt-4">
-              59 zł
+              {price || "59 zł"}
             </p>
+            {variantId && (
+              <div className="mt-4">
+                <AddToCartButton variantId={variantId} />
+              </div>
+            )}
+            {product && (
+              <LocalizedClientLink
+                href="/products/squalanecode"
+                className="inline-flex items-center gap-1 text-brand-accent text-sm mt-3 hover:underline"
+              >
+                Zobacz w sklepie &rarr;
+              </LocalizedClientLink>
+            )}
           </AnimateIn>
 
-          {/* Placeholder image */}
+          {/* Product image or placeholder */}
           <AnimateIn variant="fade-up" delay={100}>
             <div className="relative aspect-[4/3] bg-brand-surface rounded-sm flex items-center justify-center mb-12 border border-brand-border">
-              <div className="text-center">
-                <span className="text-5xl block mb-2">🫧</span>
-                <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
-                  Zdjęcie wkrótce
-                </p>
-              </div>
+              {product?.thumbnail ? (
+                <img
+                  src={product.thumbnail}
+                  alt={product.title || "SqualaneCode"}
+                  className="object-contain w-full h-full rounded-sm"
+                />
+              ) : (
+                <div className="text-center">
+                  <span className="text-5xl block mb-2">🫧</span>
+                  <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
+                    Zdjęcie wkrótce
+                  </p>
+                </div>
+              )}
             </div>
           </AnimateIn>
 
