@@ -189,14 +189,12 @@ export default async function SlavicSoapPage(props: Props) {
                         </p>
                         {variantId && <AddToCartButton variantId={variantId} />}
                       </div>
-                      {product && (
-                        <LocalizedClientLink
-                          href={`/products/${soap.handle}`}
-                          className="inline-flex items-center gap-1 text-brand-accent text-sm mt-3 hover:underline"
-                        >
-                          Zobacz w sklepie &rarr;
-                        </LocalizedClientLink>
-                      )}
+                      <LocalizedClientLink
+                        href={`/products/${soap.handle}`}
+                        className="inline-flex items-center gap-1 text-brand-accent text-sm mt-3 hover:underline"
+                      >
+                        Zobacz w sklepie &rarr;
+                      </LocalizedClientLink>
                     </div>
                   </div>
                 </AnimateIn>

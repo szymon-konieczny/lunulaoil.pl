@@ -9,6 +9,7 @@ import OilsSection from "@modules/home/components/oils-section"
 import CtaQuiz from "@modules/home/components/cta-quiz"
 import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
+import { getProductPrice } from "@lib/util/get-product-price"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
@@ -39,6 +40,44 @@ export default async function Home(props: {
       queryParams: { limit: 8, order: "-created_at" },
     })
     products = result.response.products
+  } catch {}
+
+  // Fetch biocare products (hialcode, squalanecode, jojobacode)
+  const biocareHandles = ["hialcode", "squalanecode", "jojobacode"]
+  const biocareMap: Record<string, { price: string; variantId: string | null; thumbnail: string | null }> = {}
+  try {
+    const { response } = await listProducts({
+      countryCode,
+      queryParams: { handle: biocareHandles, limit: 3 },
+    })
+    for (const p of response.products) {
+      if (!p.handle) continue
+      const { cheapestPrice } = getProductPrice({ product: p })
+      biocareMap[p.handle] = {
+        price: cheapestPrice?.calculated_price || "",
+        variantId: p.variants?.[0]?.id || null,
+        thumbnail: p.thumbnail || null,
+      }
+    }
+  } catch {}
+
+  // Fetch soap products (rusalka, rozyczka, mokosza)
+  const soapHandles = ["rusalka-mydlo-rytualne", "rozyczka-mydlo-rytualne", "mokosza-mydlo-rytualne"]
+  const soapMap: Record<string, { price: string; variantId: string | null; thumbnail: string | null }> = {}
+  try {
+    const { response } = await listProducts({
+      countryCode,
+      queryParams: { handle: soapHandles, limit: 3 },
+    })
+    for (const p of response.products) {
+      if (!p.handle) continue
+      const { cheapestPrice } = getProductPrice({ product: p })
+      soapMap[p.handle] = {
+        price: cheapestPrice?.calculated_price || "",
+        variantId: p.variants?.[0]?.id || null,
+        thumbnail: p.thumbnail || null,
+      }
+    }
   } catch {}
 
   const organizationJsonLd = {
@@ -82,8 +121,8 @@ export default async function Home(props: {
       <Hero />
       <Manifest />
       <HeroProduct />
-      <BiocareSection />
-      <SlavicSoap />
+      <BiocareSection productData={biocareMap} />
+      <SlavicSoap productData={soapMap} />
       <OilsSection products={products} region={region} />
       <CtaQuiz />
     </>
