@@ -8,6 +8,27 @@ import Thumbnail from "@modules/products/components/thumbnail"
 import { getProductPrice } from "@lib/util/get-product-price"
 import { QuizAnswers } from "../data"
 
+function highlightProductNames(
+  text: string,
+  products: HttpTypes.StoreProduct[]
+): string {
+  let result = text
+  const names = products
+    .map((p) => p.title)
+    .filter(Boolean)
+    .sort((a, b) => b!.length - a!.length)
+
+  for (const name of names) {
+    if (!name) continue
+    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+    result = result.replace(
+      new RegExp(escaped, "g"),
+      `<strong class="text-brand-text font-semibold">${name}</strong>`
+    )
+  }
+  return result
+}
+
 type Props = {
   products: HttpTypes.StoreProduct[]
   answers: QuizAnswers
@@ -58,9 +79,15 @@ export default function QuizResults({
               </div>
             </div>
           ) : (
-            <p className="text-brand-text-muted leading-relaxed whitespace-pre-line">
-              {aiRecommendation}
-            </p>
+            <p
+              className="text-brand-text-muted leading-relaxed whitespace-pre-line"
+              dangerouslySetInnerHTML={{
+                __html: highlightProductNames(
+                  aiRecommendation || "",
+                  products
+                ),
+              }}
+            />
           )}
         </div>
       )}

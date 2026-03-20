@@ -156,10 +156,13 @@ export default function QuizWizard({ allProducts }: Props) {
   }
 
   const scoredProducts = scoreProducts(allProducts, answers)
-  // If AI returned specific handles, filter and reorder products to match
+  // If AI returned specific handles, display ONLY those products in AI's order
   const displayProducts = aiHandles.length > 0
     ? aiHandles
-        .map((h) => scoredProducts.find((p) => p.handle === h))
+        .map((h) =>
+          scoredProducts.find((p) => p.handle === h) ||
+          allProducts.find((p) => p.handle === h)
+        )
         .filter(Boolean) as typeof scoredProducts
     : scoredProducts
 
