@@ -13,17 +13,38 @@ function highlightProductNames(
   products: HttpTypes.StoreProduct[]
 ): string {
   let result = text
-  const names = products
-    .map((p) => p.title)
-    .filter(Boolean)
-    .sort((a, b) => b!.length - a!.length)
 
-  for (const name of names) {
-    if (!name) continue
-    const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+  // Build keyword phrases from product titles — both full titles and distinctive fragments
+  const phrases: string[] = []
+  for (const p of products) {
+    if (!p.title) continue
+    // Add full title
+    phrases.push(p.title)
+    // Extract distinctive subphrases (e.g. "Green Witch Divine", "PEŁNIA KSIĘŻYCA", "LipidCode")
+    const words = p.title.split(/\s+/)
+    // Multi-word uppercase sequences (e.g. "PEŁNIA KSIĘŻYCA", "KSIĘŻYC W NOWIU")
+    const upperMatch = p.title.match(/(?:[A-ZĄĆĘŁŃÓŚŹŻ]{2,}\s*){2,}/g)
+    if (upperMatch) phrases.push(...upperMatch.map((m) => m.trim()))
+    // CamelCase/brand words (e.g. "LipidCode", "HialCode", "SqualaneCode", "JojobaCode")
+    for (const w of words) {
+      if (/^[A-Z][a-z]+[A-Z]/.test(w) || /Code$/.test(w)) phrases.push(w)
+    }
+    // Distinctive multi-word names (3+ char words excluding common Polish words)
+    const skipWords = new Set(["olej", "olejek", "krem", "mydło", "nutą", "250ml", "50ml", "30ml", "warsztaty", "tworzenia", "kremu"])
+    const distinctive = words.filter((w) => w.length > 3 && !skipWords.has(w.toLowerCase()))
+    if (distinctive.length >= 2) {
+      phrases.push(distinctive.join(" "))
+    }
+  }
+
+  // Sort longest first to avoid partial matches
+  const unique = [...new Set(phrases)].sort((a, b) => b.length - a.length)
+
+  for (const phrase of unique) {
+    const escaped = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
     result = result.replace(
-      new RegExp(escaped, "g"),
-      `<strong class="text-brand-text font-semibold">${name}</strong>`
+      new RegExp(`(?<!<[^>]*)${escaped}(?![^<]*>)`, "g"),
+      `<strong class="text-brand-text font-semibold">${phrase}</strong>`
     )
   }
   return result

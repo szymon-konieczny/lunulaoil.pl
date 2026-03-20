@@ -105,10 +105,11 @@ ODPOWIEDZ W FORMACIE JSON:
 }
 
 ZASADY:
-- handles: tablica handle'ów DOKŁADNIE tych produktów, o których piszesz w tekście — WYŁĄCZNIE z powyższej listy
-- text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Wyjaśnij krótko dlaczego produkty są idealne — odwołaj się do filozofii biozgodności. Możesz zasugerować łączenie polecanych produktów. Na koniec jednym zdaniem zaproponuj warsztaty Slow Care (jeśli są na liście, DODAJ ich handle do handles). Pisz naturalnym, POPRAWNYM polskim — bez kośławych konstrukcji, jak native speaker. Ton: ciepły doradca w butikowym sklepie.
-- BEZWZGLĘDNA SPÓJNOŚĆ handles↔tekst: handles i tekst muszą opisywać IDENTYCZNY zestaw produktów. Nie wolno umieszczać w handles produktu, o którym nie piszesz. Nie wolno pisać o produkcie, którego nie ma w handles. Przed odpowiedzią ZWERYFIKUJ tę spójność.
-- BEZWZGLĘDNY ZAKAZ: NIE WOLNO wspominać w tekście ŻADNYCH produktów, których nie ma na powyższej liście "Dostępne produkty w sklepie". Złamanie tej zasady to błąd krytyczny.
+- handles: tablica DOKŁADNIE 3 handle'ów: 2 produkty pielęgnacyjne + 1 warsztaty. WYŁĄCZNIE z powyższej listy.
+- STRUKTURA REKOMENDACJI: Wybierz 2 najlepsze produkty pielęgnacyjne dla klienta + 1 najbardziej pasujące warsztaty (Slow Care/Slow Coffee Cream/Slow MakeUp). Zawsze 3 pozycje.
+- text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Opisz WSZYSTKIE 3 polecane pozycje (2 produkty + warsztaty). Odwołaj się do filozofii biozgodności. Pisz naturalnym, POPRAWNYM polskim — jak native speaker. Ton: ciepły doradca w butikowym sklepie.
+- BEZWZGLĘDNA SPÓJNOŚĆ handles↔tekst: handles i tekst muszą opisywać IDENTYCZNY zestaw. Każdy handle musi być wspomniany w tekście. Przed odpowiedzią ZWERYFIKUJ.
+- BEZWZGLĘDNY ZAKAZ: NIE WOLNO wspominać produktów spoza powyższej listy. Złamanie = błąd krytyczny.
 
 BEZWZGLĘDNE ZASADY FORMY TEKSTU:
 - Zwracaj się WYŁĄCZNIE na "Ty" (np. "Twoja skóra", "dla Ciebie", "polecam Ci")
@@ -157,10 +158,33 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
       const text = parsed.text || rawText
       const handles: string[] = parsed.handles || []
 
-      // Only keep handles that exist in the product catalog
+      // Trust AI handles but ensure they exist in catalog
       const validHandles = handles.filter((handle: string) =>
         products.some((p) => p.handle === handle)
       )
+
+      // Ensure workshops are included as 3rd recommendation
+      const isWorkshop = (p: QuizProduct) =>
+        p.title.toLowerCase().includes("slow") ||
+        p.title.toLowerCase().includes("warsztaty")
+      const hasWorkshop = validHandles.some((h) => {
+        const p = products.find((pr) => pr.handle === h)
+        return p && isWorkshop(p)
+      })
+
+      let finalHandles = validHandles
+      if (!hasWorkshop) {
+        // Remove any 3rd non-workshop product, add best matching workshop
+        const workshop = products.find((p) => isWorkshop(p))
+        if (workshop) {
+          // Keep only first 2 non-workshop handles, then add workshop
+          const nonWorkshop = finalHandles.filter((h) => {
+            const p = products.find((pr) => pr.handle === h)
+            return p && !isWorkshop(p)
+          }).slice(0, 2)
+          finalHandles = [...nonWorkshop, workshop.handle]
+        }
+      }
 
       return NextResponse.json({
         recommendation: text,
