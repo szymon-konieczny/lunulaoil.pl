@@ -105,10 +105,13 @@ ODPOWIEDZ W FORMACIE JSON:
 }
 
 ZASADY:
-- handles: tablica DOKŁADNIE 3 handle'ów: 2 produkty pielęgnacyjne + 1 warsztaty. WYŁĄCZNIE z powyższej listy.
-- STRUKTURA REKOMENDACJI: Wybierz 2 najlepsze produkty pielęgnacyjne dla klienta + 1 najbardziej pasujące warsztaty (Slow Care/Slow Coffee Cream/Slow MakeUp). Zawsze 3 pozycje.
-- text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Opisz WSZYSTKIE 3 polecane pozycje (2 produkty + warsztaty). Odwołaj się do filozofii biozgodności. Pisz naturalnym, POPRAWNYM polskim — jak native speaker. Ton: ciepły doradca w butikowym sklepie.
-- BEZWZGLĘDNA SPÓJNOŚĆ handles↔tekst: handles i tekst muszą opisywać IDENTYCZNY zestaw. Każdy handle musi być wspomniany w tekście. Przed odpowiedzią ZWERYFIKUJ.
+- handles: tablica DOKŁADNIE 3 handle'ów w ŚCISŁEJ KOLEJNOŚCI: [główny produkt, uzupełniający produkt, warsztaty]. WYŁĄCZNIE z powyższej listy.
+  1. Główny produkt — najlepiej dopasowany do potrzeb klienta (primary match)
+  2. Uzupełniający produkt — komplementarny dodatek wzmacniający rytuał
+  3. Warsztaty — najbardziej pasujące warsztaty (Slow Care/Slow Coffee Cream/Slow MakeUp)
+- STRUKTURA REKOMENDACJI: Wybierz 2 najlepsze produkty pielęgnacyjne dla klienta + 1 najbardziej pasujące warsztaty. Zawsze 3 pozycje.
+- text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Opisz WSZYSTKIE 3 polecane pozycje (2 produkty + warsztaty) W TEJ SAMEJ KOLEJNOŚCI co handles — najpierw główny produkt, potem uzupełniający, na końcu warsztaty. Odwołaj się do filozofii biozgodności. Pisz naturalnym, POPRAWNYM polskim — jak native speaker. Ton: ciepły doradca w butikowym sklepie.
+- BEZWZGLĘDNA SPÓJNOŚĆ handles↔tekst: handles i tekst muszą opisywać IDENTYCZNY zestaw W IDENTYCZNEJ KOLEJNOŚCI. Każdy handle musi być wspomniany w tekście. Przed odpowiedzią ZWERYFIKUJ.
 - BEZWZGLĘDNY ZAKAZ: NIE WOLNO wspominać produktów spoza powyższej listy. Złamanie = błąd krytyczny.
 
 BEZWZGLĘDNE ZASADY FORMY TEKSTU:
