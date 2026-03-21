@@ -100,6 +100,13 @@ export default function ShopDropdown({ categories }: ShopDropdownProps) {
               >
                 Wszystkie produkty
               </LocalizedClientLink>
+              <LocalizedClientLink
+                href="/leksykon"
+                className="block px-4 py-2 text-sm text-brand-text-muted hover:text-brand-accent hover:bg-brand-surface-hover transition-colors"
+                onClick={() => setOpen(false)}
+              >
+                Leksykon Składników
+              </LocalizedClientLink>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { listProducts } from "@lib/data/products"
 import { listCategories } from "@lib/data/categories"
 import { listCollections } from "@lib/data/collections"
 import { listRegions } from "@lib/data/regions"
+import { listIngredients } from "@lib/data/ingredients"
 
 // Force dynamic rendering — backend is not available at build time
 export const dynamic = "force-dynamic"
@@ -89,5 +90,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Sitemap: failed to fetch collections", e)
   }
 
-  return [...staticPages, ...productPages, ...categoryPages, ...collectionPages]
+  // Ingredient encyclopedia pages
+  let ingredientPages: MetadataRoute.Sitemap = []
+  try {
+    const ingredients = await listIngredients()
+
+    // Listing page
+    const lexiconListing = countryCodes.map((country) => ({
+      url: `${BASE_URL}/${country}/leksykon`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }))
+
+    // Detail pages
+    const lexiconDetails = countryCodes.flatMap((country) =>
+      ingredients.map((ingredient) => ({
+        url: `${BASE_URL}/${country}/leksykon/${ingredient.handle}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }))
+    )
+
+    ingredientPages = [...lexiconListing, ...lexiconDetails]
+  } catch (e) {
+    console.error("Sitemap: failed to fetch ingredients", e)
+  }
+
+  return [...staticPages, ...productPages, ...categoryPages, ...collectionPages, ...ingredientPages]
 }

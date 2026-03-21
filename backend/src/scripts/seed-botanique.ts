@@ -311,12 +311,26 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
   logger.info("Adding tags to products...")
 
   const allTagValues = [...new Set(tagMapping.flatMap((m) => m.tagValues))]
-  const createdTags = await productModuleService.createProductTags(
-    allTagValues.map((v) => ({ value: v }))
-  )
   const tagMap = new Map<string, string>()
-  for (const tag of createdTags) {
+
+  // Get existing tags first
+  const existingTags = await productModuleService.listProductTags(
+    { value: allTagValues },
+    { take: allTagValues.length }
+  )
+  for (const tag of existingTags) {
     tagMap.set(tag.value, tag.id)
+  }
+
+  // Create only missing tags
+  const missingTagValues = allTagValues.filter((v) => !tagMap.has(v))
+  if (missingTagValues.length) {
+    const createdTags = await productModuleService.createProductTags(
+      missingTagValues.map((v) => ({ value: v }))
+    )
+    for (const tag of createdTags) {
+      tagMap.set(tag.value, tag.id)
+    }
   }
 
   for (const mapping of tagMapping) {
