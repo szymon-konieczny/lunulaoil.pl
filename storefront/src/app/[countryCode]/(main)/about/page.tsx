@@ -114,7 +114,7 @@ export default async function AboutPage() {
             <AnimateIn variant="fade-right" delay={200}>
               <div className="relative aspect-[4/3] max-h-[480px] rounded-large overflow-hidden">
                 <Image
-                  src="/olejki-1.jpg"
+                  src="/lunula-lab-1.jpeg"
                   alt={t("story.imageAlt")}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -172,7 +172,7 @@ export default async function AboutPage() {
             >
               <div className="relative aspect-[4/3] max-h-[480px] rounded-large overflow-hidden">
                 <Image
-                  src="/olejki-3.jpg"
+                  src="/lunula-lab-2.jpeg"
                   alt={t("biocare.imageAlt")}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -220,7 +220,7 @@ export default async function AboutPage() {
             <AnimateIn variant="fade-right" delay={200}>
               <div className="relative aspect-[4/3] max-h-[480px] rounded-large overflow-hidden">
                 <Image
-                  src="/olejki-2.jpg"
+                  src="/lunula-lab-3.jpeg"
                   alt={t("philosophy.imageAlt")}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
