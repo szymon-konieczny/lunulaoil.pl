@@ -2,6 +2,7 @@ import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import { HttpTypes } from "@medusajs/types"
 import Product from "../product-preview"
+import RelatedProductsCarousel from "./carousel"
 
 type RelatedProductsProps = {
   product: HttpTypes.StoreProduct
@@ -48,8 +49,8 @@ export default async function RelatedProducts({
 
   return (
     <div className="product-page-constraint">
-      <div className="flex flex-col items-center text-center mb-16">
-        <span className="text-base-regular text-gray-600 mb-6">
+      <div className="flex flex-col items-center text-center mb-10">
+        <span className="text-base-regular text-gray-600 mb-4">
           Podobne produkty
         </span>
         <p className="text-2xl-regular text-ui-fg-base max-w-lg">
@@ -57,13 +58,7 @@ export default async function RelatedProducts({
         </p>
       </div>
 
-      <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8">
-        {products.slice(0, 4).map((product) => (
-          <li key={product.id}>
-            <Product region={region} product={product} />
-          </li>
-        ))}
-      </ul>
+      <RelatedProductsCarousel products={products} region={region} />
     </div>
   )
 }
