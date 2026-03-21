@@ -40,7 +40,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         data-testid="product-container"
       >
         {/* Left column — image gallery */}
-        <div className="block w-full medium:w-[42%] medium:max-w-[480px] relative">
+        <div className="block w-full medium:w-1/2 relative">
           <ImageGallery images={images} />
         </div>
 
