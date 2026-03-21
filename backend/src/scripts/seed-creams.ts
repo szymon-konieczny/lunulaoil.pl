@@ -80,7 +80,7 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
   // Product definitions
   const productDefs = [
     {
-      title: "Geranium Glow — Moon Touch Cream 50ml",
+      title: "Geranium Glow — Moon Touch Cream 60ml",
       subtitle: "Moon Ritual — Balance",
       category_ids: [catCreams],
       description:
@@ -90,12 +90,12 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       status: ProductStatus.PUBLISHED,
       shipping_profile_id: shippingProfile.id,
       images: [] as { url: string }[],
-      options: [{ title: "Pojemność", values: ["50ml"] }],
+      options: [{ title: "Pojemność", values: ["60ml"] }],
       variants: [
         {
-          title: "50ml",
-          sku: "LUNULA-GERANIUMGLOW-50",
-          options: { Pojemność: "50ml" },
+          title: "60ml",
+          sku: "LUNULA-GERANIUMGLOW-60",
+          options: { Pojemność: "60ml" },
           prices: [
             { amount: 12900, currency_code: "pln" },
             { amount: 3000, currency_code: "eur" },
@@ -106,7 +106,7 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       _tagValues: ["krem", "skóra wrażliwa", "ukojenie", "równowaga", "wygładzenie", "geranium", "skwalan", "twarz"],
     },
     {
-      title: "Golden Glow — Solar Touch Cream 50ml",
+      title: "Golden Glow — Solar Touch Cream 60ml",
       subtitle: "Solar Ritual — Radiance",
       category_ids: [catCreams],
       description:
@@ -116,12 +116,12 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       status: ProductStatus.PUBLISHED,
       shipping_profile_id: shippingProfile.id,
       images: [] as { url: string }[],
-      options: [{ title: "Pojemność", values: ["50ml"] }],
+      options: [{ title: "Pojemność", values: ["60ml"] }],
       variants: [
         {
-          title: "50ml",
-          sku: "LUNULA-GOLDENGLOW-50",
-          options: { Pojemność: "50ml" },
+          title: "60ml",
+          sku: "LUNULA-GOLDENGLOW-60",
+          options: { Pojemność: "60ml" },
           prices: [
             { amount: 13900, currency_code: "pln" },
             { amount: 3200, currency_code: "eur" },
@@ -132,7 +132,7 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       _tagValues: ["krem", "skóra sucha", "zmęczona", "rozświetlenie", "odżywienie", "miękkość", "blask", "skwalan", "rokitnik", "twarz"],
     },
     {
-      title: "Rose Alchemy — Phyto Renew Cream 50ml",
+      title: "Rose Alchemy — Phyto Renew Cream 60ml",
       subtitle: "Alchemy Ritual — Renewal",
       category_ids: [catCreams],
       description:
@@ -142,12 +142,12 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       status: ProductStatus.PUBLISHED,
       shipping_profile_id: shippingProfile.id,
       images: [] as { url: string }[],
-      options: [{ title: "Pojemność", values: ["50ml"] }],
+      options: [{ title: "Pojemność", values: ["60ml"] }],
       variants: [
         {
-          title: "50ml",
-          sku: "LUNULA-ROSEALCHEMY-50",
-          options: { Pojemność: "50ml" },
+          title: "60ml",
+          sku: "LUNULA-ROSEALCHEMY-60",
+          options: { Pojemność: "60ml" },
           prices: [
             { amount: 14900, currency_code: "pln" },
             { amount: 3500, currency_code: "eur" },
@@ -158,7 +158,7 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       _tagValues: ["krem", "skóra dojrzała", "przeciwzmarszczkowy", "ujędrnienie", "wygładzenie", "odnowa", "bakuchiol", "róża", "koenzym Q10", "twarz"],
     },
     {
-      title: "Clear Ritual — Pure Touch Cream 50ml",
+      title: "Clear Ritual — Pure Touch Cream 60ml",
       subtitle: "Pure Ritual — Purity",
       category_ids: [catCreams],
       description:
@@ -168,12 +168,12 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       status: ProductStatus.PUBLISHED,
       shipping_profile_id: shippingProfile.id,
       images: [] as { url: string }[],
-      options: [{ title: "Pojemność", values: ["50ml"] }],
+      options: [{ title: "Pojemność", values: ["60ml"] }],
       variants: [
         {
-          title: "50ml",
-          sku: "LUNULA-CLEARRITUAL-50",
-          options: { Pojemność: "50ml" },
+          title: "60ml",
+          sku: "LUNULA-CLEARRITUAL-60",
+          options: { Pojemność: "60ml" },
           prices: [
             { amount: 11900, currency_code: "pln" },
             { amount: 2800, currency_code: "eur" },

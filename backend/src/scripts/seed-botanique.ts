@@ -98,7 +98,7 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
           sku: "LUNULA-HIALCODE-30",
           options: { Pojemnosc: "30ml" },
           prices: [
-            { amount: 7900, currency_code: "pln" },
+            { amount: 6900, currency_code: "pln" },
             { amount: 1900, currency_code: "eur" },
           ],
         },
@@ -131,7 +131,7 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
           sku: "LUNULA-SQUALANECODE-30",
           options: { Pojemnosc: "30ml" },
           prices: [
-            { amount: 5900, currency_code: "pln" },
+            { amount: 5600, currency_code: "pln" },
             { amount: 1400, currency_code: "eur" },
           ],
         },
@@ -165,8 +165,8 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
           sku: "LUNULA-JOJOBACODE-30",
           options: { Pojemnosc: "30ml" },
           prices: [
-            { amount: 6900, currency_code: "pln" },
-            { amount: 1600, currency_code: "eur" },
+            { amount: 5900, currency_code: "pln" },
+            { amount: 1400, currency_code: "eur" },
           ],
         },
       ],
@@ -180,6 +180,42 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
         "masaz",
         "aromaterapia",
         "regulacja sebum",
+      ],
+    },
+
+    {
+      title: "JojobaCode Gold — Olej jojoba z drobinkami zlota 100ml",
+      subtitle: "Biozgodna Pielęgnacja",
+      category_ids: [catBiocare],
+      description:
+        "100ml nierafinowanego oleju jojoba z drobinkami mineralnego zlota. Plynny wosk estrowy o budowie zblizonej do ludzkiego sebum, wzbogacony mieniącymi się drobinkami zlota. Reguluje wydzielanie sebum, nawilza, regeneruje i nadaje skorze subtelny blask. Idealny do masazu twarzy, pielegnacji ciala i aromaterapii. Bez parabenow, silikonow, SLS. GMO Free, Organic, Not Tested On Animals.",
+      handle: "jojobacode-gold-100ml",
+      weight: 150,
+      status: ProductStatus.PUBLISHED,
+      shipping_profile_id: shippingProfile.id,
+      images: [
+        { url: "https://lunulaoil.pl/wp-content/uploads/2022/08/Jojoba-Gold-Pelnia-Ksiezyca-Duza-Butelka.jpg" },
+      ],
+      options: [{ title: "Pojemnosc", values: ["100ml"] }],
+      variants: [
+        {
+          title: "100ml",
+          sku: "LUNULA-JOJOBACODE-GOLD-100",
+          options: { Pojemnosc: "100ml" },
+          prices: [
+            { amount: 8800, currency_code: "pln" },
+            { amount: 2100, currency_code: "eur" },
+          ],
+        },
+      ],
+      sales_channels: [{ id: salesChannelId }],
+      _tagValues: [
+        "jojoba",
+        "zloto",
+        "biozgodna pielegnacja",
+        "twarz",
+        "cialo",
+        "100ml",
       ],
     },
 
@@ -387,9 +423,10 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
 
   logger.info(
     "Done! Products seeded:\n" +
-      "  - HialCode (79 zl)\n" +
-      "  - SqualaneCode (59 zl)\n" +
-      "  - JojobaCode (69 zl)\n" +
+      "  - HialCode (69 zl)\n" +
+      "  - SqualaneCode (56 zl)\n" +
+      "  - JojobaCode (59 zl)\n" +
+      "  - JojobaCode Gold 100ml (88 zl)\n" +
       "  - Rusalka (33 zl)\n" +
       "  - Rozyczka (33 zl)\n" +
       "  - Mokosza (33 zl)"

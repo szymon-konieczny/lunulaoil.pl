@@ -39,41 +39,86 @@ const benefits = [
   },
 ]
 
+// Salon price table data
+const priceTable = [
+  {
+    category: "Pielęgnacja ciała / masaż — 250 ml",
+    items: [
+      { name: "Magnolia", retail: "139 zł", salon: "86 zł" },
+      { name: "Poranna Rosa", retail: "139 zł", salon: "86 zł" },
+      { name: "Księżyc w Nowiu", retail: "139 zł", salon: "96 zł" },
+      { name: "Wschód Słońca", retail: "149 zł", salon: "99 zł" },
+      { name: "Pełnia Księżyca", retail: "221 zł", salon: "190 zł" },
+      { name: "Ragnar", retail: "149 zł", salon: "99 zł" },
+      { name: "Green Witch Divine", retail: "149 zł", salon: "96 zł" },
+    ],
+  },
+  {
+    category: "JojobaCode Gold — 100 ml",
+    items: [
+      { name: "JojobaCode Gold", retail: "88 zł", salon: "68 zł" },
+    ],
+  },
+  {
+    category: "Pielęgnacja twarzy — 30 ml",
+    items: [
+      { name: "HyalCode Serum", retail: "69 zł", salon: "49 zł" },
+      { name: "SqualaneCode Elixir", retail: "56 zł", salon: "36 zł" },
+      { name: "JojobaCode Gold", retail: "59 zł", salon: "39 zł" },
+    ],
+  },
+  {
+    category: "Kremy rytualne — 60 ml",
+    items: [
+      { name: "Geranium Glow", retail: "129 zł", salon: "65 zł" },
+      { name: "Golden Glow", retail: "139 zł", salon: "70 zł" },
+      { name: "Rose Alchemy", retail: "149 zł", salon: "75 zł" },
+      { name: "Clear Ritual", retail: "119 zł", salon: "65 zł" },
+    ],
+  },
+  {
+    category: "Mydła rytualne — 100 g",
+    items: [
+      { name: "Rusałka / Różyczka / Mokosza", retail: "33 zł", salon: "26 zł" },
+    ],
+  },
+]
+
 const salonProducts = [
   {
     handle: "hialcode",
     name: "HialCode",
     subtitle: "Serum z kwasem hialuronowym",
     useCase: "Idealne jako baza pod zabiegi nawilżające i anti-aging",
-    fallbackPrice: "79 zł",
+    fallbackPrice: "69 zł",
   },
   {
     handle: "squalanecode",
     name: "SqualaneCode",
     subtitle: "Serum ze skwalanem",
     useCase: "Doskonałe do zabiegów regenerujących i odbudowy bariery lipidowej",
-    fallbackPrice: "59 zł",
+    fallbackPrice: "56 zł",
   },
   {
     handle: "jojobacode",
     name: "JojobaCode",
     subtitle: "Serum z olejem jojoba",
     useCase: "Uniwersalne — reguluje sebum, nawilża, nie zatyka porów",
-    fallbackPrice: "69 zł",
+    fallbackPrice: "59 zł",
   },
   {
     handle: "rusalka-mydlo-rytualne",
     name: "Rusałka",
     subtitle: "Mydło rytualne z rumiankiem i lawendą",
     useCase: "Relaksujące oczyszczanie przed zabiegami — aromaterapia w salonie",
-    fallbackPrice: "29 zł",
+    fallbackPrice: "33 zł",
   },
   {
-    handle: "mokosz-mydlo-rytualne",
-    name: "Mokosz",
+    handle: "mokosza-mydlo-rytualne",
+    name: "Mokosza",
     subtitle: "Mydło rytualne z różą i glinką",
     useCase: "Delikatne złuszczanie z glinką różową i olejkiem różanym",
-    fallbackPrice: "29 zł",
+    fallbackPrice: "33 zł",
   },
 ]
 
@@ -227,8 +272,64 @@ export default async function SalonPage(props: Props) {
           </div>
         </section>
 
-        {/* Products for salons */}
+        {/* Salon Price Table */}
         <section className="py-16 small:py-24">
+          <div className="content-container">
+            <AnimateIn variant="fade-in" className="text-center mb-12">
+              <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
+                Cennik Salonowy
+              </span>
+              <h2 className="text-2xl small:text-3xl font-heading text-brand-text mt-3 mb-2">
+                Specjalne ceny dla gabinetów
+              </h2>
+              <p className="text-brand-text-muted text-base max-w-2xl mx-auto">
+                Atrakcyjne warunki cenowe dla profesjonalnych salonów
+                kosmetycznych i SPA.
+              </p>
+            </AnimateIn>
+
+            <AnimateIn variant="fade-up" delay={100}>
+              <div className="max-w-3xl mx-auto">
+                {priceTable.map((group) => (
+                  <div key={group.category} className="mb-8 last:mb-0">
+                    <h3 className="text-brand-accent text-xs tracking-[0.2em] uppercase font-medium mb-4 pb-2 border-b border-brand-border">
+                      {group.category}
+                    </h3>
+                    <div className="space-y-2">
+                      {group.items.map((item) => (
+                        <div
+                          key={item.name}
+                          className="flex items-center justify-between py-2 px-1"
+                        >
+                          <span className="text-brand-text text-sm">
+                            {item.name}
+                          </span>
+                          <div className="flex items-center gap-4">
+                            <span className="text-brand-text-muted/50 text-sm line-through">
+                              {item.retail}
+                            </span>
+                            <span className="text-brand-accent text-sm font-semibold min-w-[60px] text-right">
+                              {item.salon}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+
+                <p className="text-brand-text-muted/60 text-xs mt-8 text-center">
+                  Ceny netto. Aby uzyskać dostęp do cen salonowych w&nbsp;sklepie
+                  online, skontaktuj się z&nbsp;nami w&nbsp;celu założenia konta
+                  B2B.
+                </p>
+              </div>
+            </AnimateIn>
+          </div>
+        </section>
+
+        {/* Products for salons */}
+        <section className="py-16 small:py-24 bg-brand-surface">
           <div className="content-container">
             <AnimateIn variant="fade-in" className="text-center mb-12">
               <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">

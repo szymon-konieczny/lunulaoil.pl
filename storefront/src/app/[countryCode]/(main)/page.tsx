@@ -93,7 +93,7 @@ export default async function Home(props: {
       contactType: "customer service",
       availableLanguage: "Polish",
     },
-    sameAs: ["https://www.instagram.com/lunula_slow_care"],
+    sameAs: ["https://www.instagram.com/lunula_slow_care", "https://www.tiktok.com/@lunulaslowcare"],
   }
 
   const webSiteJsonLd = {

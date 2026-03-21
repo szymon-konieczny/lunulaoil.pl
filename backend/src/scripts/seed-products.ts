@@ -93,7 +93,7 @@ export default async function seedLunulaProducts({ container }: ExecArgs) {
               sku: "LUNULA-PELNIA-250",
               options: { "Pojemność": "250ml" },
               prices: [
-                { amount: 21000, currency_code: "pln" },
+                { amount: 22100, currency_code: "pln" },
                 { amount: 4900, currency_code: "eur" },
               ],
             },
@@ -119,7 +119,7 @@ export default async function seedLunulaProducts({ container }: ExecArgs) {
               sku: "LUNULA-WSCHOD-250",
               options: { "Pojemność": "250ml" },
               prices: [
-                { amount: 13900, currency_code: "pln" },
+                { amount: 14900, currency_code: "pln" },
                 { amount: 3200, currency_code: "eur" },
               ],
             },
@@ -145,7 +145,7 @@ export default async function seedLunulaProducts({ container }: ExecArgs) {
               sku: "LUNULA-RAGNAR-250",
               options: { "Pojemność": "250ml" },
               prices: [
-                { amount: 13900, currency_code: "pln" },
+                { amount: 14900, currency_code: "pln" },
                 { amount: 3200, currency_code: "eur" },
               ],
             },

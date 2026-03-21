@@ -37,6 +37,7 @@ export const themeConfig = {
   // Social
   social: {
     instagram: "https://www.instagram.com/lunula_slow_care",
+    tiktok: "https://www.tiktok.com/@lunulaslowcare",
     facebook: "",
   },
 
