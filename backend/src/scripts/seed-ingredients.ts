@@ -52,7 +52,7 @@ const ingredientsData = [
     source:
       "Występuje naturalnie w korzeniu żywokostu; w kosmetyce stosowana w formie syntetycznej",
     category: "active",
-    product_handles: ["hialcode", "squalanecode", "jojobacode"],
+    product_handles: ["hialcode", "squalanecode", "jojobacode", "rusalka-mydlo-rytualne"],
   },
 
   // ── Oleje ───────────────────────────────────────────────────────────
@@ -72,7 +72,7 @@ const ingredientsData = [
     source:
       "Tłoczony na zimno z nasion krzewu jojoba (Simmondsia chinensis) rosnącego na pustyniach Ameryki",
     category: "oil",
-    product_handles: ["jojobacode"],
+    product_handles: ["jojobacode", "lipidcode-30ml", "pelnia-ksiezyca-250ml"],
   },
   {
     name: "Olej ze słodkich migdałów",
@@ -88,7 +88,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z nasion migdałowca zwyczajnego (Prunus dulcis)",
     category: "oil",
-    product_handles: ["squalanecode"],
+    product_handles: ["squalanecode", "magnolia-250ml", "poranna-rosa-250ml"],
   },
   {
     name: "Olej z pestek winogron",
@@ -105,7 +105,7 @@ const ingredientsData = [
     source:
       "Tłoczony z pestek winogron (Vitis vinifera), często jako produkt uboczny winiarstwa",
     category: "oil",
-    product_handles: [],
+    product_handles: ["ksiezyc-w-nowiu-250ml"],
   },
   {
     name: "Olej z makadamii",
@@ -121,7 +121,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z orzechów makadamii pochodzących z Australii",
     category: "oil",
-    product_handles: [],
+    product_handles: ["wschod-slonca-250ml", "ragnar-250ml"],
   },
   {
     name: "Olej awokado",
@@ -138,7 +138,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z miąższu owoców awokado (Persea americana)",
     category: "oil",
-    product_handles: [],
+    product_handles: ["green-witch-divine-250ml"],
   },
   {
     name: "Olej z dzikiej róży",
@@ -155,7 +155,7 @@ const ingredientsData = [
     source:
       "Tłoczony na zimno z nasion dzikiej róży (Rosa canina), rosnącej dziko w Europie i Chile",
     category: "oil",
-    product_handles: ["mokosz-mydlo-rytualne"],
+    product_handles: ["mokosza-mydlo-rytualne"],
   },
   {
     name: "Olej konopny",
@@ -171,7 +171,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z nasion konopi siewnych (Cannabis sativa)",
     category: "oil",
-    product_handles: [],
+    product_handles: ["jojobacode"],
   },
   {
     name: "Olej z rokitnika",
@@ -189,7 +189,7 @@ const ingredientsData = [
     source:
       "Pozyskiwany z owoców i nasion rokitnika zwyczajnego (Hippophae rhamnoides)",
     category: "oil",
-    product_handles: [],
+    product_handles: ["squalanecode"],
   },
   {
     name: "Olej z pestek malin",
@@ -205,7 +205,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z pestek malin (Rubus idaeus)",
     category: "oil",
-    product_handles: [],
+    product_handles: ["hialcode"],
   },
 
   // ── Zioła ───────────────────────────────────────────────────────────
@@ -259,7 +259,7 @@ const ingredientsData = [
     source:
       "Owoce drzewa Litsea cubeba, rosnącego dziko w południowo-wschodniej Azji",
     category: "herb",
-    product_handles: ["zorza-mydlo-rytualne"],
+    product_handles: ["rozyczka-mydlo-rytualne"],
   },
   {
     name: "Róża damasceńska",
@@ -276,7 +276,7 @@ const ingredientsData = [
     source:
       "Płatki róży damasceńskiej (Rosa damascena), uprawianej głównie w Dolinie Róż w Bułgarii",
     category: "herb",
-    product_handles: ["mokosz-mydlo-rytualne"],
+    product_handles: ["mokosza-mydlo-rytualne", "rozyczka-mydlo-rytualne"],
   },
   {
     name: "Hibiskus",
@@ -293,7 +293,7 @@ const ingredientsData = [
     source:
       "Kwiaty hibiskusa (Hibiscus sabdariffa), uprawianego w klimacie tropikalnym",
     category: "herb",
-    product_handles: ["czarodziejka-mydlo-rytualne"],
+    product_handles: ["mokosza-mydlo-rytualne"],
   },
   {
     name: "Kora białej wierzby",
@@ -310,7 +310,7 @@ const ingredientsData = [
     source:
       "Kora wierzby białej (Salix alba), pozyskiwana z drzew rosnących w Europie",
     category: "herb",
-    product_handles: [],
+    product_handles: ["hialcode", "squalanecode"],
   },
 
   // ── Aktywne ─────────────────────────────────────────────────────────
@@ -330,7 +330,7 @@ const ingredientsData = [
     source:
       "Pozyskiwany z nasion babchi (Psoralea corylifolia), rośliny stosowanej od wieków w ajurwedzie",
     category: "active",
-    product_handles: [],
+    product_handles: ["hialcode", "squalanecode"],
   },
   {
     name: "Koenzym Q10",
@@ -347,7 +347,7 @@ const ingredientsData = [
     source:
       "Występuje naturalnie w organizmie; w kosmetyce stosowany w formie biotechnologicznej",
     category: "active",
-    product_handles: [],
+    product_handles: ["hialcode", "jojobacode"],
   },
 
   // ── Glinka ──────────────────────────────────────────────────────────
@@ -366,7 +366,7 @@ const ingredientsData = [
     source:
       "Naturalna mieszanka glinki białej i czerwonej, pozyskiwana z europejskich złóż mineralnych",
     category: "clay",
-    product_handles: ["mokosz-mydlo-rytualne"],
+    product_handles: ["mokosza-mydlo-rytualne", "rozyczka-mydlo-rytualne"],
   },
 
   // ── Eksfolianty ─────────────────────────────────────────────────────
@@ -403,7 +403,7 @@ const ingredientsData = [
     source:
       "Zmielone ziarna kawowca arabskiego (Coffea arabica), uprawianego w strefie międzyzwrotnikowej",
     category: "exfoliant",
-    product_handles: ["czarodziejka-mydlo-rytualne"],
+    product_handles: ["mokosza-mydlo-rytualne", "slow-coffee-cream"],
   },
 ]
 
