@@ -1,31 +1,23 @@
 import { ExecArgs } from "@medusajs/framework/types"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import IngredientsModuleService from "../modules/ingredients/service"
+import { INGREDIENTS_MODULE } from "../modules/ingredients"
 
-type IngredientInput = {
-  name: string
-  name_latin: string | null
-  handle: string
-  description: string
-  benefits: string[]
-  source: string
-  category: string
-  product_handles: string[]
-}
-
-const ingredients: IngredientInput[] = [
+const ingredientsData = [
+  // ── Hydrating / Active ──────────────────────────────────────────────
   {
     name: "Kwas hialuronowy",
     name_latin: "Hyaluronic Acid",
     handle: "kwas-hialuronowy",
     description:
-      "Kwas hialuronowy to naturalny polisacharyd obecny w naszej skórze, odpowiedzialny za jej nawilżenie i elastyczność. Jedna cząsteczka potrafi zatrzymać nawet 1000-krotność swojej masy w wodzie, co czyni go jednym z najskuteczniejszych składników nawilżających. W biozgodnej pielęgnacji stanowi fundament głębokiego nawilżenia bez obciążania skóry.",
+      "Kwas hialuronowy to naturalny polisacharyd obecny w skórze, zdolny zatrzymać nawet 1000-krotność swojej masy w wodzie. Głęboko nawilża, wypełnia drobne zmarszczki i przywraca skórze jędrność. Jest jednym z najskuteczniejszych składników nawilżających stosowanych we współczesnej kosmetyce.",
     benefits: [
       "Intensywne nawilżenie na wielu poziomach skóry",
-      "Wygładzenie drobnych linii i zmarszczek",
+      "Redukcja widoczności drobnych zmarszczek",
       "Wzmocnienie bariery hydrolipidowej",
-      "Poprawa elastyczności i jędrności skóry",
+      "Poprawa jędrności i elastyczności",
     ],
-    source: "Otrzymywany na drodze biotechnologicznej fermentacji bakteryjnej",
+    source: "Otrzymywany biotechnologicznie w procesie fermentacji bakteryjnej",
     category: "hydrating",
     product_handles: ["hialcode"],
   },
@@ -34,391 +26,425 @@ const ingredients: IngredientInput[] = [
     name_latin: "Squalane",
     handle: "skwalan",
     description:
-      "Skwalan to stabilna forma skwalenu — lipidu naturalnie obecnego w sebum ludzkiej skóry. Dzięki swojej biozgodności doskonale wtapia się w naturalny płaszcz lipidowy, nie zatykając porów. Jest lekki, bezzapachowy i idealny nawet dla skóry wrażliwej oraz skłonnej do wyprysków.",
+      "Skwalan to lekki, stabilny lipid identyczny ze składnikiem naturalnie obecnym w sebum ludzkiej skóry. Doskonale nawilża bez uczucia tłustości, wzmacnia barierę ochronną i chroni przed utratą wody. Nadaje skórze jedwabistą gładkość i jest dobrze tolerowany nawet przez skórę wrażliwą.",
     benefits: [
-      "Odbudowa i wzmocnienie płaszcza lipidowego skóry",
-      "Nawilżenie bez efektu tłustości",
-      "Ochrona przed utratą wody transepidermalnej",
+      "Odbudowa płaszcza hydrolipidowego skóry",
+      "Nawilżenie bez zatykania porów",
+      "Ochrona przed transepidermalną utratą wody",
       "Wygładzenie i zmiękczenie skóry",
     ],
-    source: "Pozyskiwany z oliwek lub trzciny cukrowej metodą uwodornienia",
+    source: "Pozyskiwany z oliwek lub trzciny cukrowej w procesie uwodornienia skwalenu",
     category: "hydrating",
-    product_handles: ["squalanecode", "geranium-glow-50ml", "golden-glow-50ml"],
+    product_handles: ["squalanecode"],
   },
+  {
+    name: "Allantoina",
+    name_latin: "Allantoin",
+    handle: "allantoina",
+    description:
+      "Allantoina to aktywny składnik o silnych właściwościach kojących i regenerujących. Łagodzi podrażnienia, przyspiesza odnowę naskórka i zmiękcza skórę. Jest bezpieczna nawet dla skóry atopowej i doskonale współdziała z innymi składnikami aktywnymi.",
+    benefits: [
+      "Kojenie podrażnień i zaczerwienień",
+      "Stymulacja regeneracji naskórka",
+      "Zmiękczanie i wygładzanie skóry",
+      "Wsparcie gojenia drobnych uszkodzeń",
+    ],
+    source:
+      "Występuje naturalnie w korzeniu żywokostu; w kosmetyce stosowana w formie syntetycznej",
+    category: "active",
+    product_handles: ["hialcode", "squalanecode", "jojobacode"],
+  },
+
+  // ── Oleje ───────────────────────────────────────────────────────────
   {
     name: "Olej jojoba",
     name_latin: "Simmondsia Chinensis Seed Oil",
     handle: "olej-jojoba",
     description:
-      "Olej jojoba to w rzeczywistości płynny wosk, którego struktura najbardziej przypomina naturalne sebum ludzkiej skóry. Dzięki temu jest doskonale tolerowany przez każdy typ cery i pomaga regulować produkcję łoju. W biozgodnej pielęgnacji pełni rolę uniwersalnego składnika balansującego.",
+      "Olej jojoba to w rzeczywistości płynny wosk, którego struktura najbardziej przypomina naturalne sebum ludzkiej skóry. Reguluje wydzielanie sebum, nawilża bez obciążania i tworzy ochronną warstwę zapobiegającą utracie wody. Jest doskonale tolerowany przez każdy typ skóry, w tym cerę trądzikową.",
     benefits: [
       "Regulacja wydzielania sebum",
-      "Głębokie odżywienie bez zatykania porów",
-      "Ochrona skóry przed utratą wilgoci",
-      "Łagodzenie podrażnień i zaczerwienień",
-      "Wsparcie naturalnej bariery ochronnej skóry",
+      "Długotrwałe nawilżenie bez uczucia tłustości",
+      "Wzmacnianie naturalnej bariery ochronnej",
+      "Ochrona przed czynnikami zewnętrznymi",
+      "Odpowiedni dla skóry trądzikowej",
     ],
-    source: "Tłoczony na zimno z nasion krzewu jojoba (Simmondsia chinensis)",
+    source:
+      "Tłoczony na zimno z nasion krzewu jojoba (Simmondsia chinensis) rosnącego na pustyniach Ameryki",
     category: "oil",
-    product_handles: ["jojobacode", "lipidcode-30ml", "pelnia-ksiezyca-250ml"],
+    product_handles: ["jojobacode"],
   },
   {
     name: "Olej ze słodkich migdałów",
     name_latin: "Prunus Amygdalus Dulcis Oil",
     handle: "olej-ze-slodkich-migdalow",
     description:
-      "Olej ze słodkich migdałów to jeden z najdelikatniejszych olejów roślinnych, bogaty w witaminę E, kwasy tłuszczowe omega-6 i omega-9. Doskonale zmiękcza i wygładza skórę, jednocześnie ją odżywiając. Jest biozgodny i bezpieczny nawet dla skóry niemowląt.",
+      "Olej migdałowy jest jednym z najdelikatniejszych olejów roślinnych, bogatym w witaminę E, kwasy tłuszczowe omega-6 i omega-9. Znakomicie zmiękcza, odżywia i łagodzi podrażnienia. Jest idealny dla skóry suchej, wrażliwej i dojrzałej.",
     benefits: [
-      "Zmiękczanie i wygładzanie suchej skóry",
-      "Odżywienie witaminą E i kwasami tłuszczowymi",
-      "Łagodzenie podrażnień i swędzenia",
-      "Poprawa kolorytu i elastyczności skóry",
+      "Głębokie odżywienie i zmiękczenie skóry",
+      "Łagodzenie podrażnień i świądu",
+      "Poprawa elastyczności skóry",
+      "Bogactwo witaminy E i kwasów tłuszczowych",
     ],
-    source: "Tłoczony na zimno z nasion migdałowca (Prunus dulcis)",
+    source: "Tłoczony na zimno z nasion migdałowca zwyczajnego (Prunus dulcis)",
     category: "oil",
-    product_handles: ["poranna-rosa-250ml", "magnolia-250ml"],
+    product_handles: ["squalanecode"],
   },
   {
     name: "Olej z pestek winogron",
     name_latin: "Vitis Vinifera Seed Oil",
     handle: "olej-z-pestek-winogron",
     description:
-      "Olej z pestek winogron jest bogaty w kwas linolowy i proantocyjanidyny — silne antyoksydanty chroniące skórę przed wolnymi rodnikami. Jego lekka konsystencja sprawia, że szybko się wchłania, nie pozostawiając tłustego filmu. Idealny dla skóry mieszanej i tłustej.",
+      "Olej z pestek winogron to lekki olej bogaty w kwas linolowy i silne antyoksydanty, w tym proantocyjanidyny. Szybko się wchłania, nie zatyka porów i doskonale sprawdza się jako baza kosmetyczna. Chroni skórę przed wolnymi rodnikami i wspomaga jej regenerację.",
     benefits: [
-      "Ochrona antyoksydacyjna przed wolnymi rodnikami",
-      "Lekkie nawilżenie bez obciążania skóry",
-      "Zwężenie rozszerzonych porów",
-      "Regulacja wydzielania sebum w skórze tłustej",
+      "Silna ochrona antyoksydacyjna",
+      "Lekkość i szybkie wchłanianie",
+      "Ściąganie i tonizacja porów",
+      "Ochrona przed przedwczesnym starzeniem",
     ],
-    source: "Pozyskiwany z pestek winogron (Vitis vinifera) jako produkt uboczny winiarstwa",
+    source:
+      "Tłoczony z pestek winogron (Vitis vinifera), często jako produkt uboczny winiarstwa",
     category: "oil",
-    product_handles: [
-      "ksiezyc-w-nowiu-250ml",
-      "geranium-glow-50ml",
-      "clear-ritual-50ml",
-    ],
+    product_handles: [],
   },
   {
     name: "Olej z makadamii",
     name_latin: "Macadamia Integrifolia Seed Oil",
     handle: "olej-z-makadamii",
     description:
-      "Olej z makadamii wyróżnia się wysoką zawartością kwasu palmitooleinowego — rzadkiego kwasu tłuszczowego, którego ilość w naszej skórze maleje z wiekiem. Dzięki temu doskonale regeneruje skórę dojrzałą i suchą. Jego jedwabista konsystencja sprawia, że jest wyjątkowo przyjemny w aplikacji.",
+      "Olej makadamia jest wyjątkowy dzięki wysokiej zawartości kwasu palmitooleinowego, którego ilość w skórze maleje z wiekiem. Intensywnie regeneruje, zmiękcza i przywraca elastyczność. Jest szczególnie cenny w pielęgnacji skóry dojrzałej i suchej.",
     benefits: [
-      "Regeneracja skóry dojrzałej i suchej",
-      "Uzupełnienie kwasu palmitooleinowego",
+      "Uzupełnianie kwasu palmitooleinowego w skórze",
+      "Intensywna regeneracja skóry dojrzałej",
       "Przywracanie elastyczności i miękkości",
-      "Ochrona przed przesuszeniem i pękaniem skóry",
+      "Ochrona przed przesuszeniem",
     ],
-    source: "Tłoczony na zimno z orzechów makadamia (Macadamia integrifolia)",
+    source: "Tłoczony na zimno z orzechów makadamii pochodzących z Australii",
     category: "oil",
-    product_handles: ["wschod-slonca-250ml", "ragnar-250ml"],
+    product_handles: [],
   },
   {
     name: "Olej awokado",
     name_latin: "Persea Gratissima Oil",
     handle: "olej-awokado",
     description:
-      "Olej awokado jest jednym z najbogatszych olejów roślinnych — zawiera witaminy A, D, E, lecytynę oraz fitosterole. Głęboko wnika w skórę, odżywiając ją i wspierając naturalną regenerację. W biozgodnej pielęgnacji ceniony za zdolność do odbudowy uszkodzonej bariery skórnej.",
+      "Olej awokado jest jednym z najbardziej odżywczych olejów roślinnych, bogatym w witaminy A, D, E oraz sterole roślinne. Głęboko penetruje skórę, intensywnie ją odżywia i wspomaga syntezę kolagenu. Szczególnie polecany do pielęgnacji skóry suchej, szorstkiej i pozbawionej blasku.",
     benefits: [
-      "Głębokie odżywienie skóry suchej i odwodnionej",
-      "Wsparcie regeneracji bariery lipidowej",
-      "Ochrona przed stresem oksydacyjnym",
-      "Łagodzenie stanów zapalnych skóry",
-      "Poprawa wchłaniania innych składników aktywnych",
+      "Głębokie odżywienie i regeneracja",
+      "Wspomaganie syntezy kolagenu",
+      "Przywracanie naturalnego blasku skóry",
+      "Wzmacnianie bariery lipidowej",
+      "Łagodzenie suchości i szorstkości",
     ],
     source: "Tłoczony na zimno z miąższu owoców awokado (Persea americana)",
     category: "oil",
-    product_handles: ["green-witch-divine-250ml"],
-  },
-  {
-    name: "Rumianek",
-    name_latin: "Chamomilla Recutita Extract",
-    handle: "rumianek",
-    description:
-      "Rumianek pospolity to jedna z najcenniejszych roślin w tradycyjnej fitoterapii europejskiej, znana ze swoich właściwości łagodzących i przeciwzapalnych. Bisabolol i azulen obecne w rumianku skutecznie uspokajają podrażnioną skórę. W biozgodnej pielęgnacji stanowi naturalną alternatywę dla syntetycznych środków kojących.",
-    benefits: [
-      "Łagodzenie podrażnień i zaczerwienień",
-      "Działanie przeciwzapalne i antybakteryjne",
-      "Uspokajanie skóry wrażliwej i reaktywnej",
-      "Wsparcie naturalnych procesów gojenia",
-    ],
-    source: "Ekstrakt z kwiatów rumianku pospolitego (Matricaria chamomilla)",
-    category: "herb",
-    product_handles: ["rusalka-mydlo-rytualne"],
-  },
-  {
-    name: "Lawenda",
-    name_latin: "Lavandula Angustifolia Oil",
-    handle: "lawenda",
-    description:
-      "Lawenda wąskolistna to aromatyczna roślina o szerokim spektrum działania w pielęgnacji skóry. Olejek lawendowy łączy właściwości antyseptyczne z głębokim działaniem relaksującym, wspierając jednocześnie regenerację skóry. W rytuałach pielęgnacyjnych pomaga wyciszyć zmysły i przywrócić równowagę.",
-    benefits: [
-      "Działanie antyseptyczne i oczyszczające",
-      "Wsparcie regeneracji drobnych uszkodzeń skóry",
-      "Efekt relaksacyjny i aromaterapeutyczny",
-      "Regulacja wydzielania sebum",
-    ],
-    source: "Olejek eteryczny destylowany z kwiatów lawendy wąskolistnej",
-    category: "herb",
-    product_handles: ["rusalka-mydlo-rytualne"],
-  },
-  {
-    name: "Płatki owsiane",
-    name_latin: "Avena Sativa Kernel",
-    handle: "platki-owsiane",
-    description:
-      "Płatki owsiane to naturalny składnik o wyjątkowych właściwościach kojących i peelingujących, stosowany w pielęgnacji skóry od stuleci. Zawierają beta-glukan, awenantramidy i saponiny, które łagodzą podrażnienia. Delikatnie złuszczają martwy naskórek, jednocześnie nie naruszając bariery ochronnej skóry.",
-    benefits: [
-      "Delikatne złuszczanie bez podrażniania skóry",
-      "Kojenie skóry wrażliwej i atopowej",
-      "Naturalne nawilżenie dzięki beta-glukanowi",
-      "Oczyszczanie porów z zanieczyszczeń",
-    ],
-    source: "Mielone ziarna owsa zwyczajnego (Avena sativa) z upraw ekologicznych",
-    category: "exfoliant",
-    product_handles: ["rusalka-mydlo-rytualne"],
-  },
-  {
-    name: "Glinka różowa",
-    name_latin: "Illite / Kaolin",
-    handle: "glinka-rozowa",
-    description:
-      "Glinka różowa to naturalna mieszanka glinki białej (kaolin) i czerwonej (illit), łącząca delikatne oczyszczanie z odżywieniem minerałami. Jest najłagodniejszą z glinek, idealną nawet dla cery naczynkowej i wrażliwej. Bogata w krzem, magnez i żelazo, wspiera naturalną regenerację naskórka.",
-    benefits: [
-      "Delikatne oczyszczanie bez przesuszania",
-      "Odżywienie skóry minerałami",
-      "Wygładzenie i rozświetlenie kolorytu cery",
-      "Poprawa mikrokrążenia w skórze",
-    ],
-    source: "Naturalna glinka mineralna wydobywana w regionach wulkanicznych Francji",
-    category: "clay",
-    product_handles: ["rozyczka-mydlo-rytualne"],
-  },
-  {
-    name: "May Chang",
-    name_latin: "Litsea Cubeba Oil",
-    handle: "may-chang",
-    description:
-      "May Chang (Litsea cubeba) to azjatycka roślina o cytrusowym, ożywczym aromacie, ceniona w aromaterapii za właściwości podnoszące nastrój. Olejek z jej owoców zawiera cytral — substancję o działaniu antybakteryjnym i tonizującym. W biozgodnej pielęgnacji łączy korzyści dla skóry z rytuałem aromaterapeutycznym.",
-    benefits: [
-      "Tonizacja i ożywienie zmęczonej skóry",
-      "Działanie antybakteryjne i oczyszczające",
-      "Regulacja wydzielania sebum",
-      "Ożywczy, cytrusowy aromat w rytuałach pielęgnacyjnych",
-    ],
-    source: "Olejek eteryczny destylowany z owoców drzewa Litsea cubeba",
-    category: "herb",
-    product_handles: ["rozyczka-mydlo-rytualne"],
-  },
-  {
-    name: "Róża damasceńska",
-    name_latin: "Rosa Damascena Flower Oil",
-    handle: "roza-damascenska",
-    description:
-      "Róża damasceńska to królowa wśród kwiatów stosowanych w kosmetologii — jej olejek eteryczny wymaga około 4 ton płatków do produkcji jednego kilograma. Posiada wyjątkowe właściwości regenerujące, nawilżające i przeciwstarzeniowe. W biozgodnej pielęgnacji stanowi symbol luksusu połączonego z naturą.",
-    benefits: [
-      "Intensywna regeneracja i odmłodzenie skóry",
-      "Głębokie nawilżenie i wygładzenie",
-      "Redukcja zaczerwienień i podrażnień",
-      "Harmonizujący aromat wspierający rytuały pielęgnacyjne",
-    ],
-    source: "Olejek eteryczny destylowany z płatków róży damasceńskiej (Rosa damascena)",
-    category: "herb",
-    product_handles: ["rozyczka-mydlo-rytualne"],
-  },
-  {
-    name: "Kawa",
-    name_latin: "Coffea Arabica Seed Powder",
-    handle: "kawa",
-    description:
-      "Kawa to nie tylko poranny rytuał — zmielone ziarna Coffea arabica to także skuteczny składnik aktywny w pielęgnacji skóry. Kofeina pobudza mikrokrążenie, redukuje obrzęki i wspiera drenowanie toksyn. Drobinki kawy działają jako naturalny peeling mechaniczny, pozostawiając skórę gładką i rozświetloną.",
-    benefits: [
-      "Pobudzenie mikrokrążenia i redukcja obrzęków",
-      "Naturalny peeling mechaniczny",
-      "Działanie antyoksydacyjne i ochronne",
-      "Wygładzenie i ujędrnienie skóry",
-      "Redukcja widoczności cellulitu",
-    ],
-    source: "Drobno zmielone ziarna kawy arabica z upraw organicznych",
-    category: "exfoliant",
-    product_handles: ["mokosza-mydlo-rytualne", "slow-coffee-cream"],
-  },
-  {
-    name: "Hibiskus",
-    name_latin: "Hibiscus Sabdariffa Flower Extract",
-    handle: "hibiskus",
-    description:
-      "Hibiskus, nazywany roślinnym botoksem, jest bogaty w naturalne kwasy AHA i antyoksydanty. Ekstrakt z jego kwiatów wspiera produkcję kolagenu i elastyny, jednocześnie delikatnie złuszczając martwy naskórek. W biozgodnej pielęgnacji stanowi naturalną alternatywę dla agresywnych zabiegów odmładzających.",
-    benefits: [
-      "Naturalne złuszczanie dzięki kwasom AHA",
-      "Wsparcie produkcji kolagenu i elastyny",
-      "Rozświetlenie i wyrównanie kolorytu cery",
-      "Ochrona antyoksydacyjna przed fotostarzeniem",
-    ],
-    source: "Ekstrakt z kwiatów hibiskusa sudańskiego (Hibiscus sabdariffa)",
-    category: "herb",
-    product_handles: ["mokosza-mydlo-rytualne"],
-  },
-  {
-    name: "Masło shea",
-    name_latin: "Butyrospermum Parkii Butter",
-    handle: "maslo-shea",
-    description:
-      "Masło shea to bogaty w witaminy A, E i F naturalny emolient, pozyskiwany z orzechów drzewa shea rosnącego w Afryce Zachodniej. Tworzy na skórze ochronną warstwę zapobiegającą utracie wilgoci, jednocześnie ją intensywnie odżywiając. W biozgodnej pielęgnacji jest niezastąpione dla skóry suchej i wymagającej regeneracji.",
-    benefits: [
-      "Intensywne odżywienie i natłuszczenie suchej skóry",
-      "Ochrona przed utratą wilgoci i czynnikami zewnętrznymi",
-      "Przyspieszenie regeneracji i gojenia naskórka",
-      "Wygładzenie i zmiękczenie szorstkiej skóry",
-    ],
-    source: "Nierafinowane masło z orzechów drzewa shea (Vitellaria paradoxa)",
-    category: "butter",
-    product_handles: ["rusalka-mydlo-rytualne", "mokosza-mydlo-rytualne"],
-  },
-  {
-    name: "Bakuchiol",
-    name_latin: "Bakuchiol",
-    handle: "bakuchiol",
-    description:
-      "Bakuchiol to roślinny odpowiednik retinolu, pozyskiwany z nasion rośliny Psoralea corylifolia. Oferuje podobne korzyści przeciwstarzeniowe — stymuluje produkcję kolagenu i przyspiesza odnowę komórkową — bez efektów ubocznych retinoidów, takich jak suchość czy nadwrażliwość na słońce. Jest w pełni biozgodny i bezpieczny nawet w ciąży.",
-    benefits: [
-      "Stymulacja produkcji kolagenu bez podrażnień",
-      "Redukcja zmarszczek i drobnych linii",
-      "Wyrównanie kolorytu i rozświetlenie cery",
-      "Bezpieczna alternatywa dla retinolu",
-      "Działanie antyoksydacyjne i przeciwzapalne",
-    ],
-    source: "Ekstrakt z nasion rośliny Psoralea corylifolia (babchi)",
-    category: "active",
-    product_handles: ["rose-alchemy-50ml"],
-  },
-  {
-    name: "Koenzym Q10",
-    name_latin: "Ubiquinone",
-    handle: "koenzym-q10",
-    description:
-      "Koenzym Q10 (ubichinon) to naturalny antyoksydant obecny w każdej komórce naszego ciała, którego poziom obniża się z wiekiem. Odgrywa kluczową rolę w procesach energetycznych komórek i ochronie przed stresem oksydacyjnym. W biozgodnej pielęgnacji wspiera naturalną zdolność skóry do regeneracji i obrony przed przedwczesnym starzeniem.",
-    benefits: [
-      "Ochrona przed stresem oksydacyjnym i wolnymi rodnikami",
-      "Wsparcie energetyczne procesów odnowy komórkowej",
-      "Redukcja oznak przedwczesnego starzenia",
-      "Poprawa elastyczności i jędrności skóry",
-    ],
-    source: "Otrzymywany na drodze biotechnologicznej fermentacji drożdżowej",
-    category: "active",
-    product_handles: ["rose-alchemy-50ml"],
+    product_handles: [],
   },
   {
     name: "Olej z dzikiej róży",
     name_latin: "Rosa Canina Seed Oil",
     handle: "olej-z-dzikiej-rozy",
     description:
-      "Olej z dzikiej róży to jeden z najcenniejszych olejów w pielęgnacji anti-age, bogaty w naturalny kwas trans-retinowy, witaminę C i nienasycone kwasy tłuszczowe. Skutecznie wspiera regenerację skóry, redukuje blizny i przebarwienia. Jest lekki i szybko się wchłania, co czyni go doskonałym składnikiem biozgodnych formuł.",
+      "Olej z dzikiej róży jest ceniony za wysoką zawartość naturalnej witaminy A (retinolu) oraz kwasów tłuszczowych omega-3 i omega-6. Wspomaga regenerację skóry, redukuje przebarwienia i blizny, a także poprawia koloryt cery. Jest jednym z najcenniejszych olejów w pielęgnacji anti-age.",
     benefits: [
-      "Redukcja przebarwień i wyrównanie kolorytu cery",
-      "Wsparcie regeneracji blizn i rozstępów",
-      "Odżywienie skóry witaminą C i kwasami tłuszczowymi",
-      "Działanie przeciwzmarszczkowe i ujędrniające",
+      "Redukcja przebarwień i blizn",
+      "Naturalne źródło retinolu roślinnego",
+      "Poprawa kolorytu i wyrównanie tonu skóry",
+      "Wspomaganie regeneracji komórkowej",
     ],
-    source: "Tłoczony na zimno z nasion dzikiej róży (Rosa canina)",
+    source:
+      "Tłoczony na zimno z nasion dzikiej róży (Rosa canina), rosnącej dziko w Europie i Chile",
     category: "oil",
-    product_handles: ["rose-alchemy-50ml"],
+    product_handles: ["mokosz-mydlo-rytualne"],
   },
   {
     name: "Olej konopny",
     name_latin: "Cannabis Sativa Seed Oil",
     handle: "olej-konopny",
     description:
-      "Olej konopny wyróżnia się idealną proporcją kwasów omega-6 do omega-3 (3:1), co czyni go wyjątkowo biozgodnym z lipidami ludzkiej skóry. Zawiera również rzadki kwas gamma-linolenowy (GLA) o silnym działaniu przeciwzapalnym. Jest lekki, szybko się wchłania i nie zatyka porów, idealny dla skóry problematycznej.",
+      "Olej konopny wyróżnia się idealnym stosunkiem kwasów omega-6 do omega-3 (3:1), co czyni go wyjątkowo zbliżonym do lipidów skóry. Silnie nawilża, łagodzi stany zapalne i reguluje wydzielanie sebum. Doskonale sprawdza się w pielęgnacji skóry problematycznej, atopowej i ze skłonnością do trądziku.",
     benefits: [
-      "Regulacja procesów zapalnych w skórze",
-      "Odbudowa bariery lipidowej skóry",
-      "Łagodzenie podrażnień i zaczerwienień",
-      "Wsparcie skóry problematycznej i trądzikowej",
-      "Nawilżenie bez efektu komedogennego",
+      "Idealna proporcja kwasów omega-6 i omega-3",
+      "Regulacja wydzielania sebum",
+      "Łagodzenie stanów zapalnych skóry",
+      "Wsparcie skóry atopowej i trądzikowej",
     ],
-    source: "Tłoczony na zimno z nasion konopi siewnych (Cannabis sativa L.)",
+    source: "Tłoczony na zimno z nasion konopi siewnych (Cannabis sativa)",
     category: "oil",
-    product_handles: ["clear-ritual-50ml"],
-  },
-  {
-    name: "Alantoina",
-    name_latin: "Allantoin",
-    handle: "alantoina",
-    description:
-      "Alantoina to naturalny składnik obecny w wielu roślinach, m.in. w żywokoście lekarskim, znany ze swoich właściwości kojących i przyspieszających regenerację naskórka. Stymuluje proliferację keratynocytów i wspiera naturalne procesy gojenia. W biozgodnej pielęgnacji ceniona za łagodność i wszechstronność działania.",
-    benefits: [
-      "Przyspieszenie regeneracji i gojenia naskórka",
-      "Kojenie podrażnionej i wrażliwej skóry",
-      "Zmiękczanie i wygładzanie skóry",
-      "Stymulacja odnowy komórkowej",
-    ],
-    source: "Pozyskiwana z korzenia żywokostu lekarskiego (Symphytum officinale)",
-    category: "active",
-    product_handles: ["clear-ritual-50ml"],
+    product_handles: [],
   },
   {
     name: "Olej z rokitnika",
-    name_latin: "Hippophae Rhamnoides Oil",
+    name_latin: "Hippophae Rhamnoides Fruit Oil",
     handle: "olej-z-rokitnika",
     description:
-      "Olej z rokitnika to jeden z najbogatszych roślinnych źródeł witaminy C, beta-karotenu i kwasów omega-7. Jego intensywnie pomarańczowy kolor świadczy o wysokiej zawartości karotenoidów — silnych antyoksydantów. Doskonale regeneruje, rozświetla i chroni skórę przed czynnikami środowiskowymi.",
+      "Olej z rokitnika to jeden z najbogatszych roślinnych źródeł beta-karotenu, witaminy C i kwasów omega-7. Intensywnie regeneruje, przyspiesza gojenie drobnych ran i chroni skórę przed fotostarzeniem. Nadaje skórze zdrowy, naturalny blask i wspomaga jej odporność na czynniki zewnętrzne.",
     benefits: [
-      "Intensywna regeneracja uszkodzonej skóry",
-      "Rozświetlenie cery i redukcja przebarwień",
-      "Ochrona antyoksydacyjna dzięki karotenoidom i witaminie C",
-      "Wzmocnienie odporności skóry na czynniki zewnętrzne",
+      "Intensywna regeneracja i przyspieszenie gojenia",
+      "Bogactwo beta-karotenu i witaminy C",
+      "Ochrona przed fotostarzeniem",
+      "Nadawanie zdrowego blasku skórze",
+      "Wzmocnienie naturalnej odporności skóry",
     ],
-    source: "Tłoczony na zimno z owoców rokitnika zwyczajnego (Hippophae rhamnoides)",
+    source:
+      "Pozyskiwany z owoców i nasion rokitnika zwyczajnego (Hippophae rhamnoides)",
     category: "oil",
-    product_handles: ["golden-glow-50ml"],
+    product_handles: [],
   },
   {
     name: "Olej z pestek malin",
     name_latin: "Rubus Idaeus Seed Oil",
     handle: "olej-z-pestek-malin",
     description:
-      "Olej z pestek malin to naturalny filtr UV o jednym z najwyższych współczynników ochrony wśród olejów roślinnych. Jest niezwykle bogaty w kwas elagowy, witaminę E i karotenoidy, które zapewniają potężną ochronę antyoksydacyjną. W biozgodnej pielęgnacji łączy fotoprotekcję z głębokim odżywieniem skóry.",
+      "Olej z pestek malin jest jednym z najskuteczniejszych naturalnych filtrów UV wśród olejów roślinnych. Bogaty w witaminę E, karotenoidy i kwas elagowy, oferuje silną ochronę antyoksydacyjną. Doskonale nawilża, regeneruje i chroni skórę przed przedwczesnym starzeniem.",
     benefits: [
-      "Naturalny filtr UV chroniący przed promieniowaniem",
-      "Silna ochrona antyoksydacyjna",
-      "Odżywienie skóry witaminą E i karotenoidami",
-      "Wsparcie regeneracji skóry narażonej na słońce",
+      "Naturalna ochrona przed promieniowaniem UV",
+      "Silne działanie antyoksydacyjne",
+      "Regeneracja i nawilżenie skóry",
+      "Ochrona przed przedwczesnym starzeniem",
     ],
     source: "Tłoczony na zimno z pestek malin (Rubus idaeus)",
     category: "oil",
-    product_handles: ["golden-glow-50ml"],
+    product_handles: [],
+  },
+
+  // ── Zioła ───────────────────────────────────────────────────────────
+  {
+    name: "Rumianek",
+    name_latin: "Chamomilla Recutita",
+    handle: "rumianek",
+    description:
+      "Rumianek pospolity to jedno z najstarszych i najlepiej przebadanych ziół leczniczych. Zawiera bisabolol i azulen, które silnie łagodzą podrażnienia, zaczerwienienia i stany zapalne. Jest niezastąpiony w pielęgnacji skóry wrażliwej, reaktywnej i skłonnej do alergii.",
+    benefits: [
+      "Silne działanie kojące i przeciwzapalne",
+      "Redukcja zaczerwienień i podrażnień",
+      "Łagodzenie skóry wrażliwej i reaktywnej",
+      "Wsparcie gojenia drobnych uszkodzeń naskórka",
+    ],
+    source:
+      "Kwiat rumianku pospolitego (Matricaria chamomilla), uprawiany i zbierany dziko w Europie",
+    category: "herb",
+    product_handles: ["rusalka-mydlo-rytualne"],
+  },
+  {
+    name: "Lawenda",
+    name_latin: "Lavandula Angustifolia",
+    handle: "lawenda",
+    description:
+      "Lawenda wąskolistna jest ceniona za swoje wszechstronne właściwości kosmetyczne i aromaterapeutyczne. Olejek lawendowy łagodzi podrażnienia, reguluje wydzielanie sebum i wspomaga regenerację skóry. Jej uspokajający aromat działa relaksująco i pomaga w redukcji stresu.",
+    benefits: [
+      "Kojenie podrażnień i stanów zapalnych",
+      "Regulacja wydzielania sebum",
+      "Wspomaganie regeneracji skóry",
+      "Relaksujące działanie aromaterapeutyczne",
+      "Właściwości antyseptyczne",
+    ],
+    source:
+      "Kwiaty lawendy wąskolistnej (Lavandula angustifolia), uprawianej głównie w Prowansji i na Bałkanach",
+    category: "herb",
+    product_handles: ["rusalka-mydlo-rytualne"],
+  },
+  {
+    name: "May Chang",
+    name_latin: "Litsea Cubeba",
+    handle: "may-chang",
+    description:
+      "May Chang, znany też jako litsea cubeba, to egzotyczna roślina o intensywnym cytrusowo-kwiatowym aromacie. Olejek z jej owoców ma silne właściwości antyseptyczne, ściągające i rozjaśniające. Jest szczególnie polecany do pielęgnacji skóry tłustej i mieszanej.",
+    benefits: [
+      "Ściąganie i zmniejszanie widoczności porów",
+      "Działanie antyseptyczne i oczyszczające",
+      "Rozjaśnianie i wyrównywanie kolorytu skóry",
+      "Energetyzujący, cytrusowy aromat",
+    ],
+    source:
+      "Owoce drzewa Litsea cubeba, rosnącego dziko w południowo-wschodniej Azji",
+    category: "herb",
+    product_handles: ["zorza-mydlo-rytualne"],
+  },
+  {
+    name: "Róża damasceńska",
+    name_latin: "Rosa Damascena",
+    handle: "roza-damascenska",
+    description:
+      "Róża damasceńska to jedna z najcenniejszych roślin w kosmetologii, ceniona za bogactwo składników aktywnych. Ekstrakt z jej płatków nawilża, regeneruje i działa przeciwstarzeniowo. Woda różana tonizuje i łagodzi, a olejek różany jest jednym z najdroższych surowców kosmetycznych na świecie.",
+    benefits: [
+      "Głębokie nawilżenie i tonizacja",
+      "Działanie przeciwstarzeniowe i regenerujące",
+      "Łagodzenie podrażnień i zaczerwienień",
+      "Poprawa elastyczności skóry",
+    ],
+    source:
+      "Płatki róży damasceńskiej (Rosa damascena), uprawianej głównie w Dolinie Róż w Bułgarii",
+    category: "herb",
+    product_handles: ["mokosz-mydlo-rytualne"],
+  },
+  {
+    name: "Hibiskus",
+    name_latin: "Hibiscus Sabdariffa",
+    handle: "hibiskus",
+    description:
+      "Hibiskus, nazywany roślinnym botoksem, jest bogaty w naturalne kwasy AHA, antocyjany i witaminę C. Delikatnie złuszcza, stymuluje produkcję kolagenu i wyraźnie poprawia jędrność skóry. Jego ekstrakt jest ceniony za działanie anti-age porównywalne z retinolem, lecz łagodniejsze dla skóry.",
+    benefits: [
+      "Naturalne złuszczanie dzięki kwasom AHA",
+      "Stymulacja produkcji kolagenu",
+      "Poprawa jędrności i sprężystości skóry",
+      "Działanie anti-age bez podrażnień",
+    ],
+    source:
+      "Kwiaty hibiskusa (Hibiscus sabdariffa), uprawianego w klimacie tropikalnym",
+    category: "herb",
+    product_handles: ["czarodziejka-mydlo-rytualne"],
+  },
+  {
+    name: "Kora białej wierzby",
+    name_latin: "Salix Alba Bark Extract",
+    handle: "kora-bialej-wierzby",
+    description:
+      "Kora białej wierzby jest naturalnym źródłem salicyny — prekursora kwasu salicylowego. Delikatnie złuszcza, oczyszcza pory i reguluje wydzielanie sebum, nie podrażniając przy tym skóry. To doskonała, łagodna alternatywa dla syntetycznego BHA, idealna dla skóry wrażliwej ze skłonnością do niedoskonałości.",
+    benefits: [
+      "Naturalne, delikatne złuszczanie (BHA)",
+      "Oczyszczanie i zmniejszanie porów",
+      "Regulacja wydzielania sebum",
+      "Działanie przeciwbakteryjne i przeciwzapalne",
+    ],
+    source:
+      "Kora wierzby białej (Salix alba), pozyskiwana z drzew rosnących w Europie",
+    category: "herb",
+    product_handles: [],
+  },
+
+  // ── Aktywne ─────────────────────────────────────────────────────────
+  {
+    name: "Bakuchiol",
+    name_latin: "Bakuchiol",
+    handle: "bakuchiol",
+    description:
+      "Bakuchiol to roślinny odpowiednik retinolu, pozyskiwany z nasion bakuczii. Stymuluje produkcję kolagenu, redukuje zmarszczki i przebarwienia, a w przeciwieństwie do retinolu nie powoduje podrażnień ani nadwrażliwości na słońce. Jest bezpieczny do stosowania w ciąży i przy skórze wrażliwej.",
+    benefits: [
+      "Roślinny odpowiednik retinolu bez skutków ubocznych",
+      "Redukcja zmarszczek i drobnych linii",
+      "Wyrównywanie kolorytu i redukcja przebarwień",
+      "Bezpieczny dla skóry wrażliwej i w ciąży",
+      "Stymulacja syntezy kolagenu",
+    ],
+    source:
+      "Pozyskiwany z nasion babchi (Psoralea corylifolia), rośliny stosowanej od wieków w ajurwedzie",
+    category: "active",
+    product_handles: [],
+  },
+  {
+    name: "Koenzym Q10",
+    name_latin: "Ubiquinone",
+    handle: "koenzym-q10",
+    description:
+      "Koenzym Q10 to naturalny antyoksydant obecny w każdej komórce ludzkiego ciała, którego poziom spada z wiekiem. Neutralizuje wolne rodniki, wspomaga produkcję energii w komórkach skóry i zapobiega przedwczesnemu starzeniu. Jest jednym z kluczowych składników w pielęgnacji anti-age.",
+    benefits: [
+      "Silna ochrona antyoksydacyjna",
+      "Wspomaganie produkcji energii komórkowej",
+      "Redukcja widoczności zmarszczek",
+      "Ochrona przed fotostarzeniem",
+    ],
+    source:
+      "Występuje naturalnie w organizmie; w kosmetyce stosowany w formie biotechnologicznej",
+    category: "active",
+    product_handles: [],
+  },
+
+  // ── Glinka ──────────────────────────────────────────────────────────
+  {
+    name: "Glinka różowa",
+    name_latin: "Kaolin + Illite",
+    handle: "glinka-rozowa",
+    description:
+      "Glinka różowa to mieszanka glinki białej (kaolin) i czerwonej (illite), łącząca delikatność z mineralizacją. Oczyszcza pory bez przesuszania, wygładza naskórek i poprawia mikrocyrkulację. Jest idealna dla skóry wrażliwej, której potrzebne jest delikatne oczyszczanie i odżywienie minerałami.",
+    benefits: [
+      "Delikatne oczyszczanie bez przesuszania",
+      "Poprawa mikrocyrkulacji i kolorytu",
+      "Wygładzenie i zmiękczenie naskórka",
+      "Bogactwo minerałów odżywiających skórę",
+    ],
+    source:
+      "Naturalna mieszanka glinki białej i czerwonej, pozyskiwana z europejskich złóż mineralnych",
+    category: "clay",
+    product_handles: ["mokosz-mydlo-rytualne"],
+  },
+
+  // ── Eksfolianty ─────────────────────────────────────────────────────
+  {
+    name: "Płatki owsiane",
+    name_latin: "Avena Sativa",
+    handle: "platki-owsiane",
+    description:
+      "Płatki owsiane są naturalnym, niezwykle delikatnym eksfoliantem bogatym w beta-glukan, avenantramidy i lipidy. Łagodnie usuwają martwy naskórek, jednocześnie kojąc i nawilżając skórę. Są polecane przez dermatologów nawet dla skóry atopowej i z tendencją do egzemy.",
+    benefits: [
+      "Delikatny peeling mechaniczny bez mikrouszkodzeń",
+      "Kojenie i nawilżenie dzięki beta-glukanowi",
+      "Wzmacnianie bariery ochronnej skóry",
+      "Łagodzenie świądu i podrażnień",
+    ],
+    source:
+      "Mielone ziarna owsa zwyczajnego (Avena sativa), uprawianego w klimacie umiarkowanym",
+    category: "exfoliant",
+    product_handles: ["rusalka-mydlo-rytualne"],
+  },
+  {
+    name: "Kawa",
+    name_latin: "Coffea Arabica",
+    handle: "kawa",
+    description:
+      "Kawa jest naturalnym eksfoliantem i silnym antyoksydantem bogatym w kofeinę, kwas chlorogenowy i polifenole. Pobudza mikrocyrkulację, redukuje obrzęki i poprawia jędrność skóry. Zmielone ziarna kawy stanowią skuteczny peeling mechaniczny, który nadaje skórze gładkość i zdrowy blask.",
+    benefits: [
+      "Pobudzenie mikrocyrkulacji i redukcja obrzęków",
+      "Skuteczny peeling mechaniczny",
+      "Silna ochrona antyoksydacyjna",
+      "Poprawa jędrności i napięcia skóry",
+      "Redukcja widoczności cellulitu",
+    ],
+    source:
+      "Zmielone ziarna kawowca arabskiego (Coffea arabica), uprawianego w strefie międzyzwrotnikowej",
+    category: "exfoliant",
+    product_handles: ["czarodziejka-mydlo-rytualne"],
   },
 ]
 
 export default async function seedIngredients({ container }: ExecArgs) {
   const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
-  const ingredientsService = container.resolve("ingredients")
+  const ingredientsService: IngredientsModuleService =
+    container.resolve(INGREDIENTS_MODULE)
 
-  logger.info("Starting ingredients seed...")
+  logger.info("Starting ingredient seed for Lunula Botanique...")
 
-  // Fetch existing ingredients to avoid duplicates
-  const existing = await ingredientsService.listIngredients({}, { take: 100 })
-  const existingHandles = new Set(existing.map((i: any) => i.handle))
-
-  const toCreate = ingredients.filter((i) => !existingHandles.has(i.handle))
-
-  if (toCreate.length === 0) {
-    logger.info("All ingredients already exist. Nothing to seed.")
-    return
+  // Step 1: Delete existing ingredients for idempotency
+  const existing = await ingredientsService.listIngredients({}, { take: 200 })
+  if (existing.length > 0) {
+    const existingIds = existing.map((i) => i.id)
+    logger.info(`Deleting ${existingIds.length} existing ingredients...`)
+    await ingredientsService.deleteIngredients(existingIds)
+    logger.info("Existing ingredients deleted.")
   }
 
-  logger.info(
-    `Found ${existingHandles.size} existing ingredients. Creating ${toCreate.length} new ingredients...`
+  // Step 2: Create all ingredients
+  logger.info(`Creating ${ingredientsData.length} ingredients...`)
+  const created = await ingredientsService.createIngredients(ingredientsData)
+  logger.info(`Successfully created ${created.length} ingredients.`)
+
+  // Step 3: Log summary by category
+  const categories = ingredientsData.reduce(
+    (acc, i) => {
+      acc[i.category] = (acc[i.category] || 0) + 1
+      return acc
+    },
+    {} as Record<string, number>
   )
 
-  const created = await ingredientsService.createIngredients(toCreate)
-
-  logger.info(`Successfully seeded ${created.length} ingredients:`)
-  for (const ingredient of created) {
-    logger.info(`  ✓ ${ingredient.name} (${ingredient.handle})`)
+  logger.info("Summary by category:")
+  for (const [category, count] of Object.entries(categories)) {
+    logger.info(`  ${category}: ${count}`)
   }
 
-  logger.info("Ingredients seed completed.")
+  for (const ingredient of created) {
+    logger.info(`  + ${ingredient.name} [${ingredient.handle}]`)
+  }
+
+  logger.info("Ingredient seed completed.")
 }
