@@ -48,6 +48,12 @@ export default async function Nav() {
           >
             O marce
           </LocalizedClientLink>
+          <LocalizedClientLink
+            className="hover:text-brand-accent transition-colors"
+            href="/dla-salonow"
+          >
+            Dla salonów
+          </LocalizedClientLink>
         </div>
       </div>
 

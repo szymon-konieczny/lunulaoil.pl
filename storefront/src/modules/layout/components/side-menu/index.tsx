@@ -15,15 +15,17 @@ enum MenuRoute {
   Store = "/store",
   Quiz = "/quiz",
   About = "/about",
+  Salons = "/dla-salonow",
   Account = "/account",
   Cart = "/cart",
 }
 
 const SIDE_MENU_ITEMS = [
-  { label: "Strona g\u0142\u00f3wna", href: MenuRoute.Home },
+  { label: "Strona główna", href: MenuRoute.Home },
   { label: "Sklep", href: MenuRoute.Store },
   { label: "Dobierz kosmetyk", href: MenuRoute.Quiz },
   { label: "O marce", href: MenuRoute.About },
+  { label: "Dla salonów", href: MenuRoute.Salons },
   { label: "Konto", href: MenuRoute.Account },
   { label: "Koszyk", href: MenuRoute.Cart },
 ] as const
