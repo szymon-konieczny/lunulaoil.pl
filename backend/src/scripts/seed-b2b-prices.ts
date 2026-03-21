@@ -107,8 +107,8 @@ export default async function seedB2BPrices({ container }: ExecArgs) {
   logger.info(`  Found ${variantMap.size}/${handles.length} products with price sets`)
 
   // ── 3. Check for existing price list ──
-  const existingPriceLists = await pricingModuleService.listPriceLists({
-    title: "Cennik salonowy B2B" as any,
+  const existingPriceLists = await (pricingModuleService as any).listPriceLists({
+    title: "Cennik salonowy B2B",
   })
 
   if (existingPriceLists.length) {
