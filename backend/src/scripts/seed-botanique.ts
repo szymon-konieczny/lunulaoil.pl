@@ -81,7 +81,7 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
   const productDefs = [
     // ── Biozgodna Pielęgnacja Twarzy ──
     {
-      title: "HialCode — Serum z kwasem hialuronowym",
+      title: "HialCode - Serum z kwasem hialuronowym",
       subtitle: "Biozgodna Pielęgnacja Twarzy",
       category_ids: [catBiocare],
       description:
@@ -114,11 +114,11 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
       ],
     },
     {
-      title: "SqualaneCode — Skwalan",
+      title: "SqualaneCode - Skwalan",
       subtitle: "Biozgodna Pielęgnacja Twarzy",
       category_ids: [catBiocare],
       description:
-        "Ultra lekki, suchy, niekomedogenny lipid. Skwalan to stabilna, uwodorniona forma skwalenu — lipidu, ktory naturalnie wystepuje w ludzkim sebum. Biokompatybilny ze skora: dobrze tolerowany, lekki i niekomedogenny. Wzmacnia bariere hydrolipidowa, ogranicza transepidermalna utrate wody (TEWL), zmiekcza i wygladza skore, poprawia elastycznosc bez efektu ciezkosci. Odpowiedni takze dla skory wrazliwej i tradzikowej. Idealnie sprawdza sie w polaczeniu z HialCode. Minimalizm, ktory dziala. Skora rozumie ten jezyk. SqualaneCode.",
+        "Ultra lekki, suchy, niekomedogenny lipid. Skwalan to stabilna, uwodorniona forma skwalenu - lipidu, ktory naturalnie wystepuje w ludzkim sebum. Biokompatybilny ze skora: dobrze tolerowany, lekki i niekomedogenny. Wzmacnia bariere hydrolipidowa, ogranicza transepidermalna utrate wody (TEWL), zmiekcza i wygladza skore, poprawia elastycznosc bez efektu ciezkosci. Odpowiedni takze dla skory wrazliwej i tradzikowej. Idealnie sprawdza sie w polaczeniu z HialCode. Minimalizm, ktory dziala. Skora rozumie ten jezyk. SqualaneCode.",
       handle: "squalanecode",
       weight: 50,
       status: ProductStatus.PUBLISHED,
@@ -148,11 +148,11 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
       ],
     },
     {
-      title: "JojobaCode — Olej jojoba",
+      title: "JojobaCode - Olej jojoba",
       subtitle: "Biozgodna Pielęgnacja Twarzy",
       category_ids: [catBiocare],
       description:
-        "Inteligentny, wielozadaniowy, samoregulujacy. Olej jojoba to nie olej, a plynny wosk o budowie zblizonej do ludzkiego sebum. Rozpoznaje potrzeby skory — wspiera regulacje wydzielania loju: utrzymuje wilgoc w skorze suchej, ogranicza przetluszczanie sie tlustej. Sprawdza sie jako emolient, baza do masazu, olejek do demakijazu, eliksir na koncowki wlosow, baza do aromaterapii, serum do skorek i ust. Z komedogennoscia 0-1 rozcienncza ciezsze oleje. Jojoba to olej, ktory slucha skory. JojobaCode.",
+        "Inteligentny, wielozadaniowy, samoregulujacy. Olej jojoba to nie olej, a plynny wosk o budowie zblizonej do ludzkiego sebum. Rozpoznaje potrzeby skory - wspiera regulacje wydzielania loju: utrzymuje wilgoc w skorze suchej, ogranicza przetluszczanie sie tlustej. Sprawdza sie jako emolient, baza do masazu, olejek do demakijazu, eliksir na koncowki wlosow, baza do aromaterapii, serum do skorek i ust. Z komedogennoscia 0-1 rozcienncza ciezsze oleje. Jojoba to olej, ktory slucha skory. JojobaCode.",
       handle: "jojobacode",
       weight: 50,
       status: ProductStatus.PUBLISHED,
@@ -184,7 +184,7 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
     },
 
     {
-      title: "JojobaCode Gold — Olej jojoba z drobinkami zlota 100ml",
+      title: "JojobaCode Gold - Olej jojoba z drobinkami zlota 100ml",
       subtitle: "Biozgodna Pielęgnacja",
       category_ids: [catBiocare],
       description:
@@ -219,13 +219,13 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
       ],
     },
 
-    // ── Mydła Rytualne — Lunula Slavic Soap ──
+    // ── Mydła Rytualne - Lunula Slavic Soap ──
     {
-      title: "Rusalka — Mydlo rytualne",
+      title: "Rusalka - Mydlo rytualne",
       subtitle: "Lunula Slavic Soap",
       category_ids: [catSoaps],
       description:
-        "Rumianek, lawenda, platki owsiane. W INCI m.in. roslinne oleje (Olea Europaea Fruit Oil, Cocos Nucifera Oil), maslo shea (Butyrospermum Parkii Butter), ekstrakt z rumianku (Chamomilla Recutita), olejek lawendowy (Lavandula Angustifolia Oil) oraz Avena Sativa. Rusalka to lekkosc i ukojenie. Delikatnie ziolowa z dodatkiem platkow owsianych, ktore nadaja jej miekkiej, naturalnej faktury. Sprawdza sie przy skorze wrazliwej i suchej — kiedy potrzeba ciszy, prostoty i oddechu.",
+        "Rumianek, lawenda, platki owsiane. W INCI m.in. roslinne oleje (Olea Europaea Fruit Oil, Cocos Nucifera Oil), maslo shea (Butyrospermum Parkii Butter), ekstrakt z rumianku (Chamomilla Recutita), olejek lawendowy (Lavandula Angustifolia Oil) oraz Avena Sativa. Rusalka to lekkosc i ukojenie. Delikatnie ziolowa z dodatkiem platkow owsianych, ktore nadaja jej miekkiej, naturalnej faktury. Sprawdza sie przy skorze wrazliwej i suchej - kiedy potrzeba ciszy, prostoty i oddechu.",
       handle: "rusalka-mydlo-rytualne",
       weight: 100,
       status: ProductStatus.PUBLISHED,
@@ -255,7 +255,7 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
       ],
     },
     {
-      title: "Rozyczka — Mydlo rytualne",
+      title: "Rozyczka - Mydlo rytualne",
       subtitle: "Lunula Slavic Soap",
       category_ids: [catSoaps],
       description:
@@ -289,7 +289,7 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
       ],
     },
     {
-      title: "Mokosza — Mydlo rytualne",
+      title: "Mokosza - Mydlo rytualne",
       subtitle: "Lunula Slavic Soap",
       category_ids: [catSoaps],
       description:

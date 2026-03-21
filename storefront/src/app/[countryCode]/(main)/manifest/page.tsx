@@ -4,7 +4,7 @@ import AnimateIn from "@modules/common/components/animate-in"
 export const metadata: Metadata = {
   title: "Manifest",
   description:
-    "Manifest Lunula Botanique — filozofia biozgodnej pielęgnacji. By Lunula.",
+    "Manifest Lunula Botanique - filozofia biozgodnej pielęgnacji. By Lunula.",
 }
 
 export default function ManifestPage() {
@@ -27,17 +27,17 @@ export default function ManifestPage() {
               <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
                 <p>
                   Nie tworzę kolejnej marki, której produkty różnią się od siebie
-                  jedynie opakowaniem, nazwą i marketingiem — a składy pozostają
+                  jedynie opakowaniem, nazwą i marketingiem - a składy pozostają
                   oparte na tych samych syntetycznych komponentach.
                 </p>
                 <p className="text-brand-text font-semibold">
-                  Buduję koncepcję — coś, co ma sens.
+                  Buduję koncepcję - coś, co ma sens.
                 </p>
                 <p>Coś, co zmienia sposób myślenia o pielęgnacji.</p>
                 <p className="text-brand-text-muted/70 italic">
                   Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
                   <br />
-                  Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
+                  Rozumieliśmy moc natury - i żyliśmy z nią w zgodzie.
                 </p>
               </div>
             </div>
@@ -68,7 +68,7 @@ export default function ManifestPage() {
                   Zero przypadków. Pełna zgodność.
                 </p>
                 <p>
-                  Składniki dobierane są celowo — tak, by wspierać, odżywiać
+                  Składniki dobierane są celowo - tak, by wspierać, odżywiać
                   i przywracać równowagę.
                 </p>
                 <p>
@@ -89,7 +89,7 @@ export default function ManifestPage() {
                 Czystość to luksus. Prostota to siła.
               </p>
               <p className="text-brand-accent text-lg italic font-heading">
-                „Minimalizm to nie brak — to wybór tego, co najważniejsze."
+                „Minimalizm to nie brak - to wybór tego, co najważniejsze."
               </p>
               <div className="space-y-2 text-brand-text-muted text-base mt-8">
                 <p>To powrót do źródła</p>

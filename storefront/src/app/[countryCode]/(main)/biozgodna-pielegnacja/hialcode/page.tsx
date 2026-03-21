@@ -7,7 +7,7 @@ import AddToCartButton from "@modules/products/components/add-to-cart-button"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export const metadata: Metadata = {
-  title: "HialCode — Kwas hialuronowy",
+  title: "HialCode - Kwas hialuronowy",
   description:
     "Serum z kwasem hialuronowym o wielocząsteczkowej formule. Intensywne nawilżenie w głębi skóry.",
 }
@@ -90,7 +90,7 @@ export default async function HialCodePage(props: Props) {
             <div className="space-y-8">
               <div>
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
-                  Kwas hialuronowy — klucz do nawilżenia
+                  Kwas hialuronowy - klucz do nawilżenia
                 </h2>
                 <p className="text-brand-text-muted text-base leading-relaxed">
                   Kwas hialuronowy to naturalny składnik skóry, który odpowiada
@@ -105,11 +105,11 @@ export default async function HialCodePage(props: Props) {
                   Jak działa na skórę?
                 </h2>
                 <ul className="space-y-2 text-brand-text-muted text-base leading-relaxed">
-                  <li>— intensywnie nawilża w głębi skóry</li>
-                  <li>— wypełnia drobne zmarszczki od wewnątrz</li>
-                  <li>— przywraca elastyczność i jędrność</li>
-                  <li>— wzmacnia barierę ochronną skóry</li>
-                  <li>— odpowiedni dla każdego typu cery</li>
+                  <li>- intensywnie nawilża w głębi skóry</li>
+                  <li>- wypełnia drobne zmarszczki od wewnątrz</li>
+                  <li>- przywraca elastyczność i jędrność</li>
+                  <li>- wzmacnia barierę ochronną skóry</li>
+                  <li>- odpowiedni dla każdego typu cery</li>
                 </ul>
               </div>
 

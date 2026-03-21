@@ -8,17 +8,17 @@
   "manifest": {
     "title": "Manifest",
     "line1": "Nie tworzę kolejnej marki, której produkty różnią się jedynie opakowaniem i marketingiem.",
-    "line2": "Buduję koncepcję — coś, co ma sens.",
+    "line2": "Buduję koncepcję - coś, co ma sens.",
     "line3": "Coś, co zmienia sposób myślenia o pielęgnacji.",
-    "line4": "Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś. Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.",
-    "quote": "„Minimalizm to nie brak — to wybór tego, co najważniejsze.\u201D",
+    "line4": "Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś. Rozumieliśmy moc natury - i żyliśmy z nią w zgodzie.",
+    "quote": "„Minimalizm to nie brak - to wybór tego, co najważniejsze.\u201D",
     "signature": "By Lunula",
     "cta": "Czytaj cały manifest →"
   },
   "heroProduct": {
     "brand": "Lunula Botanique",
     "title": "Kremy Rytualne",
-    "description": "Rytualna pielęgnacja w zgodzie z naturą skóry. Biozgodna formuła, która karmi skórę tym, co już zna — przywracając jej blask, zdrowie i harmonię."
+    "description": "Rytualna pielęgnacja w zgodzie z naturą skóry. Biozgodna formuła, która karmi skórę tym, co już zna - przywracając jej blask, zdrowie i harmonię."
   },
   "biocare": {
     "title": "Biozgodna Pielęgnacja Twarzy",
@@ -42,17 +42,17 @@
   "slavicSoap": {
     "brand": "Lunula Slavic Soap",
     "title": "Powrót do korzeni",
-    "description": "Mydła Lunula powstają z roślinnych olejów, maseł i ziół, w prostych recepturach inspirowanych tradycją. Pielęgnacja, która nie konkuruje z naturą — tylko z nią współpracuje.",
+    "description": "Mydła Lunula powstają z roślinnych olejów, maseł i ziół, w prostych recepturach inspirowanych tradycją. Pielęgnacja, która nie konkuruje z naturą - tylko z nią współpracuje.",
     "rusalka": {
       "name": "Rusałka",
       "ingredients": "Rumianek • Lawenda • Płatki owsiane",
-      "description": "Lekkość i ukojenie. Delikatnie ziołowa z naturalną fakturą płatków owsianych. Dla skóry wrażliwej i suchej — kiedy potrzeba ciszy i oddechu.",
+      "description": "Lekkość i ukojenie. Delikatnie ziołowa z naturalną fakturą płatków owsianych. Dla skóry wrażliwej i suchej - kiedy potrzeba ciszy i oddechu.",
       "price": "33 zł"
     },
     "rozyczka": {
       "name": "Różyczka",
       "ingredients": "Glinka różowa • May Chang • Róża damasceńska",
-      "description": "Mineralny blask. Łączy moc glinki z energią cytrusów i róży. Mydło czasu rozkwitu — dla kobiet, które chcą czuć się świeżo i promiennie.",
+      "description": "Mineralny blask. Łączy moc glinki z energią cytrusów i róży. Mydło czasu rozkwitu - dla kobiet, które chcą czuć się świeżo i promiennie.",
       "price": "33 zł"
     },
     "mokosza": {
@@ -75,7 +75,7 @@
   },
   "ctaSamples": {
     "title": "Wypróbuj nasze olejki",
-    "description": "Nie wiesz, który olejek wybrać? Zamów zestaw próbek — sześć miniaturek naszych najpopularniejszych olejków, dzięki którym odkryjesz swój ulubiony zapach i formułę.",
+    "description": "Nie wiesz, który olejek wybrać? Zamów zestaw próbek - sześć miniaturek naszych najpopularniejszych olejków, dzięki którym odkryjesz swój ulubiony zapach i formułę.",
     "cta": "Zamów zestaw próbek",
     "aboutLink": "Więcej o marce",
     "imageAlt": "Zestaw próbek Lunula Oil"

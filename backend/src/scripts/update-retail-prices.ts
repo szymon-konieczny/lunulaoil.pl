@@ -167,7 +167,7 @@ export default async function updateRetailPrices({ container }: ExecArgs) {
         products: [
           {
             title:
-              "JojobaCode Gold — Olej jojoba z drobinkami zlota 100ml",
+              "JojobaCode Gold - Olej jojoba z drobinkami zlota 100ml",
             subtitle: "Biozgodna Pielęgnacja",
             category_ids: biocareCategories.length
               ? [biocareCategories[0].id]

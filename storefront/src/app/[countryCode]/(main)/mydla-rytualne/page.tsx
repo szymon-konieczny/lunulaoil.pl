@@ -10,7 +10,7 @@ import AddToCartButton from "@modules/products/components/add-to-cart-button"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export const metadata: Metadata = {
-  title: "Mydła Rytualne — Lunula Slavic Soap",
+  title: "Mydła Rytualne - Lunula Slavic Soap",
   description:
     "Mydła Lunula powstają z roślinnych olejów, maseł i ziół, w prostych recepturach inspirowanych tradycją.",
 }
@@ -23,7 +23,7 @@ const soaps = [
     ingredients: "Rumianek \u2022 Lawenda \u2022 Płatki owsiane",
     inci: "Olea Europaea Fruit Oil, Cocos Nucifera Oil, Butyrospermum Parkii Butter, Chamomilla Recutita, Lavandula Angustifolia Oil, Avena Sativa",
     description:
-      "Rusałka to lekkość i ukojenie. Delikatnie ziołowa z dodatkiem płatków owsianych, które nadają jej miękkiej, naturalnej faktury. Sprawdza się przy skórze wrażliwej i suchej — kiedy potrzeba ciszy, prostoty i oddechu.",
+      "Rusałka to lekkość i ukojenie. Delikatnie ziołowa z dodatkiem płatków owsianych, które nadają jej miękkiej, naturalnej faktury. Sprawdza się przy skórze wrażliwej i suchej - kiedy potrzeba ciszy, prostoty i oddechu.",
   },
   {
     name: "Różyczka",
@@ -32,7 +32,7 @@ const soaps = [
     ingredients: "Glinka różowa i czerwona \u2022 May Chang \u2022 Słodka pomarańcza \u2022 Róża damasceńska",
     inci: "Illite, Kaolin, Cymbopogon Martini / Litsea Cubeba Oil (May Chang), Citrus Aurantium Dulcis Peel Oil, Rosa Damascena Flower Oil",
     description:
-      "Różyczka łączy mineralną moc glinki z promienną energią cytrusów i róży. Kwiatowo-owocowa, świeża, z subtelną nutą kobiecego ciepła. Wspiera równowagę skóry i nadaje jej zdrowy, naturalny blask. To mydło czasu rozkwitu — dla kobiet, które chcą czuć się świeżo, lekko i promiennie.",
+      "Różyczka łączy mineralną moc glinki z promienną energią cytrusów i róży. Kwiatowo-owocowa, świeża, z subtelną nutą kobiecego ciepła. Wspiera równowagę skóry i nadaje jej zdrowy, naturalny blask. To mydło czasu rozkwitu - dla kobiet, które chcą czuć się świeżo, lekko i promiennie.",
   },
   {
     name: "Mokosza",
@@ -41,7 +41,7 @@ const soaps = [
     ingredients: "Kawa \u2022 Oleje roślinne \u2022 Hibiskus",
     inci: "Coffea Arabica Seed Powder, Hibiscus Sabdariffa Flower Extract, masło shea",
     description:
-      "Mokosza jest ziemista i wyrazista. Naturalny kolor kawy, delikatnie peelingująca struktura i ciepły, otulający zapach sprawiają, że to mydło ma korzenny, stabilny charakter. Choć inspirowana archetypem Matki Ziemi, Mokosza jest chętnie wybierana również przez mężczyzn — właśnie ze względu na jej naturalny, kawowy aromat. Daje poczucie mocy, zakorzenienia i energii.",
+      "Mokosza jest ziemista i wyrazista. Naturalny kolor kawy, delikatnie peelingująca struktura i ciepły, otulający zapach sprawiają, że to mydło ma korzenny, stabilny charakter. Choć inspirowana archetypem Matki Ziemi, Mokosza jest chętnie wybierana również przez mężczyzn - właśnie ze względu na jej naturalny, kawowy aromat. Daje poczucie mocy, zakorzenienia i energii.",
   },
 ]
 
@@ -101,9 +101,9 @@ export default async function SlavicSoapPage(props: Props) {
               inspirowanych tradycją.
             </p>
             <p className="text-white/70 text-base leading-relaxed">
-              Bazą są starannie dobrane oleje roślinne — bez pośpiechu,
+              Bazą są starannie dobrane oleje roślinne - bez pośpiechu,
               z szacunkiem do surowca i skóry. To pielęgnacja, która nie
-              konkuruje z naturą — tylko z nią współpracuje.
+              konkuruje z naturą - tylko z nią współpracuje.
             </p>
           </AnimateIn>
           <AnimateIn variant="fade-up" delay={300}>

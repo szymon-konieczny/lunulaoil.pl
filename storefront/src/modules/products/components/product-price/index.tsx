@@ -20,7 +20,7 @@ export default function ProductPrice({
     cheapestPrice = prices.cheapestPrice
     variantPrice = prices.variantPrice
   } catch {
-    // Price calculation failed — show placeholder
+    // Price calculation failed - show placeholder
   }
 
   const selectedPrice = variant ? variantPrice : cheapestPrice

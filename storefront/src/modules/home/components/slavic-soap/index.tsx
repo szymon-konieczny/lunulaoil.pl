@@ -10,7 +10,7 @@ const soaps = [
     image: "/products/rusalka-placeholder.svg",
     ingredients: "Rumianek \u2022 Lawenda \u2022 Płatki owsiane",
     description:
-      "Lekkość i ukojenie. Delikatnie ziołowa z naturalną fakturą płatków owsianych. Dla skóry wrażliwej i suchej — kiedy potrzeba ciszy i oddechu.",
+      "Lekkość i ukojenie. Delikatnie ziołowa z naturalną fakturą płatków owsianych. Dla skóry wrażliwej i suchej - kiedy potrzeba ciszy i oddechu.",
     fallbackPrice: "33 zł",
     storeHref: "/products/rusalka-mydlo-rytualne",
   },
@@ -20,7 +20,7 @@ const soaps = [
     image: "/products/rozyczka-placeholder.svg",
     ingredients: "Glinka różowa \u2022 May Chang \u2022 Róża damasceńska",
     description:
-      "Mineralny blask. Łączy moc glinki z energią cytrusów i róży. Mydło czasu rozkwitu — dla kobiet, które chcą czuć się świeżo i promiennie.",
+      "Mineralny blask. Łączy moc glinki z energią cytrusów i róży. Mydło czasu rozkwitu - dla kobiet, które chcą czuć się świeżo i promiennie.",
     fallbackPrice: "33 zł",
     storeHref: "/products/rozyczka-mydlo-rytualne",
   },
@@ -75,7 +75,7 @@ const SlavicSoap = ({ productData = {} }: Props) => {
           <p className="text-white/70 text-base max-w-xl mx-auto leading-[1.8] mt-4">
             Mydła Lunula powstają z roślinnych olejów, maseł i ziół, w prostych
             recepturach inspirowanych tradycją. Pielęgnacja, która nie konkuruje
-            z naturą — tylko z nią współpracuje.
+            z naturą - tylko z nią współpracuje.
           </p>
         </AnimateIn>
 

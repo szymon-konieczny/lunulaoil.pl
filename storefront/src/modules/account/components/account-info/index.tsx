@@ -82,7 +82,7 @@ const AccountInfo = ({
           data-testid="success-message"
         >
           <Badge className="p-2 my-4" color="green">
-            <span>{label} — zaktualizowano pomyślnie</span>
+            <span>{label} - zaktualizowano pomyślnie</span>
           </Badge>
         </Disclosure.Panel>
       </Disclosure>

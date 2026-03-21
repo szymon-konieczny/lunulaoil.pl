@@ -11,7 +11,7 @@ const CtaSamples = () => {
             Wypróbuj nasze olejki
           </h2>
           <p className="text-brand-text-muted text-base leading-[1.8] max-w-md">
-            Nie wiesz, który olejek wybrać? Zamów zestaw próbek — sześć
+            Nie wiesz, który olejek wybrać? Zamów zestaw próbek - sześć
             miniaturek naszych najpopularniejszych olejków, dzięki którym
             odkryjesz swój ulubiony zapach i formułę.
           </p>

@@ -11,7 +11,7 @@ import Thumbnail from "@modules/products/components/thumbnail"
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
 export const metadata: Metadata = {
-  title: "Dla Salonów Kosmetycznych — Lunula Botanique",
+  title: "Dla Salonów Kosmetycznych - Lunula Botanique",
   description:
     "Naturalne kosmetyki Lunula Botanique dla profesjonalnych salonów kosmetycznych. Biozgodna pielęgnacja, którą docenią Twoje klientki.",
 }
@@ -20,17 +20,17 @@ const benefits = [
   {
     icon: "herb",
     title: "100% naturalnych składników",
-    text: "Produkty Lunula oparte są wyłącznie na składnikach naturalnych i biozgodnych — bez silikonów, parabenów, sztucznych barwników. Twoje klientki docenią czysty skład.",
+    text: "Produkty Lunula oparte są wyłącznie na składnikach naturalnych i biozgodnych - bez silikonów, parabenów, sztucznych barwników. Twoje klientki docenią czysty skład.",
   },
   {
     icon: "sparkle",
     title: "Wyróżnij się na rynku",
-    text: "Oferując kosmetyki Lunula Botanique, pozycjonujesz swój salon jako miejsce świadomej, naturalnej pielęgnacji — rosnący trend wśród klientek.",
+    text: "Oferując kosmetyki Lunula Botanique, pozycjonujesz swój salon jako miejsce świadomej, naturalnej pielęgnacji - rosnący trend wśród klientek.",
   },
   {
     icon: "flower",
     title: "Rytuał, nie tylko zabieg",
-    text: "Każdy produkt Lunula to doświadczenie sensoryczne — od aromaterapeutycznych mydeł po luksusowe serum. Zamień zwykły zabieg w rytuał.",
+    text: "Każdy produkt Lunula to doświadczenie sensoryczne - od aromaterapeutycznych mydeł po luksusowe serum. Zamień zwykły zabieg w rytuał.",
   },
   {
     icon: "lotion",
@@ -42,7 +42,7 @@ const benefits = [
 // Salon price table data
 const priceTable = [
   {
-    category: "Pielęgnacja ciała / masaż — 250 ml",
+    category: "Pielęgnacja ciała / masaż - 250 ml",
     items: [
       { name: "Magnolia", retail: "139 zł", salon: "86 zł" },
       { name: "Poranna Rosa", retail: "139 zł", salon: "86 zł" },
@@ -54,13 +54,13 @@ const priceTable = [
     ],
   },
   {
-    category: "JojobaCode Gold — 100 ml",
+    category: "JojobaCode Gold - 100 ml",
     items: [
       { name: "JojobaCode Gold", retail: "88 zł", salon: "68 zł" },
     ],
   },
   {
-    category: "Pielęgnacja twarzy — 30 ml",
+    category: "Pielęgnacja twarzy - 30 ml",
     items: [
       { name: "HyalCode Serum", retail: "69 zł", salon: "49 zł" },
       { name: "SqualaneCode Elixir", retail: "56 zł", salon: "36 zł" },
@@ -68,7 +68,7 @@ const priceTable = [
     ],
   },
   {
-    category: "Kremy rytualne — 60 ml",
+    category: "Kremy rytualne - 60 ml",
     items: [
       { name: "Geranium Glow", retail: "129 zł", salon: "65 zł" },
       { name: "Golden Glow", retail: "139 zł", salon: "70 zł" },
@@ -77,7 +77,7 @@ const priceTable = [
     ],
   },
   {
-    category: "Mydła rytualne — 100 g",
+    category: "Mydła rytualne - 100 g",
     items: [
       { name: "Rusałka / Różyczka / Mokosza", retail: "33 zł", salon: "26 zł" },
     ],
@@ -103,14 +103,14 @@ const salonProducts = [
     handle: "jojobacode",
     name: "JojobaCode",
     subtitle: "Serum z olejem jojoba",
-    useCase: "Uniwersalne — reguluje sebum, nawilża, nie zatyka porów",
+    useCase: "Uniwersalne - reguluje sebum, nawilża, nie zatyka porów",
     fallbackPrice: "59 zł",
   },
   {
     handle: "rusalka-mydlo-rytualne",
     name: "Rusałka",
     subtitle: "Mydło rytualne z rumiankiem i lawendą",
-    useCase: "Relaksujące oczyszczanie przed zabiegami — aromaterapia w salonie",
+    useCase: "Relaksujące oczyszczanie przed zabiegami - aromaterapia w salonie",
     fallbackPrice: "33 zł",
   },
   {
@@ -126,7 +126,7 @@ const cooperationSteps = [
   {
     step: "01",
     title: "Skontaktuj się z nami",
-    text: "Napisz lub zadzwoń — opowiedz nam o swoim salonie i potrzebach.",
+    text: "Napisz lub zadzwoń - opowiedz nam o swoim salonie i potrzebach.",
   },
   {
     step: "02",
@@ -168,7 +168,7 @@ export default async function SalonPage(props: Props) {
   const pageJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Lunula Botanique — Dla Salonów Kosmetycznych",
+    name: "Lunula Botanique - Dla Salonów Kosmetycznych",
     description:
       "Naturalne kosmetyki Lunula Botanique dla profesjonalnych salonów kosmetycznych.",
     url: `${BASE_URL}/${countryCode}/dla-salonow`,
@@ -207,17 +207,17 @@ export default async function SalonPage(props: Props) {
               <p className="text-brand-text-muted text-lg leading-relaxed mb-4">
                 Wprowadź do swojego salonu kosmetyki, które naprawdę dbają o
                 skórę. Lunula Botanique to biozgodna pielęgnacja oparta na
-                naturalnych składnikach — bez kompromisów.
+                naturalnych składnikach - bez kompromisów.
               </p>
               <p className="text-brand-text-muted text-base leading-relaxed">
-                Twoje klientki szukają świadomej pielęgnacji. Daj im ją —
+                Twoje klientki szukają świadomej pielęgnacji. Daj im ją -
                 z&nbsp;produktami, którym możesz zaufać.
               </p>
             </AnimateIn>
             <AnimateIn variant="fade-up" delay={300}>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
                 <a
-                  href="mailto:kontakt@lunulaoil.pl?subject=Współpraca%20—%20salon%20kosmetyczny"
+                  href="mailto:kontakt@lunulaoil.pl?subject=Współpraca%20-%20salon%20kosmetyczny"
                   className="inline-flex items-center gap-2 px-8 py-3 bg-brand-accent text-white hover:bg-brand-accent/90 transition-colors duration-300 text-sm font-medium tracking-wide rounded-sm"
                 >
                   Napisz do nas
@@ -498,7 +498,7 @@ export default async function SalonPage(props: Props) {
             </AnimateIn>
             <AnimateIn variant="fade-up" delay={200}>
               <p className="text-brand-text-muted text-base leading-relaxed mb-8">
-                Napisz do nas — chętnie opowiemy o warunkach współpracy,
+                Napisz do nas - chętnie opowiemy o warunkach współpracy,
                 przygotujemy próbki produktów i pomożemy dobrać asortyment
                 idealny dla Twojego salonu.
               </p>
@@ -506,7 +506,7 @@ export default async function SalonPage(props: Props) {
             <AnimateIn variant="fade-up" delay={300}>
               <div className="flex flex-col small:flex-row items-center justify-center gap-4">
                 <a
-                  href="mailto:kontakt@lunulaoil.pl?subject=Współpraca%20—%20salon%20kosmetyczny"
+                  href="mailto:kontakt@lunulaoil.pl?subject=Współpraca%20-%20salon%20kosmetyczny"
                   className="inline-flex items-center gap-3 px-8 py-3 bg-brand-accent text-white hover:bg-brand-accent/90 transition-colors duration-300 text-sm font-medium tracking-wide rounded-sm"
                 >
                   <svg

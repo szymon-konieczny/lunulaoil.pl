@@ -83,7 +83,7 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
         {/* Full-screen overlay menu */}
         {isOpen && (
           <>
-            {/* Backdrop — only visible on tablet+ as dark overlay */}
+            {/* Backdrop - only visible on tablet+ as dark overlay */}
             <div
               className="fixed inset-0 z-[900] sm:bg-black/40"
               onClick={close}

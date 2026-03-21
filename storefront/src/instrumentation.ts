@@ -1,4 +1,4 @@
-// Next.js instrumentation hook — runs before any other code
+// Next.js instrumentation hook - runs before any other code
 // Fix Node.js 22 broken localStorage (--experimental-webstorage provides object without working getItem/setItem)
 export async function register() {
   if (typeof window === "undefined" && typeof globalThis.localStorage !== "undefined") {

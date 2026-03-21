@@ -22,7 +22,7 @@ const Hero = () => {
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/50" />
 
-      {/* Content — centered */}
+      {/* Content - centered */}
       <div className="content-container relative z-10 flex flex-col items-center justify-center text-center h-full gap-6 small:gap-8 pt-40 small:pt-52 pb-16">
         <AnimateIn variant="fade-up" delay={200} duration={1000}>
           <h1 className="font-heading text-4xl small:text-6xl medium:text-7xl leading-none text-white font-bold tracking-tight">

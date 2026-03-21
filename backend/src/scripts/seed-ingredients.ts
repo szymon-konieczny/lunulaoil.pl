@@ -304,7 +304,7 @@ const ingredientsData = [
     name_latin: "Salix Alba Bark Extract",
     handle: "kora-bialej-wierzby",
     description:
-      "Kora białej wierzby jest naturalnym źródłem salicyny — prekursora kwasu salicylowego. Delikatnie złuszcza, oczyszcza pory i reguluje wydzielanie sebum, nie podrażniając przy tym skóry. To doskonała, łagodna alternatywa dla syntetycznego BHA, idealna dla skóry wrażliwej ze skłonnością do niedoskonałości.",
+      "Kora białej wierzby jest naturalnym źródłem salicyny - prekursora kwasu salicylowego. Delikatnie złuszcza, oczyszcza pory i reguluje wydzielanie sebum, nie podrażniając przy tym skóry. To doskonała, łagodna alternatywa dla syntetycznego BHA, idealna dla skóry wrażliwej ze skłonnością do niedoskonałości.",
     benefits: [
       "Naturalne, delikatne złuszczanie (BHA)",
       "Oczyszczanie i zmniejszanie porów",

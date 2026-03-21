@@ -28,7 +28,7 @@ export default async function ProductPreview({
   try {
     cheapestPrice = getProductPrice({ product }).cheapestPrice
   } catch {
-    // Price calculation failed — render without price
+    // Price calculation failed - render without price
   }
 
   return (

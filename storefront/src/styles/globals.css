@@ -9,11 +9,11 @@
   }
 
   :root {
-    /* Lunula Botanique — Light botanical palette */
-    --color-primary: #CD9F7A;        /* Warm bronze/gold — CTA, prices */
+    /* Lunula Botanique - Light botanical palette */
+    --color-primary: #CD9F7A;        /* Warm bronze/gold - CTA, prices */
     --color-primary-light: #E2C9AD;  /* Light bronze */
     --color-primary-dark: #A37B56;   /* Deep bronze */
-    --color-accent: #3A8C3F;         /* Botanical green — main accent */
+    --color-accent: #3A8C3F;         /* Botanical green - main accent */
     --color-accent-light: #5AAD5E;   /* Light green */
     --color-background: #FAFAF8;     /* Warm white */
     --color-surface: #F3F1ED;        /* Warm off-white */

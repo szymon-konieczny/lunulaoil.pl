@@ -80,11 +80,11 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
   // Product definitions
   const productDefs = [
     {
-      title: "Geranium Glow — Moon Touch Cream 60ml",
-      subtitle: "Moon Ritual — Balance",
+      title: "Geranium Glow - Moon Touch Cream 60ml",
+      subtitle: "Moon Ritual - Balance",
       category_ids: [catCreams],
       description:
-        "Krem przywracający równowagę, inspirowany cyklem księżyca. Formuła oparta na olejku geraniowym, oleju z pestek winogron i skwalanie roślinnym. Koi podrażnienia, wygładza skórę i przywraca jej naturalną harmonię. Idealny dla skóry wrażliwej, reaktywnej i potrzebującej ukojenia — równoważy, łagodzi i wygładza. Delikatna, lekka konsystencja otula skórę bez obciążania. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
+        "Krem przywracający równowagę, inspirowany cyklem księżyca. Formuła oparta na olejku geraniowym, oleju z pestek winogron i skwalanie roślinnym. Koi podrażnienia, wygładza skórę i przywraca jej naturalną harmonię. Idealny dla skóry wrażliwej, reaktywnej i potrzebującej ukojenia - równoważy, łagodzi i wygładza. Delikatna, lekka konsystencja otula skórę bez obciążania. Lunula Botanique - naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
       handle: "geranium-glow-moon-touch-cream",
       weight: 120,
       status: ProductStatus.PUBLISHED,
@@ -106,11 +106,11 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       _tagValues: ["krem", "skóra wrażliwa", "ukojenie", "równowaga", "wygładzenie", "geranium", "skwalan", "twarz"],
     },
     {
-      title: "Golden Glow — Solar Touch Cream 60ml",
-      subtitle: "Solar Ritual — Radiance",
+      title: "Golden Glow - Solar Touch Cream 60ml",
+      subtitle: "Solar Ritual - Radiance",
       category_ids: [catCreams],
       description:
-        "Krem o złocistej konsystencji inspirowany ciepłem słońca. Formuła oparta na skwalanie, oleju z pestek malin, oleju z rokitnika, fermentach botanicznych i ekstraktach owocowych. Rozświetla, regeneruje i odżywia zmęczoną, pozbawioną blasku skórę. Idealny dla skóry suchej i zmęczonej — przywraca naturalny blask i witalność. Lekka, jedwabista konsystencja szybko się wchłania, pozostawiając subtelny efekt glow. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
+        "Krem o złocistej konsystencji inspirowany ciepłem słońca. Formuła oparta na skwalanie, oleju z pestek malin, oleju z rokitnika, fermentach botanicznych i ekstraktach owocowych. Rozświetla, regeneruje i odżywia zmęczoną, pozbawioną blasku skórę. Idealny dla skóry suchej i zmęczonej - przywraca naturalny blask i witalność. Lekka, jedwabista konsystencja szybko się wchłania, pozostawiając subtelny efekt glow. Lunula Botanique - naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
       handle: "golden-glow-solar-touch-cream",
       weight: 120,
       status: ProductStatus.PUBLISHED,
@@ -132,11 +132,11 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       _tagValues: ["krem", "skóra sucha", "zmęczona", "rozświetlenie", "odżywienie", "miękkość", "blask", "skwalan", "rokitnik", "twarz"],
     },
     {
-      title: "Rose Alchemy — Phyto Renew Cream 60ml",
-      subtitle: "Alchemy Ritual — Renewal",
+      title: "Rose Alchemy - Phyto Renew Cream 60ml",
+      subtitle: "Alchemy Ritual - Renewal",
       category_ids: [catCreams],
       description:
-        "Krem regenerujący inspirowany alchemią róży. Zawiera bakuchiol (naturalną alternatywę retinolu), koenzym Q10, olej z dzikiej róży oraz kompleks ekstraktów kwiatowych. Intensywnie regeneruje, wygładza drobne zmarszczki i poprawia elastyczność skóry. Stworzony z myślą o skórze dojrzałej i wymagającej odnowy — wspiera naturalny proces regeneracji komórkowej. Bogata, aksamitna formuła otula skórę, dostarczając głębokie odżywienie. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
+        "Krem regenerujący inspirowany alchemią róży. Zawiera bakuchiol (naturalną alternatywę retinolu), koenzym Q10, olej z dzikiej róży oraz kompleks ekstraktów kwiatowych. Intensywnie regeneruje, wygładza drobne zmarszczki i poprawia elastyczność skóry. Stworzony z myślą o skórze dojrzałej i wymagającej odnowy - wspiera naturalny proces regeneracji komórkowej. Bogata, aksamitna formuła otula skórę, dostarczając głębokie odżywienie. Lunula Botanique - naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
       handle: "rose-alchemy-phyto-renew-cream",
       weight: 120,
       status: ProductStatus.PUBLISHED,
@@ -158,11 +158,11 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
       _tagValues: ["krem", "skóra dojrzała", "przeciwzmarszczkowy", "ujędrnienie", "wygładzenie", "odnowa", "bakuchiol", "róża", "koenzym Q10", "twarz"],
     },
     {
-      title: "Clear Ritual — Pure Touch Cream 60ml",
-      subtitle: "Pure Ritual — Purity",
+      title: "Clear Ritual - Pure Touch Cream 60ml",
+      subtitle: "Pure Ritual - Purity",
       category_ids: [catCreams],
       description:
-        "Krem oczyszczająco-łagodzący oparty na ziołowym naparze z kory białej wierzby, przywrotnika i łopianu. Wzbogacony olejem konopnym, olejem z pestek winogron i alantoiną. Reguluje wydzielanie sebum, łagodzi stany zapalne i wspomaga naturalny proces oczyszczania skóry. Stworzony dla skóry mieszanej, problematycznej i trądzikowej — przywraca równowagę bez wysuszania. Lekka, matująca formuła nie zatyka porów i nie obciąża skóry. Lunula Botanique — naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
+        "Krem oczyszczająco-łagodzący oparty na ziołowym naparze z kory białej wierzby, przywrotnika i łopianu. Wzbogacony olejem konopnym, olejem z pestek winogron i alantoiną. Reguluje wydzielanie sebum, łagodzi stany zapalne i wspomaga naturalny proces oczyszczania skóry. Stworzony dla skóry mieszanej, problematycznej i trądzikowej - przywraca równowagę bez wysuszania. Lekka, matująca formuła nie zatyka porów i nie obciąża skóry. Lunula Botanique - naturalna pielęgnacja w rytmie slow care. Bez parabenów, silikonów, SLS. Vegan, Not Tested On Animals.",
       handle: "clear-ritual-pure-touch-cream",
       weight: 120,
       status: ProductStatus.PUBLISHED,

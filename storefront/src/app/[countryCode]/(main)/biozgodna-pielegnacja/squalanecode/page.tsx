@@ -7,7 +7,7 @@ import AddToCartButton from "@modules/products/components/add-to-cart-button"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export const metadata: Metadata = {
-  title: "SqualaneCode — Skwalan",
+  title: "SqualaneCode - Skwalan",
   description:
     "Ultra lekki, suchy, niekomedogenny lipid. Stabilna forma skwalenu naturalnie występującego w ludzkim sebum.",
 }
@@ -95,10 +95,10 @@ export default async function SqualaneCodePage(props: Props) {
             <div className="space-y-8">
               <div>
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
-                  Skwalan — co to właściwie jest?
+                  Skwalan - co to właściwie jest?
                 </h2>
                 <p className="text-brand-text-muted text-base leading-relaxed">
-                  Skwalan to stabilna, uwodorniona forma skwalenu — lipidu, który
+                  Skwalan to stabilna, uwodorniona forma skwalenu - lipidu, który
                   naturalnie występuje w ludzkim sebum. Dzięki temu jest
                   biokompatybilny ze skórą: dobrze tolerowany, lekki i niekomedogenny.
                 </p>
@@ -109,11 +109,11 @@ export default async function SqualaneCodePage(props: Props) {
                   Jak działa na skórę twarzy?
                 </h2>
                 <ul className="space-y-2 text-brand-text-muted text-base leading-relaxed">
-                  <li>— wzmacnia barierę hydrolipidową</li>
-                  <li>— ogranicza transepidermalną utratę wody (TEWL)</li>
-                  <li>— zmiękcza i wygładza skórę</li>
-                  <li>— poprawia elastyczność bez efektu ciężkości</li>
-                  <li>— odpowiedni także dla skóry wrażliwej i trądzikowej</li>
+                  <li>- wzmacnia barierę hydrolipidową</li>
+                  <li>- ogranicza transepidermalną utratę wody (TEWL)</li>
+                  <li>- zmiękcza i wygładza skórę</li>
+                  <li>- poprawia elastyczność bez efektu ciężkości</li>
+                  <li>- odpowiedni także dla skóry wrażliwej i trądzikowej</li>
                 </ul>
               </div>
 
@@ -133,10 +133,10 @@ export default async function SqualaneCodePage(props: Props) {
                   A włosy?
                 </h2>
                 <ul className="space-y-2 text-brand-text-muted text-base leading-relaxed">
-                  <li>— wygładza łuskę włosa</li>
-                  <li>— nadaje połysk</li>
-                  <li>— chroni końcówki przed łamaniem</li>
-                  <li>— nie obciąża nawet cienkich i delikatnych włosów</li>
+                  <li>- wygładza łuskę włosa</li>
+                  <li>- nadaje połysk</li>
+                  <li>- chroni końcówki przed łamaniem</li>
+                  <li>- nie obciąża nawet cienkich i delikatnych włosów</li>
                 </ul>
               </div>
 
@@ -157,7 +157,7 @@ export default async function SqualaneCodePage(props: Props) {
 
               <div className="p-6 border border-brand-accent/20 rounded-sm bg-brand-surface">
                 <p className="text-brand-text-muted text-base leading-relaxed mb-2">
-                  Idealnie sprawdza się w połączeniu z HialCode — serum
+                  Idealnie sprawdza się w połączeniu z HialCode - serum
                   hialuronowym. Kwas hialuronowy intensywnie nawilża, a skwalan
                   pomaga utrzymać wilgoć w skórze.
                 </p>

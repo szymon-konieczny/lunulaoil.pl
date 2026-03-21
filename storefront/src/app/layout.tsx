@@ -23,7 +23,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
   title: {
-    default: "Lunula Botanique — biozgodna pielęgnacja",
+    default: "Lunula Botanique - biozgodna pielęgnacja",
     template: "%s | Lunula Botanique",
   },
   description:
@@ -49,7 +49,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       className={`${openSans.variable} ${playfair.variable}`}
     >
       <head>
-        {/* Google Consent Mode v2 defaults — must load before GTM */}
+        {/* Google Consent Mode v2 defaults - must load before GTM */}
         {GTM_ID && (
           <Script id="gtm-consent-defaults" strategy="beforeInteractive">
             {`window.dataLayer = window.dataLayer || [];
@@ -64,7 +64,7 @@ gtag('consent', 'default', {
           </Script>
         )}
 
-        {/* Cookiebot — manages consent banner and updates consent state */}
+        {/* Cookiebot - manages consent banner and updates consent state */}
         {COOKIEBOT_ID && (
           <Script
             id="Cookiebot"

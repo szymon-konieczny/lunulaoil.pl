@@ -14,7 +14,7 @@ import { getProductPrice } from "@lib/util/get-product-price"
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
 export const metadata: Metadata = {
-  title: "Lunula Botanique — biozgodna pielęgnacja",
+  title: "Lunula Botanique - biozgodna pielęgnacja",
   description:
     "Biozgodna pielęgnacja twarzy i ciała. Składniki rozpoznawalne przez skórę, w harmonii z jej naturalnymi procesami.",
 }

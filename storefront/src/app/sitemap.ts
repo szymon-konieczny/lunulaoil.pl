@@ -5,7 +5,7 @@ import { listCollections } from "@lib/data/collections"
 import { listRegions } from "@lib/data/regions"
 import { listIngredients } from "@lib/data/ingredients"
 
-// Force dynamic rendering — backend is not available at build time
+// Force dynamic rendering - backend is not available at build time
 export const dynamic = "force-dynamic"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"

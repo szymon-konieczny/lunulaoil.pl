@@ -10,7 +10,7 @@ const HeroProduct = () => {
             <div className="relative aspect-[4/3] rounded-large overflow-hidden">
               <Image
                 src="/products/geranium-glow.jpeg"
-                alt="Kremy Rytualne — Geranium Glow"
+                alt="Kremy Rytualne - Geranium Glow"
                 fill
                 className="object-cover"
               />
@@ -27,7 +27,7 @@ const HeroProduct = () => {
               </h2>
               <p className="text-brand-text-muted text-base leading-[1.8] mb-8">
                 Rytualna pielęgnacja w zgodzie z naturą skóry. Biozgodna
-                formuła, która karmi skórę tym, co już zna — przywracając
+                formuła, która karmi skórę tym, co już zna - przywracając
                 jej blask, zdrowie i harmonię.
               </p>
               <span className="text-brand-accent text-xs tracking-[0.2em] uppercase font-medium">

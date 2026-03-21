@@ -5,7 +5,7 @@ import QuizWizard from "@modules/quiz/components/quiz-wizard"
 import { notFound } from "next/navigation"
 
 export const metadata: Metadata = {
-  title: "Dobierz kosmetyki — Quiz pielęgnacyjny",
+  title: "Dobierz kosmetyki - Quiz pielęgnacyjny",
   description:
     "Odpowiedz na kilka pytań, a pomożemy Ci dobrać idealne naturalne kosmetyki do Twoich potrzeb.",
 }

@@ -8,12 +8,12 @@ Na podstawie wiadomości właścicielki, potrzebujemy rozwiązania które obsłu
 |---|---|
 | Sklep online z aktualnymi produktami (kremy Lunula Botanique) | 🔴 Krytyczny |
 | Panel B2B dla gabinetów/salonów (logowanie, NIP, ceny hurtowe) | 🔴 Krytyczny |
-| Progi cenowe — 5+ szt. tego samego produktu = cena bez marży | 🔴 Krytyczny |
+| Progi cenowe - 5+ szt. tego samego produktu = cena bez marży | 🔴 Krytyczny |
 | Sprzedaż warsztatów online | 🟡 Wysoki |
 | Wysyłanie wiadomości/newslettera z ofertą i promocjami | 🟡 Wysoki |
-| Subskrypcja — miesięczne mini boxy pielęgnacyjne | 🟢 Średni (faza 2) |
+| Subskrypcja - miesięczne mini boxy pielęgnacyjne | 🟢 Średni (faza 2) |
 | Estetyczny, nowoczesny design pasujący do marki "slow care" | 🔴 Krytyczny |
-| Automatyzacja Instagram — comment-to-DM z linkami do sklepu | 🟡 Wysoki |
+| Automatyzacja Instagram - comment-to-DM z linkami do sklepu | 🟡 Wysoki |
 
 ---
 
@@ -24,7 +24,7 @@ Na podstawie wiadomości właścicielki, potrzebujemy rozwiązania które obsłu
 **Co to oznacza:** Modernizacja istniejącej strony WordPress, dodanie WooCommerce + pluginy typu B2BKing lub Wholesale Suite.
 
 **Zalety:**
-- Właścicielka już ma WordPress — teoretycznie mniejszy próg wejścia
+- Właścicielka już ma WordPress - teoretycznie mniejszy próg wejścia
 - Gotowe pluginy B2B (B2BKing, Wholesale Suite) z progami cenowymi
 - Duży ekosystem wtyczek (newsletter, subskrypcje, warsztaty)
 - Łatwiejsze samodzielne zarządzanie treścią bez programisty
@@ -33,25 +33,25 @@ Na podstawie wiadomości właścicielki, potrzebujemy rozwiązania które obsłu
 - **Frankenstein-problem**: aby spełnić wszystkie wymagania, potrzeba 8-12 pluginów które mogą ze sobą kolidować
 - Pluginy B2B (B2BKing Pro: ~$139/rok, Wholesale Suite: ~$149/rok) = koszty licencyjne co rok
 - WordPress + WooCommerce + pluginy = wolna strona bez poważnej optymalizacji
-- Brak natywnej walidacji NIP przez GUS — wymaga custom developmentu lub kolejnego pluginu
+- Brak natywnej walidacji NIP przez GUS - wymaga custom developmentu lub kolejnego pluginu
 - Aktualizacje pluginów mogą łamać kompatybilność
 - Trudno osiągnąć naprawdę premium estetykę bez custom theme
-- **Obecna strona wymaga "liftingu"** — modernizacja starego WP to często więcej pracy niż budowa od zera
+- **Obecna strona wymaga "liftingu"** - modernizacja starego WP to często więcej pracy niż budowa od zera
 
 **Szacunkowy koszt utrzymania:** ~$300-500/rok (hosting + pluginy premium)
 
 ---
 
-### Opcja B: Next.js + Medusa.js (headless e-commerce) — deploy na Railway
+### Opcja B: Next.js + Medusa.js (headless e-commerce) - deploy na Railway
 
 **Co to oznacza:** Nowa aplikacja od zera: Medusa.js jako backend e-commerce + Next.js jako frontend. Deploy backendu i frontendu na Railway.
 
 **Zalety:**
-- Pełna kontrola nad logiką B2B/B2C — progi cenowe, role użytkowników, NIP
-- Szybkość działania (SSR/SSG w Next.js) — świetne SEO i UX
+- Pełna kontrola nad logiką B2B/B2C - progi cenowe, role użytkowników, NIP
+- Szybkość działania (SSR/SSG w Next.js) - świetne SEO i UX
 - Medusa.js dostarcza gotową logikę: produkty, koszyk, zamówienia, płatności, klienci
 - Brak opłat licencyjnych (Medusa = open source, MIT)
-- Premium estetyka — pełna wolność w designie, idealnie do marki "slow care"
+- Premium estetyka - pełna wolność w designie, idealnie do marki "slow care"
 - Łatwa integracja z polskimi bramkami płatności (Przelewy24, PayU)
 - Subskrypcje i warsztaty to naturalne rozszerzenia backendu
 
@@ -64,7 +64,7 @@ Na podstawie wiadomości właścicielki, potrzebujemy rozwiązania które obsłu
 
 ---
 
-### Opcja C: Next.js custom (bez Medusa) — pełny custom
+### Opcja C: Next.js custom (bez Medusa) - pełny custom
 
 **Co to oznacza:** Budowa kompletnego backendu od zera w Next.js (API routes) + Prisma + PostgreSQL.
 
@@ -78,7 +78,7 @@ Na podstawie wiadomości właścicielki, potrzebujemy rozwiązania które obsłu
 - Więcej błędów, więcej testowania, dłuższy czas realizacji
 - Nie ma sensu gdy istnieje Medusa.js
 
-**Werdykt:** ❌ Odradzam — to jak pisanie WordPress od zera zamiast go użyć.
+**Werdykt:** ❌ Odradzam - to jak pisanie WordPress od zera zamiast go użyć.
 
 ---
 
@@ -100,22 +100,22 @@ To kluczowe porównanie, ponieważ Google od 2021 roku używa Core Web Vitals ja
 
 ### Dlaczego WooCommerce jest wolniejszy
 
-WooCommerce generuje stronę po stronie serwera w PHP przy każdym żądaniu. Każdy zainstalowany plugin dodaje czas do tego procesu — zarówno na frontendzie jak i backendzie. W przypadku Lunula, potrzebujemy 8-12 pluginów (B2B, wholesale pricing, subskrypcje, newsletter, warsztaty, wysyłki, płatności, cache), co tworzy efekt kuli śnieżnej:
+WooCommerce generuje stronę po stronie serwera w PHP przy każdym żądaniu. Każdy zainstalowany plugin dodaje czas do tego procesu - zarówno na frontendzie jak i backendzie. W przypadku Lunula, potrzebujemy 8-12 pluginów (B2B, wholesale pricing, subskrypcje, newsletter, warsztaty, wysyłki, płatności, cache), co tworzy efekt kuli śnieżnej:
 
 - Każdy plugin ładuje własne CSS i JS
 - Żądania do bazy danych mnożą się (plugin → WooCommerce → WordPress → MySQL)
 - Bez drogiego hostingu (WP Engine ~$30+/mies.) strona będzie wolna pod obciążeniem
-- Sam WooCommerce przyznaje, że ich admin miał problem z wydajnością — dopiero w wersji 9.8 (2025) zredukowali czas ładowania panelu o 51.9%
+- Sam WooCommerce przyznaje, że ich admin miał problem z wydajnością - dopiero w wersji 9.8 (2025) zredukowali czas ładowania panelu o 51.9%
 
 ### Dlaczego Next.js + Medusa jest szybszy
 
 Architektura headless rozdziela frontend od backendu, co daje:
 
-- **SSG (Static Site Generation)** — strony produktów generowane raz przy buildzie, serwowane jako statyczny HTML z CDN. Czas ładowania: <100ms
-- **ISR (Incremental Static Regeneration)** — strona odświeża się w tle co X minut, użytkownik zawsze dostaje gotowy HTML
-- **React Server Components** — redukcja bundla JS o 40-60% vs tradycyjny SPA
-- **Brak PHP overhead** — Node.js obsługuje requesty asynchronicznie, nie blokuje wątku
-- **Każde 100ms szybszego ładowania = +1% konwersji** — przy sklepie z kremami za 100-200 PLN to realny przychód
+- **SSG (Static Site Generation)** - strony produktów generowane raz przy buildzie, serwowane jako statyczny HTML z CDN. Czas ładowania: <100ms
+- **ISR (Incremental Static Regeneration)** - strona odświeża się w tle co X minut, użytkownik zawsze dostaje gotowy HTML
+- **React Server Components** - redukcja bundla JS o 40-60% vs tradycyjny SPA
+- **Brak PHP overhead** - Node.js obsługuje requesty asynchronicznie, nie blokuje wątku
+- **Każde 100ms szybszego ładowania = +1% konwersji** - przy sklepie z kremami za 100-200 PLN to realny przychód
 
 ### SEO: co Next.js daje out-of-the-box
 
@@ -133,7 +133,7 @@ Architektura headless rozdziela frontend od backendu, co daje:
 
 ### Podsumowanie: wpływ na biznes Lunula
 
-Lunula sprzedaje produkty premium — klienci oczekują strony, która ładuje się natychmiast i wygląda profesjonalnie. Wolna strona WooCommerce z 10 pluginami:
+Lunula sprzedaje produkty premium - klienci oczekują strony, która ładuje się natychmiast i wygląda profesjonalnie. Wolna strona WooCommerce z 10 pluginami:
 - Traci pozycje w Google (Core Web Vitals jako ranking signal)
 - Traci klientów (53% użytkowników mobilnych opuszcza stronę ładującą się >3s)
 - Traci konwersje (każde 100ms = 1% konwersji)
@@ -142,19 +142,19 @@ Next.js + Medusa eliminuje te problemy na poziomie architektury, a nie przez "ł
 
 ---
 
-## 4. Rekomendacja: Opcja B — Next.js + Medusa.js na Railway
+## 4. Rekomendacja: Opcja B - Next.js + Medusa.js na Railway
 
 ### Dlaczego to najlepszy wybór dla Lunula:
 
-1. **Marka premium wymaga premium UX** — WooCommerce z 10 pluginami nigdy nie da takiego efektu wizualnego jak custom Next.js frontend z Tailwind CSS. Lunula Slow Care to marka oparta na estetyce i doświadczeniu — strona musi to odzwierciedlać.
+1. **Marka premium wymaga premium UX** - WooCommerce z 10 pluginami nigdy nie da takiego efektu wizualnego jak custom Next.js frontend z Tailwind CSS. Lunula Slow Care to marka oparta na estetyce i doświadczeniu - strona musi to odzwierciedlać.
 
-2. **SEO i wydajność bez kompromisów** — Lighthouse 90+ na mobile, LCP <1.5s, pełna kontrola nad structured data i metadanymi. Google nagradza szybkie strony wyższymi pozycjami.
+2. **SEO i wydajność bez kompromisów** - Lighthouse 90+ na mobile, LCP <1.5s, pełna kontrola nad structured data i metadanymi. Google nagradza szybkie strony wyższymi pozycjami.
 
-3. **Logika B2B jest zbyt specyficzna na pluginy** — weryfikacja NIP przez API GUS, dynamiczne progi cenowe per produkt, dwa oddzielne panele (klient indywidualny vs gabinet) — to lepiej zakodować raz porządnie niż łatać pluginami.
+3. **Logika B2B jest zbyt specyficzna na pluginy** - weryfikacja NIP przez API GUS, dynamiczne progi cenowe per produkt, dwa oddzielne panele (klient indywidualny vs gabinet) - to lepiej zakodować raz porządnie niż łatać pluginami.
 
-4. **Koszty w dłuższej perspektywie** — Railway za ~$15/mies. vs WordPress hosting + 4 pluginy premium za ~$400-500/rok. Medusa.js jest darmowa.
+4. **Koszty w dłuższej perspektywie** - Railway za ~$15/mies. vs WordPress hosting + 4 pluginy premium za ~$400-500/rok. Medusa.js jest darmowa.
 
-5. **Skalowalność** — dodanie subskrypcji, warsztatów, newslettera, bota IG to kwestia rozbudowy istniejącego backendu, a nie szukania kolejnego pluginu.
+5. **Skalowalność** - dodanie subskrypcji, warsztatów, newslettera, bota IG to kwestia rozbudowy istniejącego backendu, a nie szukania kolejnego pluginu.
 
 ---
 
@@ -193,17 +193,17 @@ Next.js + Medusa eliminuje te problemy na poziomie architektury, a nie przez "ł
 └─────────────────────────────────────────────────┘
 
 Integracje:
-  📧 Resend / Mailchimp — newsletter i powiadomienia
-  💳 Przelewy24 / Stripe — płatności
-  🏛️ API REGON (GUS) — weryfikacja NIP
-  📦 InPost / DPD — integracja wysyłki
-  🖼️ Cloudinary / S3 — zdjęcia produktów
-  📸 Instagram Graph API — automatyzacja comment-to-DM
+  📧 Resend / Mailchimp - newsletter i powiadomienia
+  💳 Przelewy24 / Stripe - płatności
+  🏛️ API REGON (GUS) - weryfikacja NIP
+  📦 InPost / DPD - integracja wysyłki
+  🖼️ Cloudinary / S3 - zdjęcia produktów
+  📸 Instagram Graph API - automatyzacja comment-to-DM
 ```
 
 ---
 
-## 6. Plan realizacji — fazy
+## 6. Plan realizacji - fazy
 
 ### Faza 1: MVP sklepu (2-3 tygodnie)
 - Setup Medusa.js + PostgreSQL na Railway
@@ -229,7 +229,7 @@ Integracje:
 
 ### Faza 4: Automatyzacja Instagram (3-5 dni)
 
-Instagram **nie pozwala** na automatyczne odpowiedzi publiczne na komentarze z linkami — takie boty skutkują shadowbanem lub blokadą konta. Istnieje jednak legalna, bardzo skuteczna alternatywa: **comment-to-DM**.
+Instagram **nie pozwala** na automatyczne odpowiedzi publiczne na komentarze z linkami - takie boty skutkują shadowbanem lub blokadą konta. Istnieje jednak legalna, bardzo skuteczna alternatywa: **comment-to-DM**.
 
 **Jak to działa:**
 1. Klientka publikuje post z produktem (np. krem Lunula Botanique Rose)
@@ -247,18 +247,18 @@ Budujemy własny mikroserwis (Node.js, deploy razem na Railway) który:
 - Nasłuchuje na komentarze przez Instagram Webhooks
 - Wykrywa trigger words zdefiniowane w panelu admina
 - Wysyła DM z linkiem do konkretnego produktu w sklepie Lunula (deep link)
-- Generuje linki dynamicznie z backendu Medusa — zawsze aktualne ceny i dostępność
+- Generuje linki dynamicznie z backendu Medusa - zawsze aktualne ceny i dostępność
 - Loguje statystyki: ile osób kliknęło, ile kupiło (atrybucja sprzedaży z IG)
 - Koszt: $0/mies. dodatkowego (działa na tym samym Railway)
 
 **Wymagania od właścicielki:**
-- Konto Instagram Professional (Business lub Creator) — wymagane przez Meta
+- Konto Instagram Professional (Business lub Creator) - wymagane przez Meta
 - Połączenie z Facebook Page (wymagane przez Graph API)
 - Zatwierdzenie aplikacji w Meta Developer Console
 
 **Ograniczenia API (stan na 2026):**
 - Limit 200 DM/godzinę (w zupełności wystarczający dla marki tej skali)
-- Bot nie może inicjować konwersacji — reaguje tylko na akcje użytkownika (komentarz/story reply)
+- Bot nie może inicjować konwersacji - reaguje tylko na akcje użytkownika (komentarz/story reply)
 
 ### Faza 5: Subskrypcje (1 tydzień)
 - Model subskrypcji: miesięczne mini boxy pielęgnacyjne
@@ -316,9 +316,9 @@ Każdy klient dostaje kopię repozytorium z własnym frontendem i backendem. Wsp
 - **Najlepszy dla:** 2-10 klientów z różnym brandingiem
 
 **Model B: Multi-tenant (jedna instancja, wielu klientów)**
-Jeden backend Medusa z PostgreSQL Row Level Security (RLS) — dane klientów izolowane na poziomie bazy danych. Frontend rozpoznaje tenanta po domenie (np. lunulaoil.pl → tenant "lunula", innaklientka.pl → tenant "inna").
+Jeden backend Medusa z PostgreSQL Row Level Security (RLS) - dane klientów izolowane na poziomie bazy danych. Frontend rozpoznaje tenanta po domenie (np. lunulaoil.pl → tenant "lunula", innaklientka.pl → tenant "inna").
 
-- ✅ Jeden deploy, wiele sklepów — znacząco niższy koszt hostingu
+- ✅ Jeden deploy, wiele sklepów - znacząco niższy koszt hostingu
 - ✅ Aktualizacje aplikują się do wszystkich klientów jednocześnie
 - ✅ Medusa wspiera multi-tenancy przez RLS (guide od Rigby)
 - ⚠️ Większa złożoność początkowa (~3-5 dni więcej na setup)
@@ -328,10 +328,10 @@ Jeden backend Medusa z PostgreSQL Row Level Security (RLS) — dane klientów iz
 **Model C: Konfigurowalny template (hybrydowy, rekomendowany)**
 Budujemy Lunulę jako pierwszy "wzorcowy" sklep, ale od początku projektujemy z myślą o konfigurowalności:
 
-- Kolory, fonty, logo — z pliku konfiguracyjnego (theme.config.ts)
-- Logika B2B/B2C — feature flags (włącz/wyłącz per klient)
-- Progi cenowe, kategorie, branding — konfiguracja w panelu admina Medusa
-- Integracja IG, subskrypcje, warsztaty — moduły opt-in
+- Kolory, fonty, logo - z pliku konfiguracyjnego (theme.config.ts)
+- Logika B2B/B2C - feature flags (włącz/wyłącz per klient)
+- Progi cenowe, kategorie, branding - konfiguracja w panelu admina Medusa
+- Integracja IG, subskrypcje, warsztaty - moduły opt-in
 
 Nowy klient = nowy deploy z Railway template + zmiana konfiguracji. Czas wdrożenia: **1-2 dni** zamiast 2-3 tygodni.
 
@@ -346,7 +346,7 @@ Nowy klient = nowy deploy z Railway template + zmiana konfiguracji. Czas wdroże
 Jeśli od początku zastosujemy **Model C**, to:
 
 1. Lunula jest pierwszym klientem i "showcase" projektu
-2. Kolejna marka kosmetyczna/wellness potrzebuje sklepu z B2B? Fork repo, zmień theme.config.ts, deploy — gotowe w 1-2 dni
+2. Kolejna marka kosmetyczna/wellness potrzebuje sklepu z B2B? Fork repo, zmień theme.config.ts, deploy - gotowe w 1-2 dni
 3. Każda nowa funkcja (np. subskrypcje) wraca do głównego repo i jest dostępna dla wszystkich klientów
 4. Możesz oferować to jako usługę SaaS lub jako jednorazowe wdrożenie
 
@@ -357,7 +357,7 @@ Jeśli od początku zastosujemy **Model C**, to:
 - Plik `theme.config.ts` z kolorami, fontami, logo, nazwą marki
 - Tailwind theme oparty na CSS variables (nie hardcoded kolory)
 - Feature flags w env variables (ENABLE_B2B=true/false, ENABLE_SUBSCRIPTIONS=true/false)
-- Komponenty UI bez hardcoded treści — wszystko z CMS/config
+- Komponenty UI bez hardcoded treści - wszystko z CMS/config
 
 To dodaje ~1-2 dni do Fazy 1, ale oszczędza tygodnie przy każdym kolejnym kliencie.
 
@@ -367,10 +367,10 @@ To dodaje ~1-2 dni do Fazy 1, ale oszczędza tygodnie przy każdym kolejnym klie
 
 1. **Potwierdzenie podejścia** z właścicielką Lunula
 2. **Zebranie materiałów**: zdjęcia produktów, opisy, ceny (B2C i hurtowe), logo w wysokiej rozdzielczości
-3. **Ustalenie listy produktów** — 4 kremy Botanique + inne produkty + warsztaty
-4. **Wybór bramki płatności** — Przelewy24 (najpopularniejsza w PL) vs Stripe
-5. **Design** — moodboard / wireframes dopasowane do estetyki "slow care"
-6. **Start developmentu** — Faza 1
+3. **Ustalenie listy produktów** - 4 kremy Botanique + inne produkty + warsztaty
+4. **Wybór bramki płatności** - Przelewy24 (najpopularniejsza w PL) vs Stripe
+5. **Design** - moodboard / wireframes dopasowane do estetyki "slow care"
+6. **Start developmentu** - Faza 1
 
 ---
 

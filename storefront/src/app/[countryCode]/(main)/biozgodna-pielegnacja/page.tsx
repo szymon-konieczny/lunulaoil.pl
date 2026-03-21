@@ -11,7 +11,7 @@ import Thumbnail from "@modules/products/components/thumbnail"
 export const metadata: Metadata = {
   title: "Biozgodna Pielęgnacja Twarzy",
   description:
-    "Biozgodna pielęgnacja twarzy to taka, która jest zgodna z fizjologią skóry — wspiera jej naturalne procesy, zamiast je zaburzać.",
+    "Biozgodna pielęgnacja twarzy to taka, która jest zgodna z fizjologią skóry - wspiera jej naturalne procesy, zamiast je zaburzać.",
 }
 
 const productConfigs = [
@@ -84,7 +84,7 @@ export default async function BiocarePage(props: Props) {
           <AnimateIn variant="fade-up" delay={200}>
             <p className="text-brand-text-muted text-lg leading-relaxed mb-4">
               Biozgodna pielęgnacja twarzy to taka, która jest zgodna z
-              fizjologią skóry — czyli wspiera jej naturalne procesy, zamiast je
+              fizjologią skóry - czyli wspiera jej naturalne procesy, zamiast je
               zaburzać.
             </p>
             <p className="text-brand-text-muted text-base leading-relaxed">

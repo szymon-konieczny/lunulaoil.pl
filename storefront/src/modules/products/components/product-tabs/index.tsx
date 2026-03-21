@@ -119,7 +119,7 @@ const ShippingInfoTab = () => {
           <div>
             <span className="font-semibold">Prosta wymiana</span>
             <p className="max-w-sm">
-              Produkt nie spełnia oczekiwań? Bez obaw — wymienimy go na
+              Produkt nie spełnia oczekiwań? Bez obaw - wymienimy go na
               nowy.
             </p>
           </div>
@@ -130,7 +130,7 @@ const ShippingInfoTab = () => {
             <span className="font-semibold">Łatwe zwroty</span>
             <p className="max-w-sm">
               Wystarczy zwrócić produkt, a my zwrócimy pieniądze. Bez zbędnych
-              pytań — dołożymy wszelkich starań, aby zwrot był bezproblemowy.
+              pytań - dołożymy wszelkich starań, aby zwrot był bezproblemowy.
             </p>
           </div>
         </div>

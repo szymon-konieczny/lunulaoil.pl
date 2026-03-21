@@ -199,7 +199,7 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Philosophy — Lunula symbol */}
+      {/* Philosophy - Lunula symbol */}
       <section className="py-16 small:py-24 bg-brand-surface">
         <div className="content-container">
           <div className="grid grid-cols-1 small:grid-cols-2 gap-12 small:gap-16 items-center">

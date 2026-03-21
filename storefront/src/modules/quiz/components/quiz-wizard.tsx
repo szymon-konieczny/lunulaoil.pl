@@ -151,7 +151,7 @@ export default function QuizWizard({ allProducts }: Props) {
         }
       }
     } catch {
-      // Silently fail — products are still shown
+      // Silently fail - products are still shown
     } finally {
       setAiLoading(false)
     }

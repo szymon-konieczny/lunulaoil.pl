@@ -69,7 +69,7 @@ export default async function Nav() {
           className="relative flex items-center justify-center hover:opacity-90 transition-opacity"
           data-testid="nav-store-link"
         >
-          {/* Translucent circle behind logo — visible only on hero (not scrolled) */}
+          {/* Translucent circle behind logo - visible only on hero (not scrolled) */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 small:w-44 small:h-44 rounded-full bg-white/90 backdrop-blur-sm transition-all duration-300 [[data-scrolled='true']_&]:opacity-0 pointer-events-none" />
           <Image
             src="/logo-botanique.png"

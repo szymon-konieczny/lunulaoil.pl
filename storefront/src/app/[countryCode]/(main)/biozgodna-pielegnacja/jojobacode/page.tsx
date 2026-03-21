@@ -7,7 +7,7 @@ import AddToCartButton from "@modules/products/components/add-to-cart-button"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export const metadata: Metadata = {
-  title: "JojobaCode — Olej jojoba",
+  title: "JojobaCode - Olej jojoba",
   description:
     "Inteligentny, wielozadaniowy, samoregulujący olej jojoba. Płynny wosk o budowie zbliżonej do ludzkiego sebum.",
 }
@@ -99,11 +99,11 @@ export default async function JojobaCodePage(props: Props) {
             <div className="space-y-8">
               <div>
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
-                  Inteligentny — dopasowuje się do skóry
+                  Inteligentny - dopasowuje się do skóry
                 </h2>
                 <p className="text-brand-text-muted text-base leading-relaxed">
                   Olej jojoba to nie olej, a płynny wosk o budowie zbliżonej do
-                  ludzkiego sebum. Dzięki temu „rozpoznaje" potrzeby skóry —
+                  ludzkiego sebum. Dzięki temu „rozpoznaje" potrzeby skóry -
                   wspiera regulację wydzielania łoju: utrzymuje wilgoć w skórze,
                   poprawia nawilżenie skóry suchej w duecie z kwasem hialuronowym,
                   a równocześnie ogranicza przetłuszczanie się tłustej. Działa
@@ -117,24 +117,24 @@ export default async function JojobaCodePage(props: Props) {
 
               <div>
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
-                  Wielozadaniowy — jeden olej, wiele zastosowań
+                  Wielozadaniowy - jeden olej, wiele zastosowań
                 </h2>
                 <ul className="space-y-2 text-brand-text-muted text-base leading-relaxed">
-                  <li>— emolient utrzymujący wilgoć po zastosowaniu HialCode</li>
-                  <li>— baza do masażu i automasażu twarzy</li>
-                  <li>— olejek do demakijażu i oczyszczania skóry</li>
-                  <li>— eliksir na końcówki włosów</li>
-                  <li>— baza do aromaterapii — łączy się z olejkami eterycznymi</li>
-                  <li>— serum do skórek, ust, brody, paznokci</li>
+                  <li>- emolient utrzymujący wilgoć po zastosowaniu HialCode</li>
+                  <li>- baza do masażu i automasażu twarzy</li>
+                  <li>- olejek do demakijażu i oczyszczania skóry</li>
+                  <li>- eliksir na końcówki włosów</li>
+                  <li>- baza do aromaterapii - łączy się z olejkami eterycznymi</li>
+                  <li>- serum do skórek, ust, brody, paznokci</li>
                 </ul>
                 <p className="text-brand-text-muted text-sm mt-4">
-                  Idealnie jest łączyć go ze skwalanem — SqualaneCode.
+                  Idealnie jest łączyć go ze skwalanem - SqualaneCode.
                 </p>
               </div>
 
               <div>
                 <h2 className="text-brand-accent text-lg font-heading font-semibold mb-4">
-                  Samoregulujący — nie zapycha, stabilizuje inne oleje
+                  Samoregulujący - nie zapycha, stabilizuje inne oleje
                 </h2>
                 <p className="text-brand-text-muted text-base leading-relaxed">
                   Z komedogennością 0–1, olej jojoba rozcieńcza cięższe, bardziej
@@ -150,9 +150,9 @@ export default async function JojobaCodePage(props: Props) {
                   Pielęgnacja włosów
                 </h2>
                 <ul className="space-y-2 text-brand-text-muted text-base leading-relaxed">
-                  <li>— zabezpiecza końcówki bez obciążania</li>
-                  <li>— reguluje przetłuszczanie się skóry głowy</li>
-                  <li>— nie zmywa naturalnej warstwy lipidowej włosa</li>
+                  <li>- zabezpiecza końcówki bez obciążania</li>
+                  <li>- reguluje przetłuszczanie się skóry głowy</li>
+                  <li>- nie zmywa naturalnej warstwy lipidowej włosa</li>
                 </ul>
               </div>
 
@@ -169,7 +169,7 @@ export default async function JojobaCodePage(props: Props) {
 
               <div className="text-center mt-8">
                 <p className="text-brand-text-muted/70 text-base italic">
-                  „Jojoba to olej, który słucha skóry — nie narzuca, lecz
+                  „Jojoba to olej, który słucha skóry - nie narzuca, lecz
                   harmonizuje."
                 </p>
               </div>

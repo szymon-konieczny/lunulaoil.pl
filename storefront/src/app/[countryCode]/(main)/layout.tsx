@@ -27,7 +27,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
   return (
     <>
       <Nav />
-      {/* Spacer for fixed nav — hero pages handle their own spacing */}
+      {/* Spacer for fixed nav - hero pages handle their own spacing */}
       <div className="h-20" />
       {customer && cart && (
         <CartMismatchBanner customer={customer} cart={cart} />

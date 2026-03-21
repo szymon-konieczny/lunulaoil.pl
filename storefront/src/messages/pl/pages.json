@@ -1,17 +1,17 @@
 {
   "about": {
     "metaTitle": "O marce",
-    "metaDescription": "Lunula Botanique — biozgodna pielęgnacja twarzy i ciała. Poznaj naszą historię, filozofię i wartości.",
+    "metaDescription": "Lunula Botanique - biozgodna pielęgnacja twarzy i ciała. Poznaj naszą historię, filozofię i wartości.",
     "hero": {
       "subtitle": "O marce",
-      "description": "Biozgodna pielęgnacja — powrót do natury.",
+      "description": "Biozgodna pielęgnacja - powrót do natury.",
       "descriptionLine2": "By Lunula."
     },
     "story": {
       "subtitle": "Nasza historia",
       "title": "Z miłości do natury",
-      "p1": "Lunula Botanique powstała z przekonania, że najlepsza pielęgnacja jest zgodna z fizjologią skóry. Nie tworzę kolejnej marki opartej na syntetycznych komponentach — buduję koncepcję, która ma sens.",
-      "p2": "Starannie dobieram surowce kosmetyczne — naturalne oleje, masła i zioła z najlepszych źródeł. Każdy produkt to efekt długich poszukiwań idealnych składników i perfekcyjnych proporcji.",
+      "p1": "Lunula Botanique powstała z przekonania, że najlepsza pielęgnacja jest zgodna z fizjologią skóry. Nie tworzę kolejnej marki opartej na syntetycznych komponentach - buduję koncepcję, która ma sens.",
+      "p2": "Starannie dobieram surowce kosmetyczne - naturalne oleje, masła i zioła z najlepszych źródeł. Każdy produkt to efekt długich poszukiwań idealnych składników i perfekcyjnych proporcji.",
       "p3": "Wszystkie produkty spełniają surowe normy mikrobiologiczne i dermatologiczne. Są zarejestrowane w bazie CPNP oraz w farmaceutycznej Bazie Leków i Środków Ochrony Zdrowia.",
       "imageAlt": "Produkty Lunula Botanique"
     },
@@ -28,21 +28,21 @@
       },
       "ritual": {
         "title": "Rytuał",
-        "text": "Pielęgnacja to nie obowiązek — to chwila dla siebie. Dotyk faktury, zapach ziół i chwila zatrzymania. Naturalna pielęgnacja to powrót do korzeni."
+        "text": "Pielęgnacja to nie obowiązek - to chwila dla siebie. Dotyk faktury, zapach ziół i chwila zatrzymania. Naturalna pielęgnacja to powrót do korzeni."
       }
     },
     "biocare": {
       "subtitle": "Biozgodna Pielęgnacja",
       "title": "Karmienie skóry tym, co ona już zna",
-      "p1": "Biozgodna pielęgnacja twarzy to taka, która jest zgodna z fizjologią skóry — wspiera jej naturalne procesy, zamiast je zaburzać.",
-      "p2": "Składniki dobierane są celowo — tak, by wspierać, odżywiać i przywracać równowagę. Efektem takiej pielęgnacji jest cera, która odzyskuje blask, zdrowie, harmonię.",
+      "p1": "Biozgodna pielęgnacja twarzy to taka, która jest zgodna z fizjologią skóry - wspiera jej naturalne procesy, zamiast je zaburzać.",
+      "p2": "Składniki dobierane są celowo - tak, by wspierać, odżywiać i przywracać równowagę. Efektem takiej pielęgnacji jest cera, która odzyskuje blask, zdrowie, harmonię.",
       "p3": "Inteligencja natury działa w harmonii z organizmem. Zero przypadków. Pełna zgodność.",
       "imageAlt": "Składniki biozgodne"
     },
     "philosophy": {
       "subtitle": "Filozofia",
       "title": "Symbol Lunuli",
-      "p1": "Lunula to symbol energii, jaką niesie ze sobą Księżyc — jego majestat, słowiańskie korzenie i pełnia kobiecości. To właśnie ta idea przyświeca każdemu naszemu produktowi.",
+      "p1": "Lunula to symbol energii, jaką niesie ze sobą Księżyc - jego majestat, słowiańskie korzenie i pełnia kobiecości. To właśnie ta idea przyświeca każdemu naszemu produktowi.",
       "p2": "Oferujemy najwyższej jakości naturalne składniki i starannie wyselekcjonowane surowce kosmetyczne. Unikalne formuły, konsystencje i działanie składników aktywnych towarzyszą codziennej pielęgnacji.",
       "imageAlt": "Filozofia Lunula Botanique"
     },
@@ -51,11 +51,11 @@
       "title": "Trzy filary pielęgnacji",
       "biocare": {
         "title": "Biozgodna Pielęgnacja",
-        "text": "HialCode, SqualaneCode, JojobaCode — składniki, które skóra rozumie."
+        "text": "HialCode, SqualaneCode, JojobaCode - składniki, które skóra rozumie."
       },
       "soaps": {
         "title": "Mydła Rytualne",
-        "text": "Lunula Slavic Soap — roślinne oleje, masła i zioła w duchu tradycji."
+        "text": "Lunula Slavic Soap - roślinne oleje, masła i zioła w duchu tradycji."
       },
       "oils": {
         "title": "Oleje Lunula Oil",

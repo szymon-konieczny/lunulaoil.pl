@@ -244,7 +244,7 @@ export default async function seedRailway({ container }: ExecArgs) {
         {
           title: "Olej z pestek winogron – KSIĘŻYC W NOWIU 250ml",
           category_ids: [catOils],
-          description: "Olej stworzony, by obudzić ciało i zwiększyć wewnętrzną energię. Zawiera ok. 70% kwasu linolowego, 16% kwasu oleinowego, witaminę E. Wygładza skórę zatrzymując wilgoć, działa antyoksydacyjnie, ujędrnia, zwalcza bakterie i stany zapalne. Niekomedogenny — nie zatyka porów. Dla wszystkich typów skóry, w tym suchej, wrażliwej, mieszanej, tłustej i trądzikowej. Bez alkoholu, parabenów, silikonów, SLS.",
+          description: "Olej stworzony, by obudzić ciało i zwiększyć wewnętrzną energię. Zawiera ok. 70% kwasu linolowego, 16% kwasu oleinowego, witaminę E. Wygładza skórę zatrzymując wilgoć, działa antyoksydacyjnie, ujędrnia, zwalcza bakterie i stany zapalne. Niekomedogenny - nie zatyka porów. Dla wszystkich typów skóry, w tym suchej, wrażliwej, mieszanej, tłustej i trądzikowej. Bez alkoholu, parabenów, silikonów, SLS.",
           handle: "ksiezyc-w-nowiu-250ml",
           weight: 350,
           status: ProductStatus.PUBLISHED,
@@ -283,7 +283,7 @@ export default async function seedRailway({ container }: ExecArgs) {
         {
           title: "Olej awokado z nutą zielonej herbaty Green Witch Divine 250ml",
           category_ids: [catOils],
-          description: "Rytualny olej do masażu i pielęgnacji ciała i twarzy. Zrodzony z zielonego serca natury — pachnie jak dzika łąka po deszczu, jak świeżo zerwane liście zielonej herbaty. Zawiera witaminę E, kwasy Omega 9 i 6, lecytynę, skwalan, fitosterole. Do masażu twarzy rozcieńczyć 1:1 z olejem jojoba. Dla skóry suchej, wrażliwej, dojrzałej i normalnej. W ciemnym szkle chroniącym właściwości roślinne.",
+          description: "Rytualny olej do masażu i pielęgnacji ciała i twarzy. Zrodzony z zielonego serca natury - pachnie jak dzika łąka po deszczu, jak świeżo zerwane liście zielonej herbaty. Zawiera witaminę E, kwasy Omega 9 i 6, lecytynę, skwalan, fitosterole. Do masażu twarzy rozcieńczyć 1:1 z olejem jojoba. Dla skóry suchej, wrażliwej, dojrzałej i normalnej. W ciemnym szkle chroniącym właściwości roślinne.",
           handle: "green-witch-divine-250ml",
           weight: 350,
           status: ProductStatus.PUBLISHED,
@@ -296,7 +296,7 @@ export default async function seedRailway({ container }: ExecArgs) {
         {
           title: "Olej jojoba nierafinowany LipidCode 30ml",
           category_ids: [catFace],
-          description: "Certyfikowany 100% nierafinowany olej jojoba — płynny wosk estrowy, którego struktura odzwierciedla ludzkie sebum. Niekomedogenny, przeciwzapalny, ochronny i regeneracyjny. Wzmacnia barierę, łagodzi, regeneruje i chroni. Czystość to luksus. Prostota to siła. Inteligentny olej do codziennej pielęgnacji twarzy.",
+          description: "Certyfikowany 100% nierafinowany olej jojoba - płynny wosk estrowy, którego struktura odzwierciedla ludzkie sebum. Niekomedogenny, przeciwzapalny, ochronny i regeneracyjny. Wzmacnia barierę, łagodzi, regeneruje i chroni. Czystość to luksus. Prostota to siła. Inteligentny olej do codziennej pielęgnacji twarzy.",
           handle: "lipidcode-30ml",
           weight: 80,
           status: ProductStatus.PUBLISHED,
@@ -307,7 +307,7 @@ export default async function seedRailway({ container }: ExecArgs) {
           sales_channels: [{ id: defaultSalesChannel[0].id }],
         },
         {
-          title: "Slow Care – naturalna pielęgnacja — warsztaty stacjonarne",
+          title: "Slow Care – naturalna pielęgnacja - warsztaty stacjonarne",
           category_ids: [catWorkshops],
           description: "Warsztaty stacjonarne łączące teorię, praktykę i doświadczenie. Ok. 3h (1,5h teoria + 1,5h praktyka), grupy 6-8 osób. Tematyka: dlaczego samo nawilżanie nie wystarczy, jak działają humektanty i emolienty, błędy demakijażu, odżywianie mikrobiomu skóry, korzyści przejścia z kremów na olejki, komedogenność, pokaz destylacji hydrolatu na żywo. Prowadząca: Agata Przygodzka, terapeutka skóry i ekspertka naturalnej pielęgnacji.",
           handle: "slow-care-warsztaty",
@@ -322,7 +322,7 @@ export default async function seedRailway({ container }: ExecArgs) {
         {
           title: "Slow Care + Slow MakeUp – Sekret aksamitnej skóry i naturalnego Glow",
           category_ids: [catWorkshops],
-          description: "Limitowane warsztaty premium. Część Slow Care: metodologia Code — HyaCode (serum hialuronowe), LipidCode (nierafinowany olej jojoba), SqualaneCode (biomimetyczny lipid). Część Slow MakeUp: Capsule Signature Makeup — minimalistyczne podejście z wielofunkcyjnymi produktami włoskiej produkcji. Nacisk na sekwencję, ilość, dotyk i czas. Prowadząca: Agata Przygodzka.",
+          description: "Limitowane warsztaty premium. Część Slow Care: metodologia Code - HyaCode (serum hialuronowe), LipidCode (nierafinowany olej jojoba), SqualaneCode (biomimetyczny lipid). Część Slow MakeUp: Capsule Signature Makeup - minimalistyczne podejście z wielofunkcyjnymi produktami włoskiej produkcji. Nacisk na sekwencję, ilość, dotyk i czas. Prowadząca: Agata Przygodzka.",
           handle: "slow-care-slow-makeup",
           weight: 0,
           status: ProductStatus.PUBLISHED,
@@ -346,9 +346,9 @@ export default async function seedRailway({ container }: ExecArgs) {
           sales_channels: [{ id: defaultSalesChannel[0].id }],
         },
         {
-          title: "Slow Coffee Cream — warsztaty tworzenia kremu",
+          title: "Slow Coffee Cream - warsztaty tworzenia kremu",
           category_ids: [catWorkshops],
-          description: "Warsztaty tworzenia kremu w rytmie SLOW. Uczestnicy tworzą Slow Coffee Cream — energizującą, regenerującą formułę łączącą esencję kawy, olej z rokitnika, skwalan i olej z pestek winogron. Dodatkowo powstaje naturalne serum pod oczy z olejem z zielonej kawy, olejem Tsubaki, olejem z opuncji figowej i roślinnym skwalanem. Pełna receptura, krok po kroku od surowców do gotowego produktu.",
+          description: "Warsztaty tworzenia kremu w rytmie SLOW. Uczestnicy tworzą Slow Coffee Cream - energizującą, regenerującą formułę łączącą esencję kawy, olej z rokitnika, skwalan i olej z pestek winogron. Dodatkowo powstaje naturalne serum pod oczy z olejem z zielonej kawy, olejem Tsubaki, olejem z opuncji figowej i roślinnym skwalanem. Pełna receptura, krok po kroku od surowców do gotowego produktu.",
           handle: "slow-coffee-cream",
           weight: 0,
           status: ProductStatus.PUBLISHED,

@@ -1,8 +1,8 @@
-# Lunula Botanique — Sklep internetowy
+# Lunula Botanique - Sklep internetowy
 
 ## Architektura
-- **Backend:** Medusa.js v2.13 (`/backend`) — port 9000
-- **Storefront:** Next.js 15 + Tailwind CSS (`/storefront`) — port 8000
+- **Backend:** Medusa.js v2.13 (`/backend`) - port 9000
+- **Storefront:** Next.js 15 + Tailwind CSS (`/storefront`) - port 8000
 - **Baza danych:** PostgreSQL 16 (`lunula`)
 - **Node.js:** v22 LTS (see `.nvmrc`)
 
@@ -14,12 +14,12 @@
 ## Struktura
 ```
 lunula/
-  backend/          # Medusa.js v2 — API, admin panel, logika biznesowa
+  backend/          # Medusa.js v2 - API, admin panel, logika biznesowa
     src/
       api/          # Custom API routes
       modules/      # Custom modules (B2B, progi cenowe, NIP)
       admin/        # Custom admin widgets
-  storefront/       # Next.js 15 — frontend sklepu
+  storefront/       # Next.js 15 - frontend sklepu
     src/
       app/          # App Router pages
       lib/          # Utilities, config
@@ -35,6 +35,6 @@ lunula/
 
 ## White-label
 Projekt zaprojektowany jako konfigurowalny template:
-- `theme.config.ts` — kolory, fonty, logo, nazwa marki
+- `theme.config.ts` - kolory, fonty, logo, nazwa marki
 - Tailwind oparty na CSS variables
 - Komponenty bez hardcoded treści

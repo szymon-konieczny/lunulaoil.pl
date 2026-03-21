@@ -17,7 +17,7 @@ function highlightProductNames(
 ): string {
   let result = text
 
-  // Build keyword phrases from product titles — both full titles and distinctive fragments
+  // Build keyword phrases from product titles - both full titles and distinctive fragments
   const phrases: string[] = []
   for (const p of products) {
     if (!p.title) continue
@@ -135,7 +135,7 @@ export default function QuizResults({
         </div>
       )}
 
-      {/* Product grid — hidden while AI is loading to avoid order switch */}
+      {/* Product grid - hidden while AI is loading to avoid order switch */}
       {loading ? (
         <div className="grid grid-cols-1 small:grid-cols-2 medium:grid-cols-3 gap-6 mb-10">
           {[1, 2, 3].map((i) => (
@@ -208,7 +208,7 @@ export default function QuizResults({
           Poznaj rytuały pielęgnacji na żywo
         </h3>
         <p className="text-brand-text-muted text-sm leading-relaxed mb-4 max-w-lg mx-auto">
-          Weź udział w naszych warsztatach Slow Care — nauczysz się jak
+          Weź udział w naszych warsztatach Slow Care - nauczysz się jak
           najlepiej wykorzystać naturalne olejki i stworzyć własną rutynę
           pielęgnacyjną dopasowaną do Twojej skóry.
         </p>

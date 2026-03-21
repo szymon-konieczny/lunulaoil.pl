@@ -21,7 +21,7 @@ const Manifest = () => {
         <AnimateIn variant="fade-up" delay={200}>
           <div className="space-y-5 mb-10">
             <p className="text-white/60 text-lg leading-relaxed">
-              Buduję koncepcję — coś, co ma sens.
+              Buduję koncepcję - coś, co ma sens.
             </p>
             <p className="text-white/60 text-lg leading-relaxed">
               Coś, co zmienia sposób myślenia o pielęgnacji.
@@ -29,13 +29,13 @@ const Manifest = () => {
           </div>
           <p className="text-white/60 text-base italic leading-relaxed mb-12">
             Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
-            Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
+            Rozumieliśmy moc natury - i żyliśmy z nią w zgodzie.
           </p>
         </AnimateIn>
 
         <AnimateIn variant="fade-up" delay={300}>
           <blockquote className="text-brand-accent text-lg small:text-xl font-heading italic mb-10 px-4">
-            „Minimalizm to nie brak — to wybór tego, co najważniejsze."
+            „Minimalizm to nie brak - to wybór tego, co najważniejsze."
           </blockquote>
         </AnimateIn>
 

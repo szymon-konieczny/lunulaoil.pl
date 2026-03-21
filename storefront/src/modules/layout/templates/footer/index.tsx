@@ -27,7 +27,7 @@ export default async function Footer() {
               />
             </LocalizedClientLink>
             <Text className="txt-compact-small text-brand-text-muted max-w-xs">
-              Biozgodna pielęgnacja — powrót do natury. By Lunula.
+              Biozgodna pielęgnacja - powrót do natury. By Lunula.
             </Text>
             <div className="flex gap-x-4 mt-2">
               <a

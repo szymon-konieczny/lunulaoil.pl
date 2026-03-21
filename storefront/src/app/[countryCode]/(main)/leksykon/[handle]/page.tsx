@@ -24,7 +24,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${ingredient.name} — Leksykon Składników | Lunula Botanique`,
+    title: `${ingredient.name} - Leksykon Składników | Lunula Botanique`,
     description: ingredient.description.substring(0, 160),
   }
 }
@@ -56,7 +56,7 @@ export default async function IngredientDetailPage(props: Props) {
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: `${ingredient.name} — Leksykon Składników`,
+    headline: `${ingredient.name} - Leksykon Składników`,
     description: ingredient.description,
     url: `${BASE_URL}/${countryCode}/leksykon/${handle}`,
     author: {

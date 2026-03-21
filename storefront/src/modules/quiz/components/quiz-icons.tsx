@@ -13,7 +13,7 @@ const defaultProps: IconProps = {
   strokeLinejoin: "round" as const,
 }
 
-/** Dry skin — cracked desert/drought */
+/** Dry skin - cracked desert/drought */
 export function IconDrySkin(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -23,7 +23,7 @@ export function IconDrySkin(props: IconProps) {
   )
 }
 
-/** Oily skin — droplet */
+/** Oily skin - droplet */
 export function IconOilySkin(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -32,7 +32,7 @@ export function IconOilySkin(props: IconProps) {
   )
 }
 
-/** Combination — balance scales */
+/** Combination - balance scales */
 export function IconBalance(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -44,7 +44,7 @@ export function IconBalance(props: IconProps) {
   )
 }
 
-/** Normal skin — sparkle/star */
+/** Normal skin - sparkle/star */
 export function IconSparkle(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -53,7 +53,7 @@ export function IconSparkle(props: IconProps) {
   )
 }
 
-/** Sensitive skin — flower/petal */
+/** Sensitive skin - flower/petal */
 export function IconFlower(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -70,7 +70,7 @@ export function IconFlower(props: IconProps) {
   )
 }
 
-/** Aging — hourglass */
+/** Aging - hourglass */
 export function IconHourglass(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -81,7 +81,7 @@ export function IconHourglass(props: IconProps) {
   )
 }
 
-/** Glow — radiance/shine */
+/** Glow - radiance/shine */
 export function IconGlow(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -91,7 +91,7 @@ export function IconGlow(props: IconProps) {
   )
 }
 
-/** Imperfections — magnifying glass */
+/** Imperfections - magnifying glass */
 export function IconSearch(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -101,7 +101,7 @@ export function IconSearch(props: IconProps) {
   )
 }
 
-/** Scars — healing/bandage */
+/** Scars - healing/bandage */
 export function IconHealing(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -113,7 +113,7 @@ export function IconHealing(props: IconProps) {
   )
 }
 
-/** Hair care — flowing strands */
+/** Hair care - flowing strands */
 export function IconHair(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -124,7 +124,7 @@ export function IconHair(props: IconProps) {
   )
 }
 
-/** Face — elegant face outline */
+/** Face - elegant face outline */
 export function IconFace(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -133,7 +133,7 @@ export function IconFace(props: IconProps) {
   )
 }
 
-/** Body — body silhouette */
+/** Body - body silhouette */
 export function IconBody(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -144,7 +144,7 @@ export function IconBody(props: IconProps) {
   )
 }
 
-/** Hair & scalp — head massage */
+/** Hair & scalp - head massage */
 export function IconHeadMassage(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -157,7 +157,7 @@ export function IconHeadMassage(props: IconProps) {
   )
 }
 
-/** Universal — leaf/nature */
+/** Universal - leaf/nature */
 export function IconLeaf(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -168,7 +168,7 @@ export function IconLeaf(props: IconProps) {
   )
 }
 
-/** Light texture — feather */
+/** Light texture - feather */
 export function IconFeather(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -179,7 +179,7 @@ export function IconFeather(props: IconProps) {
   )
 }
 
-/** Rich texture — honey/jar */
+/** Rich texture - honey/jar */
 export function IconRich(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>
@@ -189,7 +189,7 @@ export function IconRich(props: IconProps) {
   )
 }
 
-/** No preference — open hands */
+/** No preference - open hands */
 export function IconOpenHands(props: IconProps) {
   return (
     <svg {...defaultProps} {...props}>

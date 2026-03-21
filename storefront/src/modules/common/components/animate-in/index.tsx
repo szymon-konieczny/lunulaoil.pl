@@ -80,7 +80,7 @@ export default function AnimateIn({
   const styles = variantStyles[variant]
 
   return (
-    // @ts-ignore — dynamic tag
+    // @ts-ignore - dynamic tag
     <Tag
       ref={ref}
       className={clx(

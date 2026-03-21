@@ -6,7 +6,7 @@ import { listIngredients, Ingredient } from "@lib/data/ingredients"
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
 export const metadata: Metadata = {
-  title: "Leksykon Składników — Lunula Botanique",
+  title: "Leksykon Składników - Lunula Botanique",
   description:
     "Encyklopedia naturalnych składników kosmetycznych. Poznaj właściwości składników używanych w produktach Lunula.",
 }
@@ -46,7 +46,7 @@ export default async function LexiconPage() {
   const lexiconJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Leksykon Składników — Lunula Botanique",
+    name: "Leksykon Składników - Lunula Botanique",
     description:
       "Encyklopedia naturalnych składników kosmetycznych używanych w produktach Lunula Botanique.",
     url: `${BASE_URL}/pl/leksykon`,
@@ -75,7 +75,7 @@ export default async function LexiconPage() {
             <AnimateIn variant="fade-up" delay={200}>
               <p className="text-brand-text-muted text-lg leading-relaxed mb-4">
                 Poznaj składniki, które stosujemy w produktach Lunula. Każdy z
-                nich został wybrany ze względu na biozgodność — zgodność z
+                nich został wybrany ze względu na biozgodność - zgodność z
                 naturalną fizjologią skóry.
               </p>
               <p className="text-brand-text-muted/70 text-base italic">

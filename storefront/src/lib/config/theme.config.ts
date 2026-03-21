@@ -1,7 +1,7 @@
 export const themeConfig = {
   // Brand
   name: "Lunula Botanique",
-  tagline: "Biozgodna pielęgnacja — powrót do natury",
+  tagline: "Biozgodna pielęgnacja - powrót do natury",
   description:
     "Biozgodna pielęgnacja twarzy i ciała. Składniki rozpoznawalne przez skórę, w harmonii z jej naturalnymi procesami.",
   url: "https://lunulaoil.pl",
@@ -15,7 +15,7 @@ export const themeConfig = {
     height: 100,
   },
 
-  // Colors (CSS variable names — actual values in globals.css)
+  // Colors (CSS variable names - actual values in globals.css)
   colors: {
     primary: "var(--color-primary)",
     primaryLight: "var(--color-primary-light)",
@@ -59,7 +59,7 @@ export const themeConfig = {
   // SEO
   seo: {
     titleTemplate: "%s | Lunula Botanique",
-    defaultTitle: "Lunula Botanique — biozgodna pielęgnacja",
+    defaultTitle: "Lunula Botanique - biozgodna pielęgnacja",
     openGraph: {
       type: "website",
       locale: "pl_PL",

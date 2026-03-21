@@ -87,13 +87,13 @@ PRODUKTY DO TWARZY (TYLKO te nadają się na twarz):
 - Serum: LipidCode (olej jojoba 30ml), HialCode (kwas hialuronowy), SqualaneCode (skwalan), JojobaCode
 - Kremy rytualne: Geranium Glow (Moon Touch Cream), Golden Glow (Solar Touch Cream), Rose Alchemy (Phyto Renew Cream), Clear Ritual (Pure Touch Cream)
 
-PRODUKTY DO CIAŁA I WŁOSÓW (oleje 250ml — NIE nadają się na twarz):
+PRODUKTY DO CIAŁA I WŁOSÓW (oleje 250ml - NIE nadają się na twarz):
 - Oleje Lunula Oil 250ml: Jojoba PEŁNIA KSIĘŻYCA, Winogron KSIĘŻYC W NOWIU, Makadamia WSCHÓD SŁOŃCA, Makadamia RAGNAR, Migdały PORANNA ROSA, Migdały MAGNOLIA, Awokado GREEN WITCH DIVINE
 
 MYDŁA (ciało):
 - Lunula Slavic Soap: Rusałka, Różyczka, Mokosza
 
-Filozofia marki: biozgodność — składniki rozpoznawalne przez skórę, które wspierają jej naturalne procesy zamiast je zaburzać. Karmienie skóry tym, co ona już zna.
+Filozofia marki: biozgodność - składniki rozpoznawalne przez skórę, które wspierają jej naturalne procesy zamiast je zaburzać. Karmienie skóry tym, co ona już zna.
 
 Klient wypełnił quiz doboru kosmetyków z następującymi odpowiedziami:
 
@@ -112,16 +112,16 @@ ODPOWIEDZ W FORMACIE JSON:
 
 ZASADY:
 - handles: tablica DOKŁADNIE 3 handle'ów w ŚCISŁEJ KOLEJNOŚCI: [główny produkt, uzupełniający produkt, warsztaty]. WYŁĄCZNIE z powyższej listy.
-  1. Główny produkt — najlepiej dopasowany do potrzeb klienta (primary match)
-  2. Uzupełniający produkt — komplementarny dodatek wzmacniający rytuał
-  3. Warsztaty — najbardziej pasujące warsztaty (Slow Care/Slow Coffee Cream/Slow MakeUp)
+  1. Główny produkt - najlepiej dopasowany do potrzeb klienta (primary match)
+  2. Uzupełniający produkt - komplementarny dodatek wzmacniający rytuał
+  3. Warsztaty - najbardziej pasujące warsztaty (Slow Care/Slow Coffee Cream/Slow MakeUp)
 - RÓŻNORODNOŚĆ KATEGORII: Produkt 1 i 2 MUSZĄ być z RÓŻNYCH kategorii produktowych. Przykłady dobrych par: krem + olej, krem + serum, olej + mydło, serum + olej. NIGDY nie rekomenduj dwóch produktów z tej samej kategorii (np. krem + krem, olej + olej).
-- DOPASOWANIE DO OBSZARU CIAŁA — BEZWZGLĘDNA ZASADA:
+- DOPASOWANIE DO OBSZARU CIAŁA - BEZWZGLĘDNA ZASADA:
   * Twarz → WYŁĄCZNIE: serum (LipidCode, HialCode, SqualaneCode, JojobaCode) + kremy rytualne (Geranium Glow, Golden Glow, Rose Alchemy, Clear Ritual). ABSOLUTNY ZAKAZ rekomendowania olejów 250ml na twarz.
   * Ciało → oleje 250ml, mydła, kremy do ciała. Serum 30ml mogą być uzupełnieniem.
   * Włosy → oleje nadające się do włosów (jojoba, makadamia, migdały).
 - STRUKTURA REKOMENDACJI: Wybierz 2 najlepsze produkty pielęgnacyjne z RÓŻNYCH kategorii, dopasowane do obszaru ciała + 1 najbardziej pasujące warsztaty. Zawsze 3 pozycje.
-- text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Opisz WSZYSTKIE 3 polecane pozycje (2 produkty + warsztaty) W TEJ SAMEJ KOLEJNOŚCI co handles — najpierw główny produkt, potem uzupełniający, na końcu warsztaty. Odwołaj się do filozofii biozgodności. Pisz naturalnym, POPRAWNYM polskim — jak native speaker. Ton: ciepły doradca w butikowym sklepie.
+- text: ZWIĘZŁA rekomendacja po polsku (4-6 zdań, NIE więcej). Opisz WSZYSTKIE 3 polecane pozycje (2 produkty + warsztaty) W TEJ SAMEJ KOLEJNOŚCI co handles - najpierw główny produkt, potem uzupełniający, na końcu warsztaty. Odwołaj się do filozofii biozgodności. Pisz naturalnym, POPRAWNYM polskim - jak native speaker. Ton: ciepły doradca w butikowym sklepie.
 - BEZWZGLĘDNA SPÓJNOŚĆ handles↔tekst: handles i tekst muszą opisywać IDENTYCZNY zestaw W IDENTYCZNEJ KOLEJNOŚCI. Każdy handle musi być wspomniany w tekście. Przed odpowiedzią ZWERYFIKUJ.
 - BEZWZGLĘDNY ZAKAZ: NIE WOLNO wspominać produktów spoza powyższej listy. Złamanie = błąd krytyczny.
 
@@ -184,10 +184,10 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
         const brandWords = title.match(/[A-Z][a-z]+[A-Z]\w+|\w+Code|[A-ZĄĆĘŁŃÓŚŹŻ]{2,}(?:\s+[A-ZĄĆĘŁŃÓŚŹŻ]{2,})+/g)
         if (brandWords) sigs.push(...brandWords)
         // Named product lines: "Geranium Glow", "Clear Ritual", "Rose Alchemy", etc.
-        const namedLine = title.match(/^(.+?)(?:\s*[—–]\s*|$)/)?.[1]
+        const namedLine = title.match(/^(.+?)(?:\s*[-–]\s*|$)/)?.[1]
         if (namedLine && namedLine.length > 3) sigs.push(namedLine.trim())
         // Subtitle after dash: "Moon Touch Cream", "Pure Touch Cream"
-        const subtitle = title.match(/[—–]\s*(.+?)(?:\s+\d+ml)?$/)?.[1]
+        const subtitle = title.match(/[-–]\s*(.+?)(?:\s+\d+ml)?$/)?.[1]
         if (subtitle && subtitle.length > 3) sigs.push(subtitle.trim())
         return sigs.map((s) => s.toLowerCase())
       }
@@ -235,7 +235,7 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
           return p && isWorkshop(p)
         }) || products.find((p) => isWorkshop(p))?.handle
 
-      // Assemble: text-mentioned first, then fallbacks — deduplicated
+      // Assemble: text-mentioned first, then fallbacks - deduplicated
       const allSkincare = [...mentionedSkincare, ...fallbackSkincare]
       const seen = new Set<string>()
       const skincare = allSkincare.filter((h) => {
