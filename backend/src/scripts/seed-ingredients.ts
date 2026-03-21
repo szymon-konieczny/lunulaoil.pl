@@ -35,7 +35,7 @@ const ingredientsData = [
     ],
     source: "Pozyskiwany z oliwek lub trzciny cukrowej w procesie uwodornienia skwalenu",
     category: "hydrating",
-    product_handles: ["squalanecode"],
+    product_handles: ["squalanecode", "geranium-glow-moon-touch-cream", "golden-glow-solar-touch-cream"],
   },
   {
     name: "Allantoina",
@@ -52,8 +52,7 @@ const ingredientsData = [
     source:
       "Występuje naturalnie w korzeniu żywokostu; w kosmetyce stosowana w formie syntetycznej",
     category: "active",
-    product_handles: [],
-    hide_in_lexicon: true,
+    product_handles: ["clear-ritual-pure-touch-cream"],
   },
 
   // ── Oleje ───────────────────────────────────────────────────────────
@@ -106,7 +105,7 @@ const ingredientsData = [
     source:
       "Tłoczony z pestek winogron (Vitis vinifera), często jako produkt uboczny winiarstwa",
     category: "oil",
-    product_handles: ["ksiezyc-w-nowiu-250ml"],
+    product_handles: ["ksiezyc-w-nowiu-250ml", "geranium-glow-moon-touch-cream", "clear-ritual-pure-touch-cream"],
   },
   {
     name: "Olej z makadamii",
@@ -156,7 +155,7 @@ const ingredientsData = [
     source:
       "Tłoczony na zimno z nasion dzikiej róży (Rosa canina), rosnącej dziko w Europie i Chile",
     category: "oil",
-    product_handles: ["mokosza-mydlo-rytualne"],
+    product_handles: ["mokosza-mydlo-rytualne", "rose-alchemy-phyto-renew-cream"],
   },
   {
     name: "Olej konopny",
@@ -172,8 +171,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z nasion konopi siewnych (Cannabis sativa)",
     category: "oil",
-    product_handles: [],
-    hide_in_lexicon: true,
+    product_handles: ["clear-ritual-pure-touch-cream"],
   },
   {
     name: "Olej z rokitnika",
@@ -191,8 +189,7 @@ const ingredientsData = [
     source:
       "Pozyskiwany z owoców i nasion rokitnika zwyczajnego (Hippophae rhamnoides)",
     category: "oil",
-    product_handles: [],
-    hide_in_lexicon: true,
+    product_handles: ["golden-glow-solar-touch-cream"],
   },
   {
     name: "Olej z pestek malin",
@@ -208,8 +205,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z pestek malin (Rubus idaeus)",
     category: "oil",
-    product_handles: [],
-    hide_in_lexicon: true,
+    product_handles: ["golden-glow-solar-touch-cream"],
   },
 
   // ── Zioła ───────────────────────────────────────────────────────────
@@ -314,8 +310,7 @@ const ingredientsData = [
     source:
       "Kora wierzby białej (Salix alba), pozyskiwana z drzew rosnących w Europie",
     category: "herb",
-    product_handles: [],
-    hide_in_lexicon: true,
+    product_handles: ["clear-ritual-pure-touch-cream"],
   },
 
   // ── Aktywne ─────────────────────────────────────────────────────────
@@ -335,8 +330,7 @@ const ingredientsData = [
     source:
       "Pozyskiwany z nasion babchi (Psoralea corylifolia), rośliny stosowanej od wieków w ajurwedzie",
     category: "active",
-    product_handles: [],
-    hide_in_lexicon: true,
+    product_handles: ["rose-alchemy-phyto-renew-cream"],
   },
   {
     name: "Koenzym Q10",
@@ -353,8 +347,7 @@ const ingredientsData = [
     source:
       "Występuje naturalnie w organizmie; w kosmetyce stosowany w formie biotechnologicznej",
     category: "active",
-    product_handles: [],
-    hide_in_lexicon: true,
+    product_handles: ["rose-alchemy-phyto-renew-cream"],
   },
 
   // ── Glinka ──────────────────────────────────────────────────────────
@@ -411,6 +404,93 @@ const ingredientsData = [
       "Zmielone ziarna kawowca arabskiego (Coffea arabica), uprawianego w strefie międzyzwrotnikowej",
     category: "exfoliant",
     product_handles: ["mokosza-mydlo-rytualne", "slow-coffee-cream"],
+  },
+
+  // ── Nowe składniki ──────────────────────────────────────────────────
+  {
+    name: "Oliwa z oliwek",
+    name_latin: "Olea Europaea Fruit Oil",
+    handle: "oliwa-z-oliwek",
+    description:
+      "Oliwa z oliwek to jeden z najstarszych kosmetycznych olejow roslinnych, bogaty w kwas oleinowy, witamine E, skwalen i polifenole. Glebooko odzywia, zmiekcza i chroni skore przed utrata wilgoci. Wzmacnia bariere hydrolipidowa i wspiera naturalna regeneracje naskorka.",
+    benefits: [
+      "Glebokie odzywienie i zmiekczanie skory",
+      "Wzmocnienie bariery hydrolipidowej",
+      "Ochrona antyoksydacyjna dzieki witaminie E i polifenolom",
+      "Lagodzenie podraznien i suchosci",
+    ],
+    source:
+      "Tloczony na zimno z owocow drzewa oliwnego (Olea europaea), uprawianego w basenie Morza Srodziemnego",
+    category: "oil",
+    product_handles: ["rusalka-mydlo-rytualne", "rozyczka-mydlo-rytualne", "mokosza-mydlo-rytualne"],
+  },
+  {
+    name: "Olej kokosowy",
+    name_latin: "Cocos Nucifera Oil",
+    handle: "olej-kokosowy",
+    description:
+      "Olej kokosowy jest bogaty w kwas laurynowy, ktory wykazuje wlasciwosci antybakteryjne i przeciwgrzybicze. Tworzy na skorze ochronna warstwe, ktora zapobiega utracie wilgoci, jednoczesnie zmiekczajac i wygladzajac naskorek. W mydle nadaje konsystencje i pyszna piane.",
+    benefits: [
+      "Wlasciwosci antybakteryjne dzieki kwasowi laurynowemu",
+      "Zmiekczanie i wygladzanie skory",
+      "Ochrona przed utrata wilgoci",
+      "Wspiera tworzenie gęstej, kremowej piany w mydle",
+    ],
+    source:
+      "Tłoczony na zimno z miąższu orzecha kokosowego (Cocos nucifera), uprawianego w strefie tropikalnej",
+    category: "oil",
+    product_handles: ["rusalka-mydlo-rytualne", "rozyczka-mydlo-rytualne", "mokosza-mydlo-rytualne"],
+  },
+  {
+    name: "Masło shea",
+    name_latin: "Butyrospermum Parkii Butter",
+    handle: "maslo-shea",
+    description:
+      "Masło shea to bogaty w kwasy tłuszczowe i witaminy A, E, F naturalny emolient pozyskiwany z orzechów drzewa shea. Głęboko odżywia, regeneruje i chroni skórę przed czynnikami zewnętrznymi. Tworzy na skórze delikatny film ochronny bez efektu okluzji.",
+    benefits: [
+      "Głębokie odżywienie i regeneracja suchej skóry",
+      "Ochrona przed czynnikami zewnętrznymi",
+      "Przywracanie elastyczności i miękkości",
+      "Łagodzenie podrażnień i stanów zapalnych",
+    ],
+    source:
+      "Pozyskiwane z orzechów drzewa masłowego (Vitellaria paradoxa), rosnącego w Afryce Zachodniej",
+    category: "oil",
+    product_handles: ["rusalka-mydlo-rytualne", "rozyczka-mydlo-rytualne", "mokosza-mydlo-rytualne"],
+  },
+  {
+    name: "Geranium",
+    name_latin: "Pelargonium Graveolens Oil",
+    handle: "geranium",
+    description:
+      "Olejek geraniowy to jeden z najcenniejszych olejków eterycznych w kosmetyce naturalnej. Reguluje wydzielanie sebum, łagodzi podrażnienia i wspiera regenerację skóry. Jego kwiatowy, lekko ziołowy aromat działa równoważąco na emocje i wspomaga relaksację.",
+    benefits: [
+      "Regulacja wydzielania sebum",
+      "Łagodzenie podrażnień i zaczerwienień",
+      "Wsparcie regeneracji i elastyczności skóry",
+      "Aromaterapeutyczne działanie równoważące",
+    ],
+    source:
+      "Destylowany z liści i łodyg pelargonii pachnącej (Pelargonium graveolens), uprawianej m.in. na Madagaskarze i w Egipcie",
+    category: "herb",
+    product_handles: ["geranium-glow-moon-touch-cream"],
+  },
+  {
+    name: "Pomarańcza słodka",
+    name_latin: "Citrus Aurantium Dulcis Peel Oil",
+    handle: "pomarancza-slodka",
+    description:
+      "Olejek ze skórki pomarańczy słodkiej jest bogaty w limonen — naturalny składnik o właściwościach antyoksydacyjnych i rozświetlających. Pobudza mikrocyrkulację, wyrównuje koloryt skóry i nadaje jej zdrowy blask. Jego cytrusowy aromat podnosi nastrój i dodaje energii.",
+    benefits: [
+      "Rozświetlanie i wyrównywanie kolorytu skóry",
+      "Pobudzenie mikrocyrkulacji",
+      "Ochrona antyoksydacyjna",
+      "Aromaterapeutyczne działanie energetyzujące",
+    ],
+    source:
+      "Tłoczony na zimno ze skórek pomarańczy słodkiej (Citrus sinensis / Citrus aurantium dulcis)",
+    category: "herb",
+    product_handles: ["rozyczka-mydlo-rytualne"],
   },
 ]
 
