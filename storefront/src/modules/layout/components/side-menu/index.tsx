@@ -10,27 +10,32 @@ import LanguageSelect from "../language-select"
 import { HttpTypes } from "@medusajs/types"
 import { Locale } from "@lib/data/locales"
 
-enum MenuRoute {
-  Home = "/",
-  Store = "/store",
-  Quiz = "/quiz",
-  Lexicon = "/leksykon",
-  About = "/about",
-  Salons = "/dla-salonow",
-  Account = "/account",
-  Cart = "/cart",
+type MenuItem = {
+  label: string
+  href: string
+  children?: { label: string; href: string }[]
 }
 
-const SIDE_MENU_ITEMS = [
-  { label: "Strona główna", href: MenuRoute.Home },
-  { label: "Sklep", href: MenuRoute.Store },
-  { label: "Dobierz kosmetyk", href: MenuRoute.Quiz },
-  { label: "Leksykon składników", href: MenuRoute.Lexicon },
-  { label: "O marce", href: MenuRoute.About },
-  { label: "Dla salonów", href: MenuRoute.Salons },
-  { label: "Konto", href: MenuRoute.Account },
-  { label: "Koszyk", href: MenuRoute.Cart },
-] as const
+const SIDE_MENU_ITEMS: MenuItem[] = [
+  { label: "Strona główna", href: "/" },
+  {
+    label: "Sklep",
+    href: "/store",
+    children: [
+      { label: "Twarz", href: "/categories/twarz" },
+      { label: "Ciało", href: "/categories/cialo" },
+      { label: "Rytuał", href: "/categories/rytual" },
+      { label: "Włosy", href: "/categories/wlosy" },
+      { label: "Wszystkie produkty", href: "/store" },
+    ],
+  },
+  { label: "Dobierz kosmetyk", href: "/quiz" },
+  { label: "Leksykon składników", href: "/leksykon" },
+  { label: "O marce", href: "/about" },
+  { label: "Dla salonów", href: "/dla-salonow" },
+  { label: "Konto", href: "/account" },
+  { label: "Koszyk", href: "/cart" },
+]
 
 type SideMenuProps = {
   regions: HttpTypes.StoreRegion[] | null
@@ -56,6 +61,7 @@ const HamburgerIcon = () => (
 
 const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
   const [isOpen, setIsOpen] = useState(false)
+  const [expandedItem, setExpandedItem] = useState<string | null>(null)
   const countryToggleState = useToggleState()
   const languageToggleState = useToggleState()
 
@@ -101,15 +107,60 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
 
               <ul className="flex flex-col gap-6 items-center sm:items-start justify-center flex-1 sm:flex-initial sm:justify-start">
                 {SIDE_MENU_ITEMS.map((item) => (
-                  <li key={item.href}>
-                    <LocalizedClientLink
-                      href={item.href}
-                      className="text-2xl sm:text-xl leading-8 hover:text-brand-accent transition-colors"
-                      onClick={close}
-                      data-testid={`${item.href.replace("/", "") || "home"}-link`}
-                    >
-                      {item.label}
-                    </LocalizedClientLink>
+                  <li key={item.href} className="text-center sm:text-left">
+                    {item.children ? (
+                      <div>
+                        <button
+                          className="text-2xl sm:text-xl leading-8 hover:text-brand-accent transition-colors flex items-center gap-2 mx-auto sm:mx-0"
+                          onClick={() =>
+                            setExpandedItem(
+                              expandedItem === item.href ? null : item.href
+                            )
+                          }
+                        >
+                          {item.label}
+                          <svg
+                            className={`w-4 h-4 transition-transform duration-200 ${
+                              expandedItem === item.href ? "rotate-180" : ""
+                            }`}
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </button>
+                        {expandedItem === item.href && (
+                          <ul className="mt-3 flex flex-col gap-3 pl-0 sm:pl-4">
+                            {item.children.map((child) => (
+                              <li key={child.href}>
+                                <LocalizedClientLink
+                                  href={child.href}
+                                  className="text-lg sm:text-base text-brand-text-muted hover:text-brand-accent transition-colors"
+                                  onClick={close}
+                                >
+                                  {child.label}
+                                </LocalizedClientLink>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ) : (
+                      <LocalizedClientLink
+                        href={item.href}
+                        className="text-2xl sm:text-xl leading-8 hover:text-brand-accent transition-colors"
+                        onClick={close}
+                        data-testid={`${item.href.replace("/", "") || "home"}-link`}
+                      >
+                        {item.label}
+                      </LocalizedClientLink>
+                    )}
                   </li>
                 ))}
               </ul>
