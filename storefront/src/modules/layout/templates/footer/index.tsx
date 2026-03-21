@@ -55,9 +55,9 @@ export default async function Footer() {
                 <svg
                   className="w-5 h-5"
                   fill="currentColor"
-                  viewBox="0 0 24 24"
+                  viewBox="0 0 448 512"
                 >
-                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.51a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.46V13.2a8.16 8.16 0 005.58 2.17v-3.45a4.85 4.85 0 01-3.77-1.46V6.69h3.77z" />
+                  <path d="M448 209.9a210.1 210.1 0 01-122.8-39.3v178.8A162.6 162.6 0 11185 188.3v89.9a74.6 74.6 0 1052.2 71.2V0h88a121 121 0 00122.8 109.5v100.4z" />
                 </svg>
               </a>
             </div>
@@ -158,6 +158,14 @@ export default async function Footer() {
                     href="/about"
                   >
                     O marce
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink
+                    className="hover:text-brand-accent transition-colors"
+                    href="/biozgodna-pielegnacja"
+                  >
+                    Biozgodna pielęgnacja
                   </LocalizedClientLink>
                 </li>
                 <li>
