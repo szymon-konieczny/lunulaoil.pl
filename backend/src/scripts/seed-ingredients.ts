@@ -249,7 +249,7 @@ const ingredients: IngredientInput[] = [
     name_latin: "Hibiscus Sabdariffa Flower Extract",
     handle: "hibiskus",
     description:
-      "Hibiskus, nazywany „roślinnym botoksem", jest bogaty w naturalne kwasy AHA i antyoksydanty. Ekstrakt z jego kwiatów wspiera produkcję kolagenu i elastyny, jednocześnie delikatnie złuszczając martwy naskórek. W biozgodnej pielęgnacji stanowi naturalną alternatywę dla agresywnych zabiegów odmładzających.",
+      "Hibiskus, nazywany roślinnym botoksem, jest bogaty w naturalne kwasy AHA i antyoksydanty. Ekstrakt z jego kwiatów wspiera produkcję kolagenu i elastyny, jednocześnie delikatnie złuszczając martwy naskórek. W biozgodnej pielęgnacji stanowi naturalną alternatywę dla agresywnych zabiegów odmładzających.",
     benefits: [
       "Naturalne złuszczanie dzięki kwasom AHA",
       "Wsparcie produkcji kolagenu i elastyny",
