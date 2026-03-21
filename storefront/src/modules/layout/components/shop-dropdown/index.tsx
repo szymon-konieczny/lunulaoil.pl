@@ -64,24 +64,6 @@ export default function ShopDropdown({ categories }: ShopDropdownProps) {
       {open && topLevel.length > 0 && (
         <div className="absolute top-full left-0 mt-0 pt-2 z-50">
           <div className="bg-brand-surface border border-brand-border rounded-md shadow-lg min-w-[220px] py-2">
-            {/* Pinned brand line */}
-            <LocalizedClientLink
-              href="/biozgodna-pielegnacja"
-              className="block px-4 py-2 text-sm font-medium text-brand-accent hover:bg-brand-surface-hover transition-colors"
-              onClick={() => setOpen(false)}
-            >
-              Lunula Botanique
-            </LocalizedClientLink>
-            <LocalizedClientLink
-              href="/mydla-rytualne"
-              className="block px-4 py-2 text-sm text-brand-text-muted hover:text-brand-accent hover:bg-brand-surface-hover transition-colors"
-              onClick={() => setOpen(false)}
-            >
-              Mydła Rytualne
-            </LocalizedClientLink>
-            {topLevel.length > 0 && (
-              <div className="border-t border-brand-border my-1" />
-            )}
             {topLevel.map((category) => (
               <LocalizedClientLink
                 key={category.id}
@@ -99,13 +81,6 @@ export default function ShopDropdown({ categories }: ShopDropdownProps) {
                 onClick={() => setOpen(false)}
               >
                 Wszystkie produkty
-              </LocalizedClientLink>
-              <LocalizedClientLink
-                href="/leksykon"
-                className="block px-4 py-2 text-sm text-brand-text-muted hover:text-brand-accent hover:bg-brand-surface-hover transition-colors"
-                onClick={() => setOpen(false)}
-              >
-                Leksykon Składników
               </LocalizedClientLink>
             </div>
           </div>
