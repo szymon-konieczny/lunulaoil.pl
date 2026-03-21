@@ -171,6 +171,14 @@ export default async function Footer() {
                 <li>
                   <LocalizedClientLink
                     className="hover:text-brand-accent transition-colors"
+                    href="/leksykon"
+                  >
+                    Leksykon składników
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink
+                    className="hover:text-brand-accent transition-colors"
                     href="/regulamin"
                   >
                     Regulamin

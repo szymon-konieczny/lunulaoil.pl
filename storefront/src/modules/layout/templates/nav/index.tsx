@@ -44,6 +44,12 @@ export default async function Nav() {
           </LocalizedClientLink>
           <LocalizedClientLink
             className="hover:text-brand-accent transition-colors"
+            href="/leksykon"
+          >
+            Leksykon
+          </LocalizedClientLink>
+          <LocalizedClientLink
+            className="hover:text-brand-accent transition-colors"
             href="/about"
           >
             O marce
