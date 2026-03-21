@@ -77,9 +77,7 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
     logger.info(`Created Kremy category: ${catCreams}`);
   }
 
-  logger.info("Seeding Lunula Botanique cream products...");
-
-  // Product definitions (without tags — added separately after creation)
+  // Product definitions
   const productDefs = [
     {
       title: "Geranium Glow — Moon Touch Cream 50ml",
@@ -187,41 +185,69 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
     },
   ];
 
-  // Extract tag values and strip from product defs before passing to workflow
+  // Extract tag values
   const tagMapping: { handle: string; tagValues: string[] }[] = [];
-  const products = productDefs.map(({ _tagValues, ...product }) => {
+  const productsToCreate: any[] = [];
+  const creamHandles = productDefs.map((p) => p.handle);
+
+  // Check which products already exist
+  const existingProducts = await productModuleService.listProducts(
+    { handle: creamHandles },
+    { take: creamHandles.length }
+  );
+  const existingHandles = new Set(existingProducts.map((p: any) => p.handle));
+
+  for (const { _tagValues, ...product } of productDefs) {
     tagMapping.push({ handle: product.handle, tagValues: _tagValues });
-    return product;
-  });
+    if (!existingHandles.has(product.handle)) {
+      productsToCreate.push(product);
+    }
+  }
 
-  const { result: createdProducts } = await createProductsWorkflow(
-    container
-  ).run({
-    input: { products },
-  });
+  // Create only missing products
+  let allProducts = [...existingProducts];
+  if (productsToCreate.length > 0) {
+    logger.info(`Creating ${productsToCreate.length} new cream products...`);
+    const { result: createdProducts } = await createProductsWorkflow(
+      container
+    ).run({
+      input: { products: productsToCreate },
+    });
+    allProducts = [...existingProducts, ...createdProducts];
+    logger.info(`Created ${createdProducts.length} cream products.`);
+  } else {
+    logger.info("All cream products already exist. Skipping creation.");
+  }
 
-  logger.info(`Created ${createdProducts.length} cream products.`);
-
-  // Now add tags to products using product module service
+  // Add tags to all products (idempotent)
   logger.info("Adding tags to products...");
 
-  // Collect all unique tag values
   const allTagValues = [
     ...new Set(tagMapping.flatMap((m) => m.tagValues)),
   ];
 
-  // Create tags
-  const createdTags = await productModuleService.createProductTags(
-    allTagValues.map((v) => ({ value: v }))
+  // Find existing tags and create only missing ones
+  const existingTags = await productModuleService.listProductTags(
+    { value: allTagValues },
+    { take: allTagValues.length + 10 }
   );
   const tagMap = new Map<string, string>();
-  for (const tag of createdTags) {
+  for (const tag of existingTags) {
     tagMap.set(tag.value, tag.id);
+  }
+  const missingTagValues = allTagValues.filter((v) => !tagMap.has(v));
+  if (missingTagValues.length) {
+    const newTags = await productModuleService.createProductTags(
+      missingTagValues.map((v) => ({ value: v }))
+    );
+    for (const tag of newTags) {
+      tagMap.set(tag.value, tag.id);
+    }
   }
 
   // Update each product with its tags
   for (const mapping of tagMapping) {
-    const product = createdProducts.find(
+    const product = allProducts.find(
       (p: any) => p.handle === mapping.handle
     );
     if (product) {
@@ -271,6 +297,6 @@ export default async function seedLunulaCreams({ container }: ExecArgs) {
   }
 
   logger.info(
-    "Done! 4 cream products added: Geranium Glow (129 zł), Golden Glow (139 zł), Rose Alchemy (149 zł), Clear Ritual (119 zł)."
+    "Done! 4 cream products: Geranium Glow (129 zl), Golden Glow (139 zl), Rose Alchemy (149 zl), Clear Ritual (119 zl)."
   );
 }
