@@ -131,9 +131,9 @@ export default async function IngredientDetailPage(props: Props) {
                         key={i}
                         className="text-brand-text-muted text-base leading-relaxed flex items-start gap-2"
                       >
-                        <span className="text-brand-accent mt-1 shrink-0">
-                          —
-                        </span>
+                        <svg className="w-4 h-4 text-brand-accent mt-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
                         {benefit}
                       </li>
                     ))}
