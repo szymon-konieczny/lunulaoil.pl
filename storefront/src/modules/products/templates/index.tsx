@@ -4,11 +4,13 @@ import ImageGallery from "@modules/products/components/image-gallery"
 import ProductActions from "@modules/products/components/product-actions"
 import ProductOnboardingCta from "@modules/products/components/product-onboarding-cta"
 import ProductTabs from "@modules/products/components/product-tabs"
+import ProductIngredients from "@modules/products/components/product-ingredients"
 import RelatedProducts from "@modules/products/components/related-products"
 import ProductInfo from "@modules/products/templates/product-info"
 import SkeletonRelatedProducts from "@modules/skeletons/templates/skeleton-related-products"
 import { notFound } from "next/navigation"
 import { HttpTypes } from "@medusajs/types"
+import { Ingredient } from "@lib/data/ingredients"
 
 import ProductActionsWrapper from "./product-actions-wrapper"
 
@@ -17,6 +19,7 @@ type ProductTemplateProps = {
   region: HttpTypes.StoreRegion
   countryCode: string
   images: HttpTypes.StoreProductImage[]
+  ingredients?: Ingredient[]
 }
 
 const ProductTemplate: React.FC<ProductTemplateProps> = ({
@@ -24,6 +27,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
   region,
   countryCode,
   images,
+  ingredients,
 }) => {
   if (!product || !product.id) {
     return notFound()
@@ -56,6 +60,9 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
             <ProductActionsWrapper id={product.id} region={region} />
           </Suspense>
           <ProductTabs product={product} />
+          {ingredients && ingredients.length > 0 && (
+            <ProductIngredients ingredients={ingredients} />
+          )}
         </div>
       </div>
       <div

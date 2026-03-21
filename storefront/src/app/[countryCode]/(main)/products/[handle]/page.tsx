@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { listProducts } from "@lib/data/products"
 import { getRegion, listRegions } from "@lib/data/regions"
 import { getProductPrice } from "@lib/util/get-product-price"
+import { listIngredients } from "@lib/data/ingredients"
 import ProductTemplate from "@modules/products/templates"
 import { HttpTypes } from "@medusajs/types"
 
@@ -148,6 +149,15 @@ export default async function ProductPage(props: Props) {
 
   const images = getImagesForVariant(pricedProduct, selectedVariantId)
 
+  // Fetch ingredients linked to this product
+  let productIngredients: Awaited<ReturnType<typeof listIngredients>> = []
+  try {
+    const allIngredients = await listIngredients()
+    productIngredients = allIngredients.filter((i) =>
+      i.product_handles.includes(params.handle)
+    )
+  } catch {}
+
   let cheapestPrice: ReturnType<typeof getProductPrice>["cheapestPrice"] = null
   try {
     cheapestPrice = getProductPrice({ product: pricedProduct }).cheapestPrice
@@ -188,6 +198,7 @@ export default async function ProductPage(props: Props) {
         region={region}
         countryCode={params.countryCode}
         images={images}
+        ingredients={productIngredients}
       />
     </>
   )
