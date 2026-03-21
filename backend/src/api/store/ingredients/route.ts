@@ -12,7 +12,12 @@ export async function GET(
 
   const category = req.query.category as string | undefined
 
+  const showHidden = req.query.show_hidden === "true"
+
   const filters: Record<string, any> = {}
+  if (!showHidden) {
+    filters.hide_in_lexicon = false
+  }
   if (category) {
     filters.category = category
   }

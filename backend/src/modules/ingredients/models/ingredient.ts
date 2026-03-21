@@ -10,6 +10,7 @@ const Ingredient = model.define("ingredient", {
   source: model.text().nullable(),
   category: model.text().default("other"),
   product_handles: model.array().default([]),
+  hide_in_lexicon: model.boolean().default(false),
   metadata: model.json().nullable(),
 })
 

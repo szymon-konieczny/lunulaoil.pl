@@ -10,6 +10,7 @@ export type Ingredient = {
   source: string | null
   category: string
   product_handles: string[]
+  hide_in_lexicon: boolean
   metadata: Record<string, any> | null
 }
 
