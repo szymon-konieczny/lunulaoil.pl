@@ -85,7 +85,7 @@ export default async function updateRetailPrices({ container }: ExecArgs) {
       )
 
       if (plnPrice) {
-        await pricingModuleService.updatePrices([
+        await (pricingModuleService as any).updatePrices([
           { id: plnPrice.id, amount: newAmount },
         ])
         logger.info(
