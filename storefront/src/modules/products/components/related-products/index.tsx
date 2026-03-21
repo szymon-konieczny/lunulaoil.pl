@@ -49,14 +49,9 @@ export default async function RelatedProducts({
 
   return (
     <div className="product-page-constraint">
-      <div className="flex flex-col items-center text-center mb-10">
-        <span className="text-base-regular text-gray-600 mb-4">
-          Podobne produkty
-        </span>
-        <p className="text-2xl-regular text-ui-fg-base max-w-lg">
-          Sprawdź również te produkty.
-        </p>
-      </div>
+      <h3 className="text-2xl-regular text-ui-fg-base text-center mb-10">
+        Podobne produkty
+      </h3>
 
       <RelatedProductsCarousel products={products} region={region} />
     </div>
