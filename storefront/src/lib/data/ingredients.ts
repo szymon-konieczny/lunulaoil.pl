@@ -16,6 +16,18 @@ export type Ingredient = {
 const MEDUSA_BACKEND_URL =
   process.env.MEDUSA_BACKEND_URL || "http://localhost:9000"
 
+const PUBLISHABLE_KEY =
+  process.env.NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY || ""
+
+function getHeaders(): Record<string, string> {
+  return {
+    "Content-Type": "application/json",
+    ...(PUBLISHABLE_KEY
+      ? { "x-publishable-api-key": PUBLISHABLE_KEY }
+      : {}),
+  }
+}
+
 export async function listIngredients(
   category?: string
 ): Promise<Ingredient[]> {
@@ -23,7 +35,7 @@ export async function listIngredients(
     const params = category ? `?category=${category}` : ""
     const res = await fetch(
       `${MEDUSA_BACKEND_URL}/store/ingredients${params}`,
-      { next: { revalidate: 300 } }
+      { headers: getHeaders(), next: { revalidate: 300 } }
     )
     if (!res.ok) return []
     const data = await res.json()
@@ -39,7 +51,7 @@ export async function getIngredient(
   try {
     const res = await fetch(
       `${MEDUSA_BACKEND_URL}/store/ingredients/${handle}`,
-      { next: { revalidate: 300 } }
+      { headers: getHeaders(), next: { revalidate: 300 } }
     )
     if (!res.ok) return null
     const data = await res.json()
