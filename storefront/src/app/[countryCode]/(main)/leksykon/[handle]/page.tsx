@@ -7,7 +7,7 @@ import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import { getProductPrice } from "@lib/util/get-product-price"
 import AddToCartButton from "@modules/products/components/add-to-cart-button"
-import Thumbnail from "@modules/products/components/thumbnail"
+import Image from "next/image"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
@@ -178,13 +178,14 @@ export default async function IngredientDetailPage(props: Props) {
                           className="p-5 border border-brand-border rounded-sm flex gap-4 items-start"
                         >
                           {/* Thumbnail */}
-                          <div className="w-20 h-20 shrink-0 rounded-sm overflow-hidden bg-brand-surface">
+                          <div className="w-20 h-20 shrink-0 rounded-sm overflow-hidden bg-brand-surface relative">
                             {product.thumbnail ? (
-                              <Thumbnail
-                                thumbnail={product.thumbnail}
-                                images={product.images}
-                                size="small"
-                                className="!rounded-sm !shadow-none"
+                              <Image
+                                src={product.thumbnail}
+                                alt={product.title || ""}
+                                fill
+                                sizes="80px"
+                                className="object-contain object-center"
                               />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center text-brand-text-muted/30 text-xs">

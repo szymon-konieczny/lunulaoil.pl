@@ -52,7 +52,7 @@ const ingredientsData = [
     source:
       "Występuje naturalnie w korzeniu żywokostu; w kosmetyce stosowana w formie syntetycznej",
     category: "active",
-    product_handles: ["hialcode", "squalanecode", "jojobacode", "rusalka-mydlo-rytualne"],
+    product_handles: [],
   },
 
   // ── Oleje ───────────────────────────────────────────────────────────
@@ -88,7 +88,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z nasion migdałowca zwyczajnego (Prunus dulcis)",
     category: "oil",
-    product_handles: ["squalanecode", "magnolia-250ml", "poranna-rosa-250ml"],
+    product_handles: ["magnolia-250ml", "poranna-rosa-250ml"],
   },
   {
     name: "Olej z pestek winogron",
@@ -171,7 +171,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z nasion konopi siewnych (Cannabis sativa)",
     category: "oil",
-    product_handles: ["jojobacode"],
+    product_handles: [],
   },
   {
     name: "Olej z rokitnika",
@@ -189,7 +189,7 @@ const ingredientsData = [
     source:
       "Pozyskiwany z owoców i nasion rokitnika zwyczajnego (Hippophae rhamnoides)",
     category: "oil",
-    product_handles: ["squalanecode"],
+    product_handles: [],
   },
   {
     name: "Olej z pestek malin",
@@ -205,7 +205,7 @@ const ingredientsData = [
     ],
     source: "Tłoczony na zimno z pestek malin (Rubus idaeus)",
     category: "oil",
-    product_handles: ["hialcode"],
+    product_handles: [],
   },
 
   // ── Zioła ───────────────────────────────────────────────────────────
@@ -310,7 +310,7 @@ const ingredientsData = [
     source:
       "Kora wierzby białej (Salix alba), pozyskiwana z drzew rosnących w Europie",
     category: "herb",
-    product_handles: ["hialcode", "squalanecode"],
+    product_handles: [],
   },
 
   // ── Aktywne ─────────────────────────────────────────────────────────
@@ -330,7 +330,7 @@ const ingredientsData = [
     source:
       "Pozyskiwany z nasion babchi (Psoralea corylifolia), rośliny stosowanej od wieków w ajurwedzie",
     category: "active",
-    product_handles: ["hialcode", "squalanecode"],
+    product_handles: [],
   },
   {
     name: "Koenzym Q10",
@@ -347,7 +347,7 @@ const ingredientsData = [
     source:
       "Występuje naturalnie w organizmie; w kosmetyce stosowany w formie biotechnologicznej",
     category: "active",
-    product_handles: ["hialcode", "jojobacode"],
+    product_handles: [],
   },
 
   // ── Glinka ──────────────────────────────────────────────────────────
