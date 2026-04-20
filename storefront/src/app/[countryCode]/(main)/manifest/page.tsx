@@ -19,7 +19,7 @@ export default function ManifestPage() {
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="object-cover object-[center_15%]"
         />
         {/* Soft gradient overlay — top and bottom only, center stays clean */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none" />
