@@ -10,6 +10,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import ShopDropdown from "@modules/layout/components/shop-dropdown"
+import AboutDropdown from "@modules/layout/components/about-dropdown"
 import NavWrapper from "@modules/layout/components/nav-wrapper"
 
 export default async function Nav() {
@@ -48,12 +49,7 @@ export default async function Nav() {
           >
             Leksykon
           </LocalizedClientLink>
-          <LocalizedClientLink
-            className="hover:text-brand-accent transition-colors"
-            href="/about"
-          >
-            O marce
-          </LocalizedClientLink>
+          <AboutDropdown />
           <LocalizedClientLink
             className="hover:text-brand-accent transition-colors"
             href="/dla-salonow"

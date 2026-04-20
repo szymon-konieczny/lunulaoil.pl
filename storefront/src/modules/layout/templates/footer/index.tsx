@@ -155,6 +155,14 @@ export default async function Footer() {
                 <li>
                   <LocalizedClientLink
                     className="hover:text-brand-accent transition-colors"
+                    href="/manifest"
+                  >
+                    Manifest
+                  </LocalizedClientLink>
+                </li>
+                <li>
+                  <LocalizedClientLink
+                    className="hover:text-brand-accent transition-colors"
                     href="/about"
                   >
                     O marce

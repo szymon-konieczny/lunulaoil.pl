@@ -31,7 +31,15 @@ const SIDE_MENU_ITEMS: MenuItem[] = [
   },
   { label: "Dobierz kosmetyk", href: "/quiz" },
   { label: "Leksykon składników", href: "/leksykon" },
-  { label: "O marce", href: "/about" },
+  {
+    label: "O marce",
+    href: "/about",
+    children: [
+      { label: "Manifest", href: "/manifest" },
+      { label: "Historia", href: "/about" },
+      { label: "Biozgodna pielęgnacja", href: "/biozgodna-pielegnacja" },
+    ],
+  },
   { label: "Dla salonów", href: "/dla-salonow" },
   { label: "Konto", href: "/account" },
   { label: "Koszyk", href: "/cart" },
