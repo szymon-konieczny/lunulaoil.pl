@@ -390,7 +390,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           title: "Olej Jojoba z drobinkami złota PEŁNIA KSIĘŻYCA 250ml",
           category_ids: [catOils],
           description:
-            "Luksusowy olejek do ciała i twarzy łączący tłoczony na zimno, nierafinowany olej jojoba z mieniącymi się drobinkami mineralnego złota. Orientalny zapach perfum utrzymuje się przez cały dzień. Zawiera fitosterole, witaminy A, E i F. Natłuszcza, zmiękcza, ujędrnia skórę, wspiera redukcję cellulitu, regeneruje i działa przeciwzapalnie. Bez alkoholu, parabenów, silikonów, SLS. GMO Free, Organic, Not Tested On Animals.",
+            "Luksusowy olejek do ciała i twarzy łączący tłoczony na zimno, nierafinowany olej jojoba z mieniącymi się drobinkami mineralnego złota. Orientalny zapach perfum utrzymuje się przez cały dzień. Zawiera fitosterole, witaminy A, E i F. Natłuszcza, zmiękcza, ujędrnia skórę, wspiera redukcję cellulitu, regeneruje i działa przeciwzapalnie. Bez alkoholu, parabenów, silikonów, SLS. GMO Free, Organic.",
           handle: "pelnia-ksiezyca-250ml",
           weight: 350,
           status: ProductStatus.PUBLISHED,
@@ -442,7 +442,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           title: "Olej z makadamii z nutą Whisky i Tytoniu – RAGNAR 250ml",
           category_ids: [catOils],
           description:
-            "Olej makadamia o wyrazistym zapachu whisky i tytoniu. Z dojrzałych orzechów makadamii zbieranych naturalnie w Australii i Indonezji. Bogaty w nienasycone kwasy tłuszczowe, witaminę A, witaminy z grupy B, fenole, lecytyny i minerały. Wzmacnia barierę skóry, ujędrnia, wygładza. Przenika do głębszych warstw skóry aktywując procesy regeneracyjne. Polecany szczególnie dla mężczyzn. Pomaga na blizny i rozstępy. GMO Free, Organic, Not Tested On Animals.",
+            "Olej makadamia o wyrazistym zapachu whisky i tytoniu. Z dojrzałych orzechów makadamii zbieranych naturalnie w Australii i Indonezji. Bogaty w nienasycone kwasy tłuszczowe, witaminę A, witaminy z grupy B, fenole, lecytyny i minerały. Wzmacnia barierę skóry, ujędrnia, wygładza. Przenika do głębszych warstw skóry aktywując procesy regeneracyjne. Polecany szczególnie dla mężczyzn. Pomaga na blizny i rozstępy. GMO Free, Organic.",
           handle: "ragnar-250ml",
           weight: 350,
           status: ProductStatus.PUBLISHED,

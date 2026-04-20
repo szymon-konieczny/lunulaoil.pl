@@ -272,8 +272,6 @@ export default async function AboutPage() {
             <div className="flex flex-wrap items-center justify-center gap-8 text-brand-text-muted/70 text-xs tracking-wider uppercase">
               <span>GMO Free</span>
               <span className="w-px h-4 bg-brand-border" />
-              <span>Not Tested On Animals</span>
-              <span className="w-px h-4 bg-brand-border" />
               <span>Vegan</span>
             </div>
           </AnimateIn>

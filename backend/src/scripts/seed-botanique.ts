@@ -188,7 +188,7 @@ export default async function seedBotaniqueProducts({ container }: ExecArgs) {
       subtitle: "Biozgodna Pielęgnacja",
       category_ids: [catBiocare],
       description:
-        "100ml nierafinowanego oleju jojoba z drobinkami mineralnego zlota. Plynny wosk estrowy o budowie zblizonej do ludzkiego sebum, wzbogacony mieniącymi się drobinkami zlota. Reguluje wydzielanie sebum, nawilza, regeneruje i nadaje skorze subtelny blask. Idealny do masazu twarzy, pielegnacji ciala i aromaterapii. Bez parabenow, silikonow, SLS. GMO Free, Organic, Not Tested On Animals.",
+        "100ml nierafinowanego oleju jojoba z drobinkami mineralnego zlota. Plynny wosk estrowy o budowie zblizonej do ludzkiego sebum, wzbogacony mieniącymi się drobinkami zlota. Reguluje wydzielanie sebum, nawilza, regeneruje i nadaje skorze subtelny blask. Idealny do masazu twarzy, pielegnacji ciala i aromaterapii. Bez parabenow, silikonow, SLS. GMO Free, Organic.",
       handle: "jojobacode-gold-100ml",
       weight: 150,
       status: ProductStatus.PUBLISHED,

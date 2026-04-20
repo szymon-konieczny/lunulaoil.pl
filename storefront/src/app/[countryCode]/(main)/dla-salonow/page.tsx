@@ -473,8 +473,6 @@ export default async function SalonPage(props: Props) {
                 <span className="w-px h-4 bg-brand-border" />
                 <span>GMO Free</span>
                 <span className="w-px h-4 bg-brand-border" />
-                <span>Not Tested On Animals</span>
-                <span className="w-px h-4 bg-brand-border" />
                 <span>Vegan</span>
                 <span className="w-px h-4 bg-brand-border" />
                 <span>Handmade in Poland</span>
