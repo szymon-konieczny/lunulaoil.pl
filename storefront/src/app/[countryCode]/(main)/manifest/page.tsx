@@ -109,19 +109,26 @@ export default function ManifestPage() {
         className="relative bg-cover bg-center bg-scroll small:bg-fixed"
         style={{ backgroundImage: "url('/manifest-workshop.jpeg')" }}
       >
-        {/* Light overlay for readability — image texture still shows through */}
+        {/* Very subtle global tint to unify the image with brand palette */}
         <div
-          className="absolute inset-0 backdrop-blur-[1px] pointer-events-none"
-          style={{ backgroundColor: "rgba(250, 250, 248, 0.78)" }}
+          className="absolute inset-0 pointer-events-none"
+          style={{ backgroundColor: "rgba(250, 250, 248, 0.25)" }}
         />
 
-        {/* Content on top */}
+        {/* Content on top — each text block lives inside its own frosted card */}
         <div className="relative">
           {/* Moja misja */}
           <section className="py-20 small:py-32">
             <div className="content-container max-w-3xl mx-auto">
               <AnimateIn variant="fade-up">
-                <div>
+                <div
+                  className="rounded-sm p-8 small:p-14 shadow-2xl border border-white/50"
+                  style={{
+                    backgroundColor: "rgba(250, 250, 248, 0.88)",
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                  }}
+                >
                   <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
                     Moja misja
                   </h2>
@@ -141,14 +148,18 @@ export default function ManifestPage() {
             </div>
           </section>
 
-          {/* Subtle separator */}
-          <div className="w-16 h-px bg-brand-accent/40 mx-auto" />
-
           {/* Moja filozofia */}
-          <section className="py-20 small:py-32">
+          <section className="pb-20 small:pb-32">
             <div className="content-container max-w-3xl mx-auto">
               <AnimateIn variant="fade-up">
-                <div>
+                <div
+                  className="rounded-sm p-8 small:p-14 shadow-2xl border border-white/50"
+                  style={{
+                    backgroundColor: "rgba(250, 250, 248, 0.88)",
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                  }}
+                >
                   <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
                     Moja filozofia
                   </h2>
@@ -181,14 +192,18 @@ export default function ManifestPage() {
             </div>
           </section>
 
-          {/* Separator */}
-          <div className="w-16 h-px bg-brand-accent mx-auto mb-16" />
-
           {/* Closing */}
           <section className="pb-24 small:pb-32">
             <div className="content-container max-w-3xl mx-auto">
               <AnimateIn variant="fade-up">
-                <div className="text-center space-y-4">
+                <div
+                  className="rounded-sm p-8 small:p-14 shadow-2xl border border-white/50 text-center space-y-4"
+                  style={{
+                    backgroundColor: "rgba(250, 250, 248, 0.88)",
+                    backdropFilter: "blur(12px)",
+                    WebkitBackdropFilter: "blur(12px)",
+                  }}
+                >
                   <p className="text-brand-text text-xl font-heading font-semibold">
                     Czystość to luksus. Prostota to siła.
                   </p>
