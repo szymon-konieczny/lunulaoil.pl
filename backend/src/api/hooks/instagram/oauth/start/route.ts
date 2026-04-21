@@ -6,7 +6,7 @@ const INSTAGRAM_AUTHORIZE_URL = "https://www.instagram.com/oauth/authorize"
 const DEFAULT_SCOPES = [
   "instagram_business_basic",
   "instagram_business_manage_messages",
-  "instagram_manage_comments",
+  "instagram_business_manage_comments",
 ].join(",")
 
 export async function GET(req: MedusaRequest, res: MedusaResponse) {
