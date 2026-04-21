@@ -122,7 +122,7 @@ export default function ManifestPage() {
             <div className="content-container max-w-3xl mx-auto">
               <AnimateIn variant="fade-up">
                 <div
-                  className="rounded-sm p-8 small:p-14 shadow-2xl border border-white/50"
+                  className="rounded-large p-8 small:p-14 shadow-2xl border border-white/50"
                   style={{
                     backgroundColor: "rgba(250, 250, 248, 0.88)",
                     backdropFilter: "blur(12px)",
@@ -153,7 +153,7 @@ export default function ManifestPage() {
             <div className="content-container max-w-3xl mx-auto">
               <AnimateIn variant="fade-up">
                 <div
-                  className="rounded-sm p-8 small:p-14 shadow-2xl border border-white/50"
+                  className="rounded-large p-8 small:p-14 shadow-2xl border border-white/50"
                   style={{
                     backgroundColor: "rgba(250, 250, 248, 0.88)",
                     backdropFilter: "blur(12px)",
@@ -197,7 +197,7 @@ export default function ManifestPage() {
             <div className="content-container max-w-3xl mx-auto">
               <AnimateIn variant="fade-up">
                 <div
-                  className="rounded-sm p-8 small:p-14 shadow-2xl border border-white/50 text-center space-y-4"
+                  className="rounded-large p-8 small:p-14 shadow-2xl border border-white/50 text-center space-y-4"
                   style={{
                     backgroundColor: "rgba(250, 250, 248, 0.88)",
                     backdropFilter: "blur(12px)",
