@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import Image from "next/image"
 import AnimateIn from "@modules/common/components/animate-in"
+import ScrollToButton from "@modules/common/components/scroll-to-button"
 
 export const metadata: Metadata = {
   title: "Manifest",
@@ -58,6 +59,27 @@ export default function ManifestPage() {
                   </span>
                 </div>
               </AnimateIn>
+              <AnimateIn variant="fade-up" delay={600}>
+                <ScrollToButton
+                  targetId="manifest-content"
+                  className="group mt-12 inline-flex items-center gap-3 px-6 py-3 rounded-full border border-brand-accent text-brand-accent text-xs tracking-[0.3em] uppercase hover:bg-brand-accent hover:text-white transition-all duration-300"
+                >
+                  <span>Odkryj więcej</span>
+                  <svg
+                    className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={1.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 14l-7 7-7-7M19 5l-7 7-7-7"
+                    />
+                  </svg>
+                </ScrollToButton>
+              </AnimateIn>
             </div>
           </div>
         </div>
@@ -100,13 +122,35 @@ export default function ManifestPage() {
                 </span>
               </div>
             </AnimateIn>
+            <AnimateIn variant="fade-up" delay={600}>
+              <ScrollToButton
+                targetId="manifest-content"
+                className="group mt-10 inline-flex items-center gap-3 px-6 py-3 rounded-full border border-brand-accent text-brand-accent text-xs tracking-[0.3em] uppercase hover:bg-brand-accent hover:text-white transition-all duration-300"
+              >
+                <span>Odkryj więcej</span>
+                <svg
+                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 14l-7 7-7-7M19 5l-7 7-7-7"
+                  />
+                </svg>
+              </ScrollToButton>
+            </AnimateIn>
           </div>
         </div>
       </section>
 
       {/* Content sections with workshop image as parallax background */}
       <div
-        className="relative bg-cover bg-center bg-scroll small:bg-fixed"
+        id="manifest-content"
+        className="relative bg-cover bg-center bg-scroll small:bg-fixed scroll-mt-20"
         style={{ backgroundImage: "url('/manifest-workshop.jpeg')" }}
       >
         {/* Very subtle global tint to unify the image with brand palette */}
