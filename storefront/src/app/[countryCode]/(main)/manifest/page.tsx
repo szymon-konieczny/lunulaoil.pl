@@ -11,49 +11,93 @@ export const metadata: Metadata = {
 export default function ManifestPage() {
   return (
     <div className="bg-brand-background">
-      {/* Gallery hero — full portrait image centered with blurred backdrop */}
-      <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center py-20 small:py-24">
-        {/* Blurred backdrop using the same image — fills empty space on wide screens */}
-        <div className="absolute inset-0">
-          <Image
-            src="/manifest-forest.jpeg"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            aria-hidden="true"
-            className="object-cover scale-110 blur-2xl opacity-40"
-          />
-          <div className="absolute inset-0 bg-brand-background/60" />
-        </div>
-
-        {/* Top label */}
-        <AnimateIn variant="fade-in" className="relative z-10 mb-8">
-          <span className="text-brand-accent text-sm tracking-[0.35em] uppercase font-medium">
-            Manifest
-          </span>
-        </AnimateIn>
-
-        {/* Full image — contained, never cropped */}
-        <AnimateIn variant="fade-up" delay={150} className="relative z-10 w-full flex justify-center px-4">
-          <div className="relative w-full max-w-md medium:max-w-lg aspect-[2/3] rounded-sm overflow-hidden shadow-2xl">
+      {/* Editorial hero — image right-aligned, text overflowing on the left */}
+      <section className="relative w-full overflow-hidden bg-brand-background">
+        {/* Desktop: full portrait image on the right, text overlaid on the left */}
+        <div className="hidden small:flex min-h-screen justify-end items-stretch">
+          <div className="relative h-screen aspect-[2/3] flex-shrink-0">
             <Image
               src="/manifest-forest.jpeg"
               alt="Lunula Botanique — powrót do natury"
               fill
-              sizes="(max-width: 1024px) 100vw, 512px"
+              priority
+              sizes="66vh"
+              className="object-cover"
+            />
+            {/* Soft gradient on left edge to keep overlapping text readable */}
+            <div className="absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-brand-background/80 via-brand-background/20 to-transparent pointer-events-none" />
+          </div>
+        </div>
+
+        {/* Text overlay — absolute on desktop, flows over image's left edge */}
+        <div className="hidden small:flex absolute inset-0 items-center pointer-events-none">
+          <div className="content-container">
+            <div className="max-w-xl pointer-events-auto">
+              <AnimateIn variant="fade-in">
+                <span className="text-brand-accent text-sm tracking-[0.35em] uppercase font-medium">
+                  Manifest
+                </span>
+              </AnimateIn>
+              <AnimateIn variant="fade-up" delay={150}>
+                <h1 className="mt-6 text-4xl medium:text-5xl large:text-6xl font-heading font-bold text-brand-text leading-[1.15]">
+                  Bo kiedyś&nbsp;wiedzieliśmy&nbsp;więcej, niż&nbsp;wiemy&nbsp;dziś.
+                </h1>
+              </AnimateIn>
+              <AnimateIn variant="fade-up" delay={300}>
+                <p className="mt-6 text-brand-text-muted text-lg italic font-heading">
+                  Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
+                </p>
+              </AnimateIn>
+              <AnimateIn variant="fade-up" delay={450}>
+                <div className="mt-10 flex items-center gap-4">
+                  <span className="w-10 h-px bg-brand-accent" />
+                  <span className="text-brand-text-muted text-xs tracking-[0.4em] uppercase">
+                    By Lunula
+                  </span>
+                </div>
+              </AnimateIn>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile: stacked — image on top, text below */}
+        <div className="small:hidden">
+          <div className="relative w-full aspect-[2/3] max-h-[80vh]">
+            <Image
+              src="/manifest-forest.jpeg"
+              alt="Lunula Botanique — powrót do natury"
+              fill
+              priority
+              sizes="100vw"
               className="object-cover"
             />
           </div>
-        </AnimateIn>
-
-        {/* Bottom signature */}
-        <AnimateIn variant="fade-up" delay={300} className="relative z-10 mt-8 flex flex-col items-center gap-4">
-          <p className="text-brand-text-muted text-xs tracking-[0.4em] uppercase">
-            By Lunula
-          </p>
-          <div className="w-px h-10 bg-brand-accent/40 animate-pulse" />
-        </AnimateIn>
+          <div className="content-container py-12">
+            <AnimateIn variant="fade-in">
+              <span className="text-brand-accent text-sm tracking-[0.35em] uppercase font-medium">
+                Manifest
+              </span>
+            </AnimateIn>
+            <AnimateIn variant="fade-up" delay={150}>
+              <h1 className="mt-4 text-3xl font-heading font-bold text-brand-text leading-tight">
+                Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
+              </h1>
+            </AnimateIn>
+            <AnimateIn variant="fade-up" delay={300}>
+              <p className="mt-4 text-brand-text-muted text-base italic font-heading">
+                Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
+              </p>
+            </AnimateIn>
+            <AnimateIn variant="fade-up" delay={450}>
+              <div className="mt-6 flex items-center gap-4">
+                <span className="w-10 h-px bg-brand-accent" />
+                <span className="text-brand-text-muted text-xs tracking-[0.4em] uppercase">
+                  By Lunula
+                </span>
+              </div>
+            </AnimateIn>
+          </div>
+        </div>
       </section>
 
       {/* Moja misja */}
@@ -74,11 +118,6 @@ export default function ManifestPage() {
                   Buduję koncepcję - coś, co ma sens.
                 </p>
                 <p>Coś, co zmienia sposób myślenia o pielęgnacji.</p>
-                <p className="text-brand-text-muted/70 italic">
-                  Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
-                  <br />
-                  Rozumieliśmy moc natury - i żyliśmy z nią w zgodzie.
-                </p>
               </div>
             </div>
           </AnimateIn>
