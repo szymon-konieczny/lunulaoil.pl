@@ -168,12 +168,12 @@ export default function ManifestPage() {
                 <div
                   className="rounded-large p-8 small:p-14 shadow-2xl border border-white/50"
                   style={{
-                    backgroundColor: "rgba(250, 250, 248, 0.88)",
-                    backdropFilter: "blur(12px)",
-                    WebkitBackdropFilter: "blur(12px)",
+                    backgroundColor: "rgba(250, 250, 248, 0.94)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
                   }}
                 >
-                  <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
+                  <h2 className="text-brand-accent text-xl small:text-2xl font-heading font-semibold mb-8 text-center">
                     Moja misja
                   </h2>
                   <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
@@ -199,12 +199,12 @@ export default function ManifestPage() {
                 <div
                   className="rounded-large p-8 small:p-14 shadow-2xl border border-white/50"
                   style={{
-                    backgroundColor: "rgba(250, 250, 248, 0.88)",
-                    backdropFilter: "blur(12px)",
-                    WebkitBackdropFilter: "blur(12px)",
+                    backgroundColor: "rgba(250, 250, 248, 0.94)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
                   }}
                 >
-                  <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
+                  <h2 className="text-brand-accent text-xl small:text-2xl font-heading font-semibold mb-8 text-center">
                     Moja filozofia
                   </h2>
                   <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
@@ -254,9 +254,9 @@ export default function ManifestPage() {
                 <div
                   className="rounded-large p-8 small:p-14 shadow-2xl border border-white/50 text-center space-y-4"
                   style={{
-                    backgroundColor: "rgba(250, 250, 248, 0.88)",
-                    backdropFilter: "blur(12px)",
-                    WebkitBackdropFilter: "blur(12px)",
+                    backgroundColor: "rgba(250, 250, 248, 0.94)",
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
                   }}
                 >
                   <p className="text-brand-text text-xl font-heading font-semibold">
