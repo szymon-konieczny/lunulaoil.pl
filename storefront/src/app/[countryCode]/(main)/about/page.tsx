@@ -214,6 +214,12 @@ export default async function AboutPage() {
                 <div className="space-y-4 text-brand-text-muted text-base leading-relaxed">
                   <p>{t("philosophy.p1")}</p>
                   <p>{t("philosophy.p2")}</p>
+                  <p>{t("philosophy.p3")}</p>
+                  <p>{t("philosophy.p4")}</p>
+                  <p>{t("philosophy.p5")}</p>
+                  <p className="text-brand-text font-medium">
+                    {t("philosophy.p6")}
+                  </p>
                 </div>
               </div>
             </AnimateIn>
