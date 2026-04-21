@@ -104,106 +104,108 @@ export default function ManifestPage() {
         </div>
       </section>
 
-      {/* Moja misja */}
-      <section className="py-20 small:py-32">
-        <div className="content-container max-w-3xl mx-auto">
-          <AnimateIn variant="fade-up">
-            <div>
-              <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
-                Moja misja
-              </h2>
-              <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
-                <p>
-                  Nie tworzę kolejnej marki, której produkty różnią się od siebie
-                  jedynie opakowaniem, nazwą i marketingiem - a składy pozostają
-                  oparte na tych samych syntetycznych komponentach.
-                </p>
-                <p className="text-brand-text font-semibold">
-                  Buduję koncepcję - coś, co ma sens.
-                </p>
-                <p>Coś, co zmienia sposób myślenia o pielęgnacji.</p>
-              </div>
+      {/* Content sections with workshop image as parallax background */}
+      <div
+        className="relative bg-cover bg-center bg-scroll small:bg-fixed"
+        style={{ backgroundImage: "url('/manifest-workshop.jpeg')" }}
+      >
+        {/* Light overlay for readability — image texture still shows through */}
+        <div className="absolute inset-0 bg-brand-background/88 backdrop-blur-[1px] pointer-events-none" />
+
+        {/* Content on top */}
+        <div className="relative">
+          {/* Moja misja */}
+          <section className="py-20 small:py-32">
+            <div className="content-container max-w-3xl mx-auto">
+              <AnimateIn variant="fade-up">
+                <div>
+                  <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
+                    Moja misja
+                  </h2>
+                  <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
+                    <p>
+                      Nie tworzę kolejnej marki, której produkty różnią się od
+                      siebie jedynie opakowaniem, nazwą i marketingiem - a składy
+                      pozostają oparte na tych samych syntetycznych komponentach.
+                    </p>
+                    <p className="text-brand-text font-semibold">
+                      Buduję koncepcję - coś, co ma sens.
+                    </p>
+                    <p>Coś, co zmienia sposób myślenia o pielęgnacji.</p>
+                  </div>
+                </div>
+              </AnimateIn>
             </div>
-          </AnimateIn>
-        </div>
-      </section>
+          </section>
 
-      {/* Workshop image — full-width cinematic break */}
-      <section className="relative h-[60vh] min-h-[420px] w-full overflow-hidden">
-        <Image
-          src="/manifest-workshop.jpeg"
-          alt="Pracownia Lunula Botanique — rzemieślnicza produkcja kosmetyków"
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
-        />
-        {/* Very subtle overlay, just to ease the transition */}
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-background/20 via-transparent to-brand-background/40 pointer-events-none" />
-      </section>
+          {/* Subtle separator */}
+          <div className="w-16 h-px bg-brand-accent/40 mx-auto" />
 
-      {/* Moja filozofia */}
-      <section className="py-20 small:py-32">
-        <div className="content-container max-w-3xl mx-auto">
-          <AnimateIn variant="fade-up">
-            <div>
-              <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
-                Moja filozofia
-              </h2>
-              <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
-                <p className="text-brand-text font-semibold">
-                  Wierzę, że skórę należy karmić, a nie zatruwać.
-                </p>
-                <p>Czy wiesz czym żywi się Twój mikrobiom?</p>
-                <p>
-                  Pielęgnacja powinna być tak czysta i bezpieczna, żeby można
-                  było ją zjeść. Bo wszystko, co nakładamy na skórę, przenika
-                  głębiej niż myślimy.
-                </p>
-                <p>
-                  Inteligencja natury działa w harmonii z organizmem.
-                  <br />
-                  Zero przypadków. Pełna zgodność.
-                </p>
-                <p>
-                  Składniki dobierane są celowo - tak, by wspierać, odżywiać
-                  i przywracać równowagę.
-                </p>
-                <p>
-                  Efektem takiej pielęgnacji jest cera, która odzyskuje blask,
-                  zdrowie, harmonię.
-                </p>
-              </div>
+          {/* Moja filozofia */}
+          <section className="py-20 small:py-32">
+            <div className="content-container max-w-3xl mx-auto">
+              <AnimateIn variant="fade-up">
+                <div>
+                  <h2 className="text-brand-accent text-lg font-heading font-semibold mb-8 text-center">
+                    Moja filozofia
+                  </h2>
+                  <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
+                    <p className="text-brand-text font-semibold">
+                      Wierzę, że skórę należy karmić, a nie zatruwać.
+                    </p>
+                    <p>Czy wiesz czym żywi się Twój mikrobiom?</p>
+                    <p>
+                      Pielęgnacja powinna być tak czysta i bezpieczna, żeby można
+                      było ją zjeść. Bo wszystko, co nakładamy na skórę, przenika
+                      głębiej niż myślimy.
+                    </p>
+                    <p>
+                      Inteligencja natury działa w harmonii z organizmem.
+                      <br />
+                      Zero przypadków. Pełna zgodność.
+                    </p>
+                    <p>
+                      Składniki dobierane są celowo - tak, by wspierać, odżywiać
+                      i przywracać równowagę.
+                    </p>
+                    <p>
+                      Efektem takiej pielęgnacji jest cera, która odzyskuje blask,
+                      zdrowie, harmonię.
+                    </p>
+                  </div>
+                </div>
+              </AnimateIn>
             </div>
-          </AnimateIn>
-        </div>
-      </section>
+          </section>
 
-      {/* Separator */}
-      <div className="w-16 h-px bg-brand-accent mx-auto mb-16" />
+          {/* Separator */}
+          <div className="w-16 h-px bg-brand-accent mx-auto mb-16" />
 
-      {/* Closing */}
-      <section className="pb-24 small:pb-32">
-        <div className="content-container max-w-3xl mx-auto">
-          <AnimateIn variant="fade-up">
-            <div className="text-center space-y-4">
-              <p className="text-brand-text text-xl font-heading font-semibold">
-                Czystość to luksus. Prostota to siła.
-              </p>
-              <p className="text-brand-accent text-lg italic font-heading">
-                „Minimalizm to nie brak - to wybór tego, co najważniejsze."
-              </p>
-              <div className="space-y-2 text-brand-text-muted text-base mt-8">
-                <p>To powrót do źródła</p>
-                <p>To zaufanie do natury</p>
-                <p>To manifest</p>
-              </div>
-              <p className="text-brand-text-muted/60 text-sm tracking-wider uppercase mt-8">
-                By Lunula
-              </p>
+          {/* Closing */}
+          <section className="pb-24 small:pb-32">
+            <div className="content-container max-w-3xl mx-auto">
+              <AnimateIn variant="fade-up">
+                <div className="text-center space-y-4">
+                  <p className="text-brand-text text-xl font-heading font-semibold">
+                    Czystość to luksus. Prostota to siła.
+                  </p>
+                  <p className="text-brand-accent text-lg italic font-heading">
+                    „Minimalizm to nie brak - to wybór tego, co najważniejsze."
+                  </p>
+                  <div className="space-y-2 text-brand-text-muted text-base mt-8">
+                    <p>To powrót do źródła</p>
+                    <p>To zaufanie do natury</p>
+                    <p>To manifest</p>
+                  </div>
+                  <p className="text-brand-text-muted/60 text-sm tracking-wider uppercase mt-8">
+                    By Lunula
+                  </p>
+                </div>
+              </AnimateIn>
             </div>
-          </AnimateIn>
+          </section>
         </div>
-      </section>
+      </div>
     </div>
   )
 }
