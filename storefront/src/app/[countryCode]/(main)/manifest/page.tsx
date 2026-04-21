@@ -85,8 +85,8 @@ export default function ManifestPage() {
         </div>
 
         {/* Mobile: stacked — image on top, text below (both fit in viewport) */}
-        <div className="small:hidden">
-          <div className="relative w-full h-[45dvh] min-h-[280px]">
+        <div className="small:hidden flex flex-col min-h-[calc(100dvh-5rem)]">
+          <div className="relative w-full h-[38dvh] min-h-[220px] flex-shrink-0">
             <Image
               src="/manifest-forest.jpeg"
               alt="Lunula Botanique — powrót do natury"
@@ -96,36 +96,36 @@ export default function ManifestPage() {
               className="object-cover object-[center_15%]"
             />
           </div>
-          <div className="content-container py-8">
+          <div className="content-container py-6 flex-1 flex flex-col">
             <AnimateIn variant="fade-in">
-              <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
+              <span className="text-brand-accent text-xs tracking-[0.3em] uppercase font-medium">
                 Filozofia marki
               </span>
             </AnimateIn>
             <AnimateIn variant="fade-up" delay={150}>
-              <h1 className="text-3xl font-heading font-bold text-brand-text mt-4 mb-6">
+              <h1 className="text-2xl font-heading font-bold text-brand-text mt-3 mb-4">
                 Manifest
               </h1>
             </AnimateIn>
             <AnimateIn variant="fade-up" delay={300}>
-              <p className="text-brand-text-muted text-base italic font-heading leading-relaxed">
+              <p className="text-brand-text-muted text-sm italic font-heading leading-relaxed">
                 Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
                 <br />
                 Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
               </p>
             </AnimateIn>
             <AnimateIn variant="fade-up" delay={450}>
-              <div className="mt-8 flex items-center gap-4">
-                <span className="w-10 h-px bg-brand-accent" />
-                <span className="text-brand-text-muted text-xs tracking-[0.4em] uppercase">
+              <div className="mt-5 flex items-center gap-3">
+                <span className="w-8 h-px bg-brand-accent" />
+                <span className="text-brand-text-muted text-[10px] tracking-[0.4em] uppercase">
                   By Lunula
                 </span>
               </div>
             </AnimateIn>
-            <AnimateIn variant="fade-up" delay={600}>
+            <AnimateIn variant="fade-up" delay={600} className="mt-auto pt-6">
               <ScrollToButton
                 targetId="manifest-content"
-                className="group mt-10 inline-flex items-center gap-3 px-6 py-3 rounded-full border border-brand-accent text-brand-accent text-xs tracking-[0.3em] uppercase hover:bg-brand-accent hover:text-white transition-all duration-300"
+                className="group inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-brand-accent text-brand-accent text-[11px] tracking-[0.3em] uppercase hover:bg-brand-accent hover:text-white transition-all duration-300"
               >
                 <span>Odkryj więcej</span>
                 <svg
