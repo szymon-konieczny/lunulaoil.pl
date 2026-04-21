@@ -34,17 +34,19 @@ export default function ManifestPage() {
           <div className="content-container">
             <div className="max-w-xl pointer-events-auto">
               <AnimateIn variant="fade-in">
-                <span className="text-brand-accent text-sm tracking-[0.35em] uppercase font-medium">
-                  Manifest
+                <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
+                  Filozofia marki
                 </span>
               </AnimateIn>
               <AnimateIn variant="fade-up" delay={150}>
-                <h1 className="mt-6 text-4xl medium:text-5xl large:text-6xl font-heading font-bold text-brand-text leading-[1.15]">
-                  Bo kiedyś&nbsp;wiedzieliśmy&nbsp;więcej, niż&nbsp;wiemy&nbsp;dziś.
+                <h1 className="text-3xl small:text-5xl font-heading font-bold text-brand-text mt-4 mb-6">
+                  Manifest
                 </h1>
               </AnimateIn>
               <AnimateIn variant="fade-up" delay={300}>
-                <p className="mt-6 text-brand-text-muted text-lg italic font-heading">
+                <p className="text-brand-text-muted text-lg italic font-heading leading-relaxed">
+                  Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
+                  <br />
                   Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
                 </p>
               </AnimateIn>
@@ -74,22 +76,24 @@ export default function ManifestPage() {
           </div>
           <div className="content-container py-12">
             <AnimateIn variant="fade-in">
-              <span className="text-brand-accent text-sm tracking-[0.35em] uppercase font-medium">
-                Manifest
+              <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
+                Filozofia marki
               </span>
             </AnimateIn>
             <AnimateIn variant="fade-up" delay={150}>
-              <h1 className="mt-4 text-3xl font-heading font-bold text-brand-text leading-tight">
-                Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
+              <h1 className="text-3xl font-heading font-bold text-brand-text mt-4 mb-6">
+                Manifest
               </h1>
             </AnimateIn>
             <AnimateIn variant="fade-up" delay={300}>
-              <p className="mt-4 text-brand-text-muted text-base italic font-heading">
+              <p className="text-brand-text-muted text-base italic font-heading leading-relaxed">
+                Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
+                <br />
                 Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
               </p>
             </AnimateIn>
             <AnimateIn variant="fade-up" delay={450}>
-              <div className="mt-6 flex items-center gap-4">
+              <div className="mt-8 flex items-center gap-4">
                 <span className="w-10 h-px bg-brand-accent" />
                 <span className="text-brand-text-muted text-xs tracking-[0.4em] uppercase">
                   By Lunula
