@@ -11,43 +11,49 @@ export const metadata: Metadata = {
 export default function ManifestPage() {
   return (
     <div className="bg-brand-background">
-      {/* Cinematic hero with forest image */}
-      <section className="relative h-screen min-h-[640px] w-full overflow-hidden">
-        <Image
-          src="/manifest-forest.jpeg"
-          alt="Lunula Botanique — powrót do natury"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_15%]"
-        />
-        {/* Soft gradient overlay — top and bottom only, center stays clean */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/40 pointer-events-none" />
+      {/* Gallery hero — full portrait image centered with blurred backdrop */}
+      <section className="relative min-h-screen w-full overflow-hidden flex flex-col items-center justify-center py-20 small:py-24">
+        {/* Blurred backdrop using the same image — fills empty space on wide screens */}
+        <div className="absolute inset-0">
+          <Image
+            src="/manifest-forest.jpeg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            aria-hidden="true"
+            className="object-cover scale-110 blur-2xl opacity-40"
+          />
+          <div className="absolute inset-0 bg-brand-background/60" />
+        </div>
 
         {/* Top label */}
-        <div className="absolute top-0 left-0 right-0 z-10 pt-24 small:pt-32">
-          <AnimateIn variant="fade-in">
-            <div className="text-center">
-              <span className="text-white/90 text-sm tracking-[0.35em] uppercase font-medium drop-shadow-lg">
-                Manifest
-              </span>
-            </div>
-          </AnimateIn>
-        </div>
+        <AnimateIn variant="fade-in" className="relative z-10 mb-8">
+          <span className="text-brand-accent text-sm tracking-[0.35em] uppercase font-medium">
+            Manifest
+          </span>
+        </AnimateIn>
 
-        {/* Bottom: signature + scroll indicator */}
-        <div className="absolute bottom-0 left-0 right-0 z-10 pb-10 small:pb-14">
-          <AnimateIn variant="fade-up" delay={300}>
-            <div className="text-center space-y-6">
-              <p className="text-white/90 text-xs tracking-[0.4em] uppercase drop-shadow-lg">
-                By Lunula
-              </p>
-              <div className="flex justify-center">
-                <div className="w-px h-10 bg-white/60 animate-pulse" />
-              </div>
-            </div>
-          </AnimateIn>
-        </div>
+        {/* Full image — contained, never cropped */}
+        <AnimateIn variant="fade-up" delay={150} className="relative z-10 w-full flex justify-center px-4">
+          <div className="relative w-full max-w-md medium:max-w-lg aspect-[2/3] rounded-sm overflow-hidden shadow-2xl">
+            <Image
+              src="/manifest-forest.jpeg"
+              alt="Lunula Botanique — powrót do natury"
+              fill
+              sizes="(max-width: 1024px) 100vw, 512px"
+              className="object-cover"
+            />
+          </div>
+        </AnimateIn>
+
+        {/* Bottom signature */}
+        <AnimateIn variant="fade-up" delay={300} className="relative z-10 mt-8 flex flex-col items-center gap-4">
+          <p className="text-brand-text-muted text-xs tracking-[0.4em] uppercase">
+            By Lunula
+          </p>
+          <div className="w-px h-10 bg-brand-accent/40 animate-pulse" />
+        </AnimateIn>
       </section>
 
       {/* Moja misja */}
