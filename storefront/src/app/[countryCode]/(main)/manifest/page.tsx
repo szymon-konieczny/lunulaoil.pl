@@ -110,7 +110,10 @@ export default function ManifestPage() {
         style={{ backgroundImage: "url('/manifest-workshop.jpeg')" }}
       >
         {/* Light overlay for readability — image texture still shows through */}
-        <div className="absolute inset-0 bg-brand-background/88 backdrop-blur-[1px] pointer-events-none" />
+        <div
+          className="absolute inset-0 backdrop-blur-[2px] pointer-events-none"
+          style={{ backgroundColor: "rgba(250, 250, 248, 0.92)" }}
+        />
 
         {/* Content on top */}
         <div className="relative">
