@@ -111,8 +111,8 @@ export default function ManifestPage() {
       >
         {/* Light overlay for readability — image texture still shows through */}
         <div
-          className="absolute inset-0 backdrop-blur-[2px] pointer-events-none"
-          style={{ backgroundColor: "rgba(250, 250, 248, 0.92)" }}
+          className="absolute inset-0 backdrop-blur-[1px] pointer-events-none"
+          style={{ backgroundColor: "rgba(250, 250, 248, 0.78)" }}
         />
 
         {/* Content on top */}
