@@ -209,26 +209,37 @@ export default function ManifestPage() {
                   </h2>
                   <div className="space-y-4 text-brand-text-muted text-lg leading-relaxed text-center">
                     <p className="text-brand-text font-semibold">
-                      Wierzę, że skórę należy karmić, a nie zatruwać.
-                    </p>
-                    <p>Czy wiesz czym żywi się Twój mikrobiom?</p>
-                    <p>
-                      Pielęgnacja powinna być tak czysta i bezpieczna, żeby można
-                      było ją zjeść. Bo wszystko, co nakładamy na skórę, przenika
-                      głębiej niż myślimy.
+                      Wierzę w pielęgnację opartą na fizjologii skóry, a nie na
+                      chwilowym efekcie.
                     </p>
                     <p>
-                      Inteligencja natury działa w harmonii z organizmem.
+                      Skóra to aktywny organ ochronny, którego równowaga zależy
+                      m.in. od integralności bariery hydrolipidowej i mikrobiomu.
+                    </p>
+                    <p>
+                      To, co nakładamy na skórę, może wspierać lub zaburzać jej
+                      naturalne funkcje.
+                    </p>
+                    <p>
+                      Dlatego pielęgnacja powinna być świadoma, celowa i oparta
+                      na składnikach o potwierdzonym działaniu.
+                    </p>
+                    <p>
+                      Formuły stworzone są tak, aby wspierały barierę naskórkową,
+                      ograniczały utratę wody (TEWL), działały kojąco
+                      i regenerująco, nie zakłócały równowagi mikrobiologicznej
+                      skóry.
+                    </p>
+                    <p>
+                      Bez zbędnych dodatków.
                       <br />
-                      Zero przypadków. Pełna zgodność.
+                      Bez przypadkowych kompozycji.
+                      <br />
+                      Każdy składnik ma swoją funkcję.
                     </p>
                     <p>
-                      Składniki dobierane są celowo - tak, by wspierać, odżywiać
-                      i przywracać równowagę.
-                    </p>
-                    <p>
-                      Efektem takiej pielęgnacji jest cera, która odzyskuje blask,
-                      zdrowie, harmonię.
+                      Efektem jest skóra, która funkcjonuje prawidłowo -
+                      utrzymuje nawilżenie, regeneruje się i odzyskuje równowagę.
                     </p>
                   </div>
                 </div>
