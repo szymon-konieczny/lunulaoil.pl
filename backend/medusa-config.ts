@@ -54,5 +54,8 @@ module.exports = defineConfig({
     {
       resolve: "./src/modules/ingredients",
     },
+    {
+      resolve: "./src/modules/instagram_bot",
+    },
   ],
 })
