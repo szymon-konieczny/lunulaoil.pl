@@ -14,8 +14,8 @@ export default function ManifestPage() {
       {/* Editorial hero — image right-aligned, text overflowing on the left */}
       <section className="relative w-full overflow-hidden bg-brand-background">
         {/* Desktop: full portrait image on the right, text overlaid on the left */}
-        <div className="hidden small:flex min-h-screen justify-end items-stretch">
-          <div className="relative h-screen aspect-[2/3] flex-shrink-0">
+        <div className="hidden small:flex h-[calc(100dvh-5rem)] justify-end items-stretch">
+          <div className="relative h-full aspect-[2/3] flex-shrink-0">
             <Image
               src="/manifest-forest.jpeg"
               alt="Lunula Botanique — powrót do natury"
@@ -30,7 +30,7 @@ export default function ManifestPage() {
         </div>
 
         {/* Text overlay — absolute on desktop, flows over image's left edge */}
-        <div className="hidden small:flex absolute inset-0 items-center pointer-events-none">
+        <div className="hidden small:flex absolute inset-0 items-center pointer-events-none h-[calc(100dvh-5rem)]">
           <div className="content-container">
             <div className="max-w-xl pointer-events-auto">
               <AnimateIn variant="fade-in">
@@ -64,7 +64,7 @@ export default function ManifestPage() {
 
         {/* Mobile: stacked — image on top, text below */}
         <div className="small:hidden">
-          <div className="relative w-full aspect-[2/3] max-h-[80vh]">
+          <div className="relative w-full aspect-[2/3] max-h-[80dvh]">
             <Image
               src="/manifest-forest.jpeg"
               alt="Lunula Botanique — powrót do natury"
