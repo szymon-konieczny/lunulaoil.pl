@@ -12,14 +12,14 @@ export const metadata: Metadata = {
 export default function ManifestPage() {
   return (
     <div className="bg-brand-background">
-      {/* Editorial hero — image right-aligned, text overflowing on the left */}
+      {/* Editorial hero - image right-aligned, text overflowing on the left */}
       <section className="relative w-full overflow-hidden bg-brand-background">
         {/* Desktop: full portrait image on the right, text overlaid on the left */}
         <div className="hidden small:flex h-[calc(100dvh-5rem)] justify-end items-stretch">
           <div className="relative h-full aspect-[2/3] flex-shrink-0">
             <Image
               src="/manifest-forest.jpeg"
-              alt="Lunula Botanique — powrót do natury"
+              alt="Lunula Botanique - powrót do natury"
               fill
               priority
               sizes="66vh"
@@ -30,7 +30,7 @@ export default function ManifestPage() {
           </div>
         </div>
 
-        {/* Text overlay — absolute on desktop, flows over image's left edge */}
+        {/* Text overlay - absolute on desktop, flows over image's left edge */}
         <div className="hidden small:flex absolute inset-0 items-center pointer-events-none h-[calc(100dvh-5rem)]">
           <div className="content-container">
             <div className="max-w-xl pointer-events-auto">
@@ -48,7 +48,7 @@ export default function ManifestPage() {
                 <p className="text-brand-text-muted text-lg italic font-heading leading-relaxed">
                   Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
                   <br />
-                  Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
+                  Rozumieliśmy moc natury - i żyliśmy z nią w zgodzie.
                 </p>
               </AnimateIn>
               <AnimateIn variant="fade-up" delay={450}>
@@ -84,12 +84,12 @@ export default function ManifestPage() {
           </div>
         </div>
 
-        {/* Mobile: stacked — image on top, text below (both fit in viewport) */}
+        {/* Mobile: stacked - image on top, text below (both fit in viewport) */}
         <div className="small:hidden flex flex-col min-h-[calc(100dvh-5rem)]">
           <div className="relative w-full h-[38dvh] min-h-[220px] flex-shrink-0">
             <Image
               src="/manifest-forest.jpeg"
-              alt="Lunula Botanique — powrót do natury"
+              alt="Lunula Botanique - powrót do natury"
               fill
               priority
               sizes="100vw"
@@ -111,7 +111,7 @@ export default function ManifestPage() {
               <p className="text-brand-text-muted text-sm italic font-heading leading-relaxed">
                 Bo kiedyś wiedzieliśmy więcej, niż wiemy dziś.
                 <br />
-                Rozumieliśmy moc natury — i żyliśmy z nią w zgodzie.
+                Rozumieliśmy moc natury - i żyliśmy z nią w zgodzie.
               </p>
             </AnimateIn>
             <AnimateIn variant="fade-up" delay={450}>
@@ -159,7 +159,7 @@ export default function ManifestPage() {
           style={{ backgroundColor: "rgba(250, 250, 248, 0.25)" }}
         />
 
-        {/* Content on top — each text block lives inside its own frosted card */}
+        {/* Content on top - each text block lives inside its own frosted card */}
         <div className="relative">
           {/* Moja misja */}
           <section className="py-20 small:py-32">

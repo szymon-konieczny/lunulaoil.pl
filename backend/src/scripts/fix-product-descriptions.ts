@@ -28,7 +28,7 @@ export default async function fixProductDescriptions({ container }: ExecArgs) {
     [/, Not Tested On Animals\./g, "."],
     // Any remaining " Not Tested On Animals" tokens
     [/,?\s*Not Tested On Animals\.?/g, ""],
-    // CPNP references (defensive — shouldn't be in products but just in case)
+    // CPNP references (defensive - shouldn't be in products but just in case)
     [/\s*Zarejestrowan[ey] w bazie CPNP[^.]*\./gi, ""],
     [/\s*\(baza CPNP\)/gi, ""],
     // Microbiological/dermatological norm claims

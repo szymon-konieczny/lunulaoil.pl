@@ -10,11 +10,11 @@ import Thumbnail from "@modules/products/components/thumbnail"
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
 export const metadata: Metadata = {
-  title: "Biozgodna Pielęgnacja — Lunula Botanique",
+  title: "Biozgodna Pielęgnacja - Lunula Botanique",
   description:
     "Biozgodna pielęgnacja to filozofia, w której składniki kosmetyku są rozpoznawalne przez skórę i wspierają jej naturalne procesy. Odkryj podejście Lunula Botanique.",
   openGraph: {
-    title: "Biozgodna Pielęgnacja — Lunula Botanique",
+    title: "Biozgodna Pielęgnacja - Lunula Botanique",
     description:
       "Składniki rozpoznawalne przez skórę. Pielęgnacja, która wspiera naturalne procesy zamiast je zaburzać.",
     url: `${BASE_URL}/biozgodna-pielegnacja`,
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 const principles = [
   {
     title: "Rozpoznawalność przez skórę",
-    text: "Składniki biozgodne to takie, które skóra rozpoznaje jako własne. Skwalan, kwas hialuronowy, olej jojoba — to substancje, które naturalnie występują w naszej skórze lub są do nich strukturalnie zbliżone.",
+    text: "Składniki biozgodne to takie, które skóra rozpoznaje jako własne. Skwalan, kwas hialuronowy, olej jojoba - to substancje, które naturalnie występują w naszej skórze lub są do nich strukturalnie zbliżone.",
   },
   {
     title: "Ochrona bariery hydrolipidowej",
@@ -50,10 +50,10 @@ const whatWeAvoid = [
 ]
 
 const featuredProducts = [
-  { handle: "hialcode", why: "Kwas hialuronowy — naturalny humektant występujący w naszej skórze" },
-  { handle: "squalanecode", why: "Skwalan — identyczny z lipidem produkowanym przez gruczoły łojowe" },
-  { handle: "jojobacode", why: "Olej jojoba — woskowy ester najbliższy ludzkiemu sebum" },
-  { handle: "geranium-glow-60ml", why: "Krem z geranium — biozgodna formuła z naturalnymi emolientami" },
+  { handle: "hialcode", why: "Kwas hialuronowy - naturalny humektant występujący w naszej skórze" },
+  { handle: "squalanecode", why: "Skwalan - identyczny z lipidem produkowanym przez gruczoły łojowe" },
+  { handle: "jojobacode", why: "Olej jojoba - woskowy ester najbliższy ludzkiemu sebum" },
+  { handle: "geranium-glow-60ml", why: "Krem z geranium - biozgodna formuła z naturalnymi emolientami" },
 ]
 
 type Props = {
@@ -99,7 +99,7 @@ export default async function BiozgodnaPielegnacjaPage(props: Props) {
           <AnimateIn variant="fade-up" delay={200}>
             <p className="text-brand-text-muted text-lg leading-relaxed">
               Biozgodna pielęgnacja to podejście, w którym składniki kosmetyku
-              są rozpoznawalne przez skórę — wspierają jej naturalne procesy,
+              są rozpoznawalne przez skórę - wspierają jej naturalne procesy,
               zamiast je zaburzać. To pielęgnacja oparta na szacunku do
               fizjologii skóry.
             </p>
@@ -164,12 +164,12 @@ export default async function BiozgodnaPielegnacjaPage(props: Props) {
               <p className="text-brand-text-muted leading-relaxed mb-4">
                 Każdy produkt Lunula Botanique powstaje w małych seriach,
                 z ręcznie dobranymi składnikami. Nie stosujemy masowej produkcji
-                — każda butelka przechodzi przez nasze ręce.
+                - każda butelka przechodzi przez nasze ręce.
               </p>
               <p className="text-brand-text-muted leading-relaxed">
                 Dobieramy surowce od sprawdzonych dostawców, kontrolujemy każdy
                 etap produkcji i dbamy o to, by finalny produkt był dokładnie
-                taki, jaki powinien być — czysty, skuteczny i biozgodny.
+                taki, jaki powinien być - czysty, skuteczny i biozgodny.
               </p>
             </AnimateIn>
           </div>
@@ -311,7 +311,7 @@ export default async function BiozgodnaPielegnacjaPage(props: Props) {
             </p>
             <p className="text-brand-text-muted leading-relaxed mb-8">
               W naszym leksykonie znajdziesz szczegółowe opisy składników
-              aktywnych — ich pochodzenie, właściwości i zastosowanie
+              aktywnych - ich pochodzenie, właściwości i zastosowanie
               w pielęgnacji biozgodnej.
             </p>
             <LocalizedClientLink
@@ -331,7 +331,7 @@ export default async function BiozgodnaPielegnacjaPage(props: Props) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebPage",
-            name: "Biozgodna Pielęgnacja — Lunula Botanique",
+            name: "Biozgodna Pielęgnacja - Lunula Botanique",
             description:
               "Biozgodna pielęgnacja to filozofia, w której składniki kosmetyku są rozpoznawalne przez skórę i wspierają jej naturalne procesy.",
             url: `${BASE_URL}/biozgodna-pielegnacja`,

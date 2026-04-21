@@ -480,7 +480,7 @@ const ingredientsData = [
     name_latin: "Citrus Aurantium Dulcis Peel Oil",
     handle: "pomarancza-slodka",
     description:
-      "Olejek ze skórki pomarańczy słodkiej jest bogaty w limonen — naturalny składnik o właściwościach antyoksydacyjnych i rozświetlających. Pobudza mikrocyrkulację, wyrównuje koloryt skóry i nadaje jej zdrowy blask. Jego cytrusowy aromat podnosi nastrój i dodaje energii.",
+      "Olejek ze skórki pomarańczy słodkiej jest bogaty w limonen - naturalny składnik o właściwościach antyoksydacyjnych i rozświetlających. Pobudza mikrocyrkulację, wyrównuje koloryt skóry i nadaje jej zdrowy blask. Jego cytrusowy aromat podnosi nastrój i dodaje energii.",
     benefits: [
       "Rozświetlanie i wyrównywanie kolorytu skóry",
       "Pobudzenie mikrocyrkulacji",
