@@ -84,19 +84,19 @@ export default function ManifestPage() {
           </div>
         </div>
 
-        {/* Mobile: stacked — image on top, text below */}
+        {/* Mobile: stacked — image on top, text below (both fit in viewport) */}
         <div className="small:hidden">
-          <div className="relative w-full aspect-[2/3] max-h-[80dvh]">
+          <div className="relative w-full h-[45dvh] min-h-[280px]">
             <Image
               src="/manifest-forest.jpeg"
               alt="Lunula Botanique — powrót do natury"
               fill
               priority
               sizes="100vw"
-              className="object-cover"
+              className="object-cover object-[center_15%]"
             />
           </div>
-          <div className="content-container py-12">
+          <div className="content-container py-8">
             <AnimateIn variant="fade-in">
               <span className="text-brand-accent text-sm tracking-[0.3em] uppercase font-medium">
                 Filozofia marki
