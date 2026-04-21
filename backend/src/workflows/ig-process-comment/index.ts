@@ -12,6 +12,7 @@ import { INSTAGRAM_BOT_MODULE } from "../../modules/instagram_bot"
 import type InstagramBotService from "../../modules/instagram_bot/service"
 import { IgGraphClient, IgGraphError } from "../../lib/instagram/graph-client"
 import { buildProductUrl } from "../../lib/storefront-url"
+import { getDefaultBurstLimiter } from "../../lib/instagram/burst-limiter"
 
 export type IgProcessCommentInput = {
   ig_comment_id: string
@@ -32,7 +33,13 @@ export type IgProcessCommentResult = {
   log_id?: string
   dm_message_id?: string
   reason?: string
+  used_comment_reply?: boolean
 }
+
+// Meta error codes that indicate we're outside the 24h standard messaging
+// window (or the IG user has no message thread open). In those cases we
+// fall back to a public comment reply, which is always allowed.
+const OUTSIDE_WINDOW_CODES = new Set<string | number>([10, 100, 551, 2534022])
 
 const renderTemplate = (
   template: string,
@@ -41,6 +48,9 @@ const renderTemplate = (
   template
     .replace(/\{product_name\}/g, vars.product_name)
     .replace(/\{product_url\}/g, vars.product_url)
+
+const isOutsideWindow = (err: IgGraphError): boolean =>
+  OUTSIDE_WINDOW_CODES.has(err.code)
 
 const processCommentStep = createStep(
   "ig-process-comment-step",
@@ -84,6 +94,29 @@ const processCommentStep = createStep(
       return new StepResponse({
         status: canSend.reason,
         log_id: log.id,
+      })
+    }
+
+    const burst = getDefaultBurstLimiter()
+    const burstOk = await burst.consume("global")
+    if (!burstOk) {
+      const [log] = await igBot.createIgDmLogs([
+        {
+          trigger_id: matched.id,
+          ig_user_id: input.ig_user_id,
+          ig_username: input.ig_username ?? null,
+          ig_comment_id: input.ig_comment_id,
+          comment_text: input.text,
+          product_handle: matched.product_handle,
+          product_url: "",
+          status: "rate_limited",
+          error: "burst_limit",
+        },
+      ])
+      return new StepResponse({
+        status: "rate_limited",
+        log_id: log.id,
+        reason: "burst_limit",
       })
     }
 
@@ -147,6 +180,7 @@ const processCommentStep = createStep(
     }
 
     const client = new IgGraphClient({ accessToken, businessAccountId })
+
     try {
       const { message_id } = await client.sendDm(input.ig_user_id, dmText)
       const [log] = await igBot.createIgDmLogs([
@@ -168,12 +202,71 @@ const processCommentStep = createStep(
         dm_message_id: message_id,
       })
     } catch (err) {
-      const errorMessage =
-        err instanceof IgGraphError
-          ? `[${err.status}/${err.code}] ${err.message}`
-          : err instanceof Error
-            ? err.message
-            : "Unknown error"
+      const isGraphErr = err instanceof IgGraphError
+      const canFallback = isGraphErr && isOutsideWindow(err)
+
+      if (canFallback) {
+        try {
+          const { id: replyId } = await client.replyToComment(
+            input.ig_comment_id,
+            dmText
+          )
+          const [log] = await igBot.createIgDmLogs([
+            {
+              trigger_id: matched.id,
+              ig_user_id: input.ig_user_id,
+              ig_username: input.ig_username ?? null,
+              ig_comment_id: input.ig_comment_id,
+              comment_text: input.text,
+              product_handle: matched.product_handle,
+              product_url: productUrl,
+              dm_message_id: `reply:${replyId}`,
+              status: "sent",
+              error: "fallback_comment_reply",
+            },
+          ])
+          logger.info(
+            `ig-process-comment: fell back to comment reply for ${input.ig_comment_id}`
+          )
+          return new StepResponse({
+            status: "sent",
+            log_id: log.id,
+            dm_message_id: replyId,
+            used_comment_reply: true,
+          })
+        } catch (replyErr) {
+          const replyMsg =
+            replyErr instanceof IgGraphError
+              ? `[${replyErr.status}/${replyErr.code}] ${replyErr.message}`
+              : replyErr instanceof Error
+                ? replyErr.message
+                : "Unknown error"
+          const [log] = await igBot.createIgDmLogs([
+            {
+              trigger_id: matched.id,
+              ig_user_id: input.ig_user_id,
+              ig_username: input.ig_username ?? null,
+              ig_comment_id: input.ig_comment_id,
+              comment_text: input.text,
+              product_handle: matched.product_handle,
+              product_url: productUrl,
+              status: "failed",
+              error: `dm+reply failed: ${replyMsg}`,
+            },
+          ])
+          return new StepResponse({
+            status: "failed",
+            log_id: log.id,
+            reason: replyMsg,
+          })
+        }
+      }
+
+      const errorMessage = isGraphErr
+        ? `[${err.status}/${err.code}] ${err.message}`
+        : err instanceof Error
+          ? err.message
+          : "Unknown error"
       logger.warn(
         `ig-process-comment: DM send failed for comment ${input.ig_comment_id}: ${errorMessage}`
       )

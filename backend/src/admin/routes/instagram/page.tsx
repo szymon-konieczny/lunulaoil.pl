@@ -95,6 +95,9 @@ const InstagramBotPage = () => {
         <Button size="small" variant="secondary" asChild>
           <Link to="/instagram/logs">Log DM-ów</Link>
         </Button>
+        <Button size="small" variant="secondary" asChild>
+          <Link to="/instagram/analytics">Analityka</Link>
+        </Button>
       </div>
     </Container>
   )
