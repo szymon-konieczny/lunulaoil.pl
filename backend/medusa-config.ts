@@ -51,5 +51,24 @@ module.exports = defineConfig({
         ],
       },
     }] : []),
+    ...(process.env.PAYNOW_API_KEY ? [{
+      resolve: "@medusajs/medusa/payment",
+      options: {
+        providers: [
+          {
+            resolve: "./src/modules/paynow",
+            id: "paynow",
+            options: {
+              apiKey: process.env.PAYNOW_API_KEY,
+              signatureKey: process.env.PAYNOW_SIGNATURE_KEY,
+              sandbox: process.env.PAYNOW_SANDBOX === "true",
+              continueUrl: process.env.MEDUSA_STOREFRONT_URL
+                ? `${process.env.MEDUSA_STOREFRONT_URL}/checkout/complete`
+                : undefined,
+            },
+          },
+        ],
+      },
+    }] : []),
   ],
 })
