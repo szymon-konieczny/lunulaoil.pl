@@ -1,5 +1,5 @@
-FROM node:22-alpine
-
+# Stage 1: Build (full deps + compile Medusa server + admin UI)
+FROM node:22-alpine AS builder
 WORKDIR /app
 
 COPY package.json package-lock.json ./
@@ -7,7 +7,6 @@ RUN npm ci
 
 COPY . .
 
-# Build Medusa backend + admin dashboard
 # NODE_ENV must be development during build so admin panel is included
 # DATABASE_URL dummy needed for config loader
 ARG CACHEBUST=1
@@ -20,8 +19,24 @@ RUN NODE_ENV=development \
     || (echo "FATAL: Admin index.html not found!" && exit 1) \
     && cp -r .medusa/server/public ./public
 
-EXPOSE 9000
+# Stage 2: Runtime (prod deps + built artifacts only)
+FROM node:22-alpine AS runtime
+WORKDIR /app
 
+# Install only production dependencies (no devDeps, no source TS toolchain)
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+
+# Copy built artifacts
+COPY --from=builder /app/.medusa ./.medusa
+COPY --from=builder /app/public ./public
+
+# Medusa loads config + resolves module paths at runtime
+COPY --from=builder /app/medusa-config.ts ./
+COPY --from=builder /app/tsconfig.json ./
+COPY --from=builder /app/src ./src
+
+EXPOSE 9000
 ENV NODE_ENV=production
 ENV NODE_OPTIONS="--max-old-space-size=1024"
-CMD ["sh", "-c", "npx medusa db:migrate && npx medusa start --port ${PORT:-9000}"]
+CMD ["sh", "-c", "npx medusa start --port ${PORT:-9000}"]
