@@ -12,9 +12,19 @@ const databaseDriverOptions = needsSsl
   ? { connection: { ssl: { rejectUnauthorized: false } } }
   : undefined
 
+const adminAllowedHosts = (process.env.ADMIN_ALLOWED_HOSTS || ".railway.app")
+  .split(",")
+  .map((h) => h.trim())
+  .filter(Boolean)
+
 module.exports = defineConfig({
   admin: {
     disable: process.env.DISABLE_ADMIN === "true",
+    vite: () => ({
+      server: {
+        allowedHosts: adminAllowedHosts,
+      },
+    }),
   },
   projectConfig: {
     databaseUrl,
