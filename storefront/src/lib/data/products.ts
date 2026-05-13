@@ -4,7 +4,7 @@ import { sdk } from "@lib/config"
 import { sortProducts } from "@lib/util/sort-products"
 import { HttpTypes } from "@medusajs/types"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
-import { getAuthHeaders, getCacheOptions } from "./cookies"
+import { getAuthHeaders } from "./cookies"
 import { getRegion, retrieveRegion } from "./regions"
 
 export const listProducts = async ({
@@ -49,12 +49,11 @@ export const listProducts = async ({
     ...(await getAuthHeaders()),
   }
 
-  const next = {
-    ...(await getCacheOptions("products")),
-  }
-
-  // Bypass cache for search queries to get fresh results
+  const isProd = process.env.NODE_ENV === "production"
   const hasSearchQuery = !!(queryParams as any)?.q
+  const useCache = isProd && !hasSearchQuery
+
+  const next = useCache ? { tags: ["products"] } : undefined
 
   return sdk.client
     .fetch<{ products: HttpTypes.StoreProduct[]; count: number }>(
@@ -70,8 +69,8 @@ export const listProducts = async ({
           ...queryParams,
         },
         headers,
-        next: hasSearchQuery ? { revalidate: 0 } : next,
-        cache: hasSearchQuery ? "no-store" : "force-cache",
+        next,
+        cache: useCache ? "force-cache" : "no-store",
       }
     )
     .then(({ products, count }) => {

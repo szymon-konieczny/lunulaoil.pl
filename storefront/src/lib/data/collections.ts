@@ -2,19 +2,17 @@
 
 import { sdk } from "@lib/config"
 import { HttpTypes } from "@medusajs/types"
-import { getCacheOptions } from "./cookies"
 
 export const retrieveCollection = async (id: string) => {
-  const next = {
-    ...(await getCacheOptions("collections")),
-  }
+  const isProd = process.env.NODE_ENV === "production"
+  const next = isProd ? { tags: ["collections"] } : undefined
 
   return sdk.client
     .fetch<{ collection: HttpTypes.StoreCollection }>(
       `/store/collections/${id}`,
       {
         next,
-        cache: "force-cache",
+        cache: isProd ? "force-cache" : "no-store",
       }
     )
     .then(({ collection }) => collection)
@@ -23,9 +21,8 @@ export const retrieveCollection = async (id: string) => {
 export const listCollections = async (
   queryParams: Record<string, string> = {}
 ): Promise<{ collections: HttpTypes.StoreCollection[]; count: number }> => {
-  const next = {
-    ...(await getCacheOptions("collections")),
-  }
+  const isProd = process.env.NODE_ENV === "production"
+  const next = isProd ? { tags: ["collections"] } : undefined
 
   queryParams.limit = queryParams.limit || "100"
   queryParams.offset = queryParams.offset || "0"
@@ -36,7 +33,7 @@ export const listCollections = async (
       {
         query: queryParams,
         next,
-        cache: "force-cache",
+        cache: isProd ? "force-cache" : "no-store",
       }
     )
     .then(({ collections }) => ({ collections, count: collections.length }))
@@ -45,15 +42,14 @@ export const listCollections = async (
 export const getCollectionByHandle = async (
   handle: string
 ): Promise<HttpTypes.StoreCollection> => {
-  const next = {
-    ...(await getCacheOptions("collections")),
-  }
+  const isProd = process.env.NODE_ENV === "production"
+  const next = isProd ? { tags: ["collections"] } : undefined
 
   return sdk.client
     .fetch<HttpTypes.StoreCollectionListResponse>(`/store/collections`, {
       query: { handle, fields: "*products" },
       next,
-      cache: "force-cache",
+      cache: isProd ? "force-cache" : "no-store",
     })
     .then(({ collections }) => collections[0])
 }
