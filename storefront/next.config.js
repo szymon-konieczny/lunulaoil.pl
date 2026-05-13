@@ -73,6 +73,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "**.up.railway.app",
       },
+      // Cloudflare R2 public buckets (default pub-*.r2.dev hostnames)
+      {
+        protocol: "https",
+        hostname: "**.r2.dev",
+      },
       // Specific backend host if MEDUSA_BACKEND_URL is set at build time
       ...(MEDUSA_BACKEND_HOSTNAME
         ? [
