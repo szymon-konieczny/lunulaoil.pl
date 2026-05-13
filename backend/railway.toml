@@ -5,7 +5,7 @@ dockerfilePath = "Dockerfile"
 [deploy]
 healthcheckPath = "/health"
 healthcheckTimeout = 180
-preDeployCommand = "sh -c 'npx medusa db:migrate'"
-startCommand = "sh -c 'npx medusa start --port ${PORT:-9000}'"
+preDeployCommand = "sh -c 'NODE_ENV=production npx medusa db:migrate'"
+startCommand = "sh -c 'NODE_ENV=production exec npx medusa start --port ${PORT:-9000}'"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
