@@ -23,11 +23,10 @@ RUN NODE_ENV=development \
 FROM node:22-alpine AS runtime
 WORKDIR /app
 
-# Install only production dependencies (no devDeps, no source TS toolchain)
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev && npm cache clean --force
-
-# Copy built artifacts
+# Copy installed deps + built artifacts from builder
+# (full node_modules incl. ts-node, which Medusa CLI requires at runtime)
+COPY --from=builder /app/package.json /app/package-lock.json ./
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/.medusa ./.medusa
 COPY --from=builder /app/public ./public
 
