@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import AnimateIn from "@modules/common/components/animate-in"
 import Icon from "@modules/common/components/icon"
@@ -6,7 +7,6 @@ import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import { getProductPrice } from "@lib/util/get-product-price"
 import AddToCartButton from "@modules/products/components/add-to-cart-button"
-import Thumbnail from "@modules/products/components/thumbnail"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
@@ -359,7 +359,7 @@ export default async function SalonPage(props: Props) {
                     }
                   } catch {}
                 }
-                const hasThumbnail =
+                const thumb =
                   medusaProduct?.thumbnail || medusaProduct?.images?.[0]?.url
 
                 return (
@@ -370,13 +370,14 @@ export default async function SalonPage(props: Props) {
                   >
                     <div className="flex flex-col small:flex-row gap-6 p-6 border border-brand-border rounded-sm">
                       {/* Thumbnail */}
-                      <div className="w-full small:w-32 h-32 shrink-0 rounded-sm overflow-hidden bg-brand-surface">
-                        {hasThumbnail ? (
-                          <Thumbnail
-                            thumbnail={medusaProduct.thumbnail}
-                            images={medusaProduct.images}
-                            size="small"
-                            className="!rounded-sm !shadow-none"
+                      <div className="relative w-full small:w-32 h-32 shrink-0 rounded-sm overflow-hidden bg-brand-surface">
+                        {thumb ? (
+                          <Image
+                            src={thumb}
+                            alt={config.name}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 128px"
+                            className="object-contain"
                           />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-brand-text-muted/30 text-xs">

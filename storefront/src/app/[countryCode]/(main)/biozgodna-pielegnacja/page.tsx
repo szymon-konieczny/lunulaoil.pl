@@ -232,6 +232,7 @@ export default async function BiozgodnaPielegnacjaPage(props: Props) {
               if (!product) return null
 
               const variantId = product.variants?.[0]?.id || null
+              const thumb = product.thumbnail || product.images?.[0]?.url
               let price = ""
               try {
                 const { cheapestPrice } = getProductPrice({ product })
@@ -243,13 +244,13 @@ export default async function BiozgodnaPielegnacjaPage(props: Props) {
               return (
                 <AnimateIn key={config.handle} variant="fade-up" delay={i * 100}>
                   <div className="flex gap-5 p-5 border border-brand-border rounded-sm hover:border-brand-accent/30 transition-colors">
-                    {product.thumbnail && (
+                    {thumb && (
                       <LocalizedClientLink
                         href={`/products/${config.handle}`}
                         className="relative w-28 h-28 shrink-0 rounded-sm overflow-hidden bg-brand-surface block"
                       >
                         <Image
-                          src={product.thumbnail}
+                          src={thumb}
                           alt={product.title}
                           fill
                           sizes="112px"

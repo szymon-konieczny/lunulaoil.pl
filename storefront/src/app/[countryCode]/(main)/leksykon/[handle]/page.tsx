@@ -172,6 +172,9 @@ export default async function IngredientDetailPage(props: Props) {
                         price = cheapestPrice?.calculated_price || ""
                       } catch {}
 
+                      const thumb =
+                        product.thumbnail || product.images?.[0]?.url
+
                       return (
                         <div
                           key={product.id}
@@ -179,9 +182,9 @@ export default async function IngredientDetailPage(props: Props) {
                         >
                           {/* Thumbnail */}
                           <div className="w-20 h-20 shrink-0 rounded-sm overflow-hidden bg-brand-surface relative">
-                            {product.thumbnail ? (
+                            {thumb ? (
                               <Image
-                                src={product.thumbnail}
+                                src={thumb}
                                 alt={product.title || ""}
                                 fill
                                 sizes="80px"
