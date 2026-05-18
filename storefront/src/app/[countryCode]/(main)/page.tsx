@@ -56,7 +56,7 @@ export default async function Home(props: {
       biocareMap[p.handle] = {
         price: cheapestPrice?.calculated_price || "",
         variantId: p.variants?.[0]?.id || null,
-        thumbnail: p.thumbnail || null,
+        thumbnail: p.thumbnail || p.images?.[0]?.url || null,
       }
     }
   } catch {}
@@ -75,7 +75,7 @@ export default async function Home(props: {
       soapMap[p.handle] = {
         price: cheapestPrice?.calculated_price || "",
         variantId: p.variants?.[0]?.id || null,
-        thumbnail: p.thumbnail || null,
+        thumbnail: p.thumbnail || p.images?.[0]?.url || null,
       }
     }
   } catch {}
