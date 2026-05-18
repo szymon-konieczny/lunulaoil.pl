@@ -359,7 +359,8 @@ export default async function SalonPage(props: Props) {
                     }
                   } catch {}
                 }
-                const hasThumbnail = medusaProduct?.thumbnail
+                const hasThumbnail =
+                  medusaProduct?.thumbnail || medusaProduct?.images?.[0]?.url
 
                 return (
                   <AnimateIn

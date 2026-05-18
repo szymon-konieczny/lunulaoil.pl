@@ -1,11 +1,11 @@
 import { Metadata } from "next"
+import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import AnimateIn from "@modules/common/components/animate-in"
 import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 import { getProductPrice } from "@lib/util/get-product-price"
 import AddToCartButton from "@modules/products/components/add-to-cart-button"
-import Thumbnail from "@modules/products/components/thumbnail"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://lunulaoil.pl"
 
@@ -246,13 +246,14 @@ export default async function BiozgodnaPielegnacjaPage(props: Props) {
                     {product.thumbnail && (
                       <LocalizedClientLink
                         href={`/products/${config.handle}`}
-                        className="w-28 h-28 shrink-0 rounded-sm overflow-hidden bg-brand-surface block"
+                        className="relative w-28 h-28 shrink-0 rounded-sm overflow-hidden bg-brand-surface block"
                       >
-                        <Thumbnail
-                          thumbnail={product.thumbnail}
-                          images={product.images}
-                          size="small"
-                          className="!rounded-sm !shadow-none"
+                        <Image
+                          src={product.thumbnail}
+                          alt={product.title}
+                          fill
+                          sizes="112px"
+                          className="object-contain"
                         />
                       </LocalizedClientLink>
                     )}
