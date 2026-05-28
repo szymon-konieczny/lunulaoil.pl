@@ -10,11 +10,15 @@ import { Button, clx, Heading, Text } from "@medusajs/ui"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import Divider from "@modules/common/components/divider"
 import MedusaRadio from "@modules/common/components/radio"
+import InpostGeowidget from "@modules/checkout/components/inpost-geowidget"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
 
 const PICKUP_OPTION_ON = "__PICKUP_ON"
 const PICKUP_OPTION_OFF = "__PICKUP_OFF"
+
+const isInpostPaczkomat = (name?: string | null) =>
+  !!name?.toLowerCase().includes("paczkomat")
 
 type ShippingProps = {
   cart: HttpTypes.StoreCart
@@ -147,6 +151,18 @@ const Shipping: React.FC<ShippingProps> = ({
   useEffect(() => {
     setError(null)
   }, [isOpen])
+
+  const selectedOptionName = _shippingMethods?.find(
+    (sm) => sm.id === shippingMethodId
+  )?.name
+  const selectedIsInpost = isInpostPaczkomat(selectedOptionName)
+  const inpostPointSelected = !!(cart.metadata?.inpost_point_name as string)
+  const inpostInitialPoint = cart.metadata?.inpost_point_name
+    ? {
+        name: cart.metadata.inpost_point_name as string,
+        address: (cart.metadata.inpost_point_address as string) || "",
+      }
+    : null
 
   return (
     <div className="bg-brand-surface">
@@ -295,6 +311,10 @@ const Shipping: React.FC<ShippingProps> = ({
             </div>
           </div>
 
+          {selectedIsInpost && (
+            <InpostGeowidget initialPoint={inpostInitialPoint} />
+          )}
+
           {showPickupOptions === PICKUP_OPTION_ON && (
             <div className="grid">
               <div className="flex flex-col">
@@ -373,7 +393,10 @@ const Shipping: React.FC<ShippingProps> = ({
               className="mt"
               onClick={handleSubmit}
               isLoading={isLoading}
-              disabled={!cart.shipping_methods?.[0]}
+              disabled={
+                !cart.shipping_methods?.[0] ||
+                (selectedIsInpost && !inpostPointSelected)
+              }
               data-testid="submit-delivery-option-button"
             >
               Przejdź do płatności
