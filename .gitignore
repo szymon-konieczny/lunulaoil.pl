@@ -31,3 +31,6 @@ storefront/public/hero-video.mp4
 
 # Misc
 *.tsbuildinfo
+
+# Claude Code worktrees (full repo copies, must never be committed)
+.claude/worktrees/
