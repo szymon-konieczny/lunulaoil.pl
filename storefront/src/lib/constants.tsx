@@ -30,6 +30,10 @@ export const paymentInfoMap: Record<
     title: "PayPal",
     icon: <PayPal />,
   },
+  pp_paynow_paynow: {
+    title: "BLIK, przelew, karta",
+    icon: <CreditCard />,
+  },
   pp_system_default: {
     title: "Płatność manualna",
     icon: <CreditCard />,
@@ -49,6 +53,9 @@ export const isPaypal = (providerId?: string) => {
 }
 export const isManual = (providerId?: string) => {
   return providerId?.startsWith("pp_system_default")
+}
+export const isPaynow = (providerId?: string) => {
+  return providerId?.startsWith("pp_paynow")
 }
 
 // Add currencies that don't need to be divided by 100

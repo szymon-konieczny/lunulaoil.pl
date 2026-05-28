@@ -67,5 +67,32 @@ module.exports = defineConfig({
     {
       resolve: "./src/modules/instagram_bot",
     },
+    // Paynow.pl payment provider — only registered when credentials are present,
+    // so local dev / Docker build (no keys) boot with the default system provider.
+    ...(process.env.PAYNOW_API_KEY
+      ? [
+          {
+            resolve: "@medusajs/medusa/payment",
+            options: {
+              providers: [
+                {
+                  resolve: "./src/modules/paynow",
+                  id: "paynow",
+                  options: {
+                    apiKey: process.env.PAYNOW_API_KEY,
+                    signatureKey: process.env.PAYNOW_SIGNATURE_KEY,
+                    // https://api.paynow.pl (prod) or https://api.sandbox.paynow.pl
+                    apiUrl: process.env.PAYNOW_API_URL,
+                    // Storefront base used to build the buyer return (continueUrl).
+                    storefrontUrl:
+                      process.env.PAYNOW_STOREFRONT_URL ||
+                      process.env.STORE_CORS?.split(",")[0],
+                  },
+                },
+              ],
+            },
+          },
+        ]
+      : []),
   ],
 })
