@@ -270,7 +270,7 @@ export default async function BiozgodnaPielegnacjaPage(props: Props) {
                       <p className="text-brand-text-muted text-xs mt-1 leading-relaxed">
                         {config.why}
                       </p>
-                      <div className="flex items-center gap-3 mt-3">
+                      <div className="flex flex-wrap items-center gap-3 mt-3">
                         {price && (
                           <span className="text-brand-text font-semibold text-sm">
                             {price}
