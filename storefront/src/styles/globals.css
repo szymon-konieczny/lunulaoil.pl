@@ -3,11 +3,6 @@
 @import "tailwindcss/utilities";
 
 @layer base {
-  h1,
-  h2 {
-    font-family: var(--font-playfair), serif;
-  }
-
   :root {
     /* Lunula Botanique - Light botanical palette */
     --color-primary: #CD9F7A;        /* Warm bronze/gold - CTA, prices */
@@ -174,4 +169,22 @@
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
   }
+}
+
+/* Headings use the brand heading font (Playfair Display).
+   - The element selectors cover custom <h1>–<h6> markup.
+   - The *-core selectors override @medusajs/ui <Heading>, which hardcodes
+     `font-sans` (h1/h2/h3 are the only levels the component renders).
+   Kept intentionally unlayered (and after Tailwind's utilities) so it wins
+   over `.font-sans` by source order without needing !important. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1-core,
+.h2-core,
+.h3-core {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
 }
