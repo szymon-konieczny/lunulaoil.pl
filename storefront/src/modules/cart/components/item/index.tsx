@@ -46,7 +46,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
 
   return (
     <Table.Row className="w-full" data-testid="product-row">
-      <Table.Cell className={clx("p-4 w-24", { "!pl-0": type === "full" })}>
+      <Table.Cell className="p-4 w-24">
         <LocalizedClientLink
           href={`/products/${item.product_handle}`}
           className={clx("flex", {
@@ -114,10 +114,9 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
         </Table.Cell>
       )}
 
-      <Table.Cell className={clx({ "!pr-0": type === "full" })}>
+      <Table.Cell>
         <span
           className={clx({
-            "!pr-0": type === "full",
             "flex flex-col items-end h-full justify-center": type === "preview",
           })}
         >
