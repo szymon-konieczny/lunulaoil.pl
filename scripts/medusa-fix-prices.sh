@@ -65,7 +65,10 @@ for p in json.load(sys.stdin).get('products', []):
         new_prices, labels = [], []
         for pr in prices:
             na = half(pr['amount'])
-            new_prices.append({'id': pr['id'], 'amount': na})
+            # Key by currency_code (NOT id-only): sending id+amount without a
+            # currency_code makes Medusa collapse a multi-currency variant to a
+            # single price (it keeps only the last entry), dropping the others.
+            new_prices.append({'currency_code': pr['currency_code'], 'amount': na})
             labels.append('%s %s->%s' % (pr.get('currency_code','?'), pr['amount'], na))
         body = json.dumps({'prices': new_prices})
         label = (p.get('handle') or pid) + ' [' + ', '.join(labels) + ']'
