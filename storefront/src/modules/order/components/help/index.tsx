@@ -9,10 +9,10 @@ const Help = () => {
       <div className="text-base-regular my-2">
         <ul className="gap-y-2 flex flex-col">
           <li>
-            <LocalizedClientLink href="/contact">Kontakt</LocalizedClientLink>
+            <a href="mailto:kontakt@lunulaoil.pl">Kontakt</a>
           </li>
           <li>
-            <LocalizedClientLink href="/contact">
+            <LocalizedClientLink href="/regulamin">
               Zwroty i wymiany
             </LocalizedClientLink>
           </li>
