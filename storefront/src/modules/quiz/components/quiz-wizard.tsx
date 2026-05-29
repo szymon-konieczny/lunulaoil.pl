@@ -64,6 +64,14 @@ export default function QuizWizard({ allProducts }: Props) {
     } catch {}
   }, [answers, showResults, aiRecommendation, aiHandles, currentStep])
 
+  // Scroll to top when the results screen ("Dobrane dla Ciebie") appears —
+  // otherwise the view stays at the bottom where the nav buttons were.
+  useEffect(() => {
+    if (showResults && typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" })
+    }
+  }, [showResults])
+
   // Re-fetch AI recommendation on restore if results shown but no recommendation
   useEffect(() => {
     if (showResults && !aiRecommendation && !aiLoading && Object.keys(answers).length > 0) {
