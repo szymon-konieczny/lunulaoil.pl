@@ -25,13 +25,17 @@ NAME="${1:?provide category name as first arg, e.g. \"Zestawy\"}"
 HANDLE="${2:-$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')}"
 
 echo "→ Logging in to $MEDUSA_URL as $MEDUSA_EMAIL"
-TOKEN=$(curl -sSf -X POST "$MEDUSA_URL/auth/user/emailpass" \
+# Build the JSON payload with python so special chars in the password
+# (" \ $ etc.) are escaped correctly instead of breaking the JSON string.
+AUTH_PAYLOAD=$(MEDUSA_EMAIL="$MEDUSA_EMAIL" MEDUSA_PASSWORD="$MEDUSA_PASSWORD" python3 -c \
+  'import json,os; print(json.dumps({"email":os.environ["MEDUSA_EMAIL"],"password":os.environ["MEDUSA_PASSWORD"]}))')
+TOKEN=$(curl -sS -X POST "$MEDUSA_URL/auth/user/emailpass" \
   -H "Content-Type: application/json" \
-  -d "{\"email\":\"$MEDUSA_EMAIL\",\"password\":\"$MEDUSA_PASSWORD\"}" \
-  | python3 -c "import json,sys; print(json.load(sys.stdin)['token'])")
+  -d "$AUTH_PAYLOAD" \
+  | python3 -c "import json,sys; print(json.load(sys.stdin).get('token',''))" 2>/dev/null)
 
 if [[ -z "$TOKEN" ]]; then
-  echo "✗ Login failed — no token returned" >&2
+  echo "✗ Login failed — check email/password (HTTP 401 = wrong credentials)" >&2
   exit 1
 fi
 

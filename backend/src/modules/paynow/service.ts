@@ -88,11 +88,10 @@ class PaynowProviderService extends AbstractPaymentProvider<PaynowOptions> {
   }
 
   /**
-   * Medusa stores amounts in minor units (grosze) in this instance — the same
-   * unit Paynow expects — so just round, don't multiply by 100.
+   * Medusa stores amounts in major units (PLN); Paynow expects grosze, so ×100.
    */
   private toMinorUnits(amount: unknown): number {
-    return Math.round(new BigNumber(amount as never).numeric)
+    return Math.round(new BigNumber(amount as never).numeric * 100)
   }
 
   /** Map a Paynow status to a Medusa payment-session status. */

@@ -56,6 +56,18 @@ MEDUSA_URL="…" MEDUSA_EMAIL="…" \
   ./scripts/medusa-find-wp-images.sh
 ```
 
+### `medusa-fix-prices.sh`
+Divide all product variant prices and B2B price-list prices by 100, to convert
+mistakenly ×100-entered values (e.g. `3300`) to true Medusa major units
+(`33.00`). Shipping option prices are NOT touched. Run with checkout disabled,
+right after deploying the matching code (storefront stops dividing by 100;
+Paynow charge restores ×100). Supports `DRY_RUN=1` for a preview.
+
+```bash
+DRY_RUN=1 MEDUSA_URL="…" MEDUSA_EMAIL="…" ./scripts/medusa-fix-prices.sh  # preview
+MEDUSA_URL="…" MEDUSA_EMAIL="…" ./scripts/medusa-fix-prices.sh            # apply
+```
+
 ### `medusa-migrate-wp-images.sh`
 Automatically fetch every `wp-content` image directly from the old WordPress
 VPS (accessible via IP even after DNS was moved), re-upload it to Medusa (R2

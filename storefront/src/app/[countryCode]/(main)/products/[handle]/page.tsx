@@ -181,7 +181,7 @@ export default async function ProductPage(props: Props) {
         "@type": "Offer",
         url: `${BASE_URL}/${params.countryCode}/products/${params.handle}`,
         priceCurrency: cheapestPrice?.currency_code?.toUpperCase(),
-        price: ((cheapestPrice?.calculated_price_number ?? 0) / 100).toFixed(2),
+        price: (cheapestPrice?.calculated_price_number ?? 0).toFixed(2),
         availability: "https://schema.org/InStock",
       },
     }),

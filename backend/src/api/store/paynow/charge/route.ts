@@ -87,9 +87,8 @@ export async function POST(
     return
   }
 
-  // Medusa stores amounts in minor units (grosze) in this instance — same unit
-  // Paynow expects — so pass it through directly without multiplying by 100.
-  const amountGrosze = Math.round(new BigNumber(session.amount).numeric)
+  // Medusa stores amounts in major units (PLN); Paynow expects grosze, so ×100.
+  const amountGrosze = Math.round(new BigNumber(session.amount).numeric * 100)
   const currency = (session.currency_code || cart.currency_code || "pln").toUpperCase()
 
   const client = new PaynowClient({
