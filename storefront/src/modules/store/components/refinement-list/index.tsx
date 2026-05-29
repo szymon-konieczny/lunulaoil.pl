@@ -114,8 +114,8 @@ const RefinementList = ({
             className={clx(
               "px-3 py-1.5 rounded-full text-xs font-medium transition-all border cursor-pointer",
               sortBy === opt.value
-                ? "bg-brand-border/50 text-brand-text border-brand-border"
-                : "border-brand-border text-brand-text-muted/70 hover:border-brand-border hover:text-brand-text-muted"
+                ? "bg-brand-accent text-white border-brand-accent"
+                : "border-brand-border text-brand-text-muted hover:border-brand-accent/50 hover:text-brand-text"
             )}
           >
             {opt.label}
