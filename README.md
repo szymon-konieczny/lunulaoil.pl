@@ -49,10 +49,28 @@ MEDUSA_URL="…" MEDUSA_EMAIL="…" \
 
 ### `medusa-find-wp-images.sh` (read-only)
 List products whose thumbnail or images still point to the old WordPress media
-(`/wp-content/`), which 404 now that WordPress is gone. Re-upload those
-products' images in the admin (uploads go to R2). This script only reads.
+(`/wp-content/`), which 404 now that WordPress is gone. This script only reads.
 
 ```bash
 MEDUSA_URL="…" MEDUSA_EMAIL="…" \
   ./scripts/medusa-find-wp-images.sh
+```
+
+### `medusa-migrate-wp-images.sh`
+Automatically fetch every `wp-content` image directly from the old WordPress
+VPS (accessible via IP even after DNS was moved), re-upload it to Medusa (R2
+storage), and update each product's images array and thumbnail with the new
+R2 URL. Safe: only replaces WP URLs; existing R2 URLs are left untouched.
+
+```bash
+MEDUSA_URL="…" MEDUSA_EMAIL="…" \
+  ./scripts/medusa-migrate-wp-images.sh
+```
+
+Optional: `DRY_RUN=1` — runs downloads and uploads but skips the final
+product update (useful to check what would change before committing).
+
+```bash
+DRY_RUN=1 MEDUSA_URL="…" MEDUSA_EMAIL="…" \
+  ./scripts/medusa-migrate-wp-images.sh
 ```
