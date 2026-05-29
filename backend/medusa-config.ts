@@ -94,5 +94,34 @@ module.exports = defineConfig({
           },
         ]
       : []),
+    // SMTP email notifications — only registered when SMTP_HOST is set, so local
+    // dev / builds without mail config boot fine.
+    ...(process.env.SMTP_HOST
+      ? [
+          {
+            resolve: "@medusajs/medusa/notification",
+            options: {
+              providers: [
+                {
+                  resolve: "./src/modules/smtp-notification",
+                  id: "smtp",
+                  options: {
+                    channels: ["email"],
+                    host: process.env.SMTP_HOST,
+                    port: Number(process.env.SMTP_PORT || 465),
+                    secure: (process.env.SMTP_SECURE || "true") === "true",
+                    user: process.env.SMTP_USER,
+                    pass: process.env.SMTP_PASSWORD,
+                    from:
+                      process.env.SMTP_FROM ||
+                      process.env.SMTP_USER ||
+                      "kontakt@lunulaoil.pl",
+                  },
+                },
+              ],
+            },
+          },
+        ]
+      : []),
   ],
 })
