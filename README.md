@@ -11,12 +11,12 @@ One-off maintenance utilities that talk to the Medusa **admin API**. They need
 
 | Var | Description |
 | --- | --- |
-| `MEDUSA_URL` | Backend base URL, e.g. `https://backend-xxxx.up.railway.app` (no `/app`) |
+| `MEDUSA_URL` | Backend base URL — `https://api.lunulaoil.pl` (no `/app`) |
 | `MEDUSA_EMAIL` | Admin user email |
 | `MEDUSA_PASSWORD` | Admin password — only for `medusa-create-category.sh`; the other scripts prompt for it interactively (kept out of shell history) |
 
-> Tip: `MEDUSA_URL` is the origin of the admin you log into, without the
-> `/app/...` path.
+> Tip: `MEDUSA_URL` is the backend API origin (`https://api.lunulaoil.pl`),
+> **not** the admin UI path (`/app/...`).
 
 ### `medusa-create-category.sh`
 Create a product category via the admin API (the admin UI's create-category
