@@ -145,7 +145,7 @@ export default async function SlavicSoapPage(props: Props) {
                     {/* Image or placeholder */}
                     {imageUrl ? (
                       <LocalizedClientLink href={`/products/${soap.handle}`}>
-                        <div className="relative aspect-[4/5] bg-brand-background rounded-sm overflow-hidden border border-brand-border">
+                        <div className="relative aspect-[4/5] bg-brand-background rounded-xl overflow-hidden border border-brand-border">
                           <Image
                             src={imageUrl}
                             alt={soap.name}
@@ -155,7 +155,7 @@ export default async function SlavicSoapPage(props: Props) {
                         </div>
                       </LocalizedClientLink>
                     ) : (
-                      <div className="relative aspect-[4/5] bg-brand-background rounded-sm flex items-center justify-center border border-brand-border">
+                      <div className="relative aspect-[4/5] bg-brand-background rounded-xl flex items-center justify-center border border-brand-border">
                         <div className="text-center">
                           <Icon name={soap.icon} size={64} className="mx-auto mb-2" />
                           <p className="text-brand-text-muted/50 text-xs tracking-wider uppercase">
