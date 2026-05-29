@@ -10,15 +10,24 @@ type ProductTabsProps = {
 }
 
 const ProductTabs = ({ product }: ProductTabsProps) => {
+  // Warsztaty (workshops) have no physical shipping — hide the shipping tab for them.
+  const isWorkshop = product.categories?.some(
+    (c) => c.handle === "warsztaty" || /warsztat/i.test(c.name ?? "")
+  )
+
   const tabs = [
     {
       label: "Informacje o produkcie",
       component: <ProductInfoTab product={product} />,
     },
-    {
-      label: "Wysyłka i zwroty",
-      component: <ShippingInfoTab />,
-    },
+    ...(isWorkshop
+      ? []
+      : [
+          {
+            label: "Wysyłka i zwroty",
+            component: <ShippingInfoTab />,
+          },
+        ]),
   ]
 
   return (
