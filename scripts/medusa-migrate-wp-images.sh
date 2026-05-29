@@ -48,8 +48,9 @@ trap 'rm -rf "$WORK"' EXIT
 
 # Return the MIME type for a filename based on its extension.
 mime_for() {
-  local ext="${1##*.}"
-  case "${ext,,}" in
+  local ext
+  ext=$(echo "${1##*.}" | tr '[:upper:]' '[:lower:]')
+  case "$ext" in
     jpg|jpeg) echo "image/jpeg" ;;
     png)      echo "image/png"  ;;
     webp)     echo "image/webp" ;;
