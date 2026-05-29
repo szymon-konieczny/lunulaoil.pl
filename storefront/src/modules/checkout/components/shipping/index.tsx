@@ -390,7 +390,7 @@ const Shipping: React.FC<ShippingProps> = ({
             />
             <Button
               size="large"
-              className="mt"
+              className="mt-6"
               onClick={handleSubmit}
               isLoading={isLoading}
               disabled={
