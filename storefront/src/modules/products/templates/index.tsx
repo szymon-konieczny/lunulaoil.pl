@@ -39,13 +39,13 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         className="content-container flex flex-col medium:flex-row medium:items-start py-6 relative gap-x-8"
         data-testid="product-container"
       >
-        {/* Left column - image gallery */}
-        <div className="block w-full medium:w-1/2 relative">
+        {/* Left column - image gallery (sticky on desktop so it follows long descriptions) */}
+        <div className="block w-full medium:w-1/2 medium:sticky medium:top-48 medium:self-start">
           <ImageGallery images={images} />
         </div>
 
         {/* Right column - product info, price, CTA, tabs */}
-        <div className="flex flex-col medium:sticky medium:top-48 medium:flex-1 w-full py-8 medium:py-0 gap-y-4">
+        <div className="flex flex-col medium:flex-1 w-full py-8 medium:py-0 gap-y-4">
           <ProductInfo product={product} />
           <ProductOnboardingCta />
           <Suspense

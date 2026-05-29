@@ -9,17 +9,59 @@ type ProductTabsProps = {
   product: HttpTypes.StoreProduct
 }
 
-const ProductTabs = ({ product }: ProductTabsProps) => {
-  // Warsztaty (workshops) have no physical shipping — hide the shipping tab for them.
-  const isWorkshop = product.categories?.some(
+const isWorkshopProduct = (product: HttpTypes.StoreProduct) =>
+  product.categories?.some(
     (c) => c.handle === "warsztaty" || /warsztat/i.test(c.name ?? "")
-  )
+  ) ?? false
+
+// Compute the product-info fields once so both the tab visibility check and the
+// rendered tab use the exact same data.
+const getProductInfo = (product: HttpTypes.StoreProduct) => {
+  // Extract INCI from description (pattern: "INCI: ...")
+  const description = product.description || ""
+  const inciMatch = description.match(/INCI:\s*(.+?)(?:\.|Pojemność|$)/i)
+  const inci = inciMatch?.[1]?.trim() || (product.metadata?.inci as string) || null
+
+  // Extract volume/capacity from description
+  const volumeMatch = description.match(/Pojemność:\s*(.+?)\.?$/i)
+  const volume = volumeMatch?.[1]?.trim() || null
+
+  const fields: { label: string; value: string | null | undefined }[] = [
+    { label: "Pojemność", value: volume },
+    // Treat weight of 0 (or unset) as "no data" — "0 g" is not meaningful info.
+    { label: "Waga", value: Number(product.weight) > 0 ? `${product.weight} g` : null },
+    { label: "Typ", value: product.type?.value },
+    { label: "Materiał", value: product.material },
+    { label: "Kraj pochodzenia", value: product.origin_country },
+    {
+      label: "Wymiary",
+      value:
+        product.length && product.width && product.height
+          ? `${product.length}L x ${product.width}W x ${product.height}H`
+          : null,
+    },
+  ]
+
+  const visibleFields = fields.filter((f) => f.value)
+
+  return { visibleFields, inci, hasContent: visibleFields.length > 0 || !!inci }
+}
+
+const ProductTabs = ({ product }: ProductTabsProps) => {
+  const isWorkshop = isWorkshopProduct(product)
+  // Hide "Informacje o produkcie" when there's nothing meaningful to show, and
+  // always hide it for warsztaty. Warsztaty also have no physical shipping.
+  const showInfoTab = !isWorkshop && getProductInfo(product).hasContent
 
   const tabs = [
-    {
-      label: "Informacje o produkcie",
-      component: <ProductInfoTab product={product} />,
-    },
+    ...(showInfoTab
+      ? [
+          {
+            label: "Informacje o produkcie",
+            component: <ProductInfoTab product={product} />,
+          },
+        ]
+      : []),
     ...(isWorkshop
       ? []
       : [
@@ -29,6 +71,10 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
           },
         ]),
   ]
+
+  if (tabs.length === 0) {
+    return null
+  }
 
   return (
     <div className="w-full">
@@ -49,41 +95,7 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 }
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
-  // Extract INCI from description (pattern: "INCI: ...")
-  const description = product.description || ""
-  const inciMatch = description.match(/INCI:\s*(.+?)(?:\.|Pojemność|$)/i)
-  const inci = inciMatch?.[1]?.trim() || (product.metadata?.inci as string) || null
-
-  // Extract volume/capacity from description
-  const volumeMatch = description.match(/Pojemność:\s*(.+?)\.?$/i)
-  const volume = volumeMatch?.[1]?.trim() || null
-
-  const fields: { label: string; value: string | null | undefined }[] = [
-    { label: "Pojemność", value: volume },
-    { label: "Waga", value: product.weight ? `${product.weight} g` : null },
-    { label: "Typ", value: product.type?.value },
-    { label: "Materiał", value: product.material },
-    { label: "Kraj pochodzenia", value: product.origin_country },
-    {
-      label: "Wymiary",
-      value:
-        product.length && product.width && product.height
-          ? `${product.length}L x ${product.width}W x ${product.height}H`
-          : null,
-    },
-  ]
-
-  const visibleFields = fields.filter((f) => f.value)
-
-  const hasContent = visibleFields.length > 0 || inci
-
-  if (!hasContent) {
-    return (
-      <div className="text-small-regular py-8 text-ui-fg-subtle">
-        Brak dodatkowych informacji.
-      </div>
-    )
-  }
+  const { visibleFields, inci } = getProductInfo(product)
 
   return (
     <div className="text-small-regular py-8">
