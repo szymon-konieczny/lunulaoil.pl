@@ -1,8 +1,6 @@
 "use client"
 
-import Back from "@modules/common/icons/back"
 import FastDelivery from "@modules/common/icons/fast-delivery"
-import Refresh from "@modules/common/icons/refresh"
 
 import Accordion from "./accordion"
 import { HttpTypes } from "@medusajs/types"
@@ -109,28 +107,8 @@ const ShippingInfoTab = () => {
           <div>
             <span className="font-semibold">Szybka dostawa</span>
             <p className="max-w-sm">
-              Twoja paczka dotrze w ciągu 3-5 dni roboczych do punktu odbioru
+              Twoja paczka dotrze w ciągu 2-4 dni roboczych do punktu odbioru
               lub pod wskazany adres.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <Refresh />
-          <div>
-            <span className="font-semibold">Prosta wymiana</span>
-            <p className="max-w-sm">
-              Produkt nie spełnia oczekiwań? Bez obaw - wymienimy go na
-              nowy.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <Back />
-          <div>
-            <span className="font-semibold">Łatwe zwroty</span>
-            <p className="max-w-sm">
-              Wystarczy zwrócić produkt, a my zwrócimy pieniądze. Bez zbędnych
-              pytań - dołożymy wszelkich starań, aby zwrot był bezproblemowy.
             </p>
           </div>
         </div>
