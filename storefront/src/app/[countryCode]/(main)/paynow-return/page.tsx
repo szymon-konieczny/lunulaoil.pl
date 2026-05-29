@@ -24,8 +24,15 @@ export default function PaynowReturnPage() {
   const [done, setDone] = useState(false)
 
   useEffect(() => {
+    // No cart_id means we arrived via Paynow's default return URL (fallback),
+    // not our per-payment continueUrl. We can't tie this back to a cart
+    // client-side, but the notification webhook completes the order server-side.
+    // Show a reassuring message instead of an error.
     if (!cartId) {
-      setError("Brak identyfikatora koszyka.")
+      setDone(true)
+      setMessage(
+        "Dziękujemy! Jeśli płatność się powiodła, potwierdzenie zamówienia wyślemy e-mailem."
+      )
       return
     }
 
