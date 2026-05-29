@@ -17,8 +17,12 @@ function buildHtml(order: any): string {
   // shipping_methods.amount) — Medusa's decorated order totals aren't reliably
   // populated via query.graph inside the order.placed subscriber.
   const items = (order.items || []).map((it: any) => {
-    const qty = Number(it.detail?.quantity ?? it.quantity ?? 1)
-    const unit = Number(it.unit_price ?? 0)
+    // query.graph returns stored (raw_*) fields reliably; decorated fields
+    // (unit_price, quantity) may be undefined here — fall back to raw_*.value.
+    const qty = Number(
+      it.detail?.quantity ?? it.raw_quantity?.value ?? it.quantity ?? 1
+    )
+    const unit = Number(it.unit_price ?? it.raw_unit_price?.value ?? 0)
     return {
       name: it.product_title || it.title || "Produkt",
       variant: it.variant_title || "",
@@ -29,7 +33,7 @@ function buildHtml(order: any): string {
 
   const itemsTotal = items.reduce((s: number, it: any) => s + it.lineTotal, 0)
   const shippingTotal = (order.shipping_methods || []).reduce(
-    (s: number, sm: any) => s + Number(sm.amount ?? 0),
+    (s: number, sm: any) => s + Number(sm.amount ?? sm.raw_amount?.value ?? 0),
     0
   )
   const grandTotal = itemsTotal + shippingTotal
@@ -121,10 +125,13 @@ export default async function orderPlacedHandler({
         "items.product_title",
         "items.variant_title",
         "items.unit_price",
+        "items.raw_unit_price",
         "items.quantity",
+        "items.raw_quantity",
         "items.detail.quantity",
         "shipping_methods.name",
         "shipping_methods.amount",
+        "shipping_methods.raw_amount",
         "shipping_address.first_name",
         "shipping_address.last_name",
         "shipping_address.address_1",
