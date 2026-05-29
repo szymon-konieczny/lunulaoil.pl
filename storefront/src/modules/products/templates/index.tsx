@@ -40,7 +40,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
         data-testid="product-container"
       >
         {/* Left column - image gallery (sticky on desktop so it follows long descriptions) */}
-        <div className="block w-full medium:w-1/2 medium:sticky medium:top-48 medium:self-start">
+        <div className="block w-full medium:w-1/2 medium:sticky medium:top-24 medium:self-start">
           <ImageGallery images={images} />
         </div>
 
