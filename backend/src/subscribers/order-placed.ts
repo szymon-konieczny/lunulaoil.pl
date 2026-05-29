@@ -13,15 +13,37 @@ function pln(amount: unknown): string {
 }
 
 function buildHtml(order: any): string {
-  const rows = (order.items || [])
+  // Compute amounts from raw stored fields (unit_price, detail.quantity,
+  // shipping_methods.amount) — Medusa's decorated order totals aren't reliably
+  // populated via query.graph inside the order.placed subscriber.
+  const items = (order.items || []).map((it: any) => {
+    const qty = Number(it.detail?.quantity ?? it.quantity ?? 1)
+    const unit = Number(it.unit_price ?? 0)
+    return {
+      name: it.product_title || it.title || "Produkt",
+      variant: it.variant_title || "",
+      qty,
+      lineTotal: unit * qty,
+    }
+  })
+
+  const itemsTotal = items.reduce((s: number, it: any) => s + it.lineTotal, 0)
+  const shippingTotal = (order.shipping_methods || []).reduce(
+    (s: number, sm: any) => s + Number(sm.amount ?? 0),
+    0
+  )
+  const grandTotal = itemsTotal + shippingTotal
+  const shippingMethod = order.shipping_methods?.[0]?.name || "—"
+
+  const rows = items
     .map(
       (it: any) =>
         `<tr>
-          <td style="padding:8px 0;border-bottom:1px solid #eee;">${it.product_title || it.title}${
-          it.variant_title ? ` — ${it.variant_title}` : ""
+          <td style="padding:8px 0;border-bottom:1px solid #eee;">${it.name}${
+          it.variant ? ` — ${it.variant}` : ""
         }</td>
-          <td style="padding:8px 0;border-bottom:1px solid #eee;text-align:center;">${it.quantity}×</td>
-          <td style="padding:8px 0;border-bottom:1px solid #eee;text-align:right;">${pln(it.total)}</td>
+          <td style="padding:8px 0;border-bottom:1px solid #eee;text-align:center;">${it.qty}×</td>
+          <td style="padding:8px 0;border-bottom:1px solid #eee;text-align:right;">${pln(it.lineTotal)}</td>
         </tr>`
     )
     .join("")
@@ -35,8 +57,6 @@ function buildHtml(order: any): string {
     .filter(Boolean)
     .join("<br>")
 
-  const shippingMethod = order.shipping_methods?.[0]?.name || "—"
-
   return `<!DOCTYPE html>
 <html lang="pl"><body style="font-family:Arial,Helvetica,sans-serif;color:#2b2b2b;background:#f6f5f1;margin:0;padding:24px;">
   <div style="max-width:560px;margin:0 auto;background:#fff;border-radius:12px;padding:32px;">
@@ -49,13 +69,13 @@ function buildHtml(order: any): string {
 
     <table style="width:100%;font-size:14px;">
       <tr><td style="padding:2px 0;color:#666;">Produkty</td><td style="padding:2px 0;text-align:right;">${pln(
-        order.item_total ?? order.subtotal
+        itemsTotal
       )}</td></tr>
       <tr><td style="padding:2px 0;color:#666;">Wysyłka (${shippingMethod})</td><td style="padding:2px 0;text-align:right;">${pln(
-        order.shipping_total
+        shippingTotal
       )}</td></tr>
       <tr><td style="padding:8px 0 0;font-weight:bold;border-top:1px solid #eee;">Razem</td><td style="padding:8px 0 0;text-align:right;font-weight:bold;border-top:1px solid #eee;">${pln(
-        order.total
+        grandTotal
       )}</td></tr>
     </table>
 
@@ -97,16 +117,14 @@ export default async function orderPlacedHandler({
         "display_id",
         "email",
         "currency_code",
-        "total",
-        "subtotal",
-        "item_total",
-        "shipping_total",
         "items.title",
         "items.product_title",
         "items.variant_title",
+        "items.unit_price",
         "items.quantity",
-        "items.total",
+        "items.detail.quantity",
         "shipping_methods.name",
+        "shipping_methods.amount",
         "shipping_address.first_name",
         "shipping_address.last_name",
         "shipping_address.address_1",
