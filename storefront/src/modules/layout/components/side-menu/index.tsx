@@ -24,7 +24,7 @@ const SIDE_MENU_ITEMS: MenuItem[] = [
     children: [
       { label: "Twarz", href: "/categories/twarz" },
       { label: "Ciało", href: "/categories/cialo" },
-      { label: "Rytuał", href: "/categories/rytual" },
+      { label: "Mydła", href: "/categories/mydla" },
       { label: "Włosy", href: "/categories/wlosy" },
       { label: "Wszystkie produkty", href: "/store" },
     ],
