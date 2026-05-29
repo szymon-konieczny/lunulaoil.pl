@@ -40,51 +40,43 @@ TOKEN=$(curl -sS -X POST "$MEDUSA_URL/auth/user/emailpass" \
 OK=0; FAIL=0; SKIP=0
 
 # ---------------------------------------------------------------------------
-# 1) Product variant BASE prices (price_list_id == null). Divide amount by 100.
+# 1) Product variant BASE prices (variants.prices — excludes price-list prices)
 # ---------------------------------------------------------------------------
 echo "→ Re-pricing product variants (÷100)"
 LIMIT=100; OFFSET=0
-PFIELDS="id,handle,variants.id,variants.title,variants.price_set.prices.id,variants.price_set.prices.amount,variants.price_set.prices.currency_code,variants.price_set.prices.price_list_id"
+PFIELDS="id,handle,variants.id,variants.prices.id,variants.prices.amount,variants.prices.currency_code"
 
 while :; do
   PAGE=$(curl -sSf "$MEDUSA_URL/admin/products?limit=$LIMIT&offset=$OFFSET&fields=$PFIELDS" \
     -H "Authorization: Bearer $TOKEN")
   COUNT=$(echo "$PAGE" | python3 -c "import json,sys; print(json.load(sys.stdin).get('count',0))")
 
-  # Emit one line per variant that has base prices:  pid <TAB> vid <TAB> label <TAB> body
+  # one line per variant with prices:  pid <TAB> vid <TAB> label <TAB> body
   ROWS=$(echo "$PAGE" | python3 -c "
 import json, sys
 from decimal import Decimal, ROUND_HALF_UP
-
-def half(a):
-    return (Decimal(str(a)) / Decimal(100)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
-
-data = json.load(sys.stdin)
-for p in data.get('products', []):
+def half(a): return float((Decimal(str(a))/Decimal(100)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
+for p in json.load(sys.stdin).get('products', []):
     pid = p['id']
     for v in (p.get('variants') or []):
-        vid = v['id']
-        prices = ((v.get('price_set') or {}).get('prices')) or []
-        base = [pr for pr in prices if not pr.get('price_list_id')]
-        if not base:
+        prices = v.get('prices') or []
+        if not prices:
             continue
-        new_prices = []
-        labels = []
-        for pr in base:
-            new_amt = float(half(pr['amount']))
-            new_prices.append({'id': pr['id'], 'amount': new_amt})
-            labels.append('%s %s->%s' % (pr.get('currency_code','?'), pr['amount'], new_amt))
+        new_prices, labels = [], []
+        for pr in prices:
+            na = half(pr['amount'])
+            new_prices.append({'id': pr['id'], 'amount': na})
+            labels.append('%s %s->%s' % (pr.get('currency_code','?'), pr['amount'], na))
         body = json.dumps({'prices': new_prices})
         label = (p.get('handle') or pid) + ' [' + ', '.join(labels) + ']'
-        print(pid + '\t' + vid + '\t' + label + '\t' + body)
+        print(pid + '\t' + v['id'] + '\t' + label + '\t' + body)
 ")
 
   if [[ -n "$ROWS" ]]; then
     while IFS=$'\t' read -r PID VID LABEL BODY; do
       [[ -z "$VID" ]] && continue
       if [[ "$DRY_RUN" == "1" ]]; then
-        echo "  (dry) $LABEL"
-        OK=$((OK+1)); continue
+        echo "  (dry) $LABEL"; OK=$((OK+1)); continue
       fi
       if curl -sf -X POST "$MEDUSA_URL/admin/products/$PID/variants/$VID" \
           -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
@@ -101,7 +93,7 @@ for p in data.get('products', []):
 done
 
 # ---------------------------------------------------------------------------
-# 2) B2B price-list prices. Divide amount by 100.
+# 2) B2B price-list prices — update via /prices/batch ({update:[{id,amount,variant_id}]})
 # ---------------------------------------------------------------------------
 echo "→ Re-pricing price lists (÷100)"
 LISTS=$(curl -sSf "$MEDUSA_URL/admin/price-lists?limit=100&fields=id,title" \
@@ -115,23 +107,26 @@ for pl in json.load(sys.stdin).get('price_lists', []):
 if [[ -n "$LISTS" ]]; then
   while IFS=$'\t' read -r PLID PLTITLE; do
     [[ -z "$PLID" ]] && continue
-    PRICES=$(curl -sSf "$MEDUSA_URL/admin/price-lists/$PLID/prices?limit=1000&fields=id,amount,currency_code" \
+    PRICES=$(curl -sSf "$MEDUSA_URL/admin/price-lists/$PLID/prices?limit=1000&fields=id,amount,currency_code,price_set.variant.id" \
       -H "Authorization: Bearer $TOKEN" 2>/dev/null || echo "")
     BODY=$(echo "$PRICES" | python3 -c "
 import json, sys
 from decimal import Decimal, ROUND_HALF_UP
 def half(a): return float((Decimal(str(a))/Decimal(100)).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP))
 try:
-    d = json.load(sys.stdin)
+    prices = json.load(sys.stdin).get('prices') or []
 except Exception:
     print(''); sys.exit()
-prices = d.get('prices') or d.get('price_list', {}).get('prices') or []
-out = [{'id': pr['id'], 'amount': half(pr['amount'])} for pr in prices if 'id' in pr and 'amount' in pr]
-print(json.dumps({'prices': out}) if out else '')
+out = []
+for pr in prices:
+    vid = (((pr.get('price_set') or {}).get('variant')) or {}).get('id')
+    if 'id' in pr and 'amount' in pr and vid:
+        out.append({'id': pr['id'], 'amount': half(pr['amount']), 'variant_id': vid})
+print(json.dumps({'update': out}) if out else '')
 " 2>/dev/null || echo "")
 
-    NUM=$(echo "$BODY" | python3 -c "import json,sys;
-try: print(len(json.load(sys.stdin).get('prices',[])))
+    NUM=$(echo "$BODY" | python3 -c "import json,sys
+try: print(len(json.load(sys.stdin).get('update',[])))
 except: print(0)" 2>/dev/null || echo 0)
 
     if [[ -z "$BODY" || "$NUM" == "0" ]]; then
@@ -140,7 +135,7 @@ except: print(0)" 2>/dev/null || echo 0)
     if [[ "$DRY_RUN" == "1" ]]; then
       echo "  (dry) price-list \"$PLTITLE\": $NUM prices ÷100"; OK=$((OK+1)); continue
     fi
-    if curl -sf -X POST "$MEDUSA_URL/admin/price-lists/$PLID" \
+    if curl -sf -X POST "$MEDUSA_URL/admin/price-lists/$PLID/prices/batch" \
         -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
         -d "$BODY" >/dev/null 2>&1; then
       echo "  ✓ price-list \"$PLTITLE\": $NUM prices ÷100"; OK=$((OK+1))
@@ -153,5 +148,6 @@ else
 fi
 
 echo ""
-echo "✓ Done — updated=$OK skipped=$SKIP failed=$FAIL${DRY_RUN:+ (DRY_RUN)}"
+SUFFIX=""; [[ "$DRY_RUN" == "1" ]] && SUFFIX=" (DRY_RUN — nothing written)"
+echo "✓ Done — updated=$OK skipped=$SKIP failed=$FAIL$SUFFIX"
 [[ "$FAIL" -gt 0 ]] && exit 1 || exit 0
