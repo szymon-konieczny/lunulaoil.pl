@@ -126,6 +126,7 @@ export default async function SlavicSoapPage(props: Props) {
             {soaps.map((soap, i) => {
               const product = productMap.get(soap.handle)
               const variantId = product?.variants?.[0]?.id
+              const imageUrl = product?.thumbnail || product?.images?.[0]?.url
               let price: string | null = null
               try {
                 if (product) {
@@ -142,11 +143,11 @@ export default async function SlavicSoapPage(props: Props) {
                 >
                   <div className="grid grid-cols-1 small:grid-cols-[minmax(0,360px)_1fr] gap-8 items-center">
                     {/* Image or placeholder */}
-                    {product?.thumbnail ? (
+                    {imageUrl ? (
                       <LocalizedClientLink href={`/products/${soap.handle}`}>
                         <div className="relative aspect-[4/5] bg-brand-background rounded-sm overflow-hidden border border-brand-border">
                           <Image
-                            src={product.thumbnail}
+                            src={imageUrl}
                             alt={soap.name}
                             fill
                             className="object-cover"
