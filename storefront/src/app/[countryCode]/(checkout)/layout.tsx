@@ -1,3 +1,4 @@
+import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
@@ -26,10 +27,17 @@ export default function CheckoutLayout({
           </LocalizedClientLink>
           <LocalizedClientLink
             href="/"
-            className="txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base uppercase"
+            className="flex items-center justify-center hover:opacity-90 transition-opacity"
             data-testid="store-link"
           >
-            Lunula Botanique
+            <Image
+              src="/logo-botanique.png"
+              alt="Lunula Botanique"
+              width={250}
+              height={210}
+              className="w-auto h-12"
+              priority
+            />
           </LocalizedClientLink>
           <div className="flex-1 basis-0" />
         </nav>
