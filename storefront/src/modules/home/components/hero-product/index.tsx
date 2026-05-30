@@ -1,5 +1,6 @@
 import Image from "next/image"
 import AnimateIn from "@modules/common/components/animate-in"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const HeroProduct = () => {
   return (
@@ -30,9 +31,12 @@ const HeroProduct = () => {
                 formuła, która karmi skórę tym, co już zna - przywracając
                 jej blask, zdrowie i harmonię.
               </p>
-              <span className="text-brand-accent text-xs tracking-[0.2em] uppercase font-medium">
-                Wkrótce w ofercie
-              </span>
+              <LocalizedClientLink
+                href="/store"
+                className="text-brand-accent text-xs tracking-[0.2em] uppercase font-medium hover:opacity-70 transition-opacity"
+              >
+                Zobacz w sklepie →
+              </LocalizedClientLink>
             </div>
           </AnimateIn>
         </div>
