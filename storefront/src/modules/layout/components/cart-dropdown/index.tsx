@@ -208,7 +208,7 @@ const CartDropdown = ({
                   <div className="flex items-center justify-between">
                     <span className="text-ui-fg-base font-semibold">
                       Suma częściowa{" "}
-                      <span className="font-normal">(bez podatków)</span>
+                      <span className="font-normal">(z VAT)</span>
                     </span>
                     <span
                       className="text-large-semi"

@@ -29,7 +29,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
     <div>
       <div className="flex flex-col gap-y-2 txt-medium text-ui-fg-subtle ">
         <div className="flex items-center justify-between">
-          <span>Suma częściowa (bez wysyłki i podatków)</span>
+          <span>Suma częściowa (bez wysyłki)</span>
           <span data-testid="cart-subtotal" data-value={item_subtotal || 0}>
             {convertToLocale({ amount: item_subtotal ?? 0, currency_code })}
           </span>
@@ -56,12 +56,14 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
             </span>
           </div>
         )}
-        <div className="flex justify-between">
-          <span className="flex gap-x-1 items-center ">Podatki</span>
-          <span data-testid="cart-taxes" data-value={tax_total || 0}>
-            {convertToLocale({ amount: tax_total ?? 0, currency_code })}
-          </span>
-        </div>
+        {!!tax_total && (
+          <div className="flex justify-between">
+            <span className="flex gap-x-1 items-center ">w tym VAT</span>
+            <span data-testid="cart-taxes" data-value={tax_total}>
+              {convertToLocale({ amount: tax_total, currency_code })}
+            </span>
+          </div>
+        )}
       </div>
       <div className="h-px w-full border-b border-brand-border my-4" />
       <div className="flex items-center justify-between text-ui-fg-base mb-2 txt-medium ">
@@ -75,6 +77,7 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
         </span>
       </div>
       <div className="h-px w-full border-b border-brand-border mt-4" />
+      <p className="text-xs text-ui-fg-muted mt-3">Ceny zawierają podatek VAT.</p>
     </div>
   )
 }

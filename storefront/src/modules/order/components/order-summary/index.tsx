@@ -42,16 +42,19 @@ const OrderSummary = ({ order }: OrderSummaryProps) => {
             <span>Wysyłka</span>
             <span>{getAmount(order.shipping_total)}</span>
           </div>
-          <div className="flex items-center justify-between">
-            <span>Podatki</span>
-            <span>{getAmount(order.tax_total)}</span>
-          </div>
+          {order.tax_total > 0 && (
+            <div className="flex items-center justify-between">
+              <span>w tym VAT</span>
+              <span>{getAmount(order.tax_total)}</span>
+            </div>
+          )}
         </div>
         <div className="h-px w-full border-b border-brand-border border-dashed my-4" />
         <div className="flex items-center justify-between text-base-regular text-ui-fg-base mb-2">
           <span>Suma</span>
           <span>{getAmount(order.total)}</span>
         </div>
+        <p className="text-xs text-ui-fg-muted mt-1">Ceny zawierają podatek VAT.</p>
       </div>
     </div>
   )
