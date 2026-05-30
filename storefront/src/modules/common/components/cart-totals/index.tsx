@@ -16,6 +16,7 @@ type CartTotalsProps = {
     total?: number | null
     subtotal?: number | null
     tax_total?: number | null
+    item_tax_total?: number | null
     currency_code: string
     item_total?: number | null
     item_subtotal?: number | null
@@ -23,20 +24,32 @@ type CartTotalsProps = {
     shipping_subtotal?: number | null
     discount_subtotal?: number | null
   }
+  /**
+   * "cart" (pre-checkout): shipping is chosen at checkout, so it is not charged
+   * here — the row reads "obliczana w kasie" and the total covers items only.
+   * "checkout" (default): shows the real selected shipping and grand total.
+   */
+  variant?: "cart" | "checkout"
 }
 
-const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
+const CartTotals: React.FC<CartTotalsProps> = ({
+  totals,
+  variant = "checkout",
+}) => {
   const mode = usePriceMode()
   const {
     currency_code,
     total,
     tax_total,
+    item_tax_total,
     item_total,
     item_subtotal,
     shipping_total,
     shipping_subtotal,
     discount_subtotal,
   } = totals
+
+  const isCart = variant === "cart"
 
   // B2C (gross): subtotals shown incl. VAT to match the line items and the law.
   // B2B (net): subtotals shown excl. VAT, with VAT listed separately.
@@ -46,6 +59,10 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
     mode === "net"
       ? shipping_subtotal ?? 0
       : shipping_total ?? shipping_subtotal ?? 0
+  // On the cart page exclude shipping entirely: tax of items only, and a grand
+  // total that covers merchandise (gross) without any shipping method.
+  const taxAmount = isCart ? item_tax_total ?? 0 : tax_total ?? 0
+  const totalAmount = isCart ? item_total ?? 0 : total ?? 0
 
   return (
     <div>
@@ -58,9 +75,15 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
         </div>
         <div className="flex items-center justify-between">
           <span>{shippingLabel(mode)}</span>
-          <span data-testid="cart-shipping" data-value={shippingAmount}>
-            {convertToLocale({ amount: shippingAmount, currency_code })}
-          </span>
+          {isCart ? (
+            <span className="text-ui-fg-muted" data-testid="cart-shipping">
+              Obliczana w kasie
+            </span>
+          ) : (
+            <span data-testid="cart-shipping" data-value={shippingAmount}>
+              {convertToLocale({ amount: shippingAmount, currency_code })}
+            </span>
+          )}
         </div>
         {!!discount_subtotal && (
           <div className="flex items-center justify-between">
@@ -78,11 +101,11 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
             </span>
           </div>
         )}
-        {!!tax_total && (
+        {!!taxAmount && (
           <div className="flex justify-between">
             <span className="flex gap-x-1 items-center ">{taxLabel(mode)}</span>
-            <span data-testid="cart-taxes" data-value={tax_total}>
-              {convertToLocale({ amount: tax_total, currency_code })}
+            <span data-testid="cart-taxes" data-value={taxAmount}>
+              {convertToLocale({ amount: taxAmount, currency_code })}
             </span>
           </div>
         )}
@@ -93,9 +116,9 @@ const CartTotals: React.FC<CartTotalsProps> = ({ totals }) => {
         <span
           className="txt-xlarge-plus"
           data-testid="cart-total"
-          data-value={total || 0}
+          data-value={totalAmount}
         >
-          {convertToLocale({ amount: total ?? 0, currency_code })}
+          {convertToLocale({ amount: totalAmount, currency_code })}
         </span>
       </div>
       <div className="h-px w-full border-b border-brand-border mt-4" />
