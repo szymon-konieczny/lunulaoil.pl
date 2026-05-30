@@ -74,12 +74,34 @@ const Shipping: React.FC<ShippingProps> = ({
 
   const isOpen = searchParams.get("step") === "delivery"
 
+  // Shipping profiles required by the items currently in the cart.
+  const cartShippingProfileIds = new Set(
+    (cart.items ?? [])
+      .map((i) => (i as any).product?.shipping_profile_id)
+      .filter(Boolean) as string[]
+  )
+
+  // Only offer options whose shipping profile matches the cart's items
+  // (Medusa returns every option in the zone regardless of profile). This keeps
+  // workshop-only carts to the "no shipping" option and physical carts to the
+  // courier options. Defensive: if profiles can't be determined, show all so
+  // checkout is never left without options.
+  const matchesCartProfile = (sm: HttpTypes.StoreCartShippingOption) => {
+    const profileId = (sm as any).shipping_profile_id
+    if (cartShippingProfileIds.size === 0 || !profileId) return true
+    return cartShippingProfileIds.has(profileId)
+  }
+
   const _shippingMethods = availableShippingMethods?.filter(
-    (sm) => sm.service_zone?.fulfillment_set?.type !== "pickup"
+    (sm) =>
+      sm.service_zone?.fulfillment_set?.type !== "pickup" &&
+      matchesCartProfile(sm)
   )
 
   const _pickupMethods = availableShippingMethods?.filter(
-    (sm) => sm.service_zone?.fulfillment_set?.type === "pickup"
+    (sm) =>
+      sm.service_zone?.fulfillment_set?.type === "pickup" &&
+      matchesCartProfile(sm)
   )
 
   const hasPickupOptions = !!_pickupMethods?.length
@@ -151,6 +173,21 @@ const Shipping: React.FC<ShippingProps> = ({
   useEffect(() => {
     setError(null)
   }, [isOpen])
+
+  // If the applied shipping method is no longer valid for the current cart
+  // (e.g. a workshop kept a courier method, or items changed) and there is
+  // exactly one valid option, apply it automatically so a stale/incorrect
+  // shipping cost can't linger. The `currentValid` guard prevents a loop.
+  useEffect(() => {
+    if (!_shippingMethods || _shippingMethods.length !== 1) return
+    const currentValid = _shippingMethods.some(
+      (sm) => sm.id === shippingMethodId
+    )
+    if (!currentValid && !isLoading) {
+      handleSetShippingMethod(_shippingMethods[0].id, "shipping")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [availableShippingMethods, cart.items])
 
   const selectedOptionName = _shippingMethods?.find(
     (sm) => sm.id === shippingMethodId
