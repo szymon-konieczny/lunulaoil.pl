@@ -43,6 +43,31 @@ export const retrieveCustomer =
       .catch(() => null)
   }
 
+/**
+ * Whether the logged-in customer belongs to the "Salon / B2B" group, which
+ * switches price presentation to net. Guests and any failure resolve to false
+ * (safe B2C/gross fallback, e.g. before the backend endpoint is deployed).
+ */
+export const retrieveIsB2B = async (): Promise<boolean> => {
+  const authHeaders = await getAuthHeaders()
+
+  if (!authHeaders) return false
+
+  const next = {
+    ...(await getCacheOptions("customers")),
+  }
+
+  return await sdk.client
+    .fetch<{ isB2B: boolean }>(`/store/customer-group`, {
+      method: "GET",
+      headers: { ...authHeaders },
+      next,
+      cache: "force-cache",
+    })
+    .then(({ isB2B }) => !!isB2B)
+    .catch(() => false)
+}
+
 export const updateCustomer = async (body: HttpTypes.StoreUpdateCustomer) => {
   const headers = {
     ...(await getAuthHeaders()),

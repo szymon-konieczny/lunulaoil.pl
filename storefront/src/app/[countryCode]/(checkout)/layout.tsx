@@ -2,13 +2,18 @@ import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
+import { retrieveIsB2B } from "@lib/data/customer"
+import { PriceModeProvider } from "@lib/context/price-mode-context"
 
-export default function CheckoutLayout({
+export default async function CheckoutLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const isB2B = await retrieveIsB2B()
+
   return (
+    <PriceModeProvider mode={isB2B ? "net" : "gross"}>
     <div className="w-full bg-brand-background relative small:min-h-screen">
       <div className="h-16 bg-brand-surface border-b ">
         <nav className="flex h-full items-center content-container justify-between">
@@ -47,5 +52,6 @@ export default function CheckoutLayout({
         <MedusaCTA />
       </div>
     </div>
+    </PriceModeProvider>
   )
 }

@@ -1,4 +1,7 @@
+"use client"
+
 import { convertToLocale } from "@lib/util/money"
+import { usePriceMode } from "@lib/context/price-mode-context"
 import { HttpTypes } from "@medusajs/types"
 import { clx } from "@medusajs/ui"
 
@@ -13,7 +16,14 @@ const LineItemUnitPrice = ({
   style = "default",
   currencyCode,
 }: LineItemUnitPriceProps) => {
-  const { total, original_total } = item
+  const mode = usePriceMode()
+
+  // B2B (net) shows the line amount excl. VAT; B2C (gross) incl. VAT.
+  const total = (mode === "net" ? item.subtotal : item.total) ?? 0
+  const original_total =
+    mode === "net"
+      ? (item.original_total ?? 0) - ((item as any).original_tax_total ?? 0)
+      : item.original_total ?? 0
   const hasReducedPrice = total < original_total
 
   const percentage_diff = Math.round(

@@ -8,6 +8,8 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import Icon from "@modules/common/components/icon"
 import Thumbnail from "@modules/products/components/thumbnail"
 import { getProductPrice } from "@lib/util/get-product-price"
+import { usePriceMode } from "@lib/context/price-mode-context"
+import { formatDisplayPrice } from "@lib/util/price-display"
 import { addToCart } from "@lib/data/cart"
 import { QuizAnswers } from "../data"
 
@@ -250,6 +252,7 @@ function ProductCard({
   isAdding: boolean
   isAdded: boolean
 }) {
+  const mode = usePriceMode()
   let cheapestPrice: ReturnType<typeof getProductPrice>["cheapestPrice"] = null
   try {
     cheapestPrice = getProductPrice({ product }).cheapestPrice
@@ -272,7 +275,14 @@ function ProductCard({
           </Text>
           {cheapestPrice && (
             <Text className="text-brand-accent mt-1 text-sm">
-              {cheapestPrice.calculated_price}
+              {formatDisplayPrice(
+                cheapestPrice.calculated_price_number,
+                cheapestPrice.currency_code,
+                mode
+              )}
+              {mode === "net" && (
+                <span className="text-ui-fg-muted"> netto</span>
+              )}
             </Text>
           )}
         </LocalizedClientLink>

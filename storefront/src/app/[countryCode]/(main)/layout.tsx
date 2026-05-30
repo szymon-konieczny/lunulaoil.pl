@@ -1,7 +1,8 @@
 import { Metadata } from "next"
 
 import { listCartOptions, retrieveCart } from "@lib/data/cart"
-import { retrieveCustomer } from "@lib/data/customer"
+import { retrieveCustomer, retrieveIsB2B } from "@lib/data/customer"
+import { PriceModeProvider } from "@lib/context/price-mode-context"
 import { getBaseURL } from "@lib/util/env"
 import { StoreCartShippingOption } from "@medusajs/types"
 import CartMismatchBanner from "@modules/layout/components/cart-mismatch-banner"
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
 export default async function PageLayout(props: { children: React.ReactNode }) {
   const customer = await retrieveCustomer()
   const cart = await retrieveCart()
+  const isB2B = await retrieveIsB2B()
   let shippingOptions: StoreCartShippingOption[] = []
 
   if (cart) {
@@ -25,7 +27,7 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
   }
 
   return (
-    <>
+    <PriceModeProvider mode={isB2B ? "net" : "gross"}>
       <Nav />
       {/* Spacer for fixed nav - hero pages handle their own spacing */}
       <div className="h-20" />
@@ -42,6 +44,6 @@ export default async function PageLayout(props: { children: React.ReactNode }) {
       )}
       {props.children}
       <Footer />
-    </>
+    </PriceModeProvider>
   )
 }

@@ -1,10 +1,27 @@
+"use client"
+
 import { Text, clx } from "@medusajs/ui"
 import { VariantPrice } from "types/global"
+import { usePriceMode } from "@lib/context/price-mode-context"
+import { formatDisplayPrice } from "@lib/util/price-display"
 
 export default function PreviewPrice({ price }: { price: VariantPrice }) {
+  const mode = usePriceMode()
+
   if (!price) {
     return null
   }
+
+  const calculated = formatDisplayPrice(
+    price.calculated_price_number,
+    price.currency_code,
+    mode
+  )
+  const original = formatDisplayPrice(
+    price.original_price_number,
+    price.currency_code,
+    mode
+  )
 
   return (
     <>
@@ -13,7 +30,7 @@ export default function PreviewPrice({ price }: { price: VariantPrice }) {
           className="line-through text-ui-fg-muted"
           data-testid="original-price"
         >
-          {price.original_price}
+          {original}
         </Text>
       )}
       <Text
@@ -22,7 +39,8 @@ export default function PreviewPrice({ price }: { price: VariantPrice }) {
         })}
         data-testid="price"
       >
-        {price.calculated_price}
+        {calculated}
+        {mode === "net" && <span className="text-xs"> netto</span>}
       </Text>
     </>
   )

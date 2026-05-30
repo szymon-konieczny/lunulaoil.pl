@@ -1,6 +1,10 @@
+"use client"
+
 import { clx } from "@medusajs/ui"
 
 import { getProductPrice } from "@lib/util/get-product-price"
+import { usePriceMode } from "@lib/context/price-mode-context"
+import { formatDisplayPrice } from "@lib/util/price-display"
 import { HttpTypes } from "@medusajs/types"
 
 export default function ProductPrice({
@@ -10,6 +14,7 @@ export default function ProductPrice({
   product: HttpTypes.StoreProduct
   variant?: HttpTypes.StoreProductVariant
 }) {
+  const mode = usePriceMode()
   let cheapestPrice = null
   let variantPrice = null
   try {
@@ -29,6 +34,17 @@ export default function ProductPrice({
     return <div className="block w-32 h-9 bg-brand-surface animate-pulse" />
   }
 
+  const calculated = formatDisplayPrice(
+    selectedPrice.calculated_price_number,
+    selectedPrice.currency_code,
+    mode
+  )
+  const original = formatDisplayPrice(
+    selectedPrice.original_price_number,
+    selectedPrice.currency_code,
+    mode
+  )
+
   return (
     <div className="flex flex-col text-ui-fg-base">
       <span
@@ -41,8 +57,11 @@ export default function ProductPrice({
           data-testid="product-price"
           data-value={selectedPrice.calculated_price_number}
         >
-          {selectedPrice.calculated_price}
+          {calculated}
         </span>
+        {mode === "net" && (
+          <span className="text-sm text-ui-fg-muted"> netto</span>
+        )}
       </span>
       {selectedPrice.price_type === "sale" && (
         <>
@@ -53,7 +72,7 @@ export default function ProductPrice({
               data-testid="original-product-price"
               data-value={selectedPrice.original_price_number}
             >
-              {selectedPrice.original_price}
+              {original}
             </span>
           </p>
           <span className="text-ui-fg-interactive">

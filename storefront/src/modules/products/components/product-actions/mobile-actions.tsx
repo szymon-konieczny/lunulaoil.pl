@@ -7,6 +7,8 @@ import ChevronDown from "@modules/common/icons/chevron-down"
 import X from "@modules/common/icons/x"
 
 import { getProductPrice } from "@lib/util/get-product-price"
+import { usePriceMode } from "@lib/context/price-mode-context"
+import { formatDisplayPrice } from "@lib/util/price-display"
 import OptionSelect from "./option-select"
 import { HttpTypes } from "@medusajs/types"
 import { isSimpleProduct } from "@lib/util/product"
@@ -35,6 +37,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   optionsDisabled,
 }) => {
   const { state, open, close } = useToggleState()
+  const mode = usePriceMode()
 
   const price = getProductPrice({
     product: product,
@@ -81,7 +84,11 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   {selectedPrice.price_type === "sale" && (
                     <p>
                       <span className="line-through text-small-regular">
-                        {selectedPrice.original_price}
+                        {formatDisplayPrice(
+                          selectedPrice.original_price_number,
+                          selectedPrice.currency_code,
+                          mode
+                        )}
                       </span>
                     </p>
                   )}
@@ -91,7 +98,17 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                         selectedPrice.price_type === "sale",
                     })}
                   >
-                    {selectedPrice.calculated_price}
+                    {formatDisplayPrice(
+                      selectedPrice.calculated_price_number,
+                      selectedPrice.currency_code,
+                      mode
+                    )}
+                    {mode === "net" && (
+                      <span className="text-small-regular text-ui-fg-muted">
+                        {" "}
+                        netto
+                      </span>
+                    )}
                   </span>
                 </div>
               ) : (
