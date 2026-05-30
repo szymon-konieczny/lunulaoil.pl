@@ -4,6 +4,7 @@ import { HttpTypes } from "@medusajs/types"
 import { Container } from "@medusajs/ui"
 import Image from "next/image"
 import { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
 
 type ImageGalleryProps = {
   images: HttpTypes.StoreProductImage[]
@@ -67,9 +68,12 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
         })}
       </div>
 
-      {open && activeImage?.url && (
-        <div
-          className="fixed inset-0 z-[1100] bg-black/90 flex items-center justify-center p-4 small:p-8 cursor-zoom-out"
+      {open &&
+        activeImage?.url &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[2000] bg-black/90 flex items-center justify-center p-4 small:p-8 cursor-zoom-out"
           role="dialog"
           aria-modal="true"
           aria-label="Podgląd zdjęcia produktu"
@@ -97,8 +101,9 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
               priority
             />
           </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </div>
   )
 }
