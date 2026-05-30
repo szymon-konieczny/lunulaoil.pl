@@ -166,19 +166,31 @@ export default function ProductActions({
         <div className="flex items-center gap-3">
           <div className="flex items-center border border-ui-border-base rounded-md">
             <button
+              type="button"
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-              disabled={quantity <= 1 || isAdding}
+              disabled={quantity <= 1 || isAdding || disabled}
               className="w-9 h-10 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Zmniejsz ilość"
             >
               −
             </button>
-            <span className="w-8 text-center text-sm font-medium tabular-nums">
-              {quantity}
-            </span>
+            <input
+              type="number"
+              min={1}
+              inputMode="numeric"
+              value={quantity}
+              disabled={isAdding || disabled}
+              onChange={(e) => {
+                const v = parseInt(e.target.value, 10)
+                setQuantity(Number.isNaN(v) || v < 1 ? 1 : v)
+              }}
+              aria-label="Ilość"
+              className="w-12 h-10 text-center text-sm font-medium tabular-nums bg-transparent outline-none disabled:opacity-40 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            />
             <button
+              type="button"
               onClick={() => setQuantity((q) => q + 1)}
-              disabled={isAdding}
+              disabled={isAdding || disabled}
               className="w-9 h-10 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               aria-label="Zwiększ ilość"
             >
