@@ -1,29 +1,22 @@
 import { Text } from "@medusajs/ui"
-import { listProducts } from "@lib/data/products"
 import { getProductPrice } from "@lib/util/get-product-price"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Thumbnail from "../thumbnail"
 import PreviewPrice from "./price"
 
-export default async function ProductPreview({
+// NOTE: not `async` — this component is also rendered inside the client
+// <RelatedProductsCarousel>. An async component returns a promise, and rendering
+// a promise as a child of a Client Component creates an uncached promise that
+// React re-suspends on every render → infinite re-render loop + console flood.
+export default function ProductPreview({
   product,
   isFeatured,
-  region,
 }: {
   product: HttpTypes.StoreProduct
   isFeatured?: boolean
   region: HttpTypes.StoreRegion
 }) {
-  // const pricedProduct = await listProducts({
-  //   regionId: region.id,
-  //   queryParams: { id: [product.id!] },
-  // }).then(({ response }) => response.products[0])
-
-  // if (!pricedProduct) {
-  //   return null
-  // }
-
   let cheapestPrice = null
   try {
     cheapestPrice = getProductPrice({ product }).cheapestPrice
