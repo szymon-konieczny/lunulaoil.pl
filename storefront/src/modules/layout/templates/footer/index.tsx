@@ -5,6 +5,7 @@ import { Text, clx } from "@medusajs/ui"
 import Image from "next/image"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import ManageConsentLink from "@modules/analytics/components/manage-consent-link"
 
 export default async function Footer() {
   const { collections } = await listCollections({
@@ -207,6 +208,9 @@ export default async function Footer() {
                   >
                     Polityka prywatności
                   </LocalizedClientLink>
+                </li>
+                <li>
+                  <ManageConsentLink />
                 </li>
                 <li>
                   <a

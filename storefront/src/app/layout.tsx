@@ -1,6 +1,8 @@
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
 import Script from "next/script"
+import GoogleAnalytics from "@modules/analytics/components/google-analytics"
+import CookieConsent from "@modules/analytics/components/cookie-consent"
 import { Open_Sans, Playfair_Display } from "next/font/google"
 import { NextIntlClientProvider } from "next-intl"
 import { getLocale, getMessages } from "next-intl/server"
@@ -36,7 +38,6 @@ export const metadata: Metadata = {
 }
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID
-const COOKIEBOT_ID = process.env.NEXT_PUBLIC_COOKIEBOT_ID
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const locale = await getLocale()
@@ -49,6 +50,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
       className={`${openSans.variable} ${playfair.variable}`}
     >
       <head>
+        {/* Google Analytics 4 + Consent Mode v2 (defaults denied until the
+            user consents via the custom <CookieConsent> banner) */}
+        <GoogleAnalytics />
+
         {/* Google Consent Mode v2 defaults - must load before GTM */}
         {GTM_ID && (
           <Script id="gtm-consent-defaults" strategy="beforeInteractive">
@@ -62,17 +67,6 @@ gtag('consent', 'default', {
   'wait_for_update': 500
 });`}
           </Script>
-        )}
-
-        {/* Cookiebot - manages consent banner and updates consent state */}
-        {COOKIEBOT_ID && (
-          <Script
-            id="Cookiebot"
-            src="https://consent.cookiebot.com/uc.js"
-            data-cbid={COOKIEBOT_ID}
-            data-blockingmode="auto"
-            strategy="beforeInteractive"
-          />
         )}
 
         {/* Google Tag Manager */}
@@ -100,6 +94,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         )}
         <NextIntlClientProvider messages={messages}>
           <main className="relative">{props.children}</main>
+          <CookieConsent />
         </NextIntlClientProvider>
       </body>
     </html>
