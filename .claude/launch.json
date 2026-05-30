@@ -7,6 +7,13 @@
       "runtimeArgs": ["run", "dev"],
       "port": 8000,
       "cwd": "storefront"
+    },
+    {
+      "name": "backend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 9000,
+      "cwd": "backend"
     }
   ]
 }
