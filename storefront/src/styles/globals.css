@@ -47,6 +47,11 @@
     --border-interactive: #3A8C3F;
     --border-error: #E5484D;
     --border-transparent: transparent;
+    /* Interactive focus/hover glows — recolored from Medusa's default blue to the
+       brand green (#3A8C3F) so radios, inputs and selects match the site. */
+    --borders-interactive-with-active: 0px 0px 0px 1px rgba(58, 140, 63, 1), 0px 0px 0px 4px rgba(58, 140, 63, 0.25);
+    --borders-interactive-with-shadow: 0px -1px 2px 0px rgba(58, 140, 63, 0.12), 0px 0px 0px 1px rgba(58, 140, 63, 1);
+    --borders-interactive-with-focus: 0px -1px 2px 0px rgba(58, 140, 63, 0.12), 0px 0px 0px 1px rgba(58, 140, 63, 1), 0px 0px 0px 2px rgba(26, 26, 26, 1), 0px 0px 0px 4px rgba(58, 140, 63, 0.5);
     --button-inverted: #1A1A1A;
     --button-inverted-hover: #333333;
     --button-inverted-pressed: #444444;
