@@ -88,23 +88,45 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
 
       {type === "full" && (
         <Table.Cell>
-          <div className="flex gap-2 items-center w-28">
+          <div className="flex gap-2 items-center">
             <DeleteButton id={item.id} data-testid="product-delete-button" />
-            <input
-              type="number"
-              min={1}
-              inputMode="numeric"
-              value={qtyInput}
-              disabled={updating}
-              onChange={(e) => setQtyInput(e.target.value)}
-              onBlur={commitQuantity}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") e.currentTarget.blur()
-              }}
-              aria-label="Ilość"
-              className="w-16 h-10 px-2 text-center border border-ui-border-base rounded-md bg-transparent text-ui-fg-base outline-none focus:border-ui-fg-base disabled:opacity-50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-              data-testid="product-select-button"
-            />
+            <div className="flex items-center border border-ui-border-base rounded-md">
+              <button
+                type="button"
+                onClick={() =>
+                  item.quantity > 1 && changeQuantity(item.quantity - 1)
+                }
+                disabled={updating || item.quantity <= 1}
+                aria-label="Zmniejsz ilość"
+                className="w-9 h-10 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                −
+              </button>
+              <input
+                type="number"
+                min={1}
+                inputMode="numeric"
+                value={qtyInput}
+                disabled={updating}
+                onChange={(e) => setQtyInput(e.target.value)}
+                onBlur={commitQuantity}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") e.currentTarget.blur()
+                }}
+                aria-label="Ilość"
+                className="w-12 h-10 text-center bg-transparent text-ui-fg-base outline-none disabled:opacity-50 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                data-testid="product-select-button"
+              />
+              <button
+                type="button"
+                onClick={() => changeQuantity(item.quantity + 1)}
+                disabled={updating}
+                aria-label="Zwiększ ilość"
+                className="w-9 h-10 flex items-center justify-center text-ui-fg-subtle hover:text-ui-fg-base disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                +
+              </button>
+            </div>
             {updating && <Spinner />}
           </div>
           <ErrorMessage error={error} data-testid="product-error-message" />
