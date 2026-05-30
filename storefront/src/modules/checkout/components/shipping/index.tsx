@@ -77,7 +77,11 @@ const Shipping: React.FC<ShippingProps> = ({
   // Shipping profiles required by the items currently in the cart.
   const cartShippingProfileIds = new Set(
     (cart.items ?? [])
-      .map((i) => (i as any).product?.shipping_profile_id)
+      .map(
+        (i) =>
+          (i as any).product?.shipping_profile?.id ??
+          (i as any).product?.shipping_profile_id
+      )
       .filter(Boolean) as string[]
   )
 
@@ -87,7 +91,8 @@ const Shipping: React.FC<ShippingProps> = ({
   // courier options. Defensive: if profiles can't be determined, show all so
   // checkout is never left without options.
   const matchesCartProfile = (sm: HttpTypes.StoreCartShippingOption) => {
-    const profileId = (sm as any).shipping_profile_id
+    const profileId =
+      (sm as any).shipping_profile_id ?? (sm as any).shipping_profile?.id
     if (cartShippingProfileIds.size === 0 || !profileId) return true
     return cartShippingProfileIds.has(profileId)
   }

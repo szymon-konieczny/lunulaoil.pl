@@ -20,6 +20,9 @@ export const listCartShippingMethods = async (cartId: string) => {
         method: "GET",
         query: {
           cart_id: cartId,
+          // additive: keep default fields + expose the option's shipping profile
+          // so checkout can filter options to the cart's item profiles
+          fields: "+shipping_profile_id",
         },
         headers,
         next,
