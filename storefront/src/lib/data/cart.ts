@@ -10,7 +10,9 @@ import {
   getCacheOptions,
   getCacheTag,
   getCartId,
+  getPendingPromoCode,
   removeCartId,
+  removePendingPromoCode,
   setCartId,
 } from "./cookies"
 import { getRegion } from "./regions"
@@ -155,6 +157,10 @@ export async function addToCart({
       revalidateTag(fulfillmentCacheTag)
     })
     .catch(medusaError)
+
+  // Apply a promo code carried in from a `?discount=CODE` link, now that the
+  // cart has an item. No-op when there is no pending code.
+  await applyPendingPromoCode()
 }
 
 export async function updateLineItem({
@@ -276,6 +282,40 @@ export async function applyPromotions(codes: string[]) {
       revalidateTag(fulfillmentCacheTag)
     })
     .catch(medusaError)
+}
+
+/**
+ * Applies a promo code captured from a `?discount=CODE` link. Middleware stashes
+ * the code in a cookie on landing; here (after a cart with items exists) we merge
+ * it with any codes already on the cart and clear the cookie so it applies once.
+ * Failures (invalid/expired code) are swallowed so the add-to-cart flow never breaks.
+ */
+export async function applyPendingPromoCode() {
+  const code = await getPendingPromoCode()
+
+  if (!code) {
+    return
+  }
+
+  try {
+    const cart = await retrieveCart(undefined, "id,*promotions")
+
+    if (!cart) {
+      return
+    }
+
+    const existing = (cart.promotions ?? [])
+      .map((p) => p.code)
+      .filter((c): c is string => Boolean(c))
+
+    if (!existing.includes(code)) {
+      await applyPromotions([...existing, code])
+    }
+  } catch {
+    // invalid/expired code or a transient error — don't block the cart flow
+  } finally {
+    await removePendingPromoCode()
+  }
 }
 
 export async function applyGiftCard(code: string) {

@@ -101,12 +101,48 @@ async function getCountryCode(
 }
 
 /**
+ * Validates a promo code coming from a `?discount=CODE` link before we store it.
+ * The value is attacker-controllable, so we only accept a conservative charset
+ * and length; anything else is ignored (returns null). Medusa rejects unknown
+ * codes anyway, but this keeps junk out of the cookie.
+ */
+function sanitizeDiscountCode(code: string | null): string | null {
+  if (!code) {
+    return null
+  }
+
+  const trimmed = code.trim()
+
+  return /^[A-Za-z0-9_-]{1,64}$/.test(trimmed) ? trimmed : null
+}
+
+/**
  * Middleware to handle region selection and onboarding status.
  */
 export async function middleware(request: NextRequest) {
   let redirectUrl = request.nextUrl.href
 
   let response = NextResponse.redirect(redirectUrl, 307)
+
+  // Promo code from a `?discount=CODE` link (e.g. Instagram). Stash it in a
+  // cookie on every response path; cart.ts applies it on the first add-to-cart.
+  // Cookie name kept in sync with getPendingPromoCode() in lib/data/cookies.ts.
+  const discountCode = sanitizeDiscountCode(
+    request.nextUrl.searchParams.get("discount")
+  )
+
+  const finalize = (res: NextResponse) => {
+    if (discountCode) {
+      res.cookies.set("_lunula_promo", discountCode, {
+        maxAge: 60 * 60 * 24 * 7,
+        httpOnly: true,
+        sameSite: "lax",
+        secure: process.env.NODE_ENV === "production",
+        path: "/",
+      })
+    }
+    return res
+  }
 
   let cacheIdCookie = request.cookies.get("_medusa_cache_id")
 
@@ -121,7 +157,7 @@ export async function middleware(request: NextRequest) {
 
   // if one of the country codes is in the url and the cache id is set, return next
   if (urlHasCountryCode && cacheIdCookie) {
-    return NextResponse.next()
+    return finalize(NextResponse.next())
   }
 
   // if one of the country codes is in the url and the cache id is not set, set the cache id and redirect
@@ -130,12 +166,12 @@ export async function middleware(request: NextRequest) {
       maxAge: 60 * 60 * 24,
     })
 
-    return response
+    return finalize(response)
   }
 
   // check if the url is a static asset
   if (request.nextUrl.pathname.includes(".")) {
-    return NextResponse.next()
+    return finalize(NextResponse.next())
   }
 
   const redirectPath =
@@ -155,7 +191,7 @@ export async function middleware(request: NextRequest) {
     )
   }
 
-  return response
+  return finalize(response)
 }
 
 export const config = {

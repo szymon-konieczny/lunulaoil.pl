@@ -87,3 +87,17 @@ export const removeCartId = async () => {
     maxAge: -1,
   })
 }
+
+// Promo code captured from a `?discount=CODE` link (set by middleware), applied
+// to the cart on the first add-to-cart. Keep the name in sync with middleware.ts.
+export const getPendingPromoCode = async () => {
+  const cookies = await nextCookies()
+  return cookies.get("_lunula_promo")?.value
+}
+
+export const removePendingPromoCode = async () => {
+  const cookies = await nextCookies()
+  cookies.set("_lunula_promo", "", {
+    maxAge: -1,
+  })
+}
