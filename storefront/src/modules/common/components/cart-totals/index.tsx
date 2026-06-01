@@ -20,6 +20,8 @@ type CartTotalsProps = {
     currency_code: string
     item_total?: number | null
     item_subtotal?: number | null
+    original_item_total?: number | null
+    original_item_subtotal?: number | null
     shipping_total?: number | null
     shipping_subtotal?: number | null
     discount_subtotal?: number | null
@@ -44,6 +46,8 @@ const CartTotals: React.FC<CartTotalsProps> = ({
     item_tax_total,
     item_total,
     item_subtotal,
+    original_item_total,
+    original_item_subtotal,
     shipping_total,
     shipping_subtotal,
     discount_subtotal,
@@ -53,8 +57,13 @@ const CartTotals: React.FC<CartTotalsProps> = ({
 
   // B2C (gross): subtotals shown incl. VAT to match the line items and the law.
   // B2B (net): subtotals shown excl. VAT, with VAT listed separately.
+  // Use the pre-discount (original_*) amount so that, with a promo applied,
+  // "subtotal − Rabat = total" reads correctly; the Rabat row subtracts the
+  // discount below. Falls back to the post-discount field when unavailable.
   const itemsAmount =
-    mode === "net" ? item_subtotal ?? 0 : item_total ?? item_subtotal ?? 0
+    mode === "net"
+      ? original_item_subtotal ?? item_subtotal ?? 0
+      : original_item_total ?? item_total ?? item_subtotal ?? 0
   const shippingAmount =
     mode === "net"
       ? shipping_subtotal ?? 0
