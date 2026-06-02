@@ -1,5 +1,5 @@
 import type { MedusaRequest, MedusaResponse } from "@medusajs/framework/http"
-import { Modules, ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import { Modules } from "@medusajs/framework/utils"
 import type { IEventBusModuleService } from "@medusajs/types"
 import { verifySignature } from "../../../../lib/instagram/signature"
 
@@ -98,11 +98,6 @@ export const POST = async (
     res.status(200).json({ ok: true, skipped: "non-instagram object" })
     return
   }
-
-  // TEMP diagnostic: log the raw payload to see the exact comment media.id
-  // structure (remove after confirming ig_post_id mapping).
-  const logger = req.scope.resolve(ContainerRegistrationKeys.LOGGER)
-  logger.info(`ig-webhook payload: ${JSON.stringify(payload)}`)
 
   const eventBus = req.scope.resolve<IEventBusModuleService>(Modules.EVENT_BUS)
   const messages: { name: string; data: unknown }[] = []
