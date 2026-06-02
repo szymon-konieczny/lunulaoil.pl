@@ -353,10 +353,62 @@ export default function PrivacyPolicyPage() {
               </p>
             </section>
 
-            {/* X. Postanowienia końcowe */}
+            {/* X. Integracja z Instagramem */}
             <section>
               <h2 className="text-xl font-serif text-brand-text mb-4">
-                X. Postanowienia końcowe
+                X. Integracja z Instagramem i usuwanie danych
+              </h2>
+              <p className="mb-3">
+                Sklep korzysta z automatyzacji na platformie Instagram. Gdy
+                Użytkownik samodzielnie pozostawi komentarz zawierający określone
+                słowo kluczowe pod postem naszego konta, automatyzacja wysyła mu
+                wiadomość prywatną (DM) z odnośnikiem do odpowiedniego produktu.
+              </p>
+              <p className="mb-3">
+                W związku z tą funkcją przetwarzamy: identyfikator konta Instagram
+                Użytkownika, treść komentarza zawierającego słowo kluczowe oraz
+                zapis (log) wysłanej wiadomości. Dane te wykorzystujemy wyłącznie
+                po to, by odpowiedzieć na interakcję zainicjowaną przez
+                Użytkownika, nie wysyłać tej samej wiadomości wielokrotnie oraz
+                uszanować rezygnację z dalszych wiadomości. Podstawą prawną jest
+                art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes &mdash;
+                obsługa interakcji rozpoczętej przez Użytkownika).
+              </p>
+              <p className="mb-3">
+                Dostawcą platformy jest Meta Platforms Ireland Ltd. Logi wiadomości
+                przechowujemy jedynie przez czas niezbędny do realizacji powyższych
+                celów. Użytkownik może w każdej chwili zażądać usunięcia danych
+                powiązanych z jego kontem Instagram:
+              </p>
+              <ul className="list-disc pl-5 space-y-2">
+                <li>
+                  cofając aplikacji dostęp w ustawieniach Instagrama
+                  (Ustawienia &rarr; Aplikacje i strony internetowe) &mdash;
+                  powoduje to automatyczne usunięcie powiązanych danych po naszej
+                  stronie;
+                </li>
+                <li>
+                  wysyłając żądanie usunięcia danych za pośrednictwem mechanizmu
+                  Meta, który wywołuje nasz automatyczny punkt obsługi i kończy się
+                  potwierdzeniem wraz z unikalnym kodem żądania;
+                </li>
+                <li>
+                  kontaktując się bezpośrednio z Administratorem pod adresem{" "}
+                  <a
+                    href="mailto:kontakt@lunulaoil.pl"
+                    className="text-brand-primary hover:underline"
+                  >
+                    kontakt@lunulaoil.pl
+                  </a>
+                  .
+                </li>
+              </ul>
+            </section>
+
+            {/* XI. Postanowienia końcowe */}
+            <section>
+              <h2 className="text-xl font-serif text-brand-text mb-4">
+                XI. Postanowienia końcowe
               </h2>
               <ol className="list-decimal pl-5 space-y-2">
                 <li>
