@@ -5,6 +5,8 @@ import {
   exchangeForLongLivedToken,
   getInstagramUserInfo,
 } from "../../../../../lib/instagram/oauth-client"
+import { INSTAGRAM_BOT_MODULE } from "../../../../../modules/instagram_bot"
+import type InstagramBotService from "../../../../../modules/instagram_bot/service"
 
 const renderPage = (title: string, body: string): string => `<!doctype html>
 <html lang="pl">
@@ -100,8 +102,21 @@ export const GET = async (
       accessToken: longLived.access_token,
     })
 
+    // Persist the long-lived token so the bot reads it from the DB and the
+    // ig-refresh-token job can keep it alive. No manual copy-to-env needed.
+    const igBot = req.scope.resolve(
+      INSTAGRAM_BOT_MODULE
+    ) as InstagramBotService
+    await igBot.saveCredential({
+      ig_user_id: user.id,
+      username: user.username ?? null,
+      access_token: longLived.access_token,
+      token_type: longLived.token_type,
+      expires_in: longLived.expires_in,
+    })
+
     logger.info(
-      `ig-oauth-callback: SUCCESS user_id=${user.id} username=${user.username ?? "?"} expires_in=${longLived.expires_in}s token=${longLived.access_token}`
+      `ig-oauth-callback: SUCCESS user_id=${user.id} username=${user.username ?? "?"} expires_in=${longLived.expires_in}s token=stored (kept alive by refresh job)`
     )
 
     res.status(200).type("text/html").send(

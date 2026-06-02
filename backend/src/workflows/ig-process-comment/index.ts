@@ -156,8 +156,13 @@ const processCommentStep = createStep(
       product_url: productUrl,
     })
 
-    const accessToken = process.env.IG_PAGE_ACCESS_TOKEN
-    const businessAccountId = process.env.IG_BUSINESS_ACCOUNT_ID
+    // DB-first (token persisted by the OAuth callback, refreshed by the job),
+    // falling back to env vars for backward compatibility.
+    const credential = await igBot.getCredential()
+    const accessToken =
+      credential?.access_token ?? process.env.IG_PAGE_ACCESS_TOKEN
+    const businessAccountId =
+      credential?.ig_user_id ?? process.env.IG_BUSINESS_ACCOUNT_ID
     if (!accessToken || !businessAccountId) {
       const [log] = await igBot.createIgDmLogs([
         {

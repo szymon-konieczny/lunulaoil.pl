@@ -87,6 +87,35 @@ export const exchangeForLongLivedToken = async (params: {
   return json as unknown as LongLivedTokenResponse
 }
 
+/**
+ * Refreshes a long-lived Instagram token for another ~60 days. The token must be
+ * at least 24h old and not yet expired (Instagram requirement). Called by the
+ * `ig-refresh-token` scheduled job.
+ */
+export const refreshLongLivedToken = async (params: {
+  accessToken: string
+}): Promise<LongLivedTokenResponse> => {
+  const url = new URL("https://graph.instagram.com/refresh_access_token")
+  url.searchParams.set("grant_type", "ig_refresh_token")
+  url.searchParams.set("access_token", params.accessToken)
+  const res = await fetch(url.toString(), { method: "GET" })
+  const json = (await res.json().catch(() => ({}))) as Record<string, unknown>
+  if (!res.ok) {
+    const errorObj = (json.error ?? {}) as Record<string, unknown>
+    throw new IgGraphError(
+      typeof errorObj.message === "string"
+        ? errorObj.message
+        : `HTTP ${res.status}`,
+      res.status,
+      typeof errorObj.code === "string" || typeof errorObj.code === "number"
+        ? errorObj.code
+        : "oauth_refresh",
+      json
+    )
+  }
+  return json as unknown as LongLivedTokenResponse
+}
+
 export const getInstagramUserInfo = async (params: {
   accessToken: string
 }): Promise<{ id: string; username?: string }> => {
