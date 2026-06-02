@@ -26,6 +26,7 @@ const SIDE_MENU_ITEMS: MenuItem[] = [
       { label: "Ciało", href: "/categories/cialo" },
       { label: "Mydła", href: "/categories/mydla" },
       { label: "Włosy", href: "/categories/wlosy" },
+      { label: "Warsztaty", href: "/categories/warsztaty" },
       { label: "Wszystkie produkty", href: "/store" },
     ],
   },
