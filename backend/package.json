@@ -18,6 +18,7 @@
     "seed:creams": "medusa exec ./src/scripts/seed-creams.ts",
     "seed:botanique": "medusa exec ./src/scripts/seed-botanique.ts",
     "ig:replay": "ts-node scripts/ig-replay-comment.ts",
+    "ig:testcall": "medusa exec ./src/scripts/ig-test-call.ts",
     "start": "medusa start",
     "dev": "medusa develop",
     "test:integration:http": "TEST_TYPE=integration:http NODE_OPTIONS=--experimental-vm-modules jest --silent=false --runInBand --forceExit",
