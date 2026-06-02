@@ -57,6 +57,40 @@ class InstagramBotService extends MedusaService({
     }
     return await this.createIgCredentials(fields)
   }
+
+  /**
+   * GDPR / Meta "Data Deletion Request": removes every row that ties this IG
+   * user to our system — their DM history and any opt-out record. We never store
+   * message content beyond delivery logs, so this is the full footprint.
+   * Returns the row counts removed (useful for logging / the status page).
+   */
+  async deleteUserData(
+    ig_user_id: string
+  ): Promise<{ dm_logs: number; opt_outs: number }> {
+    const logs = await this.listIgDmLogs({ ig_user_id })
+    if (logs.length) {
+      await this.deleteIgDmLogs(logs.map((l) => l.id))
+    }
+    const optOuts = await this.listIgOptOuts({ ig_user_id })
+    if (optOuts.length) {
+      await this.deleteIgOptOuts(optOuts.map((o) => o.id))
+    }
+    return { dm_logs: logs.length, opt_outs: optOuts.length }
+  }
+
+  /**
+   * Meta "Deauthorize" callback: the user disconnected our app, so the stored
+   * access token is now useless and must not linger. Removes the credential row
+   * for that account (matches the single-row model in saveCredential).
+   */
+  async deleteCredentialForUser(ig_user_id: string): Promise<number> {
+    const creds = await this.listIgCredentials({ ig_user_id })
+    if (creds.length) {
+      await this.deleteIgCredentials(creds.map((c) => c.id))
+    }
+    return creds.length
+  }
+
   async findActiveTriggersForPost(ig_post_id: string) {
     return this.listIgTriggers({ ig_post_id, is_active: true })
   }
