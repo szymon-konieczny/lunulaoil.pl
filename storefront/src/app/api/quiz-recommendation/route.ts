@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
+import { hasCyrillic, sanitizeCyrillic } from "@lib/util/sanitize-cyrillic"
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY
 
@@ -126,6 +127,7 @@ ZASADY:
 - BEZWZGLĘDNY ZAKAZ: NIE WOLNO wspominać produktów spoza powyższej listy. Złamanie = błąd krytyczny.
 
 BEZWZGLĘDNE ZASADY FORMY TEKSTU:
+- Pisz WYŁĄCZNIE polskim alfabetem łacińskim (a-z oraz ąćęłńóśźż). NIGDY nie używaj cyrylicy ani innych alfabetów - nawet dla pojedynczych liter wyglądających podobnie.
 - Zwracaj się WYŁĄCZNIE na "Ty" (np. "Twoja skóra", "dla Ciebie", "polecam Ci")
 - NIGDY nie używaj formy "Pani/Pan"
 - NIGDY nie wymyślaj imienia
@@ -169,7 +171,13 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
       // Strip markdown code fences if present (e.g. ```json ... ```)
       const cleanText = rawText.replace(/^```(?:json)?\s*\n?/i, "").replace(/\n?```\s*$/i, "").trim()
       const parsed = JSON.parse(cleanText)
-      const text = parsed.text || rawText
+      // Map any stray Cyrillic homoglyphs back to Latin before matching/return,
+      // so the recommendation reads as clean Polish and product mentions match.
+      const rawRecommendation = parsed.text || rawText
+      if (hasCyrillic(rawRecommendation)) {
+        console.warn("Quiz recommendation contained Cyrillic characters; sanitized to Latin.")
+      }
+      const text = sanitizeCyrillic(rawRecommendation)
       const handles: string[] = parsed.handles || []
 
       const isWorkshop = (p: QuizProduct) =>
@@ -253,7 +261,7 @@ Odpowiedz TYLKO poprawnym JSON-em, bez żadnego innego tekstu.`
     } catch {
       // Fallback: AI returned plain text instead of JSON
       return NextResponse.json({
-        recommendation: rawText || "Nie udało się wygenerować rekomendacji.",
+        recommendation: sanitizeCyrillic(rawText) || "Nie udało się wygenerować rekomendacji.",
         handles: [],
       })
     }
