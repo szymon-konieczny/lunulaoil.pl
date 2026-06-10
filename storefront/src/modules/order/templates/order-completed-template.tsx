@@ -1,4 +1,5 @@
-import { Heading } from "@medusajs/ui"
+import { formatNip } from "@lib/util/nip"
+import { Heading, Text } from "@medusajs/ui"
 import { cookies as nextCookies } from "next/headers"
 
 import CartTotals from "@modules/common/components/cart-totals"
@@ -43,6 +44,19 @@ export default async function OrderCompletedTemplate({
           <Items order={order} />
           <CartTotals totals={order} />
           <ShippingDetails order={order} />
+          {order.metadata?.invoice_requested === "true" && (
+            <div data-testid="invoice-details">
+              <Heading level="h2" className="flex flex-row text-3xl-regular">
+                Dane do faktury VAT
+              </Heading>
+              <Text className="txt-medium text-ui-fg-subtle mt-4">
+                {String(order.metadata.invoice_company ?? "")}
+              </Text>
+              <Text className="txt-medium text-ui-fg-subtle">
+                NIP: {formatNip(String(order.metadata.invoice_nip ?? ""))}
+              </Text>
+            </div>
+          )}
           <PaymentDetails order={order} />
           <Help />
         </div>

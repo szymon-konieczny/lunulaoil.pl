@@ -1,6 +1,15 @@
 import type { SubscriberArgs, SubscriberConfig } from "@medusajs/framework"
 import { ContainerRegistrationKeys, Modules } from "@medusajs/framework/utils"
 
+/** Escape customer-provided text interpolated into the HTML email. */
+function esc(value: unknown): string {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+}
+
 /** Format a major-unit amount as Polish złoty, e.g. 45.99 -> "45,99 zł". */
 function pln(amount: unknown): string {
   const n = Number(amount ?? 0)
@@ -59,7 +68,22 @@ function buildHtml(order: any): string {
     `${a.postal_code ?? ""} ${a.city ?? ""}`.trim(),
   ]
     .filter(Boolean)
+    .map(esc)
     .join("<br>")
+
+  const md = order.metadata || {}
+  const nip = String(md.invoice_nip ?? "")
+  const formattedNip =
+    nip.length === 10
+      ? `${nip.slice(0, 3)}-${nip.slice(3, 6)}-${nip.slice(6, 8)}-${nip.slice(8)}`
+      : nip
+  const invoiceBlock =
+    md.invoice_requested === "true"
+      ? `<div style="margin-top:16px;font-size:14px;">
+      <p style="color:#666;margin:0 0 4px;font-weight:bold;">Dane do faktury VAT</p>
+      <p style="margin:0;">${esc(md.invoice_company)}<br>NIP: ${formattedNip}</p>
+    </div>`
+      : ""
 
   return `<!DOCTYPE html>
 <html lang="pl"><body style="font-family:Arial,Helvetica,sans-serif;color:#2b2b2b;background:#f6f5f1;margin:0;padding:24px;">
@@ -87,6 +111,7 @@ function buildHtml(order: any): string {
       <p style="color:#666;margin:0 0 4px;font-weight:bold;">Dostawa</p>
       <p style="margin:0;">${addr || "—"}</p>
     </div>
+    ${invoiceBlock}
 
     <p style="margin-top:28px;color:#999;font-size:12px;">Lunula Botanique · biozgodna pielęgnacja</p>
   </div>
@@ -121,6 +146,7 @@ export default async function orderPlacedHandler({
         "display_id",
         "email",
         "currency_code",
+        "metadata",
         "items.title",
         "items.product_title",
         "items.variant_title",

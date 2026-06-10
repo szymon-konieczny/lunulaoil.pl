@@ -2,6 +2,7 @@
 
 import { setAddresses } from "@lib/data/cart"
 import compareAddresses from "@lib/util/compare-addresses"
+import { formatNip } from "@lib/util/nip"
 import { CheckCircleSolid } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
 import { Heading, Text, useToggleState } from "@medusajs/ui"
@@ -11,6 +12,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useActionState } from "react"
 import BillingAddress from "../billing_address"
 import ErrorMessage from "../error-message"
+import InvoiceRequest from "../invoice-request"
 import ShippingAddress from "../shipping-address"
 import { SubmitButton } from "../submit-button"
 
@@ -83,6 +85,7 @@ const Addresses = ({
                 <BillingAddress cart={cart} />
               </div>
             )}
+            <InvoiceRequest cart={cart} />
             <SubmitButton className="mt-6" data-testid="submit-address-button">
               Przejdź do dostawy
             </SubmitButton>
@@ -173,6 +176,18 @@ const Addresses = ({
                 <Spinner />
               </div>
             )}
+            {cart?.shipping_address &&
+              cart.metadata?.invoice_requested === "true" && (
+                <div className="mt-4" data-testid="invoice-summary">
+                  <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                    Faktura VAT
+                  </Text>
+                  <Text className="txt-medium text-ui-fg-subtle">
+                    {String(cart.metadata.invoice_company ?? "")}, NIP:{" "}
+                    {formatNip(String(cart.metadata.invoice_nip ?? ""))}
+                  </Text>
+                </div>
+              )}
           </div>
         </div>
       )}

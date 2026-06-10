@@ -2,6 +2,7 @@
 
 import { sdk } from "@lib/config"
 import medusaError from "@lib/util/medusa-error"
+import { isValidNip, normalizeNip } from "@lib/util/nip"
 import { HttpTypes } from "@medusajs/types"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
@@ -416,6 +417,35 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
         province: formData.get("billing_address.province"),
         phone: formData.get("billing_address.phone"),
       }
+
+    const requestInvoice = formData.get("request_invoice") === "on"
+    if (requestInvoice) {
+      const company = ((formData.get("invoice_company") as string) || "").trim()
+      const nip = normalizeNip((formData.get("invoice_nip") as string) || "")
+      if (!company) {
+        throw new Error("Podaj nazwę firmy do faktury VAT.")
+      }
+      if (company.length > 200) {
+        throw new Error("Nazwa firmy jest za długa (maks. 200 znaków).")
+      }
+      if (!isValidNip(nip)) {
+        throw new Error("Nieprawidłowy numer NIP. Sprawdź wpisane dane.")
+      }
+      data.metadata = {
+        invoice_requested: "true",
+        invoice_company: company,
+        invoice_nip: nip,
+      }
+    } else {
+      // Medusa merges cart metadata per key; an empty string deletes the key,
+      // so unchecking the invoice checkbox clears previously saved values.
+      data.metadata = {
+        invoice_requested: "",
+        invoice_company: "",
+        invoice_nip: "",
+      }
+    }
+
     await updateCart(data)
   } catch (e: any) {
     return e.message
