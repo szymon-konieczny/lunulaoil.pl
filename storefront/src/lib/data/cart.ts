@@ -458,8 +458,9 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
 
 /**
  * Places an order for a cart. If no cart ID is provided, it will use the cart ID from the cookies.
+ * Redirects to the order confirmation on success; throws (with the backend's
+ * reason) when Medusa refuses to complete the cart, so callers can surface it.
  * @param cartId - optional - The ID of the cart to place an order for.
- * @returns The cart object if the order was successful, or null if not.
  */
 export async function placeOrder(cartId?: string) {
   const id = cartId || (await getCartId())
@@ -492,7 +493,11 @@ export async function placeOrder(cartId?: string) {
     redirect(`/${countryCode}/order/${cartRes?.order.id}/confirmed`)
   }
 
-  return cartRes.cart
+  // Medusa refused to complete the cart (payment not authorized, stock ran
+  // out, …). A silent return here once cost us a paid-but-never-created order.
+  throw new Error(
+    cartRes?.error?.message || "Nie udało się sfinalizować zamówienia."
+  )
 }
 
 /**

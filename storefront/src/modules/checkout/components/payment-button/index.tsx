@@ -289,8 +289,20 @@ const PaynowPaymentButton = ({
       setAwaitingConfirmation(true)
       const final = await pollStatus()
       if (final === "CONFIRMED") {
-        await placeOrder(cart.id)
-        return // placeOrder redirects to the confirmation page
+        try {
+          await placeOrder(cart.id)
+          return // placeOrder redirects to the confirmation page
+        } catch (e) {
+          // Paid, but Medusa refused to create the order. The backend sweeper
+          // retries every few minutes — the buyer must NOT pay again.
+          console.error("paynow: completion failed after CONFIRMED", e)
+          setErrorMessage(
+            "Płatność została potwierdzona, ale nie udało się automatycznie utworzyć zamówienia. " +
+              "Nie płać ponownie — dokończymy je automatycznie i wyślemy potwierdzenie e-mailem. " +
+              "W razie wątpliwości napisz do nas: kontakt@lunulaoil.pl."
+          )
+          return
+        }
       }
       setErrorMessage(
         final === "PENDING"

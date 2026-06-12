@@ -4,6 +4,28 @@ E-commerce store built with **Medusa.js v2** (`backend/`, port 9000) and
 **Next.js 15** (`storefront/`, port 8000). See `backend/README.md` and
 `storefront/README.md` for per-app setup.
 
+## Payments (Paynow)
+
+Custom Paynow (mBank) provider in `backend/src/modules/paynow` + storefront
+routes `/store/paynow/{charge,status,payment-methods}`. An order is created
+when the cart completes, which can happen on three paths:
+
+1. **Inline BLIK** — checkout polls the payment status, then `placeOrder`.
+2. **Redirect methods** — buyer lands on `/{country}/paynow-return?cart_id=…`,
+   which polls and calls `placeOrder`.
+3. **Paynow notification webhook** — `POST /hooks/payment/paynow_paynow`
+   (Medusa built-in). **The URL must be configured in the Paynow merchant
+   panel, separately per environment**:
+   `https://api.lunulaoil.pl/hooks/payment/paynow_paynow`.
+
+Because the buyer may never return (path 2) and the webhook is delivered
+through the in-memory event bus (no retries, lost on a deploy-restart), the
+scheduled job `paynow-reconcile-orders` (every 10 min) sweeps carts from the
+last 72 h that have a CONFIRMED Paynow payment but no order, and completes
+them. Its `paynow-reconcile:` log lines are the alert channel — an `error`
+there means money was taken and the order still can't be created (check
+inventory / shipping validation in the message).
+
 ## Admin scripts (`scripts/`)
 
 One-off maintenance utilities that talk to the Medusa **admin API**. They need

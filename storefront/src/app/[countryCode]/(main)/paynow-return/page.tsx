@@ -21,6 +21,9 @@ export default function PaynowReturnPage() {
 
   const [message, setMessage] = useState("Weryfikujemy płatność…")
   const [error, setError] = useState<string | null>(null)
+  // Payment CONFIRMED but Medusa refused to create the order — distinct from a
+  // failed payment: the buyer must NOT pay again.
+  const [paidButFailed, setPaidButFailed] = useState(false)
   const [done, setDone] = useState(false)
 
   useEffect(() => {
@@ -52,13 +55,13 @@ export default function PaynowReturnPage() {
           try {
             await placeOrder(cartId) // redirects to the confirmation page
             return
-          } catch {
-            // Likely already completed by the webhook.
+          } catch (e) {
+            // Real completion failure (an already-completed cart returns the
+            // existing order and redirects above). The backend sweeper retries
+            // every few minutes; keep the reason in the console for support.
+            console.error("paynow-return: completion failed after CONFIRMED", e)
             if (!cancelled) {
-              setDone(true)
-              setMessage(
-                "Płatność potwierdzona. Twoje zamówienie jest przetwarzane — potwierdzenie wyślemy e-mailem."
-              )
+              setPaidButFailed(true)
             }
             return
           }
@@ -90,7 +93,22 @@ export default function PaynowReturnPage() {
 
   return (
     <div className="content-container flex flex-col items-center justify-center gap-y-4 py-24 text-center">
-      {error ? (
+      {paidButFailed ? (
+        <>
+          <Text className="text-lg font-medium">
+            Płatność została potwierdzona, ale nie udało się automatycznie
+            utworzyć zamówienia.
+          </Text>
+          <Text className="max-w-prose text-ui-fg-subtle">
+            Nie płać ponownie — dokończymy zamówienie automatycznie i wyślemy
+            potwierdzenie e-mailem. Jeśli nie dotrze w ciągu godziny, napisz do
+            nas: <a className="underline" href="mailto:kontakt@lunulaoil.pl">kontakt@lunulaoil.pl</a>.
+          </Text>
+          <a href={`/${countryCode}`}>
+            <Button variant="secondary">Wróć do sklepu</Button>
+          </a>
+        </>
+      ) : error ? (
         <>
           <Text className="text-lg font-medium">{error}</Text>
           <a href={`/${countryCode}/checkout?step=payment`}>
