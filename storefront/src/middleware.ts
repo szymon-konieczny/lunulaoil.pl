@@ -155,18 +155,25 @@ export async function middleware(request: NextRequest) {
   const urlHasCountryCode =
     countryCode && request.nextUrl.pathname.split("/")[1].includes(countryCode)
 
-  // if one of the country codes is in the url and the cache id is set, return next
-  if (urlHasCountryCode && cacheIdCookie) {
+  // The URL already has a valid country code: render the page directly.
+  // If the cache-id cookie is missing, set it on this same response — do NOT
+  // redirect to the same URL to set it. A self-redirect loops forever for any
+  // client that doesn't replay Set-Cookie across redirects: Meta's
+  // facebookexternalhit and other link-validation crawlers, search-engine bots,
+  // curl without a cookie jar. Seed it on the request too so this first render
+  // uses the same cache id for cache-tag scoping.
+  if (urlHasCountryCode) {
+    if (!cacheIdCookie) {
+      request.cookies.set("_medusa_cache_id", cacheId)
+      const res = NextResponse.next({ request })
+      res.cookies.set("_medusa_cache_id", cacheId, {
+        maxAge: 60 * 60 * 24,
+      })
+
+      return finalize(res)
+    }
+
     return finalize(NextResponse.next())
-  }
-
-  // if one of the country codes is in the url and the cache id is not set, set the cache id and redirect
-  if (urlHasCountryCode && !cacheIdCookie) {
-    response.cookies.set("_medusa_cache_id", cacheId, {
-      maxAge: 60 * 60 * 24,
-    })
-
-    return finalize(response)
   }
 
   // check if the url is a static asset
