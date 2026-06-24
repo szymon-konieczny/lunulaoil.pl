@@ -80,6 +80,43 @@ export class IgGraphClient {
     return { message_id: String(json.message_id ?? "") }
   }
 
+  /**
+   * Private reply to the AUTHOR of a comment. Unlike sendDm (recipient:{id},
+   * which only works inside an open 24h messaging window), this targets
+   * recipient:{comment_id} and is allowed for any commenter within 7 days of
+   * their comment — the correct primitive for comment→DM automations. Same
+   * /messages endpoint and permission as sendDm. Never posts publicly.
+   */
+  async sendCommentPrivateReply(
+    commentId: string,
+    text: string
+  ): Promise<{ message_id: string }> {
+    const res = await this.fetchImpl(
+      `${API_BASE}/${this.businessAccountId}/messages`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.token}`,
+        },
+        body: JSON.stringify({
+          recipient: { comment_id: commentId },
+          message: { text },
+        }),
+      }
+    )
+    const json = (await res.json().catch(() => ({}))) as any
+    if (!res.ok) {
+      throw new IgGraphError(
+        json?.error?.message ?? `HTTP ${res.status}`,
+        res.status,
+        json?.error?.code ?? "UNKNOWN",
+        json
+      )
+    }
+    return { message_id: String(json.message_id ?? "") }
+  }
+
   async replyToComment(
     commentId: string,
     text: string
