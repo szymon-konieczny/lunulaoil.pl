@@ -34,7 +34,8 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   const addPromotionCode = async (formData: FormData) => {
     setErrorMessage("")
 
-    const code = formData.get("code")
+    // Promo codes are uppercase by convention (Medusa lookup is case-sensitive)
+    const code = formData.get("code")?.toString().trim().toUpperCase()
     if (!code) {
       return
     }
@@ -42,14 +43,16 @@ const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
     const codes = promotions
       .filter((p) => p.code !== undefined)
       .map((p) => p.code!)
-    codes.push(code.toString())
+    codes.push(code)
 
-    try {
-      await applyPromotions(codes)
-    } catch (e: any) {
-      setErrorMessage(e.message)
+    const result = await applyPromotions(codes)
+
+    if (result?.error) {
+      setErrorMessage(result.error)
+      return
     }
 
+    // clear the input only when the code applied
     if (input) {
       input.value = ""
     }

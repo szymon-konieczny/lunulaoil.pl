@@ -113,7 +113,9 @@ function sanitizeDiscountCode(code: string | null): string | null {
 
   const trimmed = code.trim()
 
-  return /^[A-Za-z0-9_-]{1,64}$/.test(trimmed) ? trimmed : null
+  // Uppercase: promo codes are uppercase by convention and Medusa's lookup is
+  // case-sensitive — this makes ?discount=jowita work as well as ?discount=JOWITA.
+  return /^[A-Za-z0-9_-]{1,64}$/.test(trimmed) ? trimmed.toUpperCase() : null
 }
 
 /**

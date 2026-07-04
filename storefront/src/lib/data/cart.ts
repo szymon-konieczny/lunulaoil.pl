@@ -262,27 +262,67 @@ export async function initiatePaymentSession(
     .catch(medusaError)
 }
 
-export async function applyPromotions(codes: string[]) {
+/**
+ * Applies (REPLACE semantics) the given promo codes on the cart.
+ *
+ * Returns `{ error }` instead of throwing: server-action errors are masked in
+ * production builds, so a thrown Medusa error would reach the client as the
+ * generic "Server Components render" message. Medusa also silently skips codes
+ * that exist but don't apply (inactive/draft, campaign window, rules), so we
+ * verify the codes actually landed on the cart and report the ones that didn't.
+ */
+export async function applyPromotions(
+  codes: string[]
+): Promise<{ error: string } | undefined> {
   const cartId = await getCartId()
 
   if (!cartId) {
-    throw new Error("No existing cart found")
+    return { error: "Nie znaleziono koszyka" }
   }
 
   const headers = {
     ...(await getAuthHeaders()),
   }
 
-  return sdk.store.cart
-    .update(cartId, { promo_codes: codes }, {}, headers)
-    .then(async () => {
-      const cartCacheTag = await getCacheTag("carts")
-      revalidateTag(cartCacheTag)
+  try {
+    const { cart } = await sdk.store.cart.update(
+      cartId,
+      { promo_codes: codes },
+      { fields: "id,*promotions" },
+      headers
+    )
 
-      const fulfillmentCacheTag = await getCacheTag("fulfillment")
-      revalidateTag(fulfillmentCacheTag)
-    })
-    .catch(medusaError)
+    const cartCacheTag = await getCacheTag("carts")
+    revalidateTag(cartCacheTag)
+
+    const fulfillmentCacheTag = await getCacheTag("fulfillment")
+    revalidateTag(fulfillmentCacheTag)
+
+    const applied = new Set(
+      (cart.promotions ?? [])
+        .map((p) => p.code)
+        .filter((c): c is string => Boolean(c))
+    )
+    const rejected = codes.filter((code) => !applied.has(code))
+
+    if (rejected.length > 0) {
+      return {
+        error:
+          rejected.length === 1
+            ? `Kod „${rejected[0]}" jest nieaktywny lub nie spełnia warunków promocji`
+            : `Kody ${rejected.map((c) => `„${c}"`).join(", ")} są nieaktywne lub nie spełniają warunków promocji`,
+      }
+    }
+  } catch (e: any) {
+    console.error("applyPromotions failed:", e?.message ?? e)
+
+    // Medusa: "The promotion code X is invalid" — code doesn't exist
+    if (typeof e?.message === "string" && e.message.includes("is invalid")) {
+      return { error: "Nieprawidłowy kod promocyjny" }
+    }
+
+    return { error: "Nie udało się zastosować kodu. Spróbuj ponownie." }
+  }
 }
 
 /**
@@ -367,11 +407,8 @@ export async function submitPromotionForm(
   formData: FormData
 ) {
   const code = formData.get("code") as string
-  try {
-    await applyPromotions([code])
-  } catch (e: any) {
-    return e.message
-  }
+  const result = await applyPromotions([code])
+  return result?.error
 }
 
 // TODO: Pass a POJO instead of a form entity here
