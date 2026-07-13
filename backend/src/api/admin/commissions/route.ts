@@ -3,7 +3,11 @@ import type {
   MedusaResponse,
 } from "@medusajs/framework/http"
 import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
-import { aggregateCommissions } from "../../../lib/commissions/aggregate"
+import {
+  aggregateCommissions,
+  buildReportRows,
+  rateFromMetadata,
+} from "../../../lib/commissions/aggregate"
 
 const parseDate = (value: unknown, fallback: Date): Date => {
   if (typeof value === "string" && value) {
@@ -41,5 +45,31 @@ export const GET = async (
 
   const report = await aggregateCommissions(query, { from, to, onlyPaid })
 
-  res.json(report)
+  // Attach each code's stored commission rate, and surface every eligible promo
+  // code (active, rate-configured, or seen in orders) so rates are assignable
+  // even before the first sale.
+  const salesCodes = new Set(report.rows.map((r) => r.code))
+  const { data: promos } = await query.graph({
+    entity: "promotion",
+    fields: ["id", "code", "status", "metadata"],
+    pagination: { take: 1000 },
+  })
+  const promotionRates = (promos as any[])
+    .filter(
+      (p) =>
+        p.code &&
+        (p.status === "active" ||
+          rateFromMetadata(p.metadata) !== null ||
+          salesCodes.has(p.code))
+    )
+    .map((p) => ({
+      id: p.id,
+      code: p.code,
+      status: p.status,
+      ratePct: rateFromMetadata(p.metadata),
+    }))
+
+  const rows = buildReportRows(report.rows, promotionRates)
+
+  res.json({ ...report, rows })
 }

@@ -85,6 +85,70 @@ export const num = (v: unknown): number => {
   return Number.isFinite(n) ? n : 0
 }
 
+export type PromotionRate = {
+  id: string
+  code: string
+  status?: string
+  ratePct: number | null
+}
+
+export type ReportRow = CommissionRow & {
+  promotionId: string | null
+  ratePct: number | null
+}
+
+/** Read a stored commission rate out of a promotion's metadata. */
+export const rateFromMetadata = (
+  metadata: Record<string, unknown> | null | undefined
+): number | null => {
+  const raw = metadata?.commission_rate
+  if (raw == null || raw === "") return null
+  const n = Number(raw)
+  return Number.isFinite(n) && n >= 0 ? n : null
+}
+
+/**
+ * Merge per-code sales aggregates with the promotions' stored rates. Every
+ * promo code appears as a row — even with zero orders — so a rate can be
+ * assigned before the first sale. Codes seen in orders but with no matching
+ * promotion still surface (promotionId=null, rate not persistable).
+ */
+export function buildReportRows(
+  salesRows: CommissionRow[],
+  promotions: PromotionRate[]
+): ReportRow[] {
+  const byCode = new Map<string, ReportRow>()
+
+  for (const r of salesRows) {
+    byCode.set(r.code, { ...r, promotionId: null, ratePct: null })
+  }
+
+  for (const p of promotions) {
+    if (!p.code) continue
+    const existing = byCode.get(p.code)
+    if (existing) {
+      existing.promotionId = p.id
+      existing.ratePct = p.ratePct
+    } else {
+      byCode.set(p.code, {
+        code: p.code,
+        orders: 0,
+        paidOrders: 0,
+        net: 0,
+        gross: 0,
+        discount: 0,
+        total: 0,
+        promotionId: p.id,
+        ratePct: p.ratePct,
+      })
+    }
+  }
+
+  return [...byCode.values()].sort(
+    (a, b) => b.net - a.net || a.code.localeCompare(b.code)
+  )
+}
+
 export async function aggregateCommissions(
   query: QueryLike,
   opts: { from: Date; to: Date; onlyPaid?: boolean; maxOrders?: number }

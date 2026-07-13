@@ -11,6 +11,7 @@ import {
   Switch,
   Table,
   Text,
+  toast,
 } from "@medusajs/ui"
 import { useEffect, useMemo, useState } from "react"
 
@@ -18,6 +19,8 @@ type Basis = "net" | "gross" | "discount" | "total"
 
 type CommissionRow = {
   code: string
+  promotionId: string | null
+  ratePct: number | null
   orders: number
   paidOrders: number
   net: number
@@ -96,13 +99,72 @@ const CommissionsPage = () => {
   }, [currency])
 
   const globalRate = Number(rate) || 0
-  const effectiveRate = (code: string): number => {
-    const override = rateByCode[code]
-    if (override === undefined || override === "") return globalRate
-    return Number(override) || 0
+  // Effective rate: unsaved edit for this code > saved per-code rate > global.
+  const effectiveRate = (row: CommissionRow): number => {
+    const override = rateByCode[row.code]
+    if (override !== undefined) {
+      if (override === "") return globalRate
+      const n = Number(override)
+      return Number.isFinite(n) ? n : globalRate
+    }
+    return row.ratePct != null ? row.ratePct : globalRate
   }
   const commissionFor = (row: CommissionRow): number =>
-    (row[basis] * effectiveRate(row.code)) / 100
+    (row[basis] * effectiveRate(row)) / 100
+
+  // Persist a per-distributor rate to the promotion metadata (on blur).
+  const saveRate = async (row: CommissionRow) => {
+    const override = rateByCode[row.code]
+    if (override === undefined) return // not edited
+    const rateVal = override === "" ? null : Number(override)
+    if (rateVal !== null && !Number.isFinite(rateVal)) return
+    if ((rateVal ?? null) === (row.ratePct ?? null)) {
+      // no change — drop the local override so display falls back to saved
+      setRateByCode((prev) => {
+        const next = { ...prev }
+        delete next[row.code]
+        return next
+      })
+      return
+    }
+    if (!row.promotionId) {
+      toast.error(`Nie można zapisać stawki dla ${row.code}: brak powiązanej promocji`)
+      return
+    }
+    try {
+      const res = await fetch("/admin/commissions/rate", {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ promotion_id: row.promotionId, rate: rateVal }),
+      })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      setData((prev) =>
+        prev
+          ? {
+              ...prev,
+              rows: prev.rows.map((r) =>
+                r.code === row.code ? { ...r, ratePct: rateVal } : r
+              ),
+            }
+          : prev
+      )
+      setRateByCode((prev) => {
+        const next = { ...prev }
+        delete next[row.code]
+        return next
+      })
+      toast.success(
+        rateVal === null
+          ? `Wyczyszczono stawkę dla ${row.code}`
+          : `Zapisano stawkę ${rateVal}% dla ${row.code}`
+      )
+    } catch (e) {
+      toast.error(
+        `Nie udało się zapisać stawki dla ${row.code}: ${e instanceof Error ? e.message : "błąd"}`
+      )
+    }
+  }
 
   const totals = useMemo(() => {
     const rows = data?.rows ?? []
@@ -154,7 +216,7 @@ const CommissionsPage = () => {
         dec(r.gross),
         dec(r.discount),
         dec(r.total),
-        dec(effectiveRate(r.code)),
+        dec(effectiveRate(r)),
         dec(commissionFor(r)),
       ].join(sep)
     )
@@ -270,9 +332,9 @@ const CommissionsPage = () => {
           </Select>
         </div>
 
-        <div className="flex flex-col gap-y-1 w-28">
+        <div className="flex flex-col gap-y-1 w-32">
           <Label size="small" htmlFor="rate">
-            Stawka %
+            Stawka domyślna %
           </Label>
           <Input
             id="rate"
@@ -310,8 +372,8 @@ const CommissionsPage = () => {
             </Badge>
             <Badge size="small">Z kodem: {data.ordersWithCode}</Badge>
             <span>
-              Prowizja = {globalRate}% × „{BASIS_LABEL[basis]}"
-              {onlyPaid ? " (tylko opłacone)" : ""}
+              Prowizja = stawka kodu (lub domyślna {globalRate}%) × „
+              {BASIS_LABEL[basis]}"{onlyPaid ? " (tylko opłacone)" : ""}
             </span>
             {data.capped && (
               <Badge size="small" color="orange">
@@ -375,13 +437,23 @@ const CommissionsPage = () => {
                         min="0"
                         step="0.5"
                         placeholder={String(globalRate)}
-                        value={rateByCode[r.code] ?? ""}
+                        disabled={!r.promotionId}
+                        title={
+                          r.promotionId
+                            ? "Stawka prowizji dla tego kodu (zapisywana po wyjściu z pola)"
+                            : "Brak powiązanej promocji — stawki nie można zapisać"
+                        }
+                        value={
+                          rateByCode[r.code] ??
+                          (r.ratePct != null ? String(r.ratePct) : "")
+                        }
                         onChange={(e) =>
                           setRateByCode((prev) => ({
                             ...prev,
                             [r.code]: e.target.value,
                           }))
                         }
+                        onBlur={() => saveRate(r)}
                       />
                     </Table.Cell>
                     <Table.Cell className="text-right font-semibold">
@@ -425,11 +497,16 @@ const CommissionsPage = () => {
                 wysyłki). „Wartość zam." to pełna kwota z wysyłką i VAT.
               </li>
               <li>
-                Do potwierdzenia z klientką:{" "}
-                <strong>podstawa prowizji</strong>, <strong>stawka %</strong>,
-                czy liczymy <strong>tylko opłacone</strong> oraz traktowanie
-                zwrotów. Ustawienia zmieniasz powyżej — wynik przelicza się na
-                bieżąco.
+                <strong>Stawka % per dystrybutor</strong>: wpisz stawkę w
+                kolumnie „Stawka %" — zapisuje się automatycznie po wyjściu z
+                pola i jest zapamiętana dla danego kodu (w metadanych promocji).
+                Puste pole = użyta zostaje stawka domyślna z góry. Każdy kod ma
+                własną stawkę (np. inną dla Jowity, inną dla Magdy).
+              </li>
+              <li>
+                Do potwierdzenia z klientką: <strong>podstawa prowizji</strong>,
+                wysokość <strong>stawek</strong>, czy liczymy{" "}
+                <strong>tylko opłacone</strong> oraz traktowanie zwrotów.
               </li>
             </ul>
           </div>
