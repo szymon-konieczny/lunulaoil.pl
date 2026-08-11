@@ -1,0 +1,52 @@
+name: uptime
+
+# Checks that the storefront actually renders. This is deliberately NOT the
+# backend /health endpoint: /health returns 200 even when Postgres is down
+# (see the 2026-08-08..11 outage — DB dead for 3 days while /health was green).
+# A rendered storefront page proves front + backend + database end-to-end.
+#
+# On failure GitHub emails the workflow author automatically (one email per
+# failed run, i.e. roughly every 15 minutes while the shop is down).
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Override checked URL (only for testing the alert path)"
+        required: false
+
+permissions: {}
+
+jobs:
+  storefront:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Check storefront renders
+        env:
+          URL: ${{ inputs.url || 'https://www.lunulaoil.pl/pl' }}
+        run: |
+          set -u
+          code=000
+          for attempt in 1 2 3; do
+            code=$(curl -sSL -o body.html -w '%{http_code}' --max-time 25 "$URL" || echo 000)
+            if [ "$code" = "200" ] && grep -qi "koszyk" body.html; then
+              echo "OK: HTTP 200, shop layout rendered (attempt $attempt)"
+              exit 0
+            fi
+            echo "attempt $attempt failed: HTTP $code"
+            [ "$attempt" -lt 3 ] && sleep 30
+          done
+
+          echo "::error::lunulaoil.pl is DOWN — storefront did not render (last HTTP $code)"
+          echo "=== diagnostics ==="
+          echo "--- storefront headers ---"
+          curl -sSI --max-time 20 "$URL" || true
+          echo "--- api.lunulaoil.pl/health ---"
+          curl -sSi --max-time 20 https://api.lunulaoil.pl/health | head -15 || true
+          echo "=== hints ==="
+          echo "* 'x-railway-fallback: true' in headers = Railway has no live deployment (check Railway dashboard/billing)."
+          echo "* /health 200 with storefront down usually means Postgres is dead — check 'railway logs --service Postgres'."
+          exit 1
