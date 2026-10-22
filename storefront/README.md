@@ -1,125 +1,115 @@
-<p align="center">
-  <a href="https://www.medusajs.com">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/59018053/229103275-b5e482bb-4601-46e6-8142-244f531cebdb.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    <img alt="Medusa logo" src="https://user-images.githubusercontent.com/59018053/229103726-e5b529a3-9b3f-4970-8a1f-c6af37f087bf.svg">
-    </picture>
-  </a>
-</p>
+# Storefront — Lunula Botanique
 
-<h1 align="center">
-  Medusa Next.js Starter Template
-</h1>
+Frontend sklepu [lunulaoil.pl](https://www.lunulaoil.pl). Next.js 15 (App Router)
+rozmawiający z backendem Medusy v2 po HTTP przez `@medusajs/js-sdk`.
 
-<p align="center">
-Combine Medusa's modules for your commerce backend with the newest Next.js 15 features for a performant storefront.</p>
+Backend żyje w `../backend`, a wspólny opis architektury jest w `../CLAUDE.md`.
 
-<p align="center">
-  <a href="https://github.com/medusajs/medusa/blob/master/CONTRIBUTING.md">
-    <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat" alt="PRs welcome!" />
-  </a>
-  <a href="https://discord.gg/xpCwq3Kfn8">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289DA.svg" alt="Discord Chat" />
-  </a>
-  <a href="https://twitter.com/intent/follow?screen_name=medusajs">
-    <img src="https://img.shields.io/twitter/follow/medusajs.svg?label=Follow%20@medusajs" alt="Follow @medusajs" />
-  </a>
-</p>
+## Stack
 
-### Prerequisites
+| | |
+|---|---|
+| Framework | Next.js 15.5.28, App Router, React 19 |
+| Style | Tailwind CSS 3 + `@medusajs/ui-preset`, theming na CSS variables |
+| Dane | `@medusajs/js-sdk` → Medusa v2 (REST) |
+| i18n | `next-intl`, komunikaty w `src/messages` |
+| Płatności | Stripe (`@stripe/react-stripe-js`), PayNow, InPost Geowidget |
+| Node | 22 LTS (`.nvmrc`), npm 10.9.4 (`packageManager`) |
 
-To use the [Next.js Starter Template](https://medusajs.com/nextjs-commerce/), you should have a Medusa server running locally on port 9000.
-For a quick setup, run:
+## Uruchomienie lokalne
 
-```shell
-npx create-medusa-app@latest
+```bash
+nvm use            # Node 22 z .nvmrc
+npm install
+npm run dev        # http://localhost:8000
 ```
 
-Check out [create-medusa-app docs](https://docs.medusajs.com/learn/installation) for more details and troubleshooting.
+`npm install` odpala `postinstall`, czyli `patches/fix-medusa-sdk-localstorage.sh`
+— łatkę na `@medusajs/js-sdk`, która zabezpiecza dostęp do `localStorage` przy
+renderowaniu po stronie serwera. Skrypt jest idempotentny, ale przy mylących
+błędach bundlera najpewniej jest zacząć od `rm -rf node_modules && npm ci`.
 
-# Overview
+### Skrypty
 
-The Medusa Next.js Starter is built with:
+| skrypt | co robi |
+|---|---|
+| `npm run dev` | tryb deweloperski na porcie 8000 (Turbopack) |
+| `npm run build` | build produkcyjny; emituje `.next/standalone` |
+| `npm run lint` | `next lint` |
+| `npm run analyze` | build z `ANALYZE=true` |
 
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Typescript](https://www.typescriptlang.org/)
-- [Medusa](https://medusajs.com/)
+Żeby odpalić build produkcyjny lokalnie bez Dockera, uruchom serwer standalone
+wprost — port bierze ze zmiennej `PORT`:
 
-Features include:
-
-- Full ecommerce support:
-  - Product Detail Page
-  - Product Overview Page
-  - Product Collections
-  - Cart
-  - Checkout with Stripe
-  - User Accounts
-  - Order Details
-- Full Next.js 15 support:
-  - App Router
-  - Next fetching/caching
-  - Server Components
-  - Server Actions
-  - Streaming
-  - Static Pre-Rendering
-
-# Quickstart
-
-### Setting up the environment variables
-
-Navigate into your projects directory and get your environment variables ready:
-
-```shell
-cd nextjs-starter-medusa/
-mv .env.template .env.local
+```bash
+npm run build
+PORT=8000 node .next/standalone/server.js
 ```
 
-### Install dependencies
+> [!NOTE]
+> `npm run start` (czyli `next start -p 8000`) **nie działa** od włączenia
+> `output: "standalone"` — Next wypisuje ostrzeżenie i zwraca 500. Skrypt
+> pozostał w `package.json` z czasów przed zmianą obrazu produkcyjnego.
 
-Use Yarn to install all dependencies.
+## Zmienne środowiskowe
 
-```shell
-yarn
+`NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` jest **wymagany** — `next.config.js` woła
+`check-env-variables.js`, które przerywa build, jeśli klucza nie ma.
+
+| zmienna | rola |
+|---|---|
+| `NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY` | publishable key Medusy; wymagany |
+| `NEXT_PUBLIC_MEDUSA_BACKEND_URL` | adres backendu dla przeglądarki |
+| `MEDUSA_BACKEND_URL` | adres backendu dla kodu serwerowego; domyślnie to samo co wyżej |
+| `NEXT_PUBLIC_BASE_URL` | kanoniczny adres sklepu (sitemapa, metadane OG) |
+| `NEXT_PUBLIC_DEFAULT_REGION` | domyślny region, `pl` |
+| `NEXT_PUBLIC_INPOST_GEOWIDGET_TOKEN` | token mapy paczkomatów w checkoucie |
+
+Wszystkie `NEXT_PUBLIC_*` są wstrzykiwane **w czasie builda**, nie przy starcie —
+zmiana którejkolwiek wymaga przebudowania obrazu, nie restartu.
+
+## Struktura
+
+```
+src/
+  app/              # App Router: trasy [countryCode]/*, api/*, sitemap.ts
+  modules/          # moduły UI: products, cart, checkout, account, quiz, layout, …
+  lib/              # SDK Medusy, warstwa danych (lib/data), konfiguracja, utils
+  i18n/ messages/   # konfiguracja next-intl i tłumaczenia
+  styles/ types/    # globalne style i typy współdzielone
+  middleware.ts     # rozpoznanie regionu i przepisanie na /[countryCode]
 ```
 
-### Start developing
+Theming siedzi w `src/lib/config/theme.config.ts` — kolory, fonty, logo i nazwa
+marki. Tailwind korzysta z CSS variables, żeby dało się przestawić projekt na
+inną markę bez ruszania komponentów.
 
-You are now ready to start up your project.
+## Produkcja
 
-```shell
-yarn dev
+Hosting to Railway, build z `Dockerfile` (`railway.toml` → builder `DOCKERFILE`).
+Obraz jest dwuetapowy i opiera się na `output: "standalone"`: etap produkcyjny
+kopiuje tylko `.next/standalone`, `.next/static` i `public`, więc nie wozi
+narzędzi build-time'owych. Serwer startuje przez `node server.js` i czyta port
+z `PORT` (ustawione na 8000) oraz adres bindowania z `HOSTNAME` (`0.0.0.0`),
+a nie z flagi `next start -p`.
+
+Lokalny build obrazu wymaga przekazania zmiennych jako `--build-arg`, bo
+`NEXT_PUBLIC_*` muszą być znane w trakcie builda:
+
+```bash
+docker build \
+  --build-arg NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY=pk_… \
+  --build-arg NEXT_PUBLIC_MEDUSA_BACKEND_URL=https://api.lunulaoil.pl \
+  --build-arg NEXT_PUBLIC_BASE_URL=https://www.lunulaoil.pl \
+  -t lunula-storefront .
 ```
 
-### Open the code and start customizing
+> [!WARNING]
+> Merge na `main` przebudowuje w Railway oba serwisy sklepu — `railway.json`
+> nie ma `watchPatterns`, więc zmiana w samym storefroncie rusza też backend.
 
-Your site is now running at http://localhost:8000!
+## Pochodzenie kodu
 
-# Payment integrations
-
-By default this starter supports the following payment integrations
-
-- [Stripe](https://stripe.com/)
-
-To enable the integrations you need to add the following to your `.env.local` file:
-
-```shell
-NEXT_PUBLIC_STRIPE_KEY=<your-stripe-public-key>
-```
-
-You'll also need to setup the integrations in your Medusa server. See the [Medusa documentation](https://docs.medusajs.com) for more information on how to configure [Stripe](https://docs.medusajs.com/resources/commerce-modules/payment/payment-provider/stripe#main).
-
-# Resources
-
-## Learn more about Medusa
-
-- [Website](https://www.medusajs.com/)
-- [GitHub](https://github.com/medusajs)
-- [Documentation](https://docs.medusajs.com/)
-
-## Learn more about Next.js
-
-- [Website](https://nextjs.org/)
-- [GitHub](https://github.com/vercel/next.js)
-- [Documentation](https://nextjs.org/docs)
+Projekt wystartował z oficjalnego szablonu
+[medusa-next](https://github.com/medusajs/nextjs-starter-medusa) (MIT). Plik
+`LICENSE` zachowuje notę Medusy, bo tego wymaga licencja pierwotnego kodu.
