@@ -50,7 +50,7 @@
     "babel-loader": "^8.2.3",
     "eslint": "8.10.0",
     "eslint-config-next": "15.5.28",
-    "postcss": "^8.4.8",
+    "postcss": "^8.5.31",
     "prettier": "^2.8.8",
     "tailwindcss": "^3.0.23",
     "typescript": "^5.3.2"
@@ -62,7 +62,9 @@
   "overrides": {
     "react": "19.0.4",
     "react-dom": "19.0.4",
-    "sharp": "^0.35.5"
+    "sharp": "^0.35.5",
+    "postcss": "$postcss",
+    "postcss-selector-parser": "^7.1.7"
   },
   "packageManager": "npm@10.9.4"
 }
