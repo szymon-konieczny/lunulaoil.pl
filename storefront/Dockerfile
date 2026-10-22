@@ -28,7 +28,9 @@ ENV NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL
 ENV NEXT_PUBLIC_DEFAULT_REGION=$NEXT_PUBLIC_DEFAULT_REGION
 ENV NEXT_PUBLIC_INPOST_GEOWIDGET_TOKEN=$NEXT_PUBLIC_INPOST_GEOWIDGET_TOKEN
 
-# Build Next.js
+# Build Next.js — `output: "standalone"` in next.config.js makes this emit
+# .next/standalone with a self-contained server.js and only the node_modules
+# files the server actually traces (no devDependencies, no build tooling)
 RUN npm run build
 
 # Production
@@ -36,14 +38,19 @@ FROM node:22-alpine AS production
 
 WORKDIR /app
 
-# Copy only what's needed for production
-COPY --from=base /app/package.json ./
-COPY --from=base /app/node_modules ./node_modules
-COPY --from=base /app/.next ./.next
+ENV NODE_ENV=production
+# The standalone server reads its port and bind address from the environment,
+# there is no CLI flag like in `next start -p 8000`
+ENV PORT=8000
+ENV HOSTNAME=0.0.0.0
+
+# Copy only what the standalone server needs: it brings its own package.json,
+# server.js and a minimal node_modules. `public` and `.next/static` are not
+# part of the standalone bundle and have to be copied separately.
+COPY --from=base /app/.next/standalone ./
+COPY --from=base /app/.next/static ./.next/static
 COPY --from=base /app/public ./public
-COPY --from=base /app/next.config.js ./
-COPY --from=base /app/check-env-variables.js ./
 
 EXPOSE 8000
 
-CMD ["npm", "run", "start"]
+CMD ["node", "server.js"]
