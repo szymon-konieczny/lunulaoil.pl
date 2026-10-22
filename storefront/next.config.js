@@ -31,6 +31,16 @@ if (MEDUSA_BACKEND_URL) {
  */
 const nextConfig = {
   reactStrictMode: true,
+  // Emit .next/standalone: a self-contained server.js plus only the
+  // node_modules files the server actually needs, so the production image
+  // no longer carries build-time tooling (Tailwind, eslint, TypeScript).
+  output: "standalone",
+  outputFileTracingExcludes: {
+    // next/dist/lib/verify-typescript-setup.js is the only thing that pulls
+    // the TypeScript compiler into the trace, and it only ever runs during
+    // `next build`. The production server never touches it.
+    "*": ["node_modules/typescript/**"],
+  },
   logging: {
     fetches: {
       fullUrl: true,
